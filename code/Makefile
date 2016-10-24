@@ -3,7 +3,7 @@ INC_DIR := ./includes
 OUTPUT_DIR := ./out
 
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -iquote $(INC_DIR)
+CFLAGS := -Wall -Wextra -Werror -std=gnu99 -iquote $(INC_DIR)
 
 all: OUT main
 
