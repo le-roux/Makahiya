@@ -1,0 +1,37 @@
+Mon Oct 24 11:36:10 2016
+
+Project path: F:\Project_template\Default\default.icdb
+
+Env. WDIR: C:\MentorGraphics\WDIR;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard
+WDIRs: 
+	C:\MentorGraphics\WDIR
+	C:\MentorGraphics\7.9.5EE\SDD_HOME\standard
+
+Loaded cns files: 
+	C:\MentorGraphics\WDIR\user.cns=382b-6cc2-3a9b-e223-d38b-4082-48b4-0850-0880-b0df-a01e-19ca
+	C:\MentorGraphics\7.9.5EE\SDD_HOME\standard\ce_ee.cns=7.10.24 (read-only)
+
+Loaded cns - data stored in database: C:\MentorGraphics\WDIR\user.cns=382b-6cc2-3a9b-e223-d38b-4082-48b4-0850-0880-b0df-a01e-19ca;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard\ce_ee.cns=7.10.24
+Before global upgrade from version: 7.10.24 to version: 7.10.24
+
+BeforeGlobalUpgrade took 31ms, 0s
+
+Upgrade snapshot DCDV
+UpgradeSnapshot took 0ms, 0s
+
+Upgrade snapshot PCB_Layout_Temp
+UpgradeSnapshot took 0ms, 0s
+
+Upgrade snapshot PCB
+UpgradeSnapshot took 16ms, 0s
+
+Upgrade snapshot DCDV_INST_PROP_TEMPORARY_STORAGE
+UpgradeSnapshot took 15ms, 0s
+
+Upgrade snapshot RefSync
+UpgradeSnapshot took 0ms, 0s
+
+After global upgrade
+Set database cns file versions: ce_ee.cns=7.10.24;user.cns=382b-6cc2-3a9b-e223-d38b-4082-48b4-0850-0880-b0df-a01e-19ca
+AfterGlobalUpgrade took 0ms, 0s
+
