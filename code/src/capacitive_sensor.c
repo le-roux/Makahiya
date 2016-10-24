@@ -1,15 +1,16 @@
 #include "capacitive_sensor.h"
 
-uint8_t read_index, write_index, counter, turn, ret;
+uint8_t read_index, write_index, counter, turn, ret, detect_touch, in_touch;
 
-float buffer[BUFFER_SIZE];
-float default_value, float average;
+uint32_t buffer[BUFFER_SIZE];
 
 void init(void) {
     read_index = 0;
     write_index = 0;
     average = 0;
     default_value = 0;
+    detect_touch = 0;
+    in_touch = 0;
 }
 
 void update_default_value(void) {
@@ -20,6 +21,7 @@ void update_default_value(void) {
         default_value += buffer[counter];
     default_value /= BUFFER_SIZE;
     average = default_value;
+    detect_touch = 1;
 }
 
 uint8_t touch_detected() {
@@ -29,7 +31,7 @@ uint8_t touch_detected() {
         return 0;
 }
 
-uint8_t add_value(float value) {
+uint8_t add_value(uint32_t value) {
     average -= buffer[write_index];
     average += value;
     buffer[write_index] = value;
@@ -38,10 +40,20 @@ uint8_t add_value(float value) {
         turn++;
         write_index = 0;
     }
-    return touch_detected();
+    if (touch_detected()) {
+        if (in_touch)
+            return 0;
+        else {
+            in_touch = 1;
+            return 1;
+        }
+    } else {
+        in_touch = 0;
+        return 0;
+    }
 }
 
-float get_next_value(void) {
+uint32_t get_next_value(void) {
     if (turn != 0 || read_index < write_index) {
         ret = buffer[read_index];
         read_index++;
@@ -49,6 +61,7 @@ float get_next_value(void) {
             turn--;
             read_index = 0;
         }
+        return ret;
     } else
         return -1;
 }

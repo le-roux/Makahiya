@@ -5,9 +5,10 @@ OUTPUT_DIR := ./out
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror -iquote $(INC_DIR)
 
-all: main
+all: OUT main
 
-main: OUT $(OUTPUT_DIR)/main.o
+main: $(OUTPUT_DIR)/main.o $(OUTPUT_DIR)/capacitive_sensor.o
+	$(CC) $(CFLAGS) $^ -o $@
 
 OUT:
 	-mkdir $(OUTPUT_DIR)
