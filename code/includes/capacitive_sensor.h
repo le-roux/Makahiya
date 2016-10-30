@@ -4,9 +4,22 @@
 #include <stdint.h>
 
 #define BUFFER_SIZE 3
-#define MARGIN 2500
+#define MARGIN_USER 2500
+#define MARGIN (BUFFER_SIZE * MARGIN_USER)
 
+#define NEXT_INDEX(index) ((index++ < BUFFER_SIZE)?index++:0)
+#define PREVIOUS_INDEX(index) ((index-- >= 0)?index--:BUFFER_SIZE--)
+
+/**
+ * __WARNING__ These values are not normalized (by BUFFER_SIZE) !!
+ */
 uint32_t default_value, average;
+
+/** @brief Status indicator.
+ *
+ * Indicates if we're in a touch (in which case a touch mustn't be reported
+ * before we leave this state) or not.
+ */
 extern uint8_t in_touch;
 
 /** @brief Init all the variables used in the touch detection algorithm.
@@ -25,25 +38,11 @@ void init(void);
  */
 void update_default_value(void);
 
-/** @brief Returns 1 if a touch is being detected, 0 otherwise.
- *
- * @return
- *  - 1 if a touch is being detected
- *  - 0 otherwise
- */
-uint8_t touch_detected(void);
-
 /** @brief Add a value into the buffer.
  *
  * This function allows the user to safely add a new value in the buffer.
- * It doesn't simply add the value but also run the touch detection algorithm.
- *
- * @param value: The value to write in the buffer.
- * @return
- *  - 1 if a touch is detected
- *  - 0 otherwise
  */
-uint8_t add_value(uint32_t value);
+void add_value(uint32_t value);
 
 /** @brief Read a value from the buffer.
  *
@@ -51,5 +50,13 @@ uint8_t add_value(uint32_t value);
  * @return The value read.
  */
 uint32_t get_next_value(void);
+
+/** @brief Run the detection algorithm.
+ *
+ * @return
+ *  - 1 if a touch is detected
+ *  - 0 otherwise
+ */
+int detect_action(void);
 
 #endif // CAPACITIVE_SENSOR_H

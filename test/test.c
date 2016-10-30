@@ -7,7 +7,7 @@ Test(suite_1, test_default_value) {
     for (int i = 0; i < BUFFER_SIZE; i++)
         add_value(1);
     update_default_value();
-    cr_expect(default_value == 1, "Test 1");
+    cr_expect(default_value == BUFFER_SIZE, "Test 1");
 }
 
 Test(suite_1, test_no_touch_detection) {
@@ -19,8 +19,10 @@ Test(suite_1, test_no_touch_detection) {
         add_value(data);
     }
     update_default_value();
-    while (fscanf(file, "%i\n", &data) == 1)
-        cr_expect(add_value(data) == 0, "no touch");
+    while (fscanf(file, "%i\n", &data) == 1) {
+        add_value(data);
+        cr_expect(detect_action() == 0, "no touch");
+    }
     fclose(file);
 }
 
@@ -40,44 +42,54 @@ Test(suite_1, test_touch_detection) {
     //
     for (int i = BUFFER_SIZE; i < 31; i++) {
         fscanf(file, "%i\n", &data);
-        cr_expect(add_value(data) == 0, "No touch 1");
+        add_value(data);
+        cr_expect(detect_action() == 0, "No touch 1");
     }
     // Detect 1st touch
     for (int i = 31; i < 37; i++) {
         fscanf(file, "%i\n", &data);
-        ret += add_value(data);
+        add_value(data);
+        ret += detect_action();
     }
     cr_expect(ret == 1, "Touch 1");
     //
     for (int i = 37; i < 50; i++) {
         fscanf(file, "%i\n", &data);
-        cr_expect(add_value(data) == 0, "No touch 2");
+        add_value(data);
+        cr_expect(detect_action() == 0, "No touch 2");
     }
     // Detect 2nd touch
     for (int i = 50; i < 56; i++) {
         fscanf(file, "%i\n", &data);
-        ret += add_value(data);
+        add_value(data);
+        ret += detect_action();
     }
     cr_expect(ret == 2, "Touch 2");
     //
     for (int i = 56; i < 68; i++) {
         fscanf(file, "%i\n", &data);
-        cr_expect(add_value(data) == 0, "No touch 3");
+        add_value(data);
+        cr_expect(detect_action() == 0, "No touch 3");
     }
     // Detect 3rd touch
     for (int i = 68; i < 75; i++) {
         fscanf(file, "%i\n", &data);
-        ret += add_value(data);
+        add_value(data);
+        ret += detect_action();
     }
     //
     cr_expect(ret == 3, "Touch 3");
     for (int i = 75; i < 116; i++) {
         fscanf(file, "%i\n", &data);
-        cr_expect(add_value(data) == 0, "No touch 4");
+        add_value(data);
+        cr_expect(detect_action() == 0, "No touch 4");
     }
     fclose(file);
 }
 
+/**
+ * Test that 1 touch is detected in data_configuration_1/single_touch.csv.
+ */
 Test(suite_1, test_one_touch) {
     FILE* file = fopen("data_configuration_1/single_touch.csv" ,"r");
     uint32_t data;
@@ -90,16 +102,19 @@ Test(suite_1, test_one_touch) {
     update_default_value();
     for (int i = BUFFER_SIZE; i < 70; i++) {
         fscanf(file, "%i\n", &data);
-        cr_expect(add_value(data) == 0, "no touch");
+        add_value(data);
+        cr_expect(detect_action() == 0, "no touch");
     }
     for (int i = 70; i < 75; i++) {
         fscanf(file, "%i\n", &data);
-        ret += add_value(data);
+        add_value(data);
+        ret += detect_action();
     }
     cr_expect(ret == 1, "1 touch");
     for (int i = 75; i < 119; i++) {
         fscanf(file, "%i\n", &data);
-        cr_expect(add_value(data) == 0, "no touch");
+        add_value(data);
+        cr_expect(detect_action() == 0, "no touch");
     }
     fclose(file);
 }
