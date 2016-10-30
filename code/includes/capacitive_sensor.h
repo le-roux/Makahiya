@@ -3,10 +3,11 @@
 
 #include <stdint.h>
 
-#define BUFFER_SIZE 10
-#define MARGIN 1000
+#define BUFFER_SIZE 3
+#define MARGIN 2500
 
 uint32_t default_value, average;
+extern uint8_t in_touch;
 
 void init(void);
 void update_default_value(void);

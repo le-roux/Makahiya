@@ -32,8 +32,8 @@ uint8_t touch_detected() {
 }
 
 uint8_t add_value(uint32_t value) {
-    average -= buffer[write_index];
-    average += value;
+    average -= buffer[write_index] / BUFFER_SIZE;
+    average += value / BUFFER_SIZE;
     buffer[write_index] = value;
     write_index++;
     if (write_index >= BUFFER_SIZE) {
