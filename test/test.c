@@ -77,3 +77,29 @@ Test(suite_1, test_touch_detection) {
     }
     fclose(file);
 }
+
+Test(suite_1, test_one_touch) {
+    FILE* file = fopen("data_configuration_1/single_touch.csv" ,"r");
+    uint32_t data;
+    int ret = 0;
+    init();
+    for (int i = 0; i < BUFFER_SIZE; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(data);
+    }
+    update_default_value();
+    for (int i = BUFFER_SIZE; i < 70; i++) {
+        fscanf(file, "%i\n", &data);
+        cr_expect(add_value(data) == 0, "no touch");
+    }
+    for (int i = 70; i < 75; i++) {
+        fscanf(file, "%i\n", &data);
+        ret += add_value(data);
+    }
+    cr_expect(ret == 1, "1 touch");
+    for (int i = 75; i < 119; i++) {
+        fscanf(file, "%i\n", &data);
+        cr_expect(add_value(data) == 0, "no touch");
+    }
+    fclose(file);
+}

@@ -11,7 +11,7 @@ int main(int argc, char* argv[]) {
     id = 0;
     init();
     printf("Start\n");
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < BUFFER_SIZE; i++) {
         ret = scanf("%i\n", &data);
         add_value(data);
         id++;
