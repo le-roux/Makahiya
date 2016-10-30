@@ -1,2 +1,5 @@
 *.o
 main
+code/doc/html/
+code/doc/latex/
+test/test
