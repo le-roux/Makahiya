@@ -45,8 +45,10 @@ Test(suite_1, test_touch_detection) {
     for (int i = BUFFER_SIZE; i < 31; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
-        cr_expect(detect_action(SENSOR_1) == 0, "No touch 1");
+        ret = detect_action(SENSOR_1);
+        cr_expect(ret == 0, "No touch i: %i, ret: %i", i, ret);
     }
+    ret = 0;
     // Detect 1st touch
     for (int i = 31; i < 37; i++) {
         fscanf(file, "%i\n", &data);
@@ -66,7 +68,7 @@ Test(suite_1, test_touch_detection) {
         add_value(SENSOR_1, data);
         ret += detect_action(SENSOR_1);
     }
-    cr_expect(ret == 2, "Touch 2");
+    cr_expect(ret == 2, "ret: %i", ret);
     //
     for (int i = 56; i < 68; i++) {
         fscanf(file, "%i\n", &data);
@@ -105,8 +107,10 @@ Test(suite_1, test_one_touch) {
     for (int i = BUFFER_SIZE; i < 70; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
-        cr_expect(detect_action(SENSOR_1) == 0, "no touch");
+        ret = detect_action(SENSOR_1);
+        cr_expect(ret == 0, "no touch i:%i, ret: %i", i, ret);
     }
+    ret = 0;
     for (int i = 70; i < 75; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
@@ -116,36 +120,68 @@ Test(suite_1, test_one_touch) {
     for (int i = 75; i < 119; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
-        cr_expect(detect_action(SENSOR_1) == 0, "no touch");
+        ret = detect_action(SENSOR_1);
+        cr_expect(ret == 0, "no touch i: %i, ret: %i", i, ret);
     }
     fclose(file);
 }
 
 Test(suite_2, test_linear_regression_1) {
     init(SENSOR_1);
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < REGRESSION_SIZE; i++)
         add_value(SENSOR_1, i);
     cr_expect(linear_regression(SENSOR_1) == 1);
 }
 
 Test(suite_2, test_linear_regression_2) {
     init(SENSOR_1);
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < 3 * REGRESSION_SIZE; i++)
         add_value(SENSOR_1, 2 * i);
-    cr_expect(linear_regression(SENSOR_1) == 2);
+    cr_expect(linear_regression(SENSOR_1) == 2, "coeff found : %i", linear_regression(SENSOR_1));
 }
 
 Test(suite_2, test_linear_regression_3) {
     init(SENSOR_1);
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < REGRESSION_SIZE; i++)
         add_value(SENSOR_1, 2 * i);
     cr_expect(linear_regression(SENSOR_1) == 2);
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < REGRESSION_SIZE; i++)
         add_value(SENSOR_1, 3 * i);
-    cr_expect(linear_regression(SENSOR_1) == 3);
+    cr_expect(linear_regression(SENSOR_1) == 3, "coeff found: %i", linear_regression(SENSOR_1));
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 3 * REGRESSION_SIZE; i++)
         add_value(SENSOR_1, i);
     cr_expect(linear_regression(SENSOR_1) == 1);
+}
+
+Test(suite_3, test_slide_1) {
+    FILE* file = fopen("data_configuration_1/slide_from_end.csv", "r");
+    init(SENSOR_1);
+    uint32_t data;
+    int ret = 0;
+    for (int i = 0; i < BUFFER_SIZE; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(SENSOR_1, data);
+    }
+    update_default_value(SENSOR_1);
+    for (int i = BUFFER_SIZE; i < 45; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(SENSOR_1, data);
+        cr_expect(detect_action(SENSOR_1) == 0, "nothing to detect");
+    }
+    // Detect slide
+    for (int i = 45; i < 64; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(SENSOR_1, data);
+        ret += detect_action(SENSOR_1);
+        printf("i: %i, ret: %i, coeff: %i, dist: %i\n", i, ret, linear_regression(SENSOR_1), current_distance(SENSOR_1));
+    }
+    cr_expect(ret == 2, "ret : %i", ret);
+    for (int i = 64; i < 161; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(SENSOR_1, data);
+        cr_expect(detect_action(SENSOR_1) == 0, "nothing to detect 2");
+    }
+    fclose(file);
 }

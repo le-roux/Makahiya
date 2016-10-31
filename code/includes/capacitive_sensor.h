@@ -4,9 +4,13 @@
 #include <stdint.h>
 
 #define BUFFER_SIZE 10
-#define MARGIN_USER 2500
+#define MARGIN_USER 3100
+#define SLIDE_MARGIN 1000
 #define SENSORS_NB 1
 #define MARGIN (BUFFER_SIZE * MARGIN_USER)
+
+
+#define REGRESSION_SIZE 7
 
 #define NEXT_INDEX(index) ((index+1 < BUFFER_SIZE)?index+1:0)
 #define PREVIOUS_INDEX(index) ((index-1 >= 0)?index-1:BUFFER_SIZE-1)
@@ -60,5 +64,7 @@ int detect_action(int sensor_id);
 
 
 int linear_regression(int sensor_id);
+
+int current_distance(int sensor_id);
 
 #endif // CAPACITIVE_SENSOR_H

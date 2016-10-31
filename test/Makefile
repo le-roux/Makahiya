@@ -5,13 +5,13 @@ CFLAGS := -Wall -Wextra -Werror -std=gnu99 -iquote $(INC_DIR)/
 LDFLAGS := -lcriterion -lpthread
 OBJ := test.o $(OUTPUT_DIR)/capacitive_sensor.o
 
-test: OUT $(OBJ)
+test: $(OUTPUT_DIR) $(OBJ)
 	$(CC) $(OBJ) -o $@ $(LDFLAGS)
 
 $(OUTPUT_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -c $(CFLAGS) $^ -o $@
 
-OUT:
+$(OUTPUT_DIR):
 	-mkdir $(OUTPUT_DIR)
 
 clean:

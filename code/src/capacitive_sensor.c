@@ -1,4 +1,5 @@
 #include "capacitive_sensor.h"
+#include "utils.h"
 #include <semaphore.h>
 
 /**
@@ -17,6 +18,7 @@ static int write_index[SENSORS_NB];
  *  - 0 : default state, nothing detected.
  *  - 1 : touch is being detected, don't report new touch.
  *  - 2 : slide is being detected.
+ *  - 3 : potential slide detected, waiting for confirmation.
  */
 static int status[SENSORS_NB];
 
@@ -26,6 +28,7 @@ static int status[SENSORS_NB];
 #define DEFAULT_STATE 0
 #define IN_TOUCH 1
 #define IN_SLIDE 2
+#define POTENTIAL_SLIDE 3
 
 /**
  * The buffer used to store data from the capacitive sensors.
@@ -119,11 +122,11 @@ uint32_t get_next_value(int sensor_id) {
         return -1;
 }
 
-#define REGRESSION_SIZE 5
+#include <stdio.h>
 int linear_regression(int sensor_id) {
-    int average_x = (REGRESSION_SIZE * (REGRESSION_SIZE - 1))/(2 * REGRESSION_SIZE);
-    int average_y = 0;
-    int var_x = 0, cov_xy = 0;
+    double average_x = ((double)(REGRESSION_SIZE * (REGRESSION_SIZE - 1)))/(2 * REGRESSION_SIZE);
+    double average_y = 0;
+    double var_x = 0, cov_xy = 0;
     int offset = sensor_id * BUFFER_SIZE;
     int index = PREVIOUS_INDEX(write_index[sensor_id]);
     for (int i = REGRESSION_SIZE - 1; i >= 0; i--) {
@@ -137,12 +140,31 @@ int linear_regression(int sensor_id) {
     var_x -= average_x*average_x;
     cov_xy /= REGRESSION_SIZE;
     cov_xy -= average_x * average_y;
-
-    return (cov_xy/var_x);
+    return (int)(cov_xy/var_x);
 }
 
 int detect_action(int sensor_id) {
     // Detect slide
+    if (status[sensor_id] != IN_TOUCH) {
+        int coeff = linear_regression(sensor_id);
+        if (ABS(coeff) > 200 && ABS(coeff) < 300) {
+            if (status[sensor_id] != IN_SLIDE &&
+                current_distance(sensor_id) > SLIDE_MARGIN) {
+                if (status[sensor_id] == POTENTIAL_SLIDE) {
+                    status[sensor_id] = IN_SLIDE;
+                    return 2;
+                } else {
+                    status[sensor_id] = POTENTIAL_SLIDE;
+                    return 0;
+                }
+            } else
+                return 0;
+        }
+    }
+
+    // Leave slide state
+    if (status[sensor_id] == IN_SLIDE && current_distance(sensor_id) < 100)
+        status[sensor_id] = DEFAULT_STATE;
 
     // Detect touch
     if (touch_detected(sensor_id)) {
@@ -152,8 +174,16 @@ int detect_action(int sensor_id) {
             status[sensor_id] = IN_TOUCH;
             return 1;
         }
-    } else {
-        status[sensor_id] = DEFAULT_STATE;
-        return 0;
     }
+
+    // Leave touch state
+    if (status[sensor_id == IN_TOUCH] && !touch_detected(sensor_id))
+        status[sensor_id] = DEFAULT_STATE;
+
+    // Default return value
+    return 0;
+}
+
+int current_distance(int sensor_id) {
+    return (default_value[sensor_id]/BUFFER_SIZE - buffer[sensor_id * BUFFER_SIZE + PREVIOUS_INDEX(write_index[sensor_id])]);
 }
