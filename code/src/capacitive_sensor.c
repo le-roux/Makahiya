@@ -19,6 +19,7 @@ static int write_index[SENSORS_NB];
  *  - 1 : touch is being detected, don't report new touch.
  *  - 2 : slide is being detected.
  *  - 3 : potential slide detected, waiting for confirmation.
+ *  - 4 : inactive (return from slide).
  */
 static int status[SENSORS_NB];
 
@@ -29,6 +30,7 @@ static int status[SENSORS_NB];
 #define IN_TOUCH 1
 #define IN_SLIDE 2
 #define POTENTIAL_SLIDE 3
+#define INACTIVE 4
 
 /**
  * The buffer used to store data from the capacitive sensors.
@@ -146,8 +148,8 @@ int linear_regression(int sensor_id) {
 int detect_action(int sensor_id) {
     // Detect slide
     if (status[sensor_id] != IN_TOUCH) {
-        int coeff = linear_regression(sensor_id);
-        if (ABS(coeff) > 200 && ABS(coeff) < 300) {
+        int coeff = ABS(linear_regression(sensor_id));
+        if (coeff > 200 && coeff < 300) {
             if (status[sensor_id] != IN_SLIDE &&
                 current_distance(sensor_id) > SLIDE_MARGIN) {
                 if (status[sensor_id] == POTENTIAL_SLIDE) {
@@ -163,11 +165,12 @@ int detect_action(int sensor_id) {
     }
 
     // Leave slide state
-    if (status[sensor_id] == IN_SLIDE && current_distance(sensor_id) < 100)
+    if ((status[sensor_id] == IN_SLIDE && average[sensor_id] < 100) ||
+        status[sensor_id] == POTENTIAL_SLIDE)
         status[sensor_id] = DEFAULT_STATE;
 
     // Detect touch
-    if (touch_detected(sensor_id)) {
+    if (status[sensor_id] != IN_SLIDE && touch_detected(sensor_id)) {
         if (status[sensor_id] == IN_TOUCH)
             return 0;
         else {
@@ -177,8 +180,9 @@ int detect_action(int sensor_id) {
     }
 
     // Leave touch state
-    if (status[sensor_id == IN_TOUCH] && !touch_detected(sensor_id))
+    if (status[sensor_id] == IN_TOUCH && !touch_detected(sensor_id)) {
         status[sensor_id] = DEFAULT_STATE;
+    }
 
     // Default return value
     return 0;
