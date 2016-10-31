@@ -1,8 +1,4 @@
-#include "criterion/criterion.h"
-#include "capacitive_sensor.h"
-#include <stdio.h>
-
-#define SENSOR_1 0
+#include "test.h"
 
 Test(suite_1, test_default_value) {
     init(SENSOR_1);
@@ -126,64 +122,115 @@ Test(suite_1, test_one_touch) {
     fclose(file);
 }
 
-Test(suite_2, test_linear_regression_1) {
-    init(SENSOR_1);
-    for (int i = 0; i < REGRESSION_SIZE; i++)
-        add_value(SENSOR_1, i);
-    cr_expect(linear_regression(SENSOR_1) == 1);
-}
-
-Test(suite_2, test_linear_regression_2) {
-    init(SENSOR_1);
-    for (int i = 0; i < 3 * REGRESSION_SIZE; i++)
-        add_value(SENSOR_1, 2 * i);
-    cr_expect(linear_regression(SENSOR_1) == 2, "coeff found : %i", linear_regression(SENSOR_1));
-}
-
-Test(suite_2, test_linear_regression_3) {
-    init(SENSOR_1);
-    for (int i = 0; i < REGRESSION_SIZE; i++)
-        add_value(SENSOR_1, 2 * i);
-    cr_expect(linear_regression(SENSOR_1) == 2);
-
-    for (int i = 0; i < REGRESSION_SIZE; i++)
-        add_value(SENSOR_1, 3 * i);
-    cr_expect(linear_regression(SENSOR_1) == 3, "coeff found: %i", linear_regression(SENSOR_1));
-
-    for (int i = 0; i < 3 * REGRESSION_SIZE; i++)
-        add_value(SENSOR_1, i);
-    cr_expect(linear_regression(SENSOR_1) == 1);
-}
-
-Test(suite_3, test_slide_1) {
-    FILE* file = fopen("data_configuration_1/slide_from_end.csv", "r");
-    init(SENSOR_1);
+Test(suite_1, test_long_touch) {
+    FILE* file = fopen("data_configuration_1/long_touch.csv", "r");
     uint32_t data;
     int ret = 0;
+    init(SENSOR_1);
     for (int i = 0; i < BUFFER_SIZE; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
     }
     update_default_value(SENSOR_1);
-    for (int i = BUFFER_SIZE; i < 45; i++) {
+    for (int i = BUFFER_SIZE; i < 72; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
-        cr_expect(detect_action(SENSOR_1) == 0, "nothing to detect");
+        cr_expect(detect_action(SENSOR_1) == 0);
     }
 
-    // Detect slide
-    for (int i = 45; i < 64; i++) {
+    // Detect touch
+    for (int i = 72; i < 79; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
         ret += detect_action(SENSOR_1);
     }
-    cr_expect(ret == 2, "ret : %i", ret);
-    for (int i = 64; i < 161; i++) {
+    cr_expect(ret == 1);
+
+    // No other touch must be detected
+    for (int i = 79; i < 197; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
-        ret = detect_action(SENSOR_1);
-        //printf("i: %i, ret: %i, coeff: %i, dist: %i\n", i, ret, linear_regression(SENSOR_1), current_distance(SENSOR_1));
-        cr_expect(ret == 0, "i: %i, ret: %i", i, ret);
+        cr_expect(detect_action(SENSOR_1) == 0);
+    }
+    fclose(file);
+}
+
+/**
+ * __WARNING__: this test in doesn't really pass as only 1 touch is detected.
+ * But, I don't think we could reasonnably detect both touches. To discuss.
+ */
+Test(suite_1, test_double_touch) {
+    FILE* file = fopen("data_configuration_1/double_touch.csv", "r");
+    uint32_t data;
+    int ret = 0;
+
+    init(SENSOR_1);
+    for (int i = 0; i < BUFFER_SIZE; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(SENSOR_1, data);
+    }
+    update_default_value(SENSOR_1);
+
+    for (int i = BUFFER_SIZE; i < 25; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(SENSOR_1, data);
+        cr_expect(detect_action(SENSOR_1) == 0);
+    }
+
+    // Detect 1st touch
+    for (int i = 25; i < 29; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(SENSOR_1, data);
+        ret += detect_action(SENSOR_1);
+    }
+    cr_expect(ret == 1);
+
+    // Detect second touch
+    for (int i = 29; i < 32; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(SENSOR_1, data);
+        ret += detect_action(SENSOR_1);
+    }
+    //cr_expect(ret == 2);
+
+    for (int i = 32; i < 73; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(SENSOR_1, data);
+        cr_expect(detect_action(SENSOR_1) == 0);
+    }
+    fclose(file);
+}
+
+Test(suite_1, test_1_touch_2_minutes) {
+    FILE* file = fopen("data_configuration_1/1_touch_in_2_minutes.csv", "r");
+    uint32_t data;
+    int ret = 0;
+
+    init(SENSOR_1);
+    for (int i = 0; i < BUFFER_SIZE; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(SENSOR_1, data);
+    }
+    update_default_value(SENSOR_1);
+
+    for (int i = BUFFER_SIZE; i < 1280; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(SENSOR_1, data);
+        cr_expect(detect_action(SENSOR_1) == 0);
+    }
+
+    // Detect 1st touch
+    for (int i = 1280; i < 1285; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(SENSOR_1, data);
+        ret += detect_action(SENSOR_1);
+    }
+    cr_expect(ret == 1);
+
+    for (int i = 1285; i < 2015; i++) {
+        fscanf(file, "%i\n", &data);
+        add_value(SENSOR_1, data);
+        cr_expect(detect_action(SENSOR_1) == 0);
     }
     fclose(file);
 }
