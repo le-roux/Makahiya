@@ -2,26 +2,28 @@
 #include "capacitive_sensor.h"
 #include <stdio.h>
 
+#define SENSOR_1 0
+
 Test(suite_1, test_default_value) {
-    init();
+    init(SENSOR_1);
     for (int i = 0; i < BUFFER_SIZE; i++)
-        add_value(1);
-    update_default_value();
-    cr_expect(default_value == BUFFER_SIZE, "Test 1");
+        add_value(SENSOR_1, 1);
+    update_default_value(SENSOR_1);
+    cr_expect(default_value[SENSOR_1] == BUFFER_SIZE, "Test 1");
 }
 
 Test(suite_1, test_no_touch_detection) {
     FILE* file = fopen("./data2.csv", "r");
     uint32_t data;
-    init();
+    init(SENSOR_1);
     for (int i = 0; i < BUFFER_SIZE; i++) {
         fscanf(file, "%i\n", &data);
-        add_value(data);
+        add_value(SENSOR_1, data);
     }
-    update_default_value();
+    update_default_value(SENSOR_1);
     while (fscanf(file, "%i\n", &data) == 1) {
-        add_value(data);
-        cr_expect(detect_action() == 0, "no touch");
+        add_value(SENSOR_1, data);
+        cr_expect(detect_action(SENSOR_1) == 0, "no touch");
     }
     fclose(file);
 }
@@ -33,56 +35,56 @@ Test(suite_1, test_touch_detection) {
     FILE* file = fopen("./data3.csv", "r");
     int ret = 0;
     uint32_t data;
-    init();
+    init(SENSOR_1);
     for (int i = 0; i < BUFFER_SIZE; i++) {
         fscanf(file, "%i\n", &data);
-        add_value(data);
+        add_value(SENSOR_1, data);
     }
-    update_default_value();
+    update_default_value(SENSOR_1);
     //
     for (int i = BUFFER_SIZE; i < 31; i++) {
         fscanf(file, "%i\n", &data);
-        add_value(data);
-        cr_expect(detect_action() == 0, "No touch 1");
+        add_value(SENSOR_1, data);
+        cr_expect(detect_action(SENSOR_1) == 0, "No touch 1");
     }
     // Detect 1st touch
     for (int i = 31; i < 37; i++) {
         fscanf(file, "%i\n", &data);
-        add_value(data);
-        ret += detect_action();
+        add_value(SENSOR_1, data);
+        ret += detect_action(SENSOR_1);
     }
     cr_expect(ret == 1, "Touch 1");
     //
     for (int i = 37; i < 50; i++) {
         fscanf(file, "%i\n", &data);
-        add_value(data);
-        cr_expect(detect_action() == 0, "No touch 2");
+        add_value(SENSOR_1, data);
+        cr_expect(detect_action(SENSOR_1) == 0, "No touch 2");
     }
     // Detect 2nd touch
     for (int i = 50; i < 56; i++) {
         fscanf(file, "%i\n", &data);
-        add_value(data);
-        ret += detect_action();
+        add_value(SENSOR_1, data);
+        ret += detect_action(SENSOR_1);
     }
     cr_expect(ret == 2, "Touch 2");
     //
     for (int i = 56; i < 68; i++) {
         fscanf(file, "%i\n", &data);
-        add_value(data);
-        cr_expect(detect_action() == 0, "No touch 3");
+        add_value(SENSOR_1, data);
+        cr_expect(detect_action(SENSOR_1) == 0, "No touch 3");
     }
     // Detect 3rd touch
     for (int i = 68; i < 75; i++) {
         fscanf(file, "%i\n", &data);
-        add_value(data);
-        ret += detect_action();
+        add_value(SENSOR_1, data);
+        ret += detect_action(SENSOR_1);
     }
     //
     cr_expect(ret == 3, "Touch 3");
     for (int i = 75; i < 116; i++) {
         fscanf(file, "%i\n", &data);
-        add_value(data);
-        cr_expect(detect_action() == 0, "No touch 4");
+        add_value(SENSOR_1, data);
+        cr_expect(detect_action(SENSOR_1) == 0, "No touch 4");
     }
     fclose(file);
 }
@@ -94,27 +96,27 @@ Test(suite_1, test_one_touch) {
     FILE* file = fopen("data_configuration_1/single_touch.csv" ,"r");
     uint32_t data;
     int ret = 0;
-    init();
+    init(SENSOR_1);
     for (int i = 0; i < BUFFER_SIZE; i++) {
         fscanf(file, "%i\n", &data);
-        add_value(data);
+        add_value(SENSOR_1, data);
     }
-    update_default_value();
+    update_default_value(SENSOR_1);
     for (int i = BUFFER_SIZE; i < 70; i++) {
         fscanf(file, "%i\n", &data);
-        add_value(data);
-        cr_expect(detect_action() == 0, "no touch");
+        add_value(SENSOR_1, data);
+        cr_expect(detect_action(SENSOR_1) == 0, "no touch");
     }
     for (int i = 70; i < 75; i++) {
         fscanf(file, "%i\n", &data);
-        add_value(data);
-        ret += detect_action();
+        add_value(SENSOR_1, data);
+        ret += detect_action(SENSOR_1);
     }
     cr_expect(ret == 1, "1 touch");
     for (int i = 75; i < 119; i++) {
         fscanf(file, "%i\n", &data);
-        add_value(data);
-        cr_expect(detect_action() == 0, "no touch");
+        add_value(SENSOR_1, data);
+        cr_expect(detect_action(SENSOR_1) == 0, "no touch");
     }
     fclose(file);
 }
