@@ -75,7 +75,8 @@ void update_default_value(int sensor_id) {
 }
 
 static uint8_t touch_detected(int sensor_id) {
-    if (average[sensor_id] > default_value[sensor_id] + MARGIN || average[sensor_id] < default_value[sensor_id] - MARGIN)
+    if (average[sensor_id] > default_value[sensor_id] + MARGIN ||
+         average[sensor_id] < default_value[sensor_id] - MARGIN)
         return 1;
     else
         return 0;
@@ -94,7 +95,11 @@ void add_value(int sensor_id, uint32_t value) {
     sem_post(&read_sem[sensor_id]);
 }
 
+/**
+ * Blocking if there is no value to read when called.
+ */
 uint32_t get_next_value(int sensor_id) {
+    sem_wait(&read_sem[sensor_id]);
     if (turn[sensor_id] != 0 || read_index[sensor_id] < write_index[sensor_id]) {
         uint32_t ret = buffer[sensor_id * BUFFER_SIZE + read_index[sensor_id]];
         read_index[sensor_id]++;
@@ -107,15 +112,33 @@ uint32_t get_next_value(int sensor_id) {
         return -1;
 }
 
-/**
- * Blocking if there is no value to read when called.
- */
 /*static*/ uint32_t read_value(int sensor_id, int index) {
-    sem_wait(&read_sem[sensor_id]);
     if (turn[sensor_id] != 0 || index < write_index[sensor_id])
         return buffer[sensor_id * BUFFER_SIZE + index];
     else
         return -1;
+}
+
+#define REGRESSION_SIZE 5
+int linear_regression(int sensor_id) {
+    int average_x = (REGRESSION_SIZE * (REGRESSION_SIZE - 1))/(2 * REGRESSION_SIZE);
+    int average_y = 0;
+    int var_x = 0, cov_xy = 0;
+    int offset = sensor_id * BUFFER_SIZE;
+    int index = PREVIOUS_INDEX(write_index[sensor_id]);
+    for (int i = REGRESSION_SIZE - 1; i >= 0; i--) {
+        average_y += buffer[offset + index];
+        var_x += i*i;
+        cov_xy += i * buffer[offset + index];
+        index = PREVIOUS_INDEX(index);
+    }
+    average_y /= REGRESSION_SIZE;
+    var_x /= REGRESSION_SIZE;
+    var_x -= average_x*average_x;
+    cov_xy /= REGRESSION_SIZE;
+    cov_xy -= average_x * average_y;
+
+    return (cov_xy/var_x);
 }
 
 int detect_action(int sensor_id) {

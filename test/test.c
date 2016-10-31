@@ -120,3 +120,32 @@ Test(suite_1, test_one_touch) {
     }
     fclose(file);
 }
+
+Test(suite_2, test_linear_regression_1) {
+    init(SENSOR_1);
+    for (int i = 0; i < 5; i++)
+        add_value(SENSOR_1, i);
+    cr_expect(linear_regression(SENSOR_1) == 1);
+}
+
+Test(suite_2, test_linear_regression_2) {
+    init(SENSOR_1);
+    for (int i = 0; i < 15; i++)
+        add_value(SENSOR_1, 2 * i);
+    cr_expect(linear_regression(SENSOR_1) == 2);
+}
+
+Test(suite_2, test_linear_regression_3) {
+    init(SENSOR_1);
+    for (int i = 0; i < 5; i++)
+        add_value(SENSOR_1, 2 * i);
+    cr_expect(linear_regression(SENSOR_1) == 2);
+
+    for (int i = 0; i < 5; i++)
+        add_value(SENSOR_1, 3 * i);
+    cr_expect(linear_regression(SENSOR_1) == 3);
+
+    for (int i = 0; i < 10; i++)
+        add_value(SENSOR_1, i);
+    cr_expect(linear_regression(SENSOR_1) == 1);
+}

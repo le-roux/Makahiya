@@ -3,13 +3,13 @@
 
 #include <stdint.h>
 
-#define BUFFER_SIZE 3
+#define BUFFER_SIZE 10
 #define MARGIN_USER 2500
 #define SENSORS_NB 1
 #define MARGIN (BUFFER_SIZE * MARGIN_USER)
 
-#define NEXT_INDEX(index) ((index++ < BUFFER_SIZE)?index++:0)
-#define PREVIOUS_INDEX(index) ((index-- >= 0)?index--:BUFFER_SIZE--)
+#define NEXT_INDEX(index) ((index+1 < BUFFER_SIZE)?index+1:0)
+#define PREVIOUS_INDEX(index) ((index-1 >= 0)?index-1:BUFFER_SIZE-1)
 
 /**
  * __WARNING__ These values are not normalized (by BUFFER_SIZE) !!
@@ -57,5 +57,8 @@ uint32_t get_next_value(int sensor_id);
  *  - 0 otherwise
  */
 int detect_action(int sensor_id);
+
+
+int linear_regression(int sensor_id);
 
 #endif // CAPACITIVE_SENSOR_H
