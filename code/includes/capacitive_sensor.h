@@ -87,16 +87,48 @@ uint32_t get_next_value(int sensor_id);
 
 /** @brief Run the detection algorithm.
  *
+ * It first tries to detect a slide. To do this, it computes the linear
+ * regression of the REGRESSION_SIZE last values stored in the buffer.
+ * If the slope is sharp enough, it then checks that the last values is far
+ * enough from the default_value (distance greater than SLIDE_MARGIN). This
+ * This checks allows the algorithm to ignore noise.
+ * If all these conditions are met, the status first goes to POTENTIAL_SLIDE.
+ * If at the next call, a slide is still detected, the status finally goes to
+ * IN_SLIDE and the proper value is returned. Otherwise, the status
+ * immediately returns to DEFAULT_STATE.
+ *
+ * If no slide is detected, the algorithm then try to detect a touch.
+ * This is basically a threshold overtaking check, performed on the average of
+ * the values stored in the buffer.
+ * If a touch is detected, the status goes to IN_TOUCH and the proper value is
+ * returned.
+ *
+ * If nothing is detected, the status goes to DEFAULT_STATE and the proper value
+ * is returned.
+ *
  * @param sensor_id The index of the sensor to analyze.
  * @return
- *  - 1 if a touch is detected
- *  - 0 otherwise
+ *  - 2 if a slide beginning is detected.
+ *  - 1 if a touch is detected.
+ *  - 0 otherwise (nothing detected).
  */
 int detect_action(int sensor_id);
 
-
+/** @brief Performs a linear regression.
+ *
+ * The regression is performed on the last REGRESSION_SIZE values of the buffer.
+ * The least squares method is used.
+ *
+ * @param sensor_id The index of the sensor to analyze.
+ * @return The slope of the linear regression (a if we have y = a*x+b).
+ */
 int linear_regression(int sensor_id);
 
-int current_distance(int sensor_id);
+/** @brief Gives the diffence between the default value and the last written one.
+ *
+ * @param sensor_id The index of the sensor to analyze.
+ * @ return The difference between the default value and the last written one.
+ */
+int32_t current_distance(int sensor_id);
 
 #endif // CAPACITIVE_SENSOR_H

@@ -171,7 +171,7 @@ int detect_action(int sensor_id) {
     return 0;
 }
 
-int current_distance(int sensor_id) {
+int32_t current_distance(int sensor_id) {
     pthread_mutex_lock(&(index_lock[sensor_id]));
     pthread_mutex_lock(&buffer_lock);
     uint32_t value = buffer[sensor_id * BUFFER_SIZE
