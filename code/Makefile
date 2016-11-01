@@ -21,3 +21,7 @@ clean:
 	rm -f out/*.o
 	rm -f out/main
 	-rmdir out
+
+clean_doc:
+	rm -Rf doc/html
+	rm -Rf doc/latex

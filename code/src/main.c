@@ -19,12 +19,11 @@ int main(int argc, char* argv[]) {
         id++;
     }
     update_default_value(SENSOR_1);
-    printf("Default value updated: %i, min: %i, max: %i\n", default_value[SENSOR_1],
-                    default_value[SENSOR_1] - MARGIN, default_value[SENSOR_1] + MARGIN);
     while(ret == 1) {
         id++;
         ret = scanf("%i\n", &data);
-        if (add_value(SENSOR_1, data))
+        add_value(SENSOR_1, data);
+        if (detect_action(SENSOR_1))
             printf("Touch detected (index: %i, value: %i)\n", id, average[SENSOR_1]);
         #if DEBUG
         else

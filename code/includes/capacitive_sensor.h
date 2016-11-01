@@ -3,22 +3,54 @@
 
 #include <stdint.h>
 
+/**
+ * Size of the buffer used to store the values from the sensor.
+ */
 #define BUFFER_SIZE 10
+
+/**
+ * Margin to detect a touch (per value).
+ */
 #define MARGIN_USER 3100
+
+/**
+ * Margin used to detect the beginning of a slide.
+ */
 #define SLIDE_MARGIN 3000
+
+/**
+ * Number of sensors used.
+ */
 #define SENSORS_NB 1
+
+/**
+ * Margin used to detect a touch, due to the implementation.
+ * __WARNING:__ Don't modify this value.
+ */
 #define MARGIN (BUFFER_SIZE * MARGIN_USER)
 
-
+/**
+ * Number of values used to perform the linear regression.
+ * __WARNING:__ This value MUST be less than BUFFER_SIZE.
+ */
 #define REGRESSION_SIZE 7
 
+/**
+ * Gives the index in the buffer following the one given in parameter.
+ */
 #define NEXT_INDEX(index) ((index+1 < BUFFER_SIZE)?index+1:0)
+
+/**
+ * Gives the index in the buffer preceding the one given in parameter.
+ */
 #define PREVIOUS_INDEX(index) ((index-1 >= 0)?index-1:BUFFER_SIZE-1)
 
 /**
- * __WARNING__ These values are not normalized (by BUFFER_SIZE) !!
+ * __WARNING__ This value is not normalized (by BUFFER_SIZE) !!
  */
-uint32_t default_value[SENSORS_NB], average[SENSORS_NB];
+uint32_t average[SENSORS_NB];
+
+extern uint32_t default_value[SENSORS_NB];
 
 /** @brief Init all the variables used in the touch detection algorithm.
  *

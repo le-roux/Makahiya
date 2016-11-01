@@ -1,16 +1,11 @@
 #include "capacitive_sensor.h"
 #include "utils.h"
-#include <semaphore.h>
+#include "pthread.h"
 
 /**
- * Array of the read indexes for the buffer(producer-consumer model).
+ * Array of the write indexes for the buffer.
  */
-static int read_index[SENSORS_NB];
-
-/**
- * Array of the write indexes for the buffer (producer-consumer model).
- */
-static int write_index[SENSORS_NB];
+static volatile int write_index[SENSORS_NB];
 
 /**
  * Array of status descriptor for the sensors.
@@ -35,20 +30,22 @@ static int status[SENSORS_NB];
 /**
  * The buffer used to store data from the capacitive sensors.
  */
-static uint32_t buffer[BUFFER_SIZE * SENSORS_NB];
+static volatile uint32_t buffer[BUFFER_SIZE * SENSORS_NB];
 
 /**
- * Semaphores that control the reading from the buffer (one for each sensor).
+ * __WARNING:__ This value is not normalized (by BUFFER_SIZE).
  */
-static sem_t read_sem[SENSORS_NB];
+uint32_t default_value[SENSORS_NB];
 
 /**
- * Indicates that data have been lost because the input thread writes faster
- * that the output thread can read.
+ * The mutex used to protect the access to the buffer.
  */
-//static int overflow[SENSORS_NB];
+static pthread_mutex_t buffer_lock;
 
-static int turn[SENSORS_NB];
+/**
+ * The mutex used to protect the access to the write_index (one for each index).
+ */
+static pthread_mutex_t index_lock[SENSORS_NB];
 
 /** @brief Returns 1 if a touch is being detected, 0 otherwise.
  *
@@ -59,84 +56,70 @@ static int turn[SENSORS_NB];
 static uint8_t touch_detected(int sensor_id);
 
 void init(int sensor_id) {
-    read_index[sensor_id] = 0;
     write_index[sensor_id] = 0;
     average[sensor_id] = 0;
     default_value[sensor_id] = 0;
     status[sensor_id] = DEFAULT_STATE;
-    turn[sensor_id] = 0;
-    sem_init(&read_sem[sensor_id], 0, 0);
+    pthread_mutex_init(&buffer_lock, NULL);
+    pthread_mutex_init(&(index_lock[sensor_id]), NULL);
 }
 
 void update_default_value(int sensor_id) {
-    read_index[sensor_id] = 0;
+    pthread_mutex_lock(&(index_lock[sensor_id]));
     write_index[sensor_id] = 0;
+    pthread_mutex_unlock(&(index_lock[sensor_id]));
     default_value[sensor_id] = 0;
-    turn[sensor_id] = 0;
     int offset = sensor_id * BUFFER_SIZE;
+    pthread_mutex_lock(&buffer_lock);
     for (int i = 0; i < BUFFER_SIZE; i++)
         default_value[sensor_id] += buffer[offset + i];
+    pthread_mutex_unlock(&buffer_lock);
     average[sensor_id] = default_value[sensor_id];
 }
 
 static uint8_t touch_detected(int sensor_id) {
-    if (average[sensor_id] > default_value[sensor_id] + MARGIN ||
-         average[sensor_id] < default_value[sensor_id] - MARGIN)
-        return 1;
-    else
-        return 0;
+    return (average[sensor_id] > default_value[sensor_id] + MARGIN ||
+         average[sensor_id] < default_value[sensor_id] - MARGIN);
 }
 
 void add_value(int sensor_id, uint32_t value) {
     int offset = sensor_id * BUFFER_SIZE;
+
+    pthread_mutex_lock(&(index_lock[sensor_id]));
+    pthread_mutex_lock(&buffer_lock);
+
+    // Update the average.
     average[sensor_id] -= buffer[offset + write_index[sensor_id]];
     average[sensor_id] += value;
+
+    // Actually write the value in the buffer.
     buffer[offset + write_index[sensor_id]] = value;
+
+    pthread_mutex_unlock(&buffer_lock);
+
+    // Update the write_index value.
     write_index[sensor_id]++;
-    if (write_index[sensor_id] >= BUFFER_SIZE) {
-        turn[sensor_id]++;
+    if (write_index[sensor_id] >= BUFFER_SIZE)
         write_index[sensor_id] = 0;
-    }
-    sem_post(&read_sem[sensor_id]);
+    pthread_mutex_unlock(&(index_lock[sensor_id]));
 }
 
-/**
- * Blocking if there is no value to read when called.
- */
-uint32_t get_next_value(int sensor_id) {
-    sem_wait(&read_sem[sensor_id]);
-    if (turn[sensor_id] != 0 || read_index[sensor_id] < write_index[sensor_id]) {
-        uint32_t ret = buffer[sensor_id * BUFFER_SIZE + read_index[sensor_id]];
-        read_index[sensor_id]++;
-        if (read_index[sensor_id] >= BUFFER_SIZE) {
-            turn[sensor_id]--;
-            read_index[sensor_id] = 0;
-        }
-        return ret;
-    } else
-        return -1;
-}
-
-/*static*/ uint32_t read_value(int sensor_id, int index) {
-    if (turn[sensor_id] != 0 || index < write_index[sensor_id])
-        return buffer[sensor_id * BUFFER_SIZE + index];
-    else
-        return -1;
-}
-
-#include <stdio.h>
 int linear_regression(int sensor_id) {
     double average_x = ((double)(REGRESSION_SIZE * (REGRESSION_SIZE - 1)))/(2 * REGRESSION_SIZE);
     double average_y = 0;
     double var_x = 0, cov_xy = 0;
     int offset = sensor_id * BUFFER_SIZE;
+    pthread_mutex_lock(&(index_lock[sensor_id]));
     int index = PREVIOUS_INDEX(write_index[sensor_id]);
+    pthread_mutex_unlock(&(index_lock[sensor_id]));
+    pthread_mutex_lock(&buffer_lock);
     for (int i = REGRESSION_SIZE - 1; i >= 0; i--) {
         average_y += buffer[offset + index];
         var_x += i*i;
         cov_xy += i * buffer[offset + index];
         index = PREVIOUS_INDEX(index);
     }
+    pthread_mutex_unlock(&buffer_lock);
     average_y /= REGRESSION_SIZE;
     var_x /= REGRESSION_SIZE;
     var_x -= average_x*average_x;
@@ -189,5 +172,11 @@ int detect_action(int sensor_id) {
 }
 
 int current_distance(int sensor_id) {
-    return (default_value[sensor_id]/BUFFER_SIZE - buffer[sensor_id * BUFFER_SIZE + PREVIOUS_INDEX(write_index[sensor_id])]);
+    pthread_mutex_lock(&(index_lock[sensor_id]));
+    pthread_mutex_lock(&buffer_lock);
+    uint32_t value = buffer[sensor_id * BUFFER_SIZE
+                            + PREVIOUS_INDEX(write_index[sensor_id])];
+    pthread_mutex_unlock(&buffer_lock);
+    pthread_mutex_unlock(&(index_lock[sensor_id]));
+    return (default_value[sensor_id]/BUFFER_SIZE - value);
 }
