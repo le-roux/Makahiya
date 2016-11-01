@@ -37,6 +37,9 @@ static volatile uint32_t buffer[BUFFER_SIZE * SENSORS_NB];
  */
 uint32_t default_value[SENSORS_NB];
 
+static int32_t integral[SENSORS_NB];
+static int32_t derivative[SENSORS_NB];
+
 /**
  * The mutex used to protect the access to the buffer.
  */
@@ -53,13 +56,16 @@ static pthread_mutex_t index_lock[SENSORS_NB];
  *  - 1 if a touch is being detected
  *  - 0 otherwise
  */
+ #if !INT_DER_VERSION
 static uint8_t touch_detected(int sensor_id);
+#endif
 
 void init(int sensor_id) {
     write_index[sensor_id] = 0;
     average[sensor_id] = 0;
     default_value[sensor_id] = 0;
     status[sensor_id] = DEFAULT_STATE;
+    integral[sensor_id] = 0;
     pthread_mutex_init(&buffer_lock, NULL);
     pthread_mutex_init(&(index_lock[sensor_id]), NULL);
 }
@@ -77,10 +83,12 @@ void update_default_value(int sensor_id) {
     average[sensor_id] = default_value[sensor_id];
 }
 
+#if !INT_DER_VERSION
 static uint8_t touch_detected(int sensor_id) {
     return (average[sensor_id] > default_value[sensor_id] + MARGIN ||
          average[sensor_id] < default_value[sensor_id] - MARGIN);
 }
+#endif
 
 void add_value(int sensor_id, uint32_t value) {
     int offset = sensor_id * BUFFER_SIZE;
@@ -148,11 +156,15 @@ int detect_action(int sensor_id) {
     }
 
     // Leave slide state
-    if ((status[sensor_id] == IN_SLIDE && average[sensor_id] < 100) ||
-        status[sensor_id] == POTENTIAL_SLIDE)
+    if ((status[sensor_id] == IN_SLIDE &&
+                average[sensor_id] > default_value[sensor_id]- 500)
+        || status[sensor_id] == POTENTIAL_SLIDE)
         status[sensor_id] = DEFAULT_STATE;
+    else if (status[sensor_id] == IN_SLIDE)
+        return 0;
 
     // Detect touch
+    #if !INT_DER_VERSION
     if (status[sensor_id] != IN_SLIDE && touch_detected(sensor_id)) {
         if (status[sensor_id] == IN_TOUCH)
             return 0;
@@ -169,6 +181,22 @@ int detect_action(int sensor_id) {
 
     // Default return value
     return 0;
+    #else
+    derivative[sensor_id] = buffer[write_index[sensor_id]] - buffer[PREVIOUS_INDEX(write_index[sensor_id])];
+    if (ABS(derivative[sensor_id]) > DERIVATIVE_THRESHOLD)
+        integral[sensor_id] += derivative[sensor_id];
+    if (integral[sensor_id] > INTEGRAL_THRESHOLD) {
+        if (status[sensor_id] != IN_TOUCH) {
+            status[sensor_id] = IN_TOUCH;
+            return 1;
+        } else
+            return 0;
+    } else {
+        status[sensor_id] = DEFAULT_STATE;
+        integral[sensor_id] *= 0.9;
+        return 0;
+    }
+    #endif
 }
 
 int32_t current_distance(int sensor_id) {

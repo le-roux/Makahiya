@@ -13,6 +13,10 @@
  */
 #define MARGIN_USER 3100
 
+#define INT_DER_VERSION 1
+#define DERIVATIVE_THRESHOLD 1000
+#define INTEGRAL_THRESHOLD 10000
+
 /**
  * Margin used to detect the beginning of a slide.
  */

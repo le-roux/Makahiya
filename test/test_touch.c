@@ -51,7 +51,7 @@ Test(suite_1, test_touch_detection) {
         add_value(SENSOR_1, data);
         ret += detect_action(SENSOR_1);
     }
-    cr_expect(ret == 1, "Touch 1");
+    cr_expect(ret == 1, "ret: %i", ret);
     //
     for (int i = 37; i < 50; i++) {
         fscanf(file, "%i\n", &data);

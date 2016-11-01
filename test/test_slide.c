@@ -23,11 +23,11 @@ Test(suite_3, test_slide_1) {
         ret += detect_action(SENSOR_1);
     }
     cr_expect(ret == 2, "ret : %i", ret);
+    
     for (int i = 64; i < 161; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
         ret = detect_action(SENSOR_1);
-        //printf("i: %i, ret: %i, coeff: %i, dist: %i\n", i, ret, linear_regression(SENSOR_1), current_distance(SENSOR_1));
         cr_expect(ret == 0, "i: %i, ret: %i", i, ret);
     }
     fclose(file);
