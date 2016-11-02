@@ -1,0 +1,16 @@
+#! /bin/sh
+#
+
+if [ -f Criterion/build/stamp-built ]; then
+  exit 0
+fi
+
+rm -rf Criterion
+git clone https://github.com/Snaipe/Criterion.git
+cd Criterion/
+git submodule update --init
+mkdir build/
+cd build/
+cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
+make
+touch stamp-built

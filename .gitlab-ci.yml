@@ -1,18 +1,15 @@
-image: gcc:latest
+image: andystanton/gcc-cmake-gl
 
 build:
     stage: build
     script:
         - cd test/
-        - git clone https://github.com/Snaipe/Criterion.git
-        - cd Criterion/
-        - mkdir build/
-        - cd build/
-        - apt-get update
-        - apt-get install -y cmake
-        - cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
-        - cmake --install .
-        - make install
-        - cd ../..
+        - support/build-criterion-if-needed
+        - (cd Criterion/build/ && make install)
         - make
         - ./test
+
+cache:
+  key: all
+  paths:
+    - test/Criterion
