@@ -13,3 +13,6 @@ build:
         - cmake ..
         - cmake --install .
         - make install
+        - cd ../..
+        - make
+        - ./test
