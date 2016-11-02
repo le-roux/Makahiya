@@ -1,5 +1,5 @@
 image: rfc1149/rose-dev
 
-build:
-    stage: build
+native-tests:
+    stage: test
     script: make -C test check
