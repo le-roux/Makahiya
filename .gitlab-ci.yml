@@ -4,8 +4,12 @@ build:
     stage: build
     script:
         - git checkout dev
-        - ls
         - cd test/
         - git clone https://github.com/Snaipe/Criterion.git
         - cd Criterion/
         - mkdir build/
+        - cd build/
+        - cmake ..
+        - cmake --install .
+        - make install
+        - export LD_LIBRARY_PATH=$(pwd)
