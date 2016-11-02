@@ -12,7 +12,7 @@ main: $(OUTPUT_DIR)/main.o $(OUTPUT_DIR)/capacitive_sensor.o
 	$(CC) $(CFLAGS) $^ -o $(OUTPUT_DIR)/$@
 
 OUT:
-	-mkdir $(OUTPUT_DIR)
+	-mkdir -p $(OUTPUT_DIR)
 
 $(OUTPUT_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@

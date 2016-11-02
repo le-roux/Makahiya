@@ -58,7 +58,7 @@ static pthread_mutex_t index_lock[SENSORS_NB];
  *  - 1 if a touch is being detected
  *  - 0 otherwise
  */
- #if !INT_DER_VERSION
+#if !INT_DER_VERSION
 static uint8_t touch_detected(int sensor_id);
 #endif
 

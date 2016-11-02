@@ -12,7 +12,7 @@ $(OUTPUT_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -c $(CFLAGS) $^ -o $@
 
 $(OUTPUT_DIR):
-	-mkdir $(OUTPUT_DIR)
+	-mkdir -p $(OUTPUT_DIR)
 
 clean:
 	rm -f *.o
