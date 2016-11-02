@@ -3,6 +3,7 @@ image: gcc:latest
 build:
     stage: build
     script:
+        - ls
         - cd test/
         - git clone https://github.com/Snaipe/Criterion.git
         - cd Criterion/
