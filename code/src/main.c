@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
     id = 0;
     init(SENSOR_1);
     printf("Start\n");
-    for (int i = 0; i < BUFFER_SIZE; i++) {
+    /*for (int i = 0; i < BUFFER_SIZE; i++) {
         ret = scanf("%i\n", &data);
         add_value(SENSOR_1, data);
         id++;
@@ -30,6 +30,11 @@ int main(int argc, char* argv[]) {
             printf("Index: %i, in_touch: %i, Average: %i\n", id, in_touch, average[SENSOR_1]);
         #endif // DEBUG
     }
-    printf("End (index: %i)\n", id);
+    printf("End (index: %i)\n", id);*/
+    for (int i = 0; i < BUFFER_SIZE; i++) {
+        add_value(SENSOR_1, i);
+    }
+    update_default_value(SENSOR_1);
+    linear_regression(SENSOR_1);
     return 0;
 }

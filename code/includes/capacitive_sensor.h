@@ -20,7 +20,7 @@
 /**
  * Margin used to detect the beginning of a slide.
  */
-#define SLIDE_MARGIN 3000
+#define SLIDE_MARGIN 1500
 
 /**
  * Number of sensors used.
@@ -48,6 +48,12 @@
  * Gives the index in the buffer preceding the one given in parameter.
  */
 #define PREVIOUS_INDEX(index) ((index-1 >= 0)?index-1:BUFFER_SIZE-1)
+
+typedef struct reg_t {
+    int slope;
+    double corr;
+    uint64_t var_y;
+} reg_t;
 
 /**
  * __WARNING__ This value is not normalized (by BUFFER_SIZE) !!
@@ -126,7 +132,7 @@ int detect_action(int sensor_id);
  * @param sensor_id The index of the sensor to analyze.
  * @return The slope of the linear regression (a if we have y = a*x+b).
  */
-int linear_regression(int sensor_id);
+reg_t linear_regression(int sensor_id);
 
 /** @brief Gives the diffence between the default value and the last written one.
  *
