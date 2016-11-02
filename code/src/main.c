@@ -33,6 +33,13 @@ int main(int argc, char* argv[]) {
     printf("End (index: %i)\n", id);*/
     for (int i = 0; i < BUFFER_SIZE; i++) {
         add_value(SENSOR_1, i);
+    update_default_value();
+    printf("Default value updated: average %i, min = %i, max = %i\n", default_value, default_value - MARGIN, default_value + MARGIN);
+    while(ret == 1) {
+        id++;
+        ret = scanf("%i\n", &data);
+        if (add_value(data))
+            printf("Touch detected (index: %i, average %i)\n", id, average);
     }
     update_default_value(SENSOR_1);
     linear_regression(SENSOR_1);

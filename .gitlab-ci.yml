@@ -1,0 +1,17 @@
+image: gcc:latest
+
+build:
+    stage: build
+    script:
+        - git checkout dev
+        - cd test/
+        - git clone https://github.com/Snaipe/Criterion.git
+        - cd Criterion/
+        - mkdir build/
+        - cd build/
+        - apt-get update
+        - apt-get install -y cmake
+        - cmake ..
+        - cmake --install .
+        - make install
+        - export LD_LIBRARY_PATH=$(pwd)
