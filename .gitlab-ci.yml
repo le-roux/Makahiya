@@ -9,7 +9,8 @@ build:
         - cd Criterion/
         - mkdir build/
         - cd build/
-        - apt-get install cmake
+        - apt-get update
+        - apt-get install -y cmake
         - cmake ..
         - cmake --install .
         - make install
