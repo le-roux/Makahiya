@@ -1,0 +1,7 @@
+image: gcc:latest
+
+build:
+    stage: build
+    script:
+        - cd Makahiya/test
+        - git clone https://github.com/Snaipe/Criterion.git
