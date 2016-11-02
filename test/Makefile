@@ -5,6 +5,9 @@ CFLAGS := -Wall -Wextra -Werror -std=gnu99 -iquote $(INC_DIR)/
 LDFLAGS := -lcriterion -lpthread
 OBJ := test_touch.o test_slide.o test_linear_regression.o $(OUTPUT_DIR)/capacitive_sensor.o
 
+check: test
+	./test
+
 test: $(OUTPUT_DIR) $(OBJ)
 	$(CC) $(OBJ) -o $@ $(LDFLAGS)
 

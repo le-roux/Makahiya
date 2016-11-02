@@ -1,15 +1,5 @@
-image: andystanton/gcc-cmake-gl
+image: rfc1149/rose-dev
 
 build:
     stage: build
-    script:
-        - cd test/
-        - support/build-criterion-if-needed
-        - (cd Criterion/build/ && make install)
-        - make
-        - ./test
-
-cache:
-  key: all
-  paths:
-    - test/Criterion
+    script: make -C test check
