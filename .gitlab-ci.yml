@@ -10,7 +10,7 @@ build:
         - cd build/
         - apt-get update
         - apt-get install -y cmake
-        - cmake ..
+        - cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
         - cmake --install .
         - make install
         - cd ../..
