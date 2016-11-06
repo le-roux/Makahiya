@@ -11,9 +11,9 @@
 /**
  * Margin to detect a touch (per value).
  */
-#define MARGIN_USER 3100
+#define MARGIN_USER 5000
 
-#define INT_DER_VERSION 1
+#define INT_DER_VERSION 0
 #define DERIVATIVE_THRESHOLD 1000
 #define INTEGRAL_THRESHOLD 10000
 
@@ -26,12 +26,6 @@
  * Number of sensors used.
  */
 #define SENSORS_NB 1
-
-/**
- * Margin used to detect a touch, due to the implementation.
- * __WARNING:__ Don't modify this value.
- */
-#define MARGIN (BUFFER_SIZE * MARGIN_USER)
 
 /**
  * Number of values used to perform the linear regression.

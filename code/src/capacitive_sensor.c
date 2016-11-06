@@ -89,8 +89,15 @@ void update_default_value(int sensor_id) {
 
 #if !INT_DER_VERSION
 static uint8_t touch_detected(int sensor_id) {
-    return (average[sensor_id] > default_value[sensor_id] + MARGIN ||
-         average[sensor_id] < default_value[sensor_id] - MARGIN);
+    int offset = sensor_id * BUFFER_SIZE;
+    int32_t dist = buffer[offset + PREVIOUS_INDEX(write_index[sensor_id])] - buffer[offset + write_index[sensor_id]];
+    return (dist < -MARGIN_USER);
+}
+
+static uint8_t touch_left(int sensor_id) {
+    int offset = sensor_id * BUFFER_SIZE;
+    int32_t dist = buffer[offset + PREVIOUS_INDEX(write_index[sensor_id])] - buffer[offset + write_index[sensor_id]];
+    return (dist > MARGIN_USER);
 }
 #endif
 
@@ -190,7 +197,7 @@ int detect_action(int sensor_id) {
     }
 
     // Leave touch state
-    if (status[sensor_id] == IN_TOUCH && !touch_detected(sensor_id)) {
+    if (status[sensor_id] == IN_TOUCH && touch_left(sensor_id)) {
         status[sensor_id] = DEFAULT_STATE;
     }
 
