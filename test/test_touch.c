@@ -69,7 +69,8 @@ Test(suite_1, test_touch_detection) {
     for (int i = 56; i < 68; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
-        cr_expect(detect_action(SENSOR_1) == 0, "No touch 3");
+        ret = detect_action(SENSOR_1);
+        cr_expect(ret == 0, "No touch 3, i = %i, ret = %i\n", i, ret);
     }
     // Detect 3rd touch
     for (int i = 68; i < 75; i++) {
@@ -78,7 +79,7 @@ Test(suite_1, test_touch_detection) {
         ret += detect_action(SENSOR_1);
     }
     //
-    cr_expect(ret == 3, "Touch 3");
+    cr_expect(ret == 1, "ret: %i\n", ret);
     for (int i = 75; i < 116; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
@@ -113,6 +114,7 @@ Test(suite_1, test_one_touch) {
         ret += detect_action(SENSOR_1);
     }
     cr_expect(ret == 1, "1 touch");
+
     for (int i = 75; i < 119; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
@@ -150,7 +152,8 @@ Test(suite_1, test_long_touch) {
     for (int i = 79; i < 197; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
-        cr_expect(detect_action(SENSOR_1) == 0);
+        ret = detect_action(SENSOR_1);
+        cr_expect(ret == 0, "i: %i, ret: %i\n", i, ret);
     }
     fclose(file);
 }
@@ -183,7 +186,7 @@ Test(suite_1, test_double_touch) {
         add_value(SENSOR_1, data);
         ret += detect_action(SENSOR_1);
     }
-    cr_expect(ret == 1);
+    cr_expect(ret == 1, "ret: %i\n", ret);
 
     // Detect second touch
     for (int i = 29; i < 32; i++) {
@@ -196,7 +199,8 @@ Test(suite_1, test_double_touch) {
     for (int i = 32; i < 73; i++) {
         fscanf(file, "%i\n", &data);
         add_value(SENSOR_1, data);
-        cr_expect(detect_action(SENSOR_1) == 0);
+        ret = detect_action(SENSOR_1);
+        cr_expect(ret == 0, "i: %i, ret: %i\n", i, ret);
     }
     fclose(file);
 }
