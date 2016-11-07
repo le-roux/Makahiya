@@ -1,5 +1,5 @@
 
-Schematic unused pins from : Packager  7-Nov-2016  14:48
+Schematic unused pins from : Packager  7-Nov-2016  17:30
 
 ------------------------------------------------------------------------
             Part/Reference             |          Unused pins
@@ -17,10 +17,6 @@ Schematic unused pins from : Packager  7-Nov-2016  14:48
  Part 10-0042                          |
  Part 10-0047                          |
  Part 10-0054                          |
-  C24                                  | (P)  2
-  C26                                  | (P)  2
-  C28                                  | (P)  2
-  C30                                  | (P)  2
  Part 10-0056                          |
  Part 10-0057                          |
  Part 10-0068                          |

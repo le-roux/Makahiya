@@ -13,3 +13,10 @@
 [2016-11-07 14.46.54] iCDB upgrade backup file [2016-10-24 11.36.11-4848] is excessive.
 [2016-11-07 14.46.54] Excessive iCDB upgrade backup file [2016-10-24 11.36.11-4848] removed.
 [2016-11-07 14.46.55] Successfully created [AutoSave] backup [2016-11-07 14.46.54 - auto.zip] requested by [DESKTOP-OU0BNIR:Sylvain].
+[2016-11-07 16.35.23] Migrating iCDB upgrade backups from directory [Makahiya\Default\default.icdb\cdbback] to Project Backup format.
+[2016-11-07 16.35.23] Migrating iCDB upgrade backup file [2016-11-07 16.33.55-5084].
+[2016-11-07 16.35.23] Successfully created [Constraints Definition Upgrade] backup [2016-11-07 16.33.55 - consDefUpgr.zip] requested by [DESKTOP-OU0BNIR:Sylvain].
+[2016-11-07 16.35.23] Removing excessive [Constraints Definition Upgrade] backup file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\ProjectBackup\backups\2016-11-04 08.03.06 - consDefUpgr.zip].
+[2016-11-07 16.35.23] [Constraints Definition Upgrade] backup file [Makahiya\Default\ProjectBackup\backups\2016-11-04 08.03.06 - consDefUpgr.zip] removed.
+[2016-11-07 16.35.23] Migrated iCDB content backup file [cdbback\2016-11-07 16.33.55-5084.zip] removed.
+[2016-11-07 16.35.23] Successfully migrated iCDB upgrade backup file [2016-11-07 16.33.55-5084] to Project Backup format [2016-11-07 16.33.55 - consDefUpgr.zip]

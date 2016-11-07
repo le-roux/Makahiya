@@ -2,21 +2,21 @@
                                     Packager
                                     --------
 
-                       02:48 PM Monday, November 07, 2016
-                     Job Name: F:\Makahiya\PCB\Makahiya.prj
+                       05:30 PM Monday, November 07, 2016
+         Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\Makahiya.prj
 
 
      Packager     Version: 020806.00
 
-        Commandline is: "D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"F:\Makahiya\PCB\Makahiya.prj" -CleanBuild -NoFill "
+        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"C:\Users\Tanguy\Documents\ROSE\Makahiya\Makahiya.prj" -CleanBuild -NoFill "
 
-     The Common Database is at "F:\Makahiya\PCB\Default\default.icdb".
+     The Common Database is at "C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb".
 
      The Root of this design is "Schematic1".
 
      The Front End Snapshot of this design is "DCDV".
 
-     The PCB Design Path of this design is at "F:\Makahiya\PCB\PCB\PCB.pcb".
+     The PCB Design Path of this design is at "C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb".
 
      The Central Library is at "F:\Central_Libs\ENST.lmc".
 
@@ -139,8 +139,8 @@
      No errors in Existing Schematic Packaging.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 123 Symbols:
-             123  **********************
+     Clustering 125 Symbols:
+             125  ************************
              100  **************************************************
               50  **************************************************
      Clustering is Complete
@@ -149,8 +149,8 @@
 
 
 
-     111 nets were found containing 448 pins
-     123 components were found
+     111 nets were found containing 456 pins
+     125 components were found
 
      Parsed netlist - Augmenting..
 

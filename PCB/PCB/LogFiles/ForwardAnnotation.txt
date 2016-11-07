@@ -2,8 +2,8 @@
                                Forward Annotation
                                ------------------
 
-                       02:48 PM Monday, November 07, 2016
-                      Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
+                       05:30 PM Monday, November 07, 2016
+          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
 
 
 Version:  01.01.00
@@ -83,8 +83,8 @@ Version:  01.01.00
      INFO: Cell DXF_SVG battery is not in Central Library - Using local library.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 123 Symbols:
-             123  **********************
+     Clustering 125 Symbols:
+             125  ************************
              100  **************************************************
               50  **************************************************
      Clustering is Complete
@@ -93,8 +93,8 @@ Version:  01.01.00
 
 
 
-     111 nets were found containing 448 pins
-     123 components were found
+     111 nets were found containing 456 pins
+     125 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
      A formatted Schematic Netlist has been created.
@@ -107,8 +107,8 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       02:48 PM Monday, November 07, 2016
-                      Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
+                       05:30 PM Monday, November 07, 2016
+          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
 
 
 Version:  02.11.12
@@ -120,131 +120,10 @@ Version:  02.11.12
 	Schematic reference designator changes will be forward annotated.
 
 
-     The following 123 components have not been placed:
+     The following 2 components have not been placed:
 
-        C1
-        C2
-        C3
-        C4
-        C5
-        C6
-        C7
-        C8
-        C9
-        C10
-        C11
-        C12
-        C13
-        C14
-        C15
-        C16
-        C17
-        C18
-        C19
-        C20
-        C21
-        C22
-        C23
-        C24
-        C25
-        C26
-        C27
-        C28
-        C29
-        C30
-        C31
-        C32
-        C33
-        C34
-        C35
-        C36
-        C37
-        C38
-        D1
-        D2
-        D3
-        FDC1
-        FDC2
-        J1
-        J2
-        J3
-        J4
-        J5
-        J6
-        J7
-        J8
-        J9
-        J10
-        J11
-        J12
-        J13
-        J14
-        J15
-        J16
-        J17
-        J18
-        J19
-        J20
-        J21
-        J22
-        J23
-        J24
-        L1
-        L2
-        L3
-        L4
-        L5
-        L6
-        L7
-        L8
-        L9
-        Q1
-        Q2
-        Q3
-        Q4
-        Q5
-        Q6
-        Q7
-        Q8
-        Q9
-        Q10
-        Q11
-        Q12
-        Q13
-        Q14
-        Q15
-        Q16
-        Q17
-        Q18
-        Q19
-        Q20
-        Q21
-        Q22
-        RS232
-        R1
-        R2
-        R3
-        R4
-        R5
-        R6
-        R7
-        R8
-        R9
-        R10
-        R11
-        R12
-        R13
-        R14
-        R15
-        R16
-        R17
-        STM32
-        SW1
-        U1
-        U2
-        U3
-        U4
-        U5
+        C39
+        C40
 
      Netload completed successfully with 0 warning(s).
      
