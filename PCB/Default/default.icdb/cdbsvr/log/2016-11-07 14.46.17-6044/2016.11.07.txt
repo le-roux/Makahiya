@@ -1,0 +1,194 @@
+[2016.11.07 14:46:17] [0000m.00s.031ms] [0] WELCOME
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] iCDB Server ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] Base flow version [7.9.4]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] Machine [DESKTOP-OU0BNIR]  User [Sylvain]  PID [6044]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] Operating system [Microsoft Home Premium Edition, 64-bit (build 9200)]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] Current working dir [F:\Makahiya\PCB]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] PATH [D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\help;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\_bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\IntelSGXPSW\bin\x64\Release\;C:\Program Files\Intel\IntelSGXPSW\bin\win32\Release\;C:\Program Files (x86)\Skype\Phone\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Users\sylva\AppData\Local\atom\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] SDD_HOME [D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] SDD_PLATFORM [win32]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] WDIR [D:\Programmes\ROSE\MentorGraphics\WDIR;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] Local iCDB working dir [D:\Programmes\ROSE\MentorGraphics\WDIR\iCDB] on file system [NTFS]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] S: Config file name [ServerWG.cfg]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [2] S: Loading config files
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] Config file [F:\Makahiya\PCB\Default\default.icdb\cdbsvr\ServerWG.cfg] not found
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] Config: Non-default value [System.SingleUserMode] = [no]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [3] S: Config loaded
+[2016.11.07 14:46:17] [0000m.00s.031ms] [0] S: Project path [F:\Makahiya\PCB\Default\default.icdb] on file system [NTFS]
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] S: WARNING: No project file (.prj) path specified
+[2016.11.07 14:46:17] [0000m.00s.031ms] [1] S: WARNING: Database auto-repair support DISABLED
+[2016.11.07 14:46:17] [0000m.00s.031ms] [0] S: Multi-user mode (config)
+[2016.11.07 14:46:17] [0000m.00s.031ms] [0] S: Event polling mode autodetection
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] S: Started up automatically by iCDB Client: DESKTOP-OU0BNIR:Sylvain:11888
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] S: Auto close mode
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] S: Database ID [d977-38eb-1b3b-5606-9a23-c18e-a23c-1850-8dd4-02b1-9323-70a8]
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] PathTranslator: BEGIN dumping
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] PathTranslator: Local -> global path prefix list
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] PathTranslator: Global -> local path prefix list
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] PathTranslator: END dumping
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] S: START
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] S: Server startup lock file created
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] S: Listening for client connections on port [10000]
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] S: Server network ID [DESKTOP-OU0BNIR:137.194.23.81,DESKTOP-OU0BNIR:10000]
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] S: Server GUID [3324-ea69-eebb-2172-9a58-028e-a580-2850-0bc5-0222-5300-70a8]
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] S: Project GUID [d977-38eb-1b3b-5606-9a23-c18e-a23c-1850-8dd4-02b1-9323-70a8]
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] S: Wrote data to server address file
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] S: Server startup lock file removed
+[2016.11.07 14:46:18] [0000m.00s.046ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.11.07 14:46:18] [0000m.00s.062ms] [0] S: Plugins loaded: [PIM] [ENetGen70] 
+[2016.11.07 14:46:18] [0000m.00s.062ms] [0] S: Local disc access time: 70 us
+[2016.11.07 14:46:18] [0000m.00s.062ms] [0] S: File server access time: 32 us
+[2016.11.07 14:46:18] [0000m.00s.062ms] [0] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] size [148984 (145.5 kB)]
+[2016.11.07 14:46:18] [0000m.00s.062ms] [1] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] opened in read-write mode
+[2016.11.07 14:46:18] [0000m.00s.062ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.07 14:46:18] [0000m.00s.062ms] [0] Database GUARD OK: [148984]
+[2016.11.07 14:46:18] [0000m.00s.062ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.07 14:46:18] [0000m.00s.062ms] [0] Database GUARD OK: [148984]
+[2016.11.07 14:46:18] [0000m.00s.062ms] [0] SingleFile: [e18f-fb1c-519a-eefe] SFI version check [1009] [1009]
+[2016.11.07 14:46:18] [0000m.00s.078ms] [0] SingleFile: [e18f-fb1c-519a-eefe] Database SFI header has been read in [2ms 405us]
+[2016.11.07 14:46:18] [0000m.00s.078ms] [0] iCDB Server PI: Server & plugin session [2824]
+[2016.11.07 14:46:18] [0000m.00s.078ms] [0] iCDB Server PI: Opening database [F:\Makahiya\PCB\Default\default.icdb]
+[2016.11.07 14:46:18] [0000m.00s.078ms] [0] iCDB Server PI: Database [F:\Makahiya\PCB\Default\default.icdb] opened
+[2016.11.07 14:46:18] [0000m.00s.078ms] [0] iCDB Database: Checking existence of constraint definitions
+[2016.11.07 14:46:18] [0000m.00s.078ms] [0] iCDB Database: Checking constraint definitions version
+[2016.11.07 14:46:18] [0000m.00s.109ms] [1] iCDB Database: Constraint definitions version [ce_ee.cns=7.10.24;user.cns=b83f-5623-433f-8ba7-b0d3-ff70-1d3f-f750-68fb-38d7-a6d6-f38b] up to date
+[2016.11.07 14:46:18] [0000m.00s.328ms] [0] iCDB Server PI: Initializing plugins
+[2016.11.07 14:46:18] [0000m.00s.328ms] [0] iCDB Server PI: Plugins initialized
+[2016.11.07 14:46:18] [0000m.00s.328ms] [0] S: iCDB database loaded
+[2016.11.07 14:46:18] [0000m.00s.328ms] [0] S: Starting threads
+[2016.11.07 14:46:18] [0000m.00s.328ms] [0] BT: Listening for broadcast messages on port [10000]
+[2016.11.07 14:46:18] [0000m.00s.328ms] [0] ProjectBackupManager: WARNING: Could not startup Project Backup engine - functionality not initialized
+[2016.11.07 14:46:18] [0000m.00s.328ms] [1] CMT: There are no clients - waiting [10 seconds]
+[2016.11.07 14:46:18] [0000m.00s.328ms] [0] IT: Session [2825] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11888] created
+[2016.11.07 14:46:18] [0000m.00s.328ms] [1] SC[2825]: Registered sub-client [DCDV] with ID [1] for session ID [2825] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11888]
+[2016.11.07 14:46:18] [0000m.00s.437ms] [1] CMT: There are [1] clients now: 2825
+[2016.11.07 14:46:24] [0000m.06s.148ms] [0] IT: Session [2826] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [14848] created
+[2016.11.07 14:46:24] [0000m.06s.148ms] [1] SC[2826]: Registered sub-client [ICDBC] with ID [1] for session ID [2826] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [14848]
+[2016.11.07 14:46:24] [0000m.06s.179ms] [1] SC[2826]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [2826] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [14848]
+[2016.11.07 14:46:24] [0000m.06s.241ms] [1] CMT: There are [2] clients now: 2825, 2826
+[2016.11.07 14:46:25] [0000m.07s.914ms] [1] SC[2826]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [2826] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [14848]
+[2016.11.07 14:46:25] [0000m.07s.914ms] [1] SC[2826]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [2826] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [14848]
+[2016.11.07 14:46:25] [0000m.07s.992ms] [1] CMT: Removed client [2826]
+[2016.11.07 14:46:25] [0000m.07s.992ms] [1] CMT: There are [1] clients now: 2825
+[2016.11.07 14:46:26] [0000m.08s.836ms] [0] IT: Session [2827] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [12008] created
+[2016.11.07 14:46:26] [0000m.08s.836ms] [1] SC[2827]: Registered sub-client [Packager_876578] with ID [1] for session ID [2827] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12008]
+[2016.11.07 14:46:26] [0000m.08s.867ms] [1] CMT: There are [2] clients now: 2825, 2827
+[2016.11.07 14:46:27] [0000m.09s.117ms] [1] SC[2827]: UnRegistered sub-client [Packager_876578] with ID [1] for session ID [2827] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12008]
+[2016.11.07 14:46:27] [0000m.09s.196ms] [1] CMT: Removed client [2827]
+[2016.11.07 14:46:27] [0000m.09s.196ms] [1] CMT: There are [1] clients now: 2825
+[2016.11.07 14:46:47] [0000m.29s.991ms] [0] DFAMT: File server access time: 104 us
+[2016.11.07 14:46:54] [0000m.36s.382ms] [0] IT: Session [2828] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [12244] created
+[2016.11.07 14:46:54] [0000m.36s.382ms] [1] ProjectBackupManager: Client [ClientData[ClientNetAddress[DESKTOP-OU0BNIR] # ClientUserName[Sylvain] # ClientProcessID[12244] # SessionID[2828]] # SubClientData[SubClientName[] # SubClientID[0]]] set project file (.prj): local path [F:\Makahiya\PCB\Makahiya.prj], global path [F:\Makahiya\PCB\Makahiya.prj]
+[2016.11.07 14:46:54] [0000m.36s.398ms] [0] PrjBackupMgr: Migrating iCDB upgrade backups from directory [PCB\Default\default.icdb\cdbback] to Project Backup format.
+[2016.11.07 14:46:54] [0000m.36s.398ms] [0] PrjBackupMgr: Migrating iCDB upgrade backup file [2016-11-04 08.03.06-5840].
+[2016.11.07 14:46:54] [0000m.36s.414ms] [1] CMT: There are [2] clients now: 2825, 2828
+[2016.11.07 14:46:54] [0000m.36s.570ms] [1] PrjBackupMgr: Successfully created Project Backup [F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-04 08.03.06 - consDefUpgr.zip] with GUID [0674-e103-ca76-365a-ec58-0283-d580-2850-05b4-0222-5300-70a8]
+[2016.11.07 14:46:54] [0000m.36s.570ms] [1] PrjBackupMgr: Migrated iCDB content backup file [F:\Makahiya\PCB\Default\default.icdb\cdbback\2016-11-04 08.03.06-5840.zip] removed
+[2016.11.07 14:46:54] [0000m.36s.570ms] [0] PrjBackupMgr: Successfully migrated iCDB upgrade backup file [2016-11-04 08.03.06-5840] to Project Backup format [2016-11-04 08.03.06 - consDefUpgr.zip]
+[2016.11.07 14:46:54] [0000m.36s.570ms] [0] PrjBackupMgr: Migrating iCDB upgrade backup file [2016-10-28 12.03.50-804].
+[2016.11.07 14:46:54] [0000m.36s.679ms] [0] PrjBackupMgr: iCDB upgrade backup file [2016-10-28 12.03.50-804] is excessive.
+[2016.11.07 14:46:54] [0000m.36s.679ms] [0] PrjBackupMgr: Excessive iCDB upgrade backup file [2016-10-28 12.03.50-804] removed.
+[2016.11.07 14:46:54] [0000m.36s.679ms] [0] PrjBackupMgr: Migrating iCDB upgrade backup file [2016-10-25 17.57.05-9544].
+[2016.11.07 14:46:54] [0000m.36s.773ms] [0] PrjBackupMgr: iCDB upgrade backup file [2016-10-25 17.57.05-9544] is excessive.
+[2016.11.07 14:46:54] [0000m.36s.789ms] [0] PrjBackupMgr: Excessive iCDB upgrade backup file [2016-10-25 17.57.05-9544] removed.
+[2016.11.07 14:46:54] [0000m.36s.789ms] [0] PrjBackupMgr: Migrating iCDB upgrade backup file [2016-10-24 11.36.11-4848].
+[2016.11.07 14:46:54] [0000m.36s.898ms] [0] PrjBackupMgr: iCDB upgrade backup file [2016-10-24 11.36.11-4848] is excessive.
+[2016.11.07 14:46:54] [0000m.36s.898ms] [0] PrjBackupMgr: Excessive iCDB upgrade backup file [2016-10-24 11.36.11-4848] removed.
+[2016.11.07 14:46:54] [0000m.36s.898ms] [1] SC[2828]: Registered sub-client [Expedition PCB_904125] with ID [1] for session ID [2828] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12244]
+[2016.11.07 14:46:54] [0000m.36s.976ms] [1] SC[2828]: Registered sub-client [EEVM] with ID [2] for session ID [2828] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12244]
+[2016.11.07 14:46:55] [0000m.37s.554ms] [1] SC[2828]: UnRegistered sub-client [EEVM] with ID [2] for session ID [2828] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12244]
+[2016.11.07 14:46:55] [0000m.38s.024ms] [1] PrjBackupMgr: Successfully created Project Backup [F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-07 14.46.54 - auto.zip] with GUID [8b1b-e5e3-c40e-fc7e-ec58-0283-d580-2850-cf26-0222-5300-70a8]
+[2016.11.07 14:46:55] [0000m.38s.024ms] [0] PrjBackupEngine: Successfully created backup:  BackupGUID[8b1b-e5e3-c40e-fc7e-ec58-0283-d580-2850-cf26-0222-5300-70a8] CreationTime[Monday, November 07, 2016 13:46:54] Type[Autosave] Creator[iCDB Server (2016-11-07 14.46.17-6044)] ApplicationName[iCDB Server (2016-11-07 14.46.17-6044)] UserName[Sylvain] MachineName[DESKTOP-OU0BNIR] Description[Autosave] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[] BackupFilePath[F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-07 14.46.54 - auto.zip] BackupFileSize[252773] Persistent[FALSE]
+[2016.11.07 14:46:56] [0000m.38s.524ms] [1] SC[2828]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [2828] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12244]
+[2016.11.07 14:47:44] [0001m.26s.508ms] [1] SC[2828]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [2828] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12244]
+[2016.11.07 14:47:44] [0001m.26s.758ms] [1] SC[2828]: UnRegistered sub-client [Expedition PCB_904125] with ID [1] for session ID [2828] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12244]
+[2016.11.07 14:47:44] [0001m.26s.820ms] [1] CMT: Removed client [2828]
+[2016.11.07 14:47:44] [0001m.26s.820ms] [1] CMT: There are [1] clients now: 2825
+[2016.11.07 14:47:53] [0001m.35s.889ms] [0] IT: Session [2829] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [8100] created
+[2016.11.07 14:47:53] [0001m.35s.889ms] [1] SC[2829]: Registered sub-client [Expedition PCB_963640] with ID [1] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:47:53] [0001m.35s.905ms] [1] CMT: There are [2] clients now: 2825, 2829
+[2016.11.07 14:47:53] [0001m.35s.921ms] [1] SC[2829]: Registered sub-client [EEVM] with ID [2] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:47:54] [0001m.36s.374ms] [1] SC[2829]: UnRegistered sub-client [EEVM] with ID [2] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:47:54] [0001m.37s.031ms] [1] SC[2829]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:47:58] [0001m.40s.705ms] [1] SC[2829]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:47:58] [0001m.40s.720ms] [1] SC[2829]: Registered sub-client [EEVM_EEVM_1700648] with ID [4] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:47:58] [0001m.40s.720ms] [1] SC[2829]: UnRegistered sub-client [EEVM_EEVM_1700648] with ID [4] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:47:58] [0001m.40s.751ms] [1] SC[2829]: Registered sub-client [JobPrefsDBPI_968531] with ID [5] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:47:58] [0001m.40s.767ms] [1] SC[2829]: UnRegistered sub-client [JobPrefsDBPI_968531] with ID [5] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:48:00] [0001m.42s.224ms] [1] SC[2829]: Registered sub-client [JobPrefsDBPI_970000] with ID [6] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:48:00] [0001m.42s.235ms] [1] SC[2829]: UnRegistered sub-client [JobPrefsDBPI_970000] with ID [6] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:48:00] [0001m.42s.478ms] [0] IT: Session [2830] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [9268] created
+[2016.11.07 14:48:00] [0001m.42s.480ms] [1] SC[2830]: Registered sub-client [Packager_970218] with ID [1] for session ID [2830] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [9268]
+[2016.11.07 14:48:00] [0001m.42s.567ms] [1] CMT: There are [3] clients now: 2825, 2829, 2830
+[2016.11.07 14:48:00] [0001m.42s.724ms] [1] SC[2830]: UnRegistered sub-client [Packager_970218] with ID [1] for session ID [2830] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [9268]
+[2016.11.07 14:48:00] [0001m.42s.784ms] [1] CMT: Removed client [2830]
+[2016.11.07 14:48:00] [0001m.42s.784ms] [1] CMT: There are [2] clients now: 2825, 2829
+[2016.11.07 14:48:01] [0001m.43s.310ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [F:\Makahiya\PCB\Default\default.icdb\s2\cdbcatlg\grpobj] - auto-saving it
+[2016.11.07 14:48:01] [0001m.43s.706ms] [0] IT: Session [2831] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [15216] created
+[2016.11.07 14:48:01] [0001m.43s.706ms] [1] SC[2831]: Registered sub-client [Expedition_971453] with ID [1] for session ID [2831] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [15216]
+[2016.11.07 14:48:01] [0001m.43s.753ms] [1] SC[2831]: UnRegistered sub-client [Expedition_971453] with ID [1] for session ID [2831] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [15216]
+[2016.11.07 14:48:01] [0001m.43s.768ms] [1] CMT: There are [3] clients now: 2825, 2829, 2831
+[2016.11.07 14:48:01] [0001m.43s.768ms] [1] CMT: Removed client [2831]
+[2016.11.07 14:48:01] [0001m.43s.768ms] [1] CMT: There are [2] clients now: 2825, 2829
+[2016.11.07 14:48:02] [0001m.44s.409ms] [0] IT: Session [2832] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [15216] created
+[2016.11.07 14:48:02] [0001m.44s.409ms] [1] SC[2832]: Registered sub-client [JobPrefsDBPI_972140] with ID [1] for session ID [2832] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [15216]
+[2016.11.07 14:48:02] [0001m.44s.424ms] [1] CMT: There are [3] clients now: 2825, 2829, 2832
+[2016.11.07 14:48:02] [0001m.44s.424ms] [1] SC[2832]: UnRegistered sub-client [JobPrefsDBPI_972140] with ID [1] for session ID [2832] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [15216]
+[2016.11.07 14:48:02] [0001m.44s.534ms] [1] CMT: Removed client [2832]
+[2016.11.07 14:48:02] [0001m.44s.534ms] [1] CMT: There are [2] clients now: 2825, 2829
+[2016.11.07 14:48:02] [0001m.45s.019ms] [0] IT: Session [2833] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [15216] created
+[2016.11.07 14:48:02] [0001m.45s.019ms] [1] SC[2833]: Registered sub-client [JobPrefsDBPI_972765] with ID [1] for session ID [2833] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [15216]
+[2016.11.07 14:48:03] [0001m.45s.081ms] [1] CMT: There are [3] clients now: 2825, 2829, 2833
+[2016.11.07 14:48:03] [0001m.45s.425ms] [1] SC[2833]: UnRegistered sub-client [JobPrefsDBPI_972765] with ID [1] for session ID [2833] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [15216]
+[2016.11.07 14:48:03] [0001m.45s.519ms] [1] CMT: Removed client [2833]
+[2016.11.07 14:48:03] [0001m.45s.519ms] [1] CMT: There are [2] clients now: 2825, 2829
+[2016.11.07 14:48:04] [0001m.46s.284ms] [0] IT: Session [2834] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [14804] created
+[2016.11.07 14:48:04] [0001m.46s.284ms] [1] SC[2834]: Registered sub-client [JobPrefsDBPI_974015] with ID [1] for session ID [2834] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [14804]
+[2016.11.07 14:48:04] [0001m.46s.300ms] [1] SC[2834]: Registered sub-client [Expedition_974078] with ID [2] for session ID [2834] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [14804]
+[2016.11.07 14:48:04] [0001m.46s.347ms] [1] SC[2834]: UnRegistered sub-client [JobPrefsDBPI_974015] with ID [1] for session ID [2834] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [14804]
+[2016.11.07 14:48:04] [0001m.46s.394ms] [1] CMT: There are [3] clients now: 2825, 2829, 2834
+[2016.11.07 14:48:04] [0001m.46s.425ms] [1] SC[2834]: UnRegistered sub-client [Expedition_974078] with ID [2] for session ID [2834] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [14804]
+[2016.11.07 14:48:04] [0001m.46s.503ms] [1] CMT: Removed client [2834]
+[2016.11.07 14:48:04] [0001m.46s.503ms] [1] CMT: There are [2] clients now: 2825, 2829
+[2016.11.07 14:48:05] [0001m.47s.159ms] [1] SC[2829]: Registered sub-client [EEVM_EEVM_322875404] with ID [7] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:48:05] [0001m.47s.159ms] [1] SC[2829]: UnRegistered sub-client [EEVM_EEVM_322875404] with ID [7] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:48:05] [0001m.47s.175ms] [1] SC[2829]: Registered sub-client [EEVM_EEVM_322875404] with ID [8] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:48:05] [0001m.47s.175ms] [1] SC[2829]: UnRegistered sub-client [EEVM_EEVM_322875404] with ID [8] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:48:05] [0001m.47s.175ms] [1] SC[2829]: Registered sub-client [EEVM_EEVM_322876988] with ID [9] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:48:05] [0001m.47s.175ms] [1] SC[2829]: UnRegistered sub-client [EEVM_EEVM_322876988] with ID [9] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:48:05] [0001m.47s.347ms] [1] SC[2829]: UnRegistered sub-client [Expedition PCB_963640] with ID [1] for session ID [2829] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:48:05] [0001m.47s.378ms] [1] CMT: Removed client [2829]
+[2016.11.07 14:48:05] [0001m.47s.378ms] [1] CMT: There are [1] clients now: 2825
+[2016.11.07 14:48:05] [0001m.47s.675ms] [0] IT: Session [2835] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [8100] created
+[2016.11.07 14:48:05] [0001m.47s.675ms] [1] SC[2835]: Registered sub-client [Expedition PCB_975406] with ID [1] for session ID [2835] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:48:05] [0001m.47s.706ms] [1] CMT: There are [2] clients now: 2825, 2835
+[2016.11.07 14:48:06] [0001m.48s.318ms] [1] SC[2835]: Registered sub-client [JobPrefsDBPI_976109] with ID [2] for session ID [2835] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:48:06] [0001m.48s.350ms] [1] SC[2835]: UnRegistered sub-client [JobPrefsDBPI_976109] with ID [2] for session ID [2835] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 14:48:06] [0001m.48s.350ms] [1] SC[2835]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [2835] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 15:32:02] [0045m.44s.148ms] [1] SC[2835]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [2835] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 15:32:02] [0045m.44s.399ms] [1] SC[2835]: UnRegistered sub-client [Expedition PCB_975406] with ID [1] for session ID [2835] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8100]
+[2016.11.07 15:32:02] [0045m.44s.430ms] [1] CMT: Removed client [2835]
+[2016.11.07 15:32:02] [0045m.44s.430ms] [1] CMT: There are [1] clients now: 2825
+[2016.11.07 15:32:03] [0045m.45s.102ms] [1] SC[2825]: UnRegistered sub-client [DCDV] with ID [1] for session ID [2825] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11888]
+[2016.11.07 15:32:03] [0045m.45s.196ms] [1] CMT: Removed client [2825]
+[2016.11.07 15:32:03] [0045m.45s.196ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2016.11.07 15:32:05] [0045m.47s.122ms] [0] CMT: Starting server auto-close
+[2016.11.07 15:32:05] [0045m.47s.185ms] [0] S: Closing server
+[2016.11.07 15:32:05] [0045m.47s.279ms] [0] iCDB Server PI: Closing plugins
+[2016.11.07 15:32:05] [0045m.47s.279ms] [0] iCDB Server PI: Plugins closed
+[2016.11.07 15:32:05] [0045m.47s.279ms] [0] iCDB Server PI: Unloading database
+[2016.11.07 15:32:05] [0045m.47s.279ms] [0] iCDB Server PI: Saving storage
+[2016.11.07 15:32:05] [0045m.47s.279ms] [0] iCDB Server PI: Closing database
+[2016.11.07 15:32:05] [0045m.47s.310ms] [1] iCDB Server PI: Stats: Database defragmentation: max[2] avg[1] holes[7%] data[88%]
+[2016.11.07 15:32:05] [0045m.47s.310ms] [1] iCDB Server PI: Stats: Database file size [163224 (159.4 kB)]
+[2016.11.07 15:32:05] [0045m.47s.357ms] [0] iCDB Server PI: Database closed
+[2016.11.07 15:32:05] [0045m.47s.357ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [227112] ticks
+[2016.11.07 15:32:05] [0045m.47s.357ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [89723] microseconds
+[2016.11.07 15:32:05] [0045m.47s.357ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [240]
+[2016.11.07 15:32:05] [0045m.47s.357ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [2674] commands per second
+[2016.11.07 15:32:05] [0045m.47s.357ms] [0] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] closed with size [163224 (159.4 kB)]
+[2016.11.07 15:32:05] [0045m.47s.513ms] [0] S: STOP

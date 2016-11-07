@@ -1,0 +1,15 @@
+[2016-11-07 14.46.54] Migrating iCDB upgrade backups from directory [PCB\Default\default.icdb\cdbback] to Project Backup format.
+[2016-11-07 14.46.54] Migrating iCDB upgrade backup file [2016-11-04 08.03.06-5840].
+[2016-11-07 14.46.54] Successfully created [Constraints Definition Upgrade] backup [2016-11-04 08.03.06 - consDefUpgr.zip] requested by [TANGUY-PC:Tanguy].
+[2016-11-07 14.46.54] Migrated iCDB content backup file [cdbback\2016-11-04 08.03.06-5840.zip] removed.
+[2016-11-07 14.46.54] Successfully migrated iCDB upgrade backup file [2016-11-04 08.03.06-5840] to Project Backup format [2016-11-04 08.03.06 - consDefUpgr.zip]
+[2016-11-07 14.46.54] Migrating iCDB upgrade backup file [2016-10-28 12.03.50-804].
+[2016-11-07 14.46.54] iCDB upgrade backup file [2016-10-28 12.03.50-804] is excessive.
+[2016-11-07 14.46.54] Excessive iCDB upgrade backup file [2016-10-28 12.03.50-804] removed.
+[2016-11-07 14.46.54] Migrating iCDB upgrade backup file [2016-10-25 17.57.05-9544].
+[2016-11-07 14.46.54] iCDB upgrade backup file [2016-10-25 17.57.05-9544] is excessive.
+[2016-11-07 14.46.54] Excessive iCDB upgrade backup file [2016-10-25 17.57.05-9544] removed.
+[2016-11-07 14.46.54] Migrating iCDB upgrade backup file [2016-10-24 11.36.11-4848].
+[2016-11-07 14.46.54] iCDB upgrade backup file [2016-10-24 11.36.11-4848] is excessive.
+[2016-11-07 14.46.54] Excessive iCDB upgrade backup file [2016-10-24 11.36.11-4848] removed.
+[2016-11-07 14.46.55] Successfully created [AutoSave] backup [2016-11-07 14.46.54 - auto.zip] requested by [DESKTOP-OU0BNIR:Sylvain].

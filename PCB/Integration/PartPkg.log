@@ -2,13 +2,13 @@
                                     Packager
                                     --------
 
-                       02:30 PM Monday, November 07, 2016
+                       02:48 PM Monday, November 07, 2016
                      Job Name: F:\Makahiya\PCB\Makahiya.prj
 
 
      Packager     Version: 020806.00
 
-        Commandline is: "D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\package "-uF:\Makahiya\PCB\Default\default.icdb" -k -CleanBuild "-jF:\Makahiya\PCB\Makahiya.prj" "
+        Commandline is: "D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"F:\Makahiya\PCB\Makahiya.prj" -CleanBuild -NoFill "
 
      The Common Database is at "F:\Makahiya\PCB\Default\default.icdb".
 
@@ -37,10 +37,8 @@
      Properties that have been checked off in the Property Definition Editor
       found at Library Manager/Common Properties will be checked for value
       differences between the PartsDB and the non-null properties on symbols.
-     Those properties checked off will be transferred from the PartsDB to all
-      symbols, both packaged and unpackaged.  However, the property values
-      transferred will be limited to the precision specified in the Notation
-      Settings dialog.
+     Those properties checked off (other than Part Number)
+      will not be transferred from the PartsDB to symbols.
      The following properties were checked off in the Property Definition Editor:
        "Parametric"
        "Value2"
