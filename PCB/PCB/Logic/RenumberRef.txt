@@ -1518,3 +1518,17 @@
                        05:30 PM Monday, November 07, 2016
           Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
 
+
+                      Renumbered Reference Designator List
+                      ------------------------------------
+
+                       04:48 PM Tuesday, November 08, 2016
+          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
+
+
+                      Renumbered Reference Designator List
+                      ------------------------------------
+
+                       05:49 PM Tuesday, November 08, 2016
+          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
+

@@ -1,10 +1,11 @@
 
-Schematic unused pins from : Packager  7-Nov-2016  17:30
+Schematic unused pins from : Packager  8-Nov-2016  17:49
 
 ------------------------------------------------------------------------
             Part/Reference             |          Unused pins
                                        |  (G) - Gate, (P) - Partial Gate
 ------------------------------------------------------------------------
+ Part 00-0022                          |
  Part 00-0055                          |
  Part 00-0098                          |
  Part 00-0107                          |
@@ -26,11 +27,6 @@ Schematic unused pins from : Packager  7-Nov-2016  17:30
  Part 20-0003                          |
  Part 20-0004                          |
  Part 30-0019                          |
-  Q8                                   | (P)  3
-  Q11                                  | (P)  3
-  Q14                                  | (P)  3
-  Q17                                  | (P)  3
-  Q20                                  | (P)  3
  Part 30-0024                          |
  Part 40-0208                          |
   STM32                                | (P)  60 5 6
@@ -44,11 +40,6 @@ Schematic unused pins from : Packager  7-Nov-2016  17:30
  Part 50-0040                          |
  Part 70-0002                          |
  Part 70-0014                          |
-  J13                                  | (P)  3
-  J14                                  | (P)  3
-  J15                                  | (P)  3
-  J16                                  | (P)  3
-  J17                                  | (P)  3
   RS232                                | (P)  1
  Part 70-0040                          |
  Part 70-0081                          |

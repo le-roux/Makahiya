@@ -20,3 +20,4 @@
 [2016-11-07 16.35.23] [Constraints Definition Upgrade] backup file [Makahiya\Default\ProjectBackup\backups\2016-11-04 08.03.06 - consDefUpgr.zip] removed.
 [2016-11-07 16.35.23] Migrated iCDB content backup file [cdbback\2016-11-07 16.33.55-5084.zip] removed.
 [2016-11-07 16.35.23] Successfully migrated iCDB upgrade backup file [2016-11-07 16.33.55-5084] to Project Backup format [2016-11-07 16.33.55 - consDefUpgr.zip]
+[2016-11-08 16.36.02] Successfully created [AutoSave] backup [2016-11-08 16.36.00 - auto.zip] requested by [TANGUY-PC:Tanguy].
