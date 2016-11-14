@@ -1,0 +1,4 @@
+<map id="sdc_lld_write" name="sdc_lld_write">
+<area shape="rect" id="node2" href="$group___s_d_c.html#ga95fb9468946fa0665b6d3988b244a517" title="Writes one or more blocks. " alt="" coords="136,11,259,35"/>
+<area shape="rect" id="node3" href="$group___s_d_c.html#gaad70bd0ddad7c1ea0086a5e99b885456" title="Wait for the card to complete pending operations. " alt="" coords="307,5,437,41"/>
+</map>

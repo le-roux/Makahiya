@@ -1,0 +1,8 @@
+<map id="USBEndpointConfig" name="USBEndpointConfig">
+<area shape="rect" id="node3" href="$struct_u_s_b_driver.html" title="Structure representing an USB driver. " alt="" coords="187,456,275,645"/>
+<area shape="rect" id="node2" href="$struct_u_s_b_out_endpoint_state.html" title="Type of an OUT endpoint state structure. " alt="" coords="189,5,317,123"/>
+<area shape="rect" id="node4" href="$struct_u_s_b_config.html" title="Type of an USB driver configuration structure. " alt="" coords="193,729,268,799"/>
+<area shape="rect" id="node5" href="$structstm32__otg__params__t.html" title="Peripheral&#45;specific parameters block. " alt="" coords="5,231,128,324"/>
+<area shape="rect" id="node6" href="$structstm32__otg__t.html" title="USB registers memory map. " alt="" coords="153,183,245,372"/>
+<area shape="rect" id="node7" href="$struct_u_s_b_in_endpoint_state.html" title="Type of an IN endpoint state structure. " alt="" coords="341,5,461,123"/>
+</map>

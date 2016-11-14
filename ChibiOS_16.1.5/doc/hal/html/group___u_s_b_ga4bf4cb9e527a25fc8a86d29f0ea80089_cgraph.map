@@ -1,0 +1,6 @@
+<map id="usb_lld_serve_interrupt" name="usb_lld_serve_interrupt">
+<area shape="rect" id="node2" href="$group___u_s_b.html#gac43681880727efd18d1f4a69a4b2166b" title="USB reset routine. " alt="" coords="195,5,269,29"/>
+<area shape="rect" id="node4" href="$group___u_s_b.html#ga1235bb78234e04b602dceecf4a772cd1" title="USB suspend routine. " alt="" coords="187,53,277,77"/>
+<area shape="rect" id="node5" href="$group___u_s_b.html#ga36ad83ec120a4e5fb4ef49cfcb66a08e" title="USB wake&#45;up routine. " alt="" coords="188,101,276,125"/>
+<area shape="rect" id="node3" href="$group___u_s_b.html#ga9278d6f1afe6b0c52a1dc4c4b15d7f38" title="USB low level reset routine. " alt="" coords="325,5,411,29"/>
+</map>

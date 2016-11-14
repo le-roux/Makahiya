@@ -1,0 +1,4 @@
+<map id="usart_start" name="usart_start">
+<area shape="rect" id="node2" href="$group___u_a_r_t.html#gac51617b9c08f922aed2a951a23001af7" title="Puts the receiver in the UART_RX_IDLE state. " alt="" coords="127,5,261,29"/>
+<area shape="rect" id="node3" href="$group___u_a_r_t.html#ga588507f9d46743f8433952ad9085018b" title="USART de&#45;initialization. " alt="" coords="158,53,230,77"/>
+</map>

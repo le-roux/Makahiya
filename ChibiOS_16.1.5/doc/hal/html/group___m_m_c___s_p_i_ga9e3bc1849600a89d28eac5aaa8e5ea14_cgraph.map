@@ -1,0 +1,6 @@
+<map id="send_hdr" name="send_hdr">
+<area shape="rect" id="node2" href="$group___m_m_c___s_p_i.html#gac82b7e209601c890c0d1587cefaf0813" title="Calculate the MMC standard CRC&#45;7 based on a lookup table. " alt="" coords="129,5,171,29"/>
+<area shape="rect" id="node3" href="$group___s_p_i.html#ga382cfbdffd2df57cf3843d45164e8bfc" title="Sends data over the SPI bus. " alt="" coords="120,53,180,77"/>
+<area shape="rect" id="node4" href="$group___m_m_c___s_p_i.html#ga2047c3d4f7ce72dcb6c4942f57e92600" title="Waits an idle condition. " alt="" coords="129,101,171,125"/>
+<area shape="rect" id="node5" href="$group___s_p_i.html#gadd99ad823b391dde114f04dedafe5e80" title="Receives data from the SPI bus. " alt="" coords="228,101,301,125"/>
+</map>
