@@ -1489,3 +1489,46 @@
 ;------------------------------- --------------------------------
 ; STARTING AN IMPLICIT FORWARD ANNOTATION
 ;------------------------------- --------------------------------
+
+;------------------------------- --------------------------------
+; STARTING AN EXPLICIT FORWARD ANNOTATION
+;------------------------------- --------------------------------
+
+                      Renumbered Reference Designator List
+                      ------------------------------------
+
+                       02:48 PM Monday, November 07, 2016
+                      Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
+
+
+;------------------------------- --------------------------------
+; STARTING AN IMPLICIT FORWARD ANNOTATION
+;------------------------------- --------------------------------
+
+                      Renumbered Reference Designator List
+                      ------------------------------------
+
+                       05:18 PM Monday, November 07, 2016
+          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
+
+
+                      Renumbered Reference Designator List
+                      ------------------------------------
+
+                       05:30 PM Monday, November 07, 2016
+          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
+
+
+                      Renumbered Reference Designator List
+                      ------------------------------------
+
+                       04:48 PM Tuesday, November 08, 2016
+          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
+
+
+                      Renumbered Reference Designator List
+                      ------------------------------------
+
+                       05:49 PM Tuesday, November 08, 2016
+          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
+

@@ -2,10 +2,10 @@
 ! change it at your own peril
 
 !
-! Created 10/11/16 19:16:37
+! Created 11/09/16 19:03:59
 !
 
-.Global_Constants 5 2
+.Global_Constants 124 2
     ..File_Type Graphics_Settings
     ..Version Version_1
     ..Num_Views 1
@@ -15,7 +15,7 @@
 	0x00000003	! showCmd
 	(-1, -1)	! ptMinPosition
 	(-1, -1)	! ptMaxPosition
-	(498, 132) (1920,788)	! ..rcNormalPosition
+	(1, 1) (1919,1039)	! ..rcNormalPosition
     ..Active_Place_Layer_Top             True
     ..Active_Place_Layer_Bottom          True
     ..Active_Place_Layer_Internal        False
@@ -514,17 +514,17 @@
     ..Netline_Ordered_Routed_Color 0x0099ccff	! RGB(255,204,153)
     ..Netline_Ordered_Open_Color 0x00cc99ff	! RGB(255,153,204)
     ..Netline_All_Open_Color 0x00c0c0c0	! RGB(192,192,192)
-    ..Netline_Trace_Ends_On              False
+    ..Netline_Trace_Ends_On              True
     ..Netline_Buses_On                   False
     ..Classline_Color 0x00ff00cc	! RGB(204,  0,255)
     ..Classline_On                       False
     ..Netline_Of_Classline_On            True
-    ..Show_Plane_Data                    True
+    ..Show_Plane_Data                    False
     ..Show_Plane_Without_Traces          False
     ..Show_Plane_Shapes                  True
     ..Show_Fill_Plane_Shapes             False
     ..Show_Plane_Data_Behind_Traces      True
-    ..Show_Dynamic_Area_Fills            True
+    ..Show_Dynamic_Area_Fills            False
     ..Delay_Daf_Update                   False
     ..Show_Plane_Aps_Outlines            True
     ..Show_Plane_Aps_Fills               False
@@ -539,12 +539,12 @@
     ..Spacers_Shadow_Mode_Enabled        False
     ..Virtual_Pin_Ref_Color 0x0033cc33	! RGB( 51,204, 51)
     ..Virtual_Pin_Plc_Region_Color 0x00ffffff	! RGB(255,255,255)
-    ..Pad_Items_Collapsed                False
+    ..Pad_Items_Collapsed                True
     ..Grid_Items_Collapsed               False
     ..Bus_Items_Collapsed                False
     ..Netline_Items_Collapsed            False
-    ..Selhil_Items_Collapsed             False
-    ..Plane_Items_Collapsed              False
+    ..Selhil_Items_Collapsed             True
+    ..Plane_Items_Collapsed              True
     ..Cubal_Items_Collapsed              False
     ..Spacers_Items_Collapsed            False
     ..Virtual_Pin_Items_Collapsed        False
@@ -662,7 +662,7 @@
     ..Drill_Drawing_Through_Nopaque      False
     ..Drill_Drawing_Through_Outline      True
     ..Redline_Layer_Color 0x000000ff	! RGB(255,  0,  0)
-    ..Redline_Layer_On                   True
+    ..Redline_Layer_On                   False
     ..User_Draft_Color ( 
 	0x00ffffff 0x00cc99ff	! [1-2] RGB(255,255,255)  RGB(255,153,204)
 	0x000000ff 0x00000080	! [3-4] RGB(255,  0,  0)  RGB(128,  0,  0)
@@ -937,11 +937,11 @@
     ..Contour_Nopaque                    False
     ..Contour_Outline                    True
     ..Contour_Span_Color 0x00ffffff	! RGB(255,255,255)
-    ..Cavity_Color 0x001bc560	! RGB( 96,197, 27)
+    ..Cavity_Color 0x00000000	! RGB(  0,  0,  0)
     ..Cavity_Ptrnidx 0
     ..Cavity_Nopaque                     False
     ..Cavity_Outline                     True
-    ..Milling_Color 0x00000086	! RGB(134,  0,  0)
+    ..Milling_Color 0x00000000	! RGB(  0,  0,  0)
     ..Milling_Ptrnidx 0
     ..Milling_Nopaque                    False
     ..Milling_Outline                    True
@@ -1020,7 +1020,7 @@
     ..Inactive_Bb_Via_Alpha 100
     ..Inactive_Bb_Via_Nopaque            False
     ..Inactive_Bb_Via_Outline            True
-    ..Inactive_Bb_Via_Drawn              True
+    ..Inactive_Bb_Via_Drawn              False
     ..Inner_Skipvia_Pad_Color 0x00dbdbdb	! RGB(219,219,219)
     ..Inner_Skipvia_Pad_Ptrnidx 0
     ..Inner_Skipvia_Pad_Alpha 100
@@ -1037,7 +1037,7 @@
     ..Pattern_Timing_Net_Ptrnidx 0
     ..Background_Color 0x00000000	! RGB(  0,  0,  0)
     ..Fab_Items_Collapsed                False
-    ..Draft_Items_Collapsed              False
+    ..Draft_Items_Collapsed              True
     ..Detail_View_Items_Collapsed        False
     ..Board_Items_Collapsed              False
     ..Panel_Items_Collapsed              False
@@ -1237,12 +1237,12 @@
 	0x0000ff00	! bottom  RGB(  0,255,  0)
     )
     ..Diepinpad_Color (
-	0xffe91ca0	! top     RGB(160, 28,233)
-	0xffe54c10	! bottom  RGB( 16, 76,229)
+	0x00000000	! top     RGB(  0,  0,  0)
+	0x00000000	! bottom  RGB(  0,  0,  0)
     )
     ..Bondwire_Color (
-	0xffe0b830	! top     RGB( 48,184,224)
-	0xffeced30	! bottom  RGB( 48,237,236)
+	0x00000000	! top     RGB(  0,  0,  0)
+	0x00000000	! bottom  RGB(  0,  0,  0)
     )
     ..Wire_Level0_Color (
 	0x0099ff99	! top     RGB(153,255,153)
@@ -1294,9 +1294,9 @@
     )
     ..Part_Items_Collapsed               False
     ..Assm_Items_Collapsed               False
-    ..Silk_Items_Collapsed               False
+    ..Silk_Items_Collapsed               True
     ..Cell_Items_Collapsed               False
-    ..Tstpt_Items_Collapsed              False
+    ..Tstpt_Items_Collapsed              True
     ..Num_Buses 0
     ..Num_Constraints 2
     ..Net_Names ( 
@@ -1305,6 +1305,125 @@
 	"(Spacer_Net)"	! [3]
 	"GND"	! [4]
 	"VCC"	! [5]
+	"AUDIO_BCLK"	! [6]
+	"AUDIO_DATA"	! [7]
+	"AUDIO_INT1"	! [8]
+	"AUDIO_SPI_CS"	! [9]
+	"AUDIO_WCLK"	! [10]
+	"BT_AUTO_DISCOVERY"	! [11]
+	"BT_FACTORY_RESET"	! [12]
+	"BT_SET_MASTER"	! [13]
+	"BT_UART_CTS"	! [14]
+	"BT_UART_RTS"	! [15]
+	"BT_UART_RX"	! [16]
+	"BT_UART_TX"	! [17]
+	"FDC_CLK_IN"	! [18]
+	"FDC_I2C_SCL"	! [19]
+	"FDC_I2C_SDA"	! [20]
+	"FDC1_INT"	! [21]
+	"FDC1_SHUTDOWN"	! [22]
+	"FDC2_INT"	! [23]
+	"FDC2_SHUTDOWN"	! [24]
+	"FLEXINOL_POWER"	! [25]
+	"FLEXINOL_1"	! [26]
+	"FLEXINOL_2"	! [27]
+	"FLEXINOL_3"	! [28]
+	"FLEXINOL_4"	! [29]
+	"FLEXINOL_5"	! [30]
+	"FLEXINOL_6"	! [31]
+	"FLEXINOL_7"	! [32]
+	"LED1_B"	! [33]
+	"LED1_G"	! [34]
+	"LED1_R"	! [35]
+	"LED2_B"	! [36]
+	"LED2_G"	! [37]
+	"LED2_R"	! [38]
+	"LED3_B"	! [39]
+	"LED3_G"	! [40]
+	"LED3_R"	! [41]
+	"LED4_B"	! [42]
+	"LED4_G"	! [43]
+	"LED4_R"	! [44]
+	"LED5_B"	! [45]
+	"LED5_G"	! [46]
+	"LED5_R"	! [47]
+	"PWR"	! [48]
+	"RESETn"	! [49]
+	"RS232_RX"	! [50]
+	"RS232_TX"	! [51]
+	"SPI_MISO"	! [52]
+	"SPI_MOSI"	! [53]
+	"SPI_SCK"	! [54]
+	"SWDCLK"	! [55]
+	"SWDIO"	! [56]
+	"WIFI_SPI_CS"	! [57]
+	"WIFI_WKUP"	! [58]
+	"XSIG020001"	! [59]
+	"XSIG020035"	! [60]
+	"XSIG020038"	! [61]
+	"XSIG020039"	! [62]
+	"XSIG020040"	! [63]
+	"XSIG020041"	! [64]
+	"XSIG030075"	! [65]
+	"XSIG030080"	! [66]
+	"XSIG030087"	! [67]
+	"XSIG030093"	! [68]
+	"XSIG030156"	! [69]
+	"XSIG030162"	! [70]
+	"XSIG030163"	! [71]
+	"XSIG030164"	! [72]
+	"XSIG030167"	! [73]
+	"XSIG030168"	! [74]
+	"XSIG030172"	! [75]
+	"XSIG040020"	! [76]
+	"XSIG040021"	! [77]
+	"XSIG040023"	! [78]
+	"XSIG040024"	! [79]
+	"XSIG040027"	! [80]
+	"XSIG040029"	! [81]
+	"XSIG040036"	! [82]
+	"XSIG040038"	! [83]
+	"XSIG050065"	! [84]
+	"XSIG050067"	! [85]
+	"XSIG050069"	! [86]
+	"XSIG050071"	! [87]
+	"XSIG050073"	! [88]
+	"XSIG050075"	! [89]
+	"XSIG050077"	! [90]
+	"XSIG050085"	! [91]
+	"XSIG050086"	! [92]
+	"XSIG050138"	! [93]
+	"XSIG050139"	! [94]
+	"XSIG050149"	! [95]
+	"XSIG050150"	! [96]
+	"XSIG050160"	! [97]
+	"XSIG050161"	! [98]
+	"XSIG050171"	! [99]
+	"XSIG050172"	! [100]
+	"XSIG050173"	! [101]
+	"XSIG050174"	! [102]
+	"XSIG030191"	! [103]
+	"XSIG030196"	! [104]
+	"XSIG030199"	! [105]
+	"XSIG030202"	! [106]
+	"XSIG050175"	! [107]
+	"XSIG050176"	! [108]
+	"XSIG050177"	! [109]
+	"XSIG050178"	! [110]
+	"XSIG050179"	! [111]
+	"XSIG050180"	! [112]
+	"XSIG050181"	! [113]
+	"XSIG050182"	! [114]
+	"XSIG050183"	! [115]
+	"XSIG050184"	! [116]
+	"XSIG050191"	! [117]
+	"XSIG050192"	! [118]
+	"XSIG050195"	! [119]
+	"XSIG050196"	! [120]
+	"XSIG050198"	! [121]
+	"XSIG050199"	! [122]
+	"XSIG050200"	! [123]
+	"XSIG050201"	! [124]
     )
     ..Netclass_Names ( 
 	"(Default)"	! [1]
@@ -1319,36 +1438,127 @@
     ..Net_Color ( 
 	0x00ffffff 0x00ffffff	! [1-2] RGB(255,255,255)  RGB(255,255,255)
 	0x00ffffff 0x00006699	! [3-4] RGB(255,255,255)  RGB(153,102,  0)
-	0x0033cc33		! [5] RGB( 51,204, 51)
+	0x0033cc33 0x00ffffff	! [5-6] RGB( 51,204, 51)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [7-8] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [9-10] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [11-12] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [13-14] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [15-16] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [17-18] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [19-20] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [21-22] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [23-24] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [25-26] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [27-28] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [29-30] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [31-32] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [33-34] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [35-36] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [37-38] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [39-40] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [41-42] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [43-44] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [45-46] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [47-48] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [49-50] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [51-52] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [53-54] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [55-56] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [57-58] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [59-60] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [61-62] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [63-64] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [65-66] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [67-68] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [69-70] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [71-72] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [73-74] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [75-76] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [77-78] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [79-80] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [81-82] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [83-84] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [85-86] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [87-88] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [89-90] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [91-92] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [93-94] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [95-96] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [97-98] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [99-100] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [101-102] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [103-104] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [105-106] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [107-108] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [109-110] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [111-112] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [113-114] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [115-116] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [117-118] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [119-120] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [121-122] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff 0x00ffffff	! [123-124] RGB(255,255,255)  RGB(255,255,255)
     )
     ..Net_Ptrnidx ( 
-	0 ![1]
-	0 ![2]
-	0 ![3]
-	0 ![4]
-	0 ![5]
-    )
+	0 0 0 0 0 0 0 0 0 0 	! [1 - 10]
+	0 0 0 0 0 0 0 0 0 0 	! [11 - 20]
+	0 0 0 0 0 0 0 0 0 0 	! [21 - 30]
+	0 0 0 0 0 0 0 0 0 0 	! [31 - 40]
+	0 0 0 0 0 0 0 0 0 0 	! [41 - 50]
+	0 0 0 0 0 0 0 0 0 0 	! [51 - 60]
+	0 0 0 0 0 0 0 0 0 0 	! [61 - 70]
+	0 0 0 0 0 0 0 0 0 0 	! [71 - 80]
+	0 0 0 0 0 0 0 0 0 0 	! [81 - 90]
+	0 0 0 0 0 0 0 0 0 0 	! [91 - 100]
+	0 0 0 0 0 0 0 0 0 0 	! [101 - 110]
+	0 0 0 0 0 0 0 0 0 0 	! [111 - 120]
+	0 0 0 0 ! [121 - 124]
+	)
     ..Net_Alpha ( 
-	100 ![1]
-	100 ![2]
-	100 ![3]
-	100 ![4]
-	100 ![5]
-    )
+	100 100 100 100 100 100 100 100 100 100 	! [1 - 10]
+	100 100 100 100 100 100 100 100 100 100 	! [11 - 20]
+	100 100 100 100 100 100 100 100 100 100 	! [21 - 30]
+	100 100 100 100 100 100 100 100 100 100 	! [31 - 40]
+	100 100 100 100 100 100 100 100 100 100 	! [41 - 50]
+	100 100 100 100 100 100 100 100 100 100 	! [51 - 60]
+	100 100 100 100 100 100 100 100 100 100 	! [61 - 70]
+	100 100 100 100 100 100 100 100 100 100 	! [71 - 80]
+	100 100 100 100 100 100 100 100 100 100 	! [81 - 90]
+	100 100 100 100 100 100 100 100 100 100 	! [91 - 100]
+	100 100 100 100 100 100 100 100 100 100 	! [101 - 110]
+	100 100 100 100 100 100 100 100 100 100 	! [111 - 120]
+	100 100 100 100 ! [121 - 124]
+	)
     ..Net_Nopaque ( 
-	False ![1]
-	False ![2]
-	False ![3]
-	False ![4]
-	False ![5]
-    )
+	F F F F F F F F F F 	! [1 - 10]
+	F F F F F F F F F F 	! [11 - 20]
+	F F F F F F F F F F 	! [21 - 30]
+	F F F F F F F F F F 	! [31 - 40]
+	F F F F F F F F F F 	! [41 - 50]
+	F F F F F F F F F F 	! [51 - 60]
+	F F F F F F F F F F 	! [61 - 70]
+	F F F F F F F F F F 	! [71 - 80]
+	F F F F F F F F F F 	! [81 - 90]
+	F F F F F F F F F F 	! [91 - 100]
+	F F F F F F F F F F 	! [101 - 110]
+	F F F F F F F F F F 	! [111 - 120]
+	F F F F ! [121 - 124]
+	)
     ..Net_Outline ( 
-	True  ![1]
-	True  ![2]
-	False ![3]
-	True  ![4]
-	True  ![5]
-    )
+	T T F T T T T T T T 	! [1 - 10]
+	T T T T T T T T T T 	! [11 - 20]
+	T T T T T T T T T T 	! [21 - 30]
+	T T T T T T T T T T 	! [31 - 40]
+	T T T T T T T T T T 	! [41 - 50]
+	T T T T T T T T T T 	! [51 - 60]
+	T T T T T T T T T T 	! [61 - 70]
+	T T T T T T T T T T 	! [71 - 80]
+	T T T T T T T T T T 	! [81 - 90]
+	T T T T T T T T T T 	! [91 - 100]
+	T T T T T T T T T T 	! [101 - 110]
+	T T T T T T T T T T 	! [111 - 120]
+	T T T T ! [121 - 124]
+	)
     ..Netclass_Color (
 	0x00ffffff	! top     RGB(255,255,255)
 	0x00ffffff	! bottom  RGB(255,255,255)
@@ -1384,12 +1594,20 @@
     ..Constraint_Outline                 True 	! top
                                          True 	! bottom
     ..Net_On ( 
-	False ![1]
-	False ![2]
-	False ![3]
-	True  ![4]
-	True  ![5]
-    )
+	F F F T T F F F F F 	! [1 - 10]
+	F F F F F F F F F F 	! [11 - 20]
+	F F F F F F F F F F 	! [21 - 30]
+	F F F F F F F F F F 	! [31 - 40]
+	F F F F F F F F F F 	! [41 - 50]
+	F F F F F F F F F F 	! [51 - 60]
+	F F F F F F F F F F 	! [61 - 70]
+	F F F F F F F F F F 	! [71 - 80]
+	F F F F F F F F F F 	! [81 - 90]
+	F F F F F F F F F F 	! [91 - 100]
+	F F F F F F F F F F 	! [101 - 110]
+	F F F F F F F F F F 	! [111 - 120]
+	F F F F ! [121 - 124]
+	)
     ..Netclass_On                        False	! top
                                          False	! bottom
     ..Bus_On ( 
@@ -1398,11 +1616,11 @@
                                          False	! bottom
     ..Color_By_Constraint_All_Enab       False
     ..Color_By_Class_All_Enabled         False
-    ..Color_By_Net_All_Enabled           False
+    ..Color_By_Net_All_Enabled           True
     ..Color_By_Bus_All_Enabled           False
     ..Cbn_Pads_On                        True
     ..Cbn_Vias_On                        True
-    ..Cbn_Traces_On                      True
+    ..Cbn_Traces_On                      False
     ..Cbn_Planes_On                      True
     ..Cbn_Netlines_On                    True
     ..Nets_Collapsed                     False
@@ -1695,8 +1913,8 @@
 
 .view "PCB"
     ..extrema
-	(-179231750,-72166723)		! (xmin, ymin)
-	(405311110,164274152)		! (xmax, ymax)
+	(-53154958,16351146)		! (xmin, ymin)
+	(125427754,94434382)		! (xmax, ymax)
     ..WindowPlacement
 	0x00000002	! flags
 	0x00000003	! showCmd
@@ -1766,13 +1984,13 @@
     ..Grid_All_Enabled                   True
     ..Grid_Place1_On                     True
     ..Grid_Place2_On                     True
-    ..Grid_Route_On                      True
-    ..Grid_Via_On                        True
-    ..Grid_Tpoint_On                     True
+    ..Grid_Route_On                      False
+    ..Grid_Via_On                        False
+    ..Grid_Tpoint_On                     False
     ..Grid_Jumper_On                     False
     ..Grid_Draft_On                      True
     ..Netline_All_Enabled                True
-    ..Netline_Ordered_Routed_On          True
+    ..Netline_Ordered_Routed_On          False
     ..Netline_Ordered_Open_On            True
     ..Netline_All_Open_On                True
     ..Classline_On                       True
@@ -1806,37 +2024,37 @@
     ..Shearingline_On                    True
     ..Soldermask_On                      True 	! top
                                          True 	! bottom
-    ..Solderpaste_On                     True 	! top
-                                         True 	! bottom
-    ..Drill_Drawing_Through_On           True
-    ..Redline_Layer_On                   True
+    ..Solderpaste_On                     False	! top
+                                         False	! bottom
+    ..Drill_Drawing_Through_On           False
+    ..Redline_Layer_On                   False
     ..All_User_Draft_Enabled             True
     ..User_Draft_On ( 
-	T T T T T T T T T T 	! [1 - 10]
-	T T T T T T T T T T 	! [11 - 20]
-	T T T T T T T T T T 	! [21 - 30]
-	T T T T T T T T T T 	! [31 - 40]
-	T T T T T T T T T T 	! [41 - 50]
-	T T T T T T T T T T 	! [51 - 60]
-	T T T T T T T T T T 	! [61 - 70]
-	T T T T T T T T T T 	! [71 - 80]
-	T T T T T T T T T T 	! [81 - 90]
-	T T T T T T T T T T 	! [91 - 100]
-	T T T T T T T T T T 	! [101 - 110]
-	T T T T T T T T T T 	! [111 - 120]
-	T T T T T T T T T T 	! [121 - 130]
-	T T T T T T T T T T 	! [131 - 140]
-	T T T T T T T T T T 	! [141 - 150]
-	T T T T T T T T T T 	! [151 - 160]
-	T T T T T T T T T T 	! [161 - 170]
-	T T T T T T T T T T 	! [171 - 180]
-	T T T T T T T T T T 	! [181 - 190]
-	T T T T T T T T T T 	! [191 - 200]
-	T T T T T T T T T T 	! [201 - 210]
-	T T T T T T T T T T 	! [211 - 220]
-	T T T T T T T T T T 	! [221 - 230]
-	T T T T T T T T T T 	! [231 - 240]
-	T T T T T T T T T T 	! [241 - 250]
+	F F F F F F F F F F 	! [1 - 10]
+	F F F F F F F F F F 	! [11 - 20]
+	F F F F F F F F F F 	! [21 - 30]
+	F F F F F F F F F F 	! [31 - 40]
+	F F F F F F F F F F 	! [41 - 50]
+	F F F F F F F F F F 	! [51 - 60]
+	F F F F F F F F F F 	! [61 - 70]
+	F F F F F F F F F F 	! [71 - 80]
+	F F F F F F F F F F 	! [81 - 90]
+	F F F F F F F F F F 	! [91 - 100]
+	F F F F F F F F F F 	! [101 - 110]
+	F F F F F F F F F F 	! [111 - 120]
+	F F F F F F F F F F 	! [121 - 130]
+	F F F F F F F F F F 	! [131 - 140]
+	F F F F F F F F F F 	! [141 - 150]
+	F F F F F F F F F F 	! [151 - 160]
+	F F F F F F F F F F 	! [161 - 170]
+	F F F F F F F F F F 	! [171 - 180]
+	F F F F F F F F F F 	! [181 - 190]
+	F F F F F F F F F F 	! [191 - 200]
+	F F F F F F F F F F 	! [201 - 210]
+	F F F F F F F F F F 	! [211 - 220]
+	F F F F F F F F F F 	! [221 - 230]
+	F F F F F F F F F F 	! [231 - 240]
+	F F F F F F F F F F 	! [241 - 250]
 	)
     ..All_Board_Items_Enabled            True
     ..Board_Outline_On                   True
@@ -1851,8 +2069,8 @@
     ..Other_Hole_On                      True
     ..Fiducial_On                        True 	! top
                                          True 	! bottom
-    ..Origin_On                          True
-    ..Nc_Drill_Origin_On                 True
+    ..Origin_On                          False
+    ..Nc_Drill_Origin_On                 False
     ..Route_Obstruct_On                  True
     ..Pad_Obstruct_On                    False
     ..Rule_Area_On                       False
@@ -1902,8 +2120,8 @@
                                          True 	! bottom
     ..Pin_Text_On                        True 	! top
                                          True 	! bottom
-    ..Pin_Type_On                        True 	! top
-                                         True 	! bottom
+    ..Pin_Type_On                        False	! top
+                                         False	! bottom
     ..Part_Hazard_On                     True 	! top
                                          True 	! bottom
     ..Thermal_Data_On                    True 	! top
@@ -1912,40 +2130,40 @@
                                          True 	! bottom
     ..Assy_Outline_On                    True 	! top
                                          True 	! bottom
-    ..Assy_Part_Number_On                True 	! top
-                                         True 	! bottom
+    ..Assy_Part_Number_On                False	! top
+                                         False	! bottom
     ..Assy_Ref_Des_On                    True 	! top
                                          True 	! bottom
-    ..All_Silkscreen_Enabled             True 	! top
-                                         True 	! bottom
-    ..Silk_Outline_On                    True 	! top
-                                         True 	! bottom
-    ..Silk_Part_Number_On                True 	! top
-                                         True 	! bottom
-    ..Silk_Ref_Des_On                    True 	! top
-                                         True 	! bottom
-    ..Silk_Altered_Data_On               True 	! top
-                                         True 	! bottom
-    ..All_Cell_Enabled                   True 	! top
-                                         True 	! bottom
+    ..All_Silkscreen_Enabled             False	! top
+                                         False	! bottom
+    ..Silk_Outline_On                    False	! top
+                                         False	! bottom
+    ..Silk_Part_Number_On                False	! top
+                                         False	! bottom
+    ..Silk_Ref_Des_On                    False	! top
+                                         False	! bottom
+    ..Silk_Altered_Data_On               False	! top
+                                         False	! bottom
+    ..All_Cell_Enabled                   False	! top
+                                         False	! bottom
     ..Cell_Name_On                       False	! top
                                          False	! bottom
     ..Cell_Timestamp_On                  True 	! top
                                          True 	! bottom
-    ..Cell_Glue_Spot_On                  True 	! top
-                                         True 	! bottom
+    ..Cell_Glue_Spot_On                  False	! top
+                                         False	! bottom
     ..Cell_Origin_On                     False	! top
-                                         True 	! bottom
+                                         False	! bottom
     ..All_Tpoint_Enabled                 True 	! top
                                          True 	! bottom
     ..Tpoint_Pad_On                      True 	! top
                                          True 	! bottom
-    ..Tpoint_Obstruct_On                 True 	! top
-                                         True 	! bottom
-    ..Tpoint_Assy_Ref_Des_On             True 	! top
-                                         True 	! bottom
-    ..Tpoint_Silk_Ref_Des_On             True 	! top
-                                         True 	! bottom
+    ..Tpoint_Obstruct_On                 False	! top
+                                         False	! bottom
+    ..Tpoint_Assy_Ref_Des_On             False	! top
+                                         False	! bottom
+    ..Tpoint_Silk_Ref_Des_On             False	! top
+                                         False	! bottom
     ..Tpoint_Probe_On                    False	! top
                                          False	! bottom
     ..All_Wirebond_Enabled               True 	! top
