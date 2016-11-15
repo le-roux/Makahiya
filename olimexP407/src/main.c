@@ -27,6 +27,7 @@ static uint32_t sound_index;
 static void i2s_cb(I2SDriver* driver, size_t offset, size_t n);
 
 extern uint16_t* _binary_pic_pcm_start;
+extern uint16_t _binary_pic_pcm_size;
 
 #define I2SDIV 12
 #define ODD 1 << 8
@@ -43,14 +44,16 @@ static const I2SConfig i2s3_cfg = {
 
 static void i2s_cb(I2SDriver* driver, size_t offset, size_t n) {
     UNUSED(driver);
-    if (offset != n) {// first half of the buffer transmitted
-        for (int i = 0; i < I2S_BUF_SIZE / 2; i++)
-            i2s_tx_buf[i] = _binary_pic_pcm_start[sound_index + i];
-        sound_index += I2S_BUF_SIZE / 2;
-    } else if (offset == n) { // second half of the buffer
-        for (int i = 0; i < I2S_BUF_SIZE / 2; i++)
-            i2s_tx_buf[I2S_BUF_SIZE / 2 + i] = _binary_pic_pcm_start[sound_index + i];
-        sound_index += I2S_BUF_SIZE / 2;
+    if (sound_index + I2S_BUF_SIZE / 2 < (uint32_t)&_binary_pic_pcm_size) {
+        if (offset != n) {// first half of the buffer transmitted
+            for (int i = 0; i < I2S_BUF_SIZE / 2; i++)
+                i2s_tx_buf[i] = _binary_pic_pcm_start[sound_index + i];
+            sound_index += I2S_BUF_SIZE / 2;
+        } else if (offset == n) { // second half of the buffer
+            for (int i = 0; i < I2S_BUF_SIZE / 2; i++)
+                i2s_tx_buf[I2S_BUF_SIZE / 2 + i] = _binary_pic_pcm_start[sound_index + i];
+            sound_index += I2S_BUF_SIZE / 2;
+        }
     }
 }
 
