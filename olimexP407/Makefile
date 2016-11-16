@@ -128,7 +128,7 @@ CSRC = $(STARTUPSRC) \
        $(SRC)/pwm_user.c $(SRC)/status_led.c \
 	   $(SRC)/main.c $(SRC)/adc_user.c \
 	   $(SRC)/usbcfg.c $(SRC)/shell_user.c \
-	   $(SRC)/web.c $(SRC)/ext_user.c
+	   $(SRC)/web.c $(SRC)/ext_user.c $(SRC)/sound.c
 
 PCMSRC = pic.pcm
 
@@ -225,7 +225,7 @@ UINCDIR =
 ULIBDIR =
 
 # List all user libraries here
-ULIBS =
+ULIBS = -lm
 
 #
 # End of user defines
@@ -235,7 +235,7 @@ RULESPATH = $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC
 include $(RULESPATH)/rules.mk
 
 $(BUILDDIR)/obj/pic.o: pic.pcm
-	$(TRGT)objcopy -I binary -O elf32-littlearm $^ $@
+	$(TRGT)objcopy --rename-section .data=.rodata,alloc,load,readonly,data,contents -I binary -O elf32-littlearm -B arm $^ $@
 #######
 # User targets
 #######

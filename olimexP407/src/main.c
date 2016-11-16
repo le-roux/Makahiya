@@ -17,6 +17,8 @@
 
 // Includes for the Internet part
 #include "web.h"
+#include "sound.h"
+#include <math.h>
 
 virtual_timer_t adc_vt;
 
@@ -29,7 +31,7 @@ static void i2s_cb(I2SDriver* driver, size_t offset, size_t n);
 extern uint16_t* _binary_pic_pcm_start;
 extern uint16_t _binary_pic_pcm_size;
 
-#define I2SDIV 12
+#define I2SDIV 6
 #define ODD 1 << 8
 #define MCKOE 1 << 9
 
@@ -47,11 +49,13 @@ static void i2s_cb(I2SDriver* driver, size_t offset, size_t n) {
     if (sound_index + I2S_BUF_SIZE / 2 < (uint32_t)&_binary_pic_pcm_size) {
         if (offset != n) {// first half of the buffer transmitted
             for (int i = 0; i < I2S_BUF_SIZE / 2; i++)
-                i2s_tx_buf[i] = _binary_pic_pcm_start[sound_index + i];
+                //i2s_tx_buf[i] = _binary_pic_pcm_start[sound_index + i];
+                i2s_tx_buf[i] = 32767 * sin((sound_index + i) * 440 * 2 * M_PI / 32000);
             sound_index += I2S_BUF_SIZE / 2;
         } else if (offset == n) { // second half of the buffer
             for (int i = 0; i < I2S_BUF_SIZE / 2; i++)
-                i2s_tx_buf[I2S_BUF_SIZE / 2 + i] = _binary_pic_pcm_start[sound_index + i];
+                //i2s_tx_buf[I2S_BUF_SIZE / 2 + i] = _binary_pic_pcm_start[sound_index + i];
+                i2s_tx_buf[i] = 32767 * sin((sound_index + i) * 440 * 2 * M_PI / 32000);
             sound_index += I2S_BUF_SIZE / 2;
         }
     }
@@ -103,14 +107,20 @@ int main(void) {
 
     // Init the I2S bus
     i2sStart(&I2SD3, &i2s3_cfg);
-    for (int i = 0; i < I2S_BUF_SIZE; i++)
-        i2s_tx_buf[i] = _binary_pic_pcm_start[i];
+    /*for (int i = 0; i < I2S_BUF_SIZE; i++)
+        i2s_tx_buf[i] = _binary_pic_pcm_start[i];*/
     sound_index = I2S_BUF_SIZE;
+
+    for (int i = 0; i < I2S_BUF_SIZE; i++)
+          i2s_tx_buf[i] = 32767 * sin(i * 440 * 2 * M_PI / 32000);
 
     palSetPadMode(GPIOA, 15, PAL_MODE_ALTERNATE(6));
     palSetPadMode(GPIOB, 3, PAL_MODE_ALTERNATE(6));
     palSetPadMode(GPIOB, 5, PAL_MODE_ALTERNATE(6));
     palSetPadMode(GPIOC, 7, PAL_MODE_ALTERNATE(6));
+
+    sound_init();
+    //sound_440();
 
     // Start ADC sampling
     chVTSet(&adc_vt, MS2ST(100), adc_vt_cb, NULL);
