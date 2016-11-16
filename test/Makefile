@@ -1,3 +1,4 @@
+CC := $(CCACHE) gcc
 SRC_DIR := ../code/src
 INC_DIR := ../code/includes
 OUTPUT_DIR := ../code/out
