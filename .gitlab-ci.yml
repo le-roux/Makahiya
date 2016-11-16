@@ -1,5 +1,9 @@
 image: rfc1149/rose-dev
 
+olimex-build:
+    stage: build
+    script: make -C olimexP407
+
 native-tests:
     stage: test
     script: make -C test check

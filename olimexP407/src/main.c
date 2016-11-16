@@ -40,7 +40,7 @@ static const I2SConfig i2s3_cfg = {
     NULL,
     I2S_BUF_SIZE,
     i2s_cb,
-    0b0000000,
+    0x0038,
     MCKOE | I2SDIV | ODD
 };
 

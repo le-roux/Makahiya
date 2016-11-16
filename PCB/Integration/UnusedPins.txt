@@ -1,5 +1,5 @@
 
-Schematic unused pins from : Packager  8-Nov-2016  17:49
+Schematic unused pins from : Packager  16-Nov-2016  13:16
 
 ------------------------------------------------------------------------
             Part/Reference             |          Unused pins
@@ -7,43 +7,34 @@ Schematic unused pins from : Packager  8-Nov-2016  17:49
 ------------------------------------------------------------------------
  Part 00-0022                          |
  Part 00-0055                          |
+ Part 00-0063                          |
+ Part 00-0066                          |
  Part 00-0098                          |
- Part 00-0107                          |
- Part 00-0123                          |
- Part 00-0135                          |
  Part 03-0013                          |
- Part 10-0007                          |
- Part 10-0011                          |
+ Part 10-0031                          |
+ Part 10-0036                          |
  Part 10-0037                          |
- Part 10-0042                          |
- Part 10-0047                          |
  Part 10-0054                          |
- Part 10-0056                          |
  Part 10-0057                          |
  Part 10-0068                          |
+ Part 10-0075                          |
  Part 10-0077                          |
  Part 10-0103                          |
- Part 20-0001                          |
  Part 20-0003                          |
  Part 20-0004                          |
  Part 30-0019                          |
- Part 30-0024                          |
  Part 40-0208                          |
-  STM32                                | (P)  60 5 6
- Part 40-0222                          |
- Part 40-0258                          |
-  U3                                   | (P)  14 13 16 15 20 21 19 1 5
-                                       |  23 22
+  STM32                                | (P)  54
  Part 40-0263                          |
  Part 40-0288                          |
- Part 50-0033                          |
+ Part 40-0303                          |
  Part 50-0040                          |
- Part 70-0002                          |
+ Part 70-0003                          |
  Part 70-0014                          |
-  RS232                                | (P)  1
+  J24                                  | (P)  1
  Part 70-0040                          |
  Part 70-0081                          |
-  J12                                  | (P)  6 8 10
+  J25                                  | (P)  6 8 10
  Part 70-0087                          |
  Part 80-0035                          |
  Part 80-0056                          |
@@ -53,7 +44,4 @@ Schematic unused pins from : Packager  8-Nov-2016  17:49
  Part 80-0066                          |
   U2                                   | (P)  30 35 19 32 33 34 6 24 2
                                        |  23 7 10 8 9 17 18
-  U2                                   | (G)  SHLD3
-  U2                                   | (G)  SHLD1
-  U2                                   | (G)  SHDL2
-  U2                                   | (G)  SHDL0
+ Part 81-0006                          |
