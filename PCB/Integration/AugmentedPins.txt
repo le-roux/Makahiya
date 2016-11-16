@@ -3,6 +3,6 @@
             Part/Reference             | Pin | Augmented Net Name
 ------------------------------------------------------------------------
  Part 70-0081                          |
-       J12                             |    7| <unconnected pin>
+       J25                             |    7| <unconnected pin>
  Part 40-0263                          |
        U4                              |    3| <unconnected pin>
