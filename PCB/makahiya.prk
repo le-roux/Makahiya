@@ -89,7 +89,7 @@ KEY UpdateJobPrefsDB "CAD"
 KEY UpdateNetClassDB "Sync"
 KEY UpdateNetPropsDB "Sync"
 KEY UseCES "1"
-KEY VBPCBForwardAnno "1"
+KEY VBPCBForwardAnno "0"
 ENDSECTION
 SECTION ACEPlusProjectFiles
 LIST All(*.*)
@@ -159,7 +159,7 @@ KEY ConfigDir ".\Default"
 KEY ConfigType "PCB"
 KEY DisplayInstanceNames "0"
 KEY HDLTechnology ""
-KEY RootBlock "Schematic 1"
+KEY RootBlock "Schematic1"
 KEY SimulationType "NONE"
 KEY Vendor ""
 KEY VendorPath ""
