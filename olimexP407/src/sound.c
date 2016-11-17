@@ -1,6 +1,7 @@
 #include "ch.h"
 #include "hal.h"
 #include <math.h>
+#include "utils.h"
 
 #include "sound.h"
 
@@ -56,4 +57,21 @@ void sound_440(void) {
       play_sample(*p, sample);
     }
   }
+}
+
+void i2s_cb(I2SDriver* driver, size_t offset, size_t n) {
+    UNUSED(driver);
+    if (sound_index + I2S_BUF_SIZE / 2 < (uint32_t)&_binary_pic_pcm_size) {
+        if (offset != n) {// first half of the buffer transmitted
+            for (int i = 0; i < I2S_BUF_SIZE / 2; i++)
+                //i2s_tx_buf[i] = _binary_pic_pcm_start[sound_index + i];
+                i2s_tx_buf[i] = 32767 * sin((sound_index + i) * 440 * 2 * M_PI / 32000);
+            sound_index += I2S_BUF_SIZE / 2;
+        } else if (offset == n) { // second half of the buffer
+            for (int i = 0; i < I2S_BUF_SIZE / 2; i++)
+                //i2s_tx_buf[I2S_BUF_SIZE / 2 + i] = _binary_pic_pcm_start[sound_index + i];
+                i2s_tx_buf[i] = 32767 * sin((sound_index + i) * 440 * 2 * M_PI / 32000);
+            sound_index += I2S_BUF_SIZE / 2;
+        }
+    }
 }

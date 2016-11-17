@@ -125,10 +125,10 @@ CSRC = $(STARTUPSRC) \
        $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
        $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
        $(CHIBIOS)/os/various/shell.c \
-       $(SRC)/pwm_user.c $(SRC)/status_led.c \
-	   $(SRC)/main.c $(SRC)/adc_user.c \
+       $(SRC)/pwm_user.c \
+	   $(SRC)/main.c \
 	   $(SRC)/usbcfg.c $(SRC)/shell_user.c \
-	   $(SRC)/web.c $(SRC)/ext_user.c $(SRC)/sound.c
+	   $(SRC)/web.c $(SRC)/sound.c
 
 PCMSRC = pic.pcm
 
