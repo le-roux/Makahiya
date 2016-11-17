@@ -8,6 +8,10 @@ olimex-build:
     stage: build
     script: make -C olimexP407
 
+native-build:
+    stage: build
+    script: make -C code
+
 native-tests:
     stage: test
     script: make -C test check

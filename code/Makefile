@@ -3,7 +3,7 @@ INC_DIR := ./includes
 OUTPUT_DIR := ./out
 HEADERS := $(INC_DIR)/capacitive_sensor.h $(INC_DIR)/utils.h
 
-CC := gcc
+CC := $(CCACHE) gcc
 CFLAGS := -Wall -Wextra -Werror -std=gnu99 -iquote $(INC_DIR)
 
 all: OUT main
