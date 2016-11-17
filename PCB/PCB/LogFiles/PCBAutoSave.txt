@@ -2,13 +2,13 @@
                                 Autosave Log File
                                 -----------------
 
-                      04:49 PM Wednesday, November 09, 2016
+                      06:17 PM Thursday, November 17, 2016
                       Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
 
 
                                Autosave log closed
                                -------------------
 
-                      07:03 PM Wednesday, November 09, 2016
+                      06:17 PM Thursday, November 17, 2016
                       Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
 

@@ -1532,3 +1532,18 @@
                        05:49 PM Tuesday, November 08, 2016
           Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
 
+
+;------------------------------- --------------------------------
+; STARTING AN EXPLICIT FORWARD ANNOTATION
+;------------------------------- --------------------------------
+
+                      Renumbered Reference Designator List
+                      ------------------------------------
+
+                      06:13 PM Thursday, November 17, 2016
+                      Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
+
+
+;------------------------------- --------------------------------
+; STARTING AN IMPLICIT FORWARD ANNOTATION
+;------------------------------- --------------------------------

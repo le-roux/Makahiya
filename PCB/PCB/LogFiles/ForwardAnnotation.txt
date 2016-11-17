@@ -2,8 +2,8 @@
                                Forward Annotation
                                ------------------
 
-                       05:49 PM Tuesday, November 08, 2016
-          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
+                      06:13 PM Thursday, November 17, 2016
+                      Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
 
 
 Version:  01.01.00
@@ -23,45 +23,42 @@ Version:  01.01.00
 
      Target PDB Name: Work\Layout_Temp\PartsDB.pdb
 
-     Number of Part Numbers: 38
+     Number of Part Numbers: 35
+          Part Numb: 00-0001 -> Vend Part: 00-0001 
           Part Numb: 00-0022 -> Vend Part: 00-0022 
           Part Numb: 00-0055 -> Vend Part: 00-0055 
+          Part Numb: 00-0063 -> Vend Part: 00-0063 
+          Part Numb: 00-0066 -> Vend Part: 00-0066 
           Part Numb: 00-0098 -> Vend Part: 00-0098 
-          Part Numb: 00-0107 -> Vend Part: 00-0107 
-          Part Numb: 00-0123 -> Vend Part: 00-0123 
-          Part Numb: 00-0135 -> Vend Part: 00-0135 
           Part Numb: 03-0013 -> Vend Part: 03-0013 
-          Part Numb: 10-0007 -> Vend Part: 10-0007 
-          Part Numb: 10-0011 -> Vend Part: 10-0011 
+          Part Numb: 10-0031 -> Vend Part: 10-0031 
+          Part Numb: 10-0036 -> Vend Part: 10-0036 
           Part Numb: 10-0037 -> Vend Part: 10-0037 
-          Part Numb: 10-0042 -> Vend Part: 10-0042 
-          Part Numb: 10-0047 -> Vend Part: 10-0047 
           Part Numb: 10-0054 -> Vend Part: 10-0054 
-          Part Numb: 10-0056 -> Vend Part: 10-0056 
           Part Numb: 10-0057 -> Vend Part: 10-0057 
           Part Numb: 10-0068 -> Vend Part: 10-0068 
+          Part Numb: 10-0075 -> Vend Part: 10-0075 
           Part Numb: 10-0077 -> Vend Part: 10-0077 
           Part Numb: 10-0103 -> Vend Part: 10-0103 
-          Part Numb: 20-0001 -> Vend Part: 20-0001 
           Part Numb: 20-0003 -> Vend Part: 20-0003 
           Part Numb: 20-0004 -> Vend Part: 20-0004 
           Part Numb: 30-0019 -> Vend Part: 30-0019 
-          Part Numb: 30-0024 -> Vend Part: 30-0024 
           Part Numb: 40-0208 -> Vend Part: 40-0208 
-          Part Numb: 40-0222 -> Vend Part: 40-0222 
-          Part Numb: 40-0258 -> Vend Part: 40-0258 
           Part Numb: 40-0263 -> Vend Part: 40-0263 
           Part Numb: 40-0288 -> Vend Part: 40-0288 
-          Part Numb: 50-0033 -> Vend Part: 50-0033 
+          Part Numb: 40-0303 -> Vend Part: 40-0303 
           Part Numb: 50-0040 -> Vend Part: 50-0040 
-          Part Numb: 70-0002 -> Vend Part: 70-0002 
+          Part Numb: 70-0003 -> Vend Part: 70-0003 
           Part Numb: 70-0014 -> Vend Part: 70-0014 
+          Part Numb: 70-0017 -> Vend Part: 70-0017 
           Part Numb: 70-0040 -> Vend Part: 70-0040 
+          Part Numb: 70-0078 -> Vend Part: 70-0078 
           Part Numb: 70-0081 -> Vend Part: 70-0081 
           Part Numb: 70-0087 -> Vend Part: 70-0087 
           Part Numb: 80-0035 -> Vend Part: 80-0035 
           Part Numb: 80-0056 -> Vend Part: 80-0056 
           Part Numb: 80-0066 -> Vend Part: 80-0066 
+          Part Numb: 81-0006 -> Vend Part: 81-0006 
 
      Number of Part Names: 0
 
@@ -84,8 +81,8 @@ Version:  01.01.00
      INFO: Cell DXF_SVG battery is not in Central Library - Using local library.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 130 Symbols:
-             130  *****************************
+     Clustering 128 Symbols:
+             128  ***************************
              100  **************************************************
               50  **************************************************
      Clustering is Complete
@@ -94,8 +91,8 @@ Version:  01.01.00
 
 
 
-     121 nets were found containing 476 pins
-     130 components were found
+     119 nets were found containing 458 pins
+     128 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
      A formatted Schematic Netlist has been created.
@@ -108,8 +105,8 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       05:49 PM Tuesday, November 08, 2016
-          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
+                      06:13 PM Thursday, November 17, 2016
+                      Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
 
 
 Version:  02.11.12
@@ -121,7 +118,100 @@ Version:  02.11.12
 	Schematic reference designator changes will be forward annotated.
 
 
-     Netload completed successfully with 0 warning(s).
+	WARNING:  "C15" is being forward annotated to "C12".
+
+	WARNING:  "R3" is being forward annotated to "R5".
+
+     WARNING:  The "C1210" cell used by "C32" in the Layout is not
+      valid for a "10-0036" Part Number.
+     INFO: Cell "C1210" is being replaced by cell "C0805".
+
+     WARNING:  The "C1210" cell used by "C31" in the Layout is not
+      valid for a "10-0031" Part Number.
+     INFO: Cell "C1210" is being replaced by cell "C0603".
+
+	WARNING:  "RS232" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "Q7" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "Q6" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "Q5" is being removed from the Layout since it is no longer in the schematic.
+
+     WARNING:  The "FTSH-105-01-L-DV" cell used by "J12" in the Layout is not
+      valid for a "70-0003" Part Number.
+     INFO: Cell "FTSH-105-01-L-DV" is being replaced by cell "BAR03P2.54/W2.54".
+
+	WARNING:  "L9" is being removed from the Layout since it is no longer in the schematic.
+
+     WARNING:  The "BAR02P2.54/W2.54" cell used by "J24" in the Layout is not
+      valid for a "70-0014" Part Number.
+     INFO: Cell "BAR02P2.54/W2.54" is being replaced by cell "AMP7-188275-4".
+
+	WARNING:  "D3" is being removed from the Layout since it is no longer in the schematic.
+
+     WARNING:  The "BAR02P2.54/W2.54" cell used by "J23" in the Layout is not
+      valid for a "70-0017" Part Number.
+     INFO: Cell "BAR02P2.54/W2.54" is being replaced by cell "AMP0-215079-8".
+
+     WARNING:  The "BAR02P2.54/W2.54" cell used by "J22" in the Layout is not
+      valid for a "70-0078" Part Number.
+     INFO: Cell "BAR02P2.54/W2.54" is being replaced by cell "FC68148S DC-10AS".
+
+     WARNING:  The "BAR02P2.54/W2.54" cell used by "J21" in the Layout is not
+      valid for a "70-0003" Part Number.
+     INFO: Cell "BAR02P2.54/W2.54" is being replaced by cell "BAR03P2.54/W2.54".
+
+     WARNING:  The "BAR02P2.54/W2.54" cell used by "J20" in the Layout is not
+      valid for a "70-0003" Part Number.
+     INFO: Cell "BAR02P2.54/W2.54" is being replaced by cell "BAR03P2.54/W2.54".
+
+     WARNING:  The "C0603" cell used by "C19" in the Layout is not
+      valid for a "10-0075" Part Number.
+     INFO: Cell "C0603" is being replaced by cell "C1812".
+
+     WARNING:  The "BAR02P2.54/W2.54" cell used by "J19" in the Layout is not
+      valid for a "70-0003" Part Number.
+     INFO: Cell "BAR02P2.54/W2.54" is being replaced by cell "BAR03P2.54/W2.54".
+
+	WARNING:  The old version of "C12" is being removed from the Layout.
+
+     WARNING:  The "QFN32_050_500_500_090" cell used by "U3" in the Layout is not
+      valid for a "40-0303" Part Number.
+     INFO: Cell "QFN32_050_500_500_090" is being replaced by cell "MS10_050_30_30_110".
+
+     WARNING:  The "BAR02P2.54/W2.54" cell used by "J18" in the Layout is not
+      valid for a "70-0003" Part Number.
+     INFO: Cell "BAR02P2.54/W2.54" is being replaced by cell "BAR03P2.54/W2.54".
+
+	WARNING:  "C36" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "U5" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  "C37" is being removed from the Layout since it is no longer in the schematic.
+
+     WARNING:  The "C1210" cell used by "C35" in the Layout is not
+      valid for a "10-0036" Part Number.
+     INFO: Cell "C1210" is being replaced by cell "C0805".
+
+	WARNING:  "C38" is being removed from the Layout since it is no longer in the schematic.
+
+	WARNING:  The old version of "R5" is being removed from the Layout.
+
+     The following 10 components have not been placed:
+
+        C15
+        J25
+        QZ1
+        R3
+        R23
+        R24
+        R25
+        R26
+        R27
+        R28
+
+     Netload completed successfully with 27 warning(s).
      
      Back Annotating...
 
@@ -152,19 +242,151 @@ Version:  02.11.12
 
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
+	Broke back a trace from the point (42021060, 54202798).
+	Broke back a trace from the point (40184809, 48437260).
+	Assigned net GND to a trace which was originally on net XSIG030168.
+	Assigned net GND to a via which was originally on net XSIG030168.
+	Assigned net GND to a trace which was originally on net XSIG030168.
+	Assigned net GND to a trace which was originally on net XSIG030167.
+	Assigned net GND to a via which was originally on net XSIG030167.
+	Assigned net GND to a trace which was originally on net XSIG030167.
+	Assigned net GND to a via which was originally on net XSIG030167.
+	Assigned net GND to a trace which was originally on net XSIG030167.
+	Assigned net GND to a via which was originally on net XSIG030167.
+	Assigned net GND to a trace which was originally on net XSIG030167.
+	Assigned net VCAP to a trace which was originally on net VCC.
+	Broke back a trace from the point (55188761, 54617679).
+	Broke back a trace from the point (47922305, 56861127).
+	Assigned net LED_HP_B to a trace which was originally on net FDC_I2C_SCL.
+	Broke back a trace from the point (42000080, 45062260).
+	Assigned net FDC_I2C_SCL to a trace which was originally on net FDC1_INT.
+	Assigned net FDC_I2C_SCL to a via which was originally on net FDC1_INT.
+	Assigned net FDC_I2C_SCL to a trace which was originally on net FDC1_INT.
+	Broke back a trace from the point (45078538, 56024606).
+	Assigned net LED_HP_W to a trace which was originally on net FDC_I2C_SDA.
+	Assigned net LED_HP_W to a via which was originally on net FDC_I2C_SDA.
+	Assigned net LED_HP_W to a trace which was originally on net FDC_I2C_SDA.
+	Broke back a trace from the point (44191981, 56168700).
+	Assigned net FDC_I2C_SDA to a trace which was originally on net FDC2_INT.
+	Broke back a trace from the point (42736120, 46960240).
+	Assigned net FDC1_INT to a trace which was originally on net AUDIO_BCLK.
+	Assigned net LED_HP_G to a trace which was originally on net FDC1_SHUTDOWN.
+	Assigned net LED_HP_G to a via which was originally on net FDC1_SHUTDOWN.
+	Assigned net LED_HP_G to a trace which was originally on net FDC1_SHUTDOWN.
+	Assigned net LED_HP_G to a via which was originally on net FDC1_SHUTDOWN.
+	Assigned net LED_HP_G to a trace which was originally on net FDC1_SHUTDOWN.
+	Broke back a trace from the point (48851362, 52037055).
+	Assigned net LED_HP_R to a trace which was originally on net FDC2_SHUTDOWN.
+	Broke back a trace from the point (42885555, 46225277).
+	Broke back a trace from the point (53422305, 56861127).
+	Broke back a trace from the point (53922305, 56861127).
+	Assigned net AUDIO_SCLK to a trace which was originally on net LED1_R.
+	Broke back a trace from the point (64682326, 69521726).
+	Broke back a trace from the point (51922305, 56861127).
+	Broke back a trace from the point (52422305, 56861127).
+	Assigned net AUDIO_MCLK to a trace which was originally on net LED2_R.
+	Broke back a trace from the point (55243963, 69366362).
+	Broke back a trace from the point (50422305, 56861127).
+	Broke back a trace from the point (50922305, 56861127).
+	Assigned net LED4_R to a trace which was originally on net LED3_R.
+	Broke back a trace from the point (45572554, 68589542).
+	Broke back a trace from the point (48922305, 56861127).
+	Broke back a trace from the point (49422305, 56861127).
+	Assigned net LED5_R to a trace which was originally on net LED4_R.
+	Broke back a trace from the point (35357371, 69793613).
+	Assigned net RS232_RX to a trace which was originally on net AUDIO_INT1.
+	Assigned net RS232_TX to a trace which was originally on net AUDIO_DATA.
+	Assigned net RS232_TX to a via which was originally on net AUDIO_DATA.
+	Assigned net RS232_TX to a trace which was originally on net AUDIO_DATA.
+	Assigned net RS232_TX to a via which was originally on net AUDIO_DATA.
+	Assigned net RS232_TX to a trace which was originally on net AUDIO_DATA.
+	Assigned net AUDIO_LRCK to a trace which was originally on net AUDIO_WCLK.
+	Assigned net AUDIO_LRCK to a via which was originally on net AUDIO_WCLK.
+	Assigned net AUDIO_LRCK to a trace which was originally on net AUDIO_WCLK.
+	Assigned net AUDIO_LRCK to a via which was originally on net AUDIO_WCLK.
+	Assigned net AUDIO_LRCK to a trace which was originally on net AUDIO_WCLK.
+	Assigned net SERVO2 to a trace which was originally on net SPI_SCK.
+	Assigned net SERVO2 to a via which was originally on net SPI_SCK.
+	Assigned net SERVO2 to a trace which was originally on net SPI_SCK.
+	Assigned net SERVO2 to a via which was originally on net SPI_SCK.
+	Assigned net SERVO2 to a trace which was originally on net SPI_SCK.
+	Assigned net SERVO2 to a via which was originally on net SPI_SCK.
+	Assigned net SERVO2 to a trace which was originally on net SPI_SCK.
+	Assigned net SERVO2 to a via which was originally on net SPI_SCK.
+	Assigned net SERVO2 to a trace which was originally on net SPI_SCK.
+	Assigned net SERVO3 to a trace which was originally on net SPI_MISO.
+	Assigned net SERVO3 to a via which was originally on net SPI_MISO.
+	Assigned net SERVO3 to a trace which was originally on net SPI_MISO.
+	Assigned net SERVO3 to a via which was originally on net SPI_MISO.
+	Assigned net SERVO3 to a trace which was originally on net SPI_MISO.
+	Assigned net SERVO4 to a trace which was originally on net SPI_MOSI.
+	Assigned net SERVO4 to a via which was originally on net SPI_MOSI.
+	Assigned net SERVO4 to a trace which was originally on net SPI_MOSI.
+	Assigned net SERVO4 to a via which was originally on net SPI_MOSI.
+	Assigned net SERVO4 to a trace which was originally on net SPI_MOSI.
+	Assigned net SERVO5 to a trace which was originally on net AUDIO_SPI_CS.
+	Assigned net SERVO5 to a via which was originally on net AUDIO_SPI_CS.
+	Assigned net SERVO5 to a trace which was originally on net AUDIO_SPI_CS.
+	Assigned net SERVO5 to a via which was originally on net AUDIO_SPI_CS.
+	Assigned net SERVO5 to a trace which was originally on net AUDIO_SPI_CS.
+	Assigned net XSIG030220 to a trace which was originally on net XSIG030162.
+	Assigned net XSIG030220 to a via which was originally on net XSIG030162.
+	Assigned net XSIG030220 to a trace which was originally on net XSIG030162.
+	Assigned net XSIG030221 to a trace which was originally on net XSIG030164.
+	Assigned net XSIG030221 to a via which was originally on net XSIG030164.
+	Assigned net XSIG030221 to a trace which was originally on net XSIG030164.
+	Assigned net (Net0) to a trace which was originally on net FDC_CLK_IN.
+
+=====================================================================
+Assigned everything on net FDC_CLK_IN, which has no pins, to (Net0).
+=====================================================================
+
 
 Some nets were completely deleted from the Layout Design....
-	Deleted net XSIG050087, which has no pins, from the Layout Design.
-	Deleted net XSIG050088, which has no pins, from the Layout Design.
-	Deleted net XSIG050140, which has no pins, from the Layout Design.
-	Deleted net XSIG050141, which has no pins, from the Layout Design.
-	Deleted net XSIG050151, which has no pins, from the Layout Design.
-	Deleted net XSIG050152, which has no pins, from the Layout Design.
-	Deleted net XSIG050162, which has no pins, from the Layout Design.
-	Deleted net XSIG050163, which has no pins, from the Layout Design.
+	Deleted net AUDIO_BCLK, which has no pins, from the Layout Design.
+	Deleted net AUDIO_DATA, which has no pins, from the Layout Design.
+	Deleted net AUDIO_INT1, which has no pins, from the Layout Design.
+	Deleted net AUDIO_SPI_CS, which has no pins, from the Layout Design.
+	Deleted net AUDIO_WCLK, which has no pins, from the Layout Design.
+	Deleted net FDC_CLK_IN, which has no pins, from the Layout Design.
+	Deleted net FLEXINOL_POWER, which has no pins, from the Layout Design.
+	Deleted net FLEXINOL_1, which has no pins, from the Layout Design.
+	Deleted net FLEXINOL_2, which has no pins, from the Layout Design.
+	Deleted net FLEXINOL_3, which has no pins, from the Layout Design.
+	Deleted net FLEXINOL_4, which has no pins, from the Layout Design.
+	Deleted net FLEXINOL_5, which has no pins, from the Layout Design.
+	Deleted net FLEXINOL_6, which has no pins, from the Layout Design.
+	Deleted net FLEXINOL_7, which has no pins, from the Layout Design.
+	Deleted net PWR, which has no pins, from the Layout Design.
+	Deleted net SPI_MISO, which has no pins, from the Layout Design.
+	Deleted net SPI_MOSI, which has no pins, from the Layout Design.
+	Deleted net SPI_SCK, which has no pins, from the Layout Design.
+	Deleted net WIFI_SPI_CS, which has no pins, from the Layout Design.
+	Deleted net XSIG030156, which has no pins, from the Layout Design.
+	Deleted net XSIG030162, which has no pins, from the Layout Design.
+	Deleted net XSIG030163, which has no pins, from the Layout Design.
+	Deleted net XSIG030164, which has no pins, from the Layout Design.
+	Deleted net XSIG030167, which has no pins, from the Layout Design.
+	Deleted net XSIG030168, which has no pins, from the Layout Design.
+	Deleted net XSIG030172, which has no pins, from the Layout Design.
+	Deleted net XSIG040020, which has no pins, from the Layout Design.
+	Deleted net XSIG040021, which has no pins, from the Layout Design.
+	Deleted net XSIG040023, which has no pins, from the Layout Design.
+	Deleted net XSIG040024, which has no pins, from the Layout Design.
+	Deleted net XSIG040027, which has no pins, from the Layout Design.
+	Deleted net XSIG040029, which has no pins, from the Layout Design.
+	Deleted net XSIG040036, which has no pins, from the Layout Design.
+	Deleted net XSIG040038, which has no pins, from the Layout Design.
+	Deleted net XSIG050065, which has no pins, from the Layout Design.
+	Deleted net XSIG050067, which has no pins, from the Layout Design.
+	Deleted net XSIG050069, which has no pins, from the Layout Design.
+	Deleted net XSIG050071, which has no pins, from the Layout Design.
+	Deleted net XSIG050073, which has no pins, from the Layout Design.
+	Deleted net XSIG050075, which has no pins, from the Layout Design.
+	Deleted net XSIG050077, which has no pins, from the Layout Design.
 
 Forward-Annotation on the Layout Design has been successfully completed.
 
-There were 0 reassignments of nets.
-There were 0 traces broken back.
-There were 8 nets removed from the Layout Design.
+There were 72 reassignments of nets.
+There were 22 traces broken back.
+There were 41 nets removed from the Layout Design.
