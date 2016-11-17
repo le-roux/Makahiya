@@ -2,8 +2,25 @@
 #include "hal.h"
 #include <math.h>
 #include "utils.h"
+#include <string.h>
 
 #include "sound.h"
+
+const I2SConfig i2s3_cfg = {
+    i2s_tx_buf,
+    NULL,
+    I2S_BUF_SIZE,
+    i2s_cb,
+    0,
+    SPI_I2SPR_MCKOE | I2SDIV | SPI_I2SPR_ODD
+};
+
+void sound_set_pins(void) {
+    palSetPadMode(GPIOA, 15, PAL_MODE_ALTERNATE(6));
+    palSetPadMode(GPIOB, 3, PAL_MODE_ALTERNATE(6));
+    palSetPadMode(GPIOB, 5, PAL_MODE_ALTERNATE(6));
+    palSetPadMode(GPIOC, 7, PAL_MODE_ALTERNATE(6));
+}
 
 THD_WORKING_AREA(i2s_space, 20480);
 static MAILBOX_DECL(i2s_queue, i2s_space, sizeof(i2s_space) / sizeof(msg_t));
@@ -33,13 +50,13 @@ void play_sample(uint16_t left, uint16_t right) {
 }
 
 void sound_init(void) {
-  //RCC->APB1ENR |= RCC_APB1ENR_SPI3EN;
-  //RCC->PLLI2SCFGR |= (2 << 28) | (213 << 6);
-  //RCC->CR |= RCC_CR_PLLI2SON;
-  //while (!(RCC->CR & RCC_CR_PLLI2SRDY)) ;
-  //SPI3->I2SCFGR = SPI_I2SCFGR_I2SMOD | SPI_I2SCFGR_I2SCFG_1;
-  //SPI3->I2SPR = SPI_I2SPR_MCKOE | SPI_I2SPR_ODD | 6;
-  //SPI3->I2SCFGR |= SPI_I2SCFGR_I2SE;
+  RCC->APB1ENR |= RCC_APB1ENR_SPI3EN;
+  RCC->PLLI2SCFGR |= (2 << 28) | (213 << 6);
+  RCC->CR |= RCC_CR_PLLI2SON;
+  while (!(RCC->CR & RCC_CR_PLLI2SRDY)) ;
+  SPI3->I2SCFGR = SPI_I2SCFGR_I2SMOD | SPI_I2SCFGR_I2SCFG_1;
+  SPI3->I2SPR = SPI_I2SPR_MCKOE | SPI_I2SPR_ODD | 6;
+  SPI3->I2SCFGR |= SPI_I2SCFGR_I2SE;
   NVIC_SetPriority(51, 251);
   NVIC_EnableIRQ(51);
 }
@@ -61,17 +78,13 @@ void sound_440(void) {
 
 void i2s_cb(I2SDriver* driver, size_t offset, size_t n) {
     UNUSED(driver);
-    if (sound_index + I2S_BUF_SIZE / 2 < (uint32_t)&_binary_pic_pcm_size) {
-        if (offset != n) {// first half of the buffer transmitted
-            for (int i = 0; i < I2S_BUF_SIZE / 2; i++)
-                //i2s_tx_buf[i] = _binary_pic_pcm_start[sound_index + i];
-                i2s_tx_buf[i] = 32767 * sin((sound_index + i) * 440 * 2 * M_PI / 32000);
-            sound_index += I2S_BUF_SIZE / 2;
-        } else if (offset == n) { // second half of the buffer
-            for (int i = 0; i < I2S_BUF_SIZE / 2; i++)
-                //i2s_tx_buf[I2S_BUF_SIZE / 2 + i] = _binary_pic_pcm_start[sound_index + i];
-                i2s_tx_buf[i] = 32767 * sin((sound_index + i) * 440 * 2 * M_PI / 32000);
-            sound_index += I2S_BUF_SIZE / 2;
-        }
+    UNUSED(n);
+    // Play in loop
+    if (sound_index + I2S_BUF_SIZE / 2 > (uint32_t)&_binary_pic_pcm_size / 2)
+        sound_index = 0;
+
+    for (int i = 0; i < I2S_BUF_SIZE / 2; i++) {
+        i2s_tx_buf[offset + i] = 0x0000FFFF & (&_binary_pic_pcm_start)[sound_index + i];
     }
+    sound_index += I2S_BUF_SIZE / 2;
 }

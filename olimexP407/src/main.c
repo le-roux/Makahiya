@@ -4,6 +4,7 @@
 
 // Includes for user code
 #include "pwm_user.h"
+#include "sound.h"
 
 // Includes for the serial connection part
 #include "chprintf.h"
@@ -23,6 +24,13 @@ int main(void) {
     pwm_set_pins();
     pwmInit();
     pwmStart(&PWMD1, &pwm_config_tim1);
+
+    // Play sound
+    sound_set_pins();
+    //sound_init();
+    //sound_440();
+    i2sStart(&I2SD3, &i2s3_cfg);
+    i2sStartExchange(&I2SD3);
 
     // Init the SerialUSB
     sduObjectInit(&SDU1);
