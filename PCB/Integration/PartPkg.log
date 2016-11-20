@@ -2,13 +2,13 @@
                                     Packager
                                     --------
 
-                      06:13 PM Thursday, November 17, 2016
+                       05:28 PM Sunday, November 20, 2016
                      Job Name: F:\Makahiya\PCB\Makahiya.prj
 
 
      Packager     Version: 020806.00
 
-        Commandline is: "D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"F:\Makahiya\PCB\Makahiya.prj" -CleanBuild -NoFill "
+        Commandline is: "D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\package "-uF:\Makahiya\PCB\Default\default.icdb" -k -CleanBuild "-jF:\Makahiya\PCB\Makahiya.prj" "
 
      The Common Database is at "F:\Makahiya\PCB\Default\default.icdb".
 
@@ -37,8 +37,10 @@
      Properties that have been checked off in the Property Definition Editor
       found at Library Manager/Common Properties will be checked for value
       differences between the PartsDB and the non-null properties on symbols.
-     Those properties checked off (other than Part Number)
-      will not be transferred from the PartsDB to symbols.
+     Those properties checked off will be transferred from the PartsDB to all
+      symbols, both packaged and unpackaged.  However, the property values
+      transferred will be limited to the precision specified in the Notation
+      Settings dialog.
      The following properties were checked off in the Property Definition Editor:
        "Parametric"
        "Value2"
@@ -76,21 +78,77 @@
 
 
 
+    WARNING: Block Schematic1, Page 5, Symbol XCMP634:
+     Reference designator removal.
+     The Reference Designator "R" is being removed
+     from Symbol.  Such 'all alpha' designators that are
+     not instance properties are usually built into symbols and are 
+     not intended as a request to be packaged in the same pack with 
+     symbols of like designators.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP635:
+     Reference designator removal.
+     The Reference Designator "R" is being removed
+     from Symbol.  Such 'all alpha' designators that are
+     not instance properties are usually built into symbols and are 
+     not intended as a request to be packaged in the same pack with 
+     symbols of like designators.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP636:
+     Reference designator removal.
+     The Reference Designator "R" is being removed
+     from Symbol.  Such 'all alpha' designators that are
+     not instance properties are usually built into symbols and are 
+     not intended as a request to be packaged in the same pack with 
+     symbols of like designators.
+
+    WARNING: Block Schematic1, Page 4, Symbol XCMP629:
+     Reference designator removal.
+     The Reference Designator "U" is being removed
+     from Symbol.  Such 'all alpha' designators that are
+     not instance properties are usually built into symbols and are 
+     not intended as a request to be packaged in the same pack with 
+     symbols of like designators.
+
+    WARNING: Block Schematic1, Page 4, Symbol XCMP630:
+     Reference designator removal.
+     The Reference Designator "C" is being removed
+     from Symbol.  Such 'all alpha' designators that are
+     not instance properties are usually built into symbols and are 
+     not intended as a request to be packaged in the same pack with 
+     symbols of like designators.
+
+    WARNING: Block Schematic1, Page 4, Symbol XCMP633:
+     Reference designator removal.
+     The Reference Designator "C" is being removed
+     from Symbol.  Such 'all alpha' designators that are
+     not instance properties are usually built into symbols and are 
+     not intended as a request to be packaged in the same pack with 
+     symbols of like designators.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP637:
+     Reference designator removal.
+     The Reference Designator "R" is being removed
+     from Symbol.  Such 'all alpha' designators that are
+     not instance properties are usually built into symbols and are 
+     not intended as a request to be packaged in the same pack with 
+     symbols of like designators.
+
      Common Data Base has been read
 
      Target PDB Name: Integration\LocalPartsDB.pdb
 
      Number of Part Numbers: 35
-          Part Numb: 00-0001 -> Vend Part: 00-0001 
           Part Numb: 00-0022 -> Vend Part: 00-0022 
           Part Numb: 00-0055 -> Vend Part: 00-0055 
           Part Numb: 00-0063 -> Vend Part: 00-0063 
           Part Numb: 00-0066 -> Vend Part: 00-0066 
           Part Numb: 00-0098 -> Vend Part: 00-0098 
           Part Numb: 03-0013 -> Vend Part: 03-0013 
+          Part Numb: 03-0015 -> Vend Part: 03-0015 
+          Part Numb: 03-0016 -> Vend Part: 03-0016 
           Part Numb: 10-0031 -> Vend Part: 10-0031 
           Part Numb: 10-0036 -> Vend Part: 10-0036 
-          Part Numb: 10-0037 -> Vend Part: 10-0037 
           Part Numb: 10-0054 -> Vend Part: 10-0054 
           Part Numb: 10-0057 -> Vend Part: 10-0057 
           Part Numb: 10-0068 -> Vend Part: 10-0068 
@@ -101,9 +159,9 @@
           Part Numb: 20-0004 -> Vend Part: 20-0004 
           Part Numb: 30-0019 -> Vend Part: 30-0019 
           Part Numb: 40-0208 -> Vend Part: 40-0208 
-          Part Numb: 40-0263 -> Vend Part: 40-0263 
           Part Numb: 40-0288 -> Vend Part: 40-0288 
           Part Numb: 40-0303 -> Vend Part: 40-0303 
+          Part Numb: 40-0304 -> Vend Part: 40-0304 
           Part Numb: 50-0040 -> Vend Part: 50-0040 
           Part Numb: 70-0003 -> Vend Part: 70-0003 
           Part Numb: 70-0014 -> Vend Part: 70-0014 
@@ -147,7 +205,7 @@
 
 
 
-     119 nets were found containing 458 pins
+     119 nets were found containing 459 pins
      128 components were found
 
      Parsed netlist - Augmenting..
@@ -158,11 +216,14 @@
 
      Checking Pins....
 
-     Packaging has been successfully tested with no errors or warnings.
+     Testing of Packaging has been completed with 7 warnings.
+      Erroneous results may occur if not fixed.
 
      Updating the Common DataBase
 
      A BAM WasIs List: Integration\CDBBackAnno.bam has been created.
+     There have been 7 reference designator changes.
+     The BAM file will list all of the from-to changes.
 
 The Common DataBase has been successfully updated.
 
@@ -172,3 +233,5 @@ The Common DataBase has been successfully updated.
      An unused pin and gate report has been written to Integration\UnusedPins.txt
      An unused gate report for gates not in schematic has been written to Integration\UnusedGates.txt
      An augmented pin report has been written to Integration\AugmentedPins.txt.
+
+     There have been 7 warnings.
