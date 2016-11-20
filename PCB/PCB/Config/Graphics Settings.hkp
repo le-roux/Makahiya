@@ -2,10 +2,10 @@
 ! change it at your own peril
 
 !
-! Created 11/17/16 18:17:18
+! Created 11/20/16 18:24:31
 !
 
-.Global_Constants 122 2
+.Global_Constants 123 2
     ..File_Type Graphics_Settings
     ..Version Version_1
     ..Num_Views 1
@@ -15,7 +15,7 @@
 	0x00000003	! showCmd
 	(-1, -1)	! ptMinPosition
 	(-1, -1)	! ptMaxPosition
-	(1, 1) (1919,1039)	! ..rcNormalPosition
+	(-1952, -140) (-34,887)	! ..rcNormalPosition
     ..Active_Place_Layer_Top             True
     ..Active_Place_Layer_Bottom          True
     ..Active_Place_Layer_Internal        False
@@ -1242,7 +1242,7 @@
     )
     ..Bondwire_Color (
 	0x00000000	! top     RGB(  0,  0,  0)
-	0x00000000	! bottom  RGB(  0,  0,  0)
+	0x00000002	! bottom  RGB(  2,  0,  0)
     )
     ..Wire_Level0_Color (
 	0x0099ff99	! top     RGB(153,255,153)
@@ -1391,37 +1391,38 @@
 	"LED_HP_G"	! [89]
 	"LED_HP_R"	! [90]
 	"LED_HP_W"	! [91]
-	"PWR_5V"	! [92]
-	"RS232-RX"	! [93]
-	"RS232-TX"	! [94]
-	"SERVO1"	! [95]
-	"SERVO2"	! [96]
-	"SERVO3"	! [97]
-	"SERVO4"	! [98]
-	"SERVO5"	! [99]
-	"VCAP"	! [100]
-	"WIFI_RX"	! [101]
-	"WIFI_TX"	! [102]
-	"XSIG010829"	! [103]
-	"XSIG010830"	! [104]
-	"XSIG010831"	! [105]
-	"XSIG010834"	! [106]
-	"XSIG030216"	! [107]
-	"XSIG030217"	! [108]
-	"XSIG030220"	! [109]
-	"XSIG030221"	! [110]
-	"XSIG030222"	! [111]
-	"XSIG030223"	! [112]
-	"XSIG030224"	! [113]
-	"XSIG030226"	! [114]
-	"XSIG050259"	! [115]
-	"XSIG050260"	! [116]
-	"XSIG050261"	! [117]
-	"XSIG050262"	! [118]
-	"XSIG050263"	! [119]
-	"XSIG050264"	! [120]
-	"XSIG050265"	! [121]
-	"XSIG050266"	! [122]
+	"RS232-RX"	! [92]
+	"RS232-TX"	! [93]
+	"SERVO1"	! [94]
+	"SERVO2"	! [95]
+	"SERVO3"	! [96]
+	"SERVO4"	! [97]
+	"SERVO5"	! [98]
+	"WIFI_RX"	! [99]
+	"WIFI_TX"	! [100]
+	"XSIG010829"	! [101]
+	"XSIG010830"	! [102]
+	"XSIG010831"	! [103]
+	"XSIG030216"	! [104]
+	"XSIG030217"	! [105]
+	"XSIG030220"	! [106]
+	"XSIG030221"	! [107]
+	"XSIG030222"	! [108]
+	"XSIG030223"	! [109]
+	"XSIG030224"	! [110]
+	"XSIG030226"	! [111]
+	"XSIG050259"	! [112]
+	"XSIG050261"	! [113]
+	"XSIG050262"	! [114]
+	"XSIG050263"	! [115]
+	"XSIG050264"	! [116]
+	"XSIG050265"	! [117]
+	"XSIG050266"	! [118]
+	"VCC5"	! [119]
+	"XSIG010880"	! [120]
+	"XSIG010888"	! [121]
+	"XSIG010889"	! [122]
+	"XSIG050270"	! [123]
     )
     ..Netclass_Names ( 
 	"(Default)"	! [1]
@@ -1493,8 +1494,9 @@
 	0x00ffffff 0x00ffffff	! [113-114] RGB(255,255,255)  RGB(255,255,255)
 	0x00ffffff 0x00ffffff	! [115-116] RGB(255,255,255)  RGB(255,255,255)
 	0x00ffffff 0x00ffffff	! [117-118] RGB(255,255,255)  RGB(255,255,255)
-	0x00ffffff 0x00ffffff	! [119-120] RGB(255,255,255)  RGB(255,255,255)
-	0x00ffffff 0x00ffffff	! [121-122] RGB(255,255,255)  RGB(255,255,255)
+	        -1         -1	! [119-120] undefined  undefined
+	        -1         -1	! [121-122] undefined  undefined
+	        -1		! [123] undefined
     )
     ..Net_Ptrnidx ( 
 	0 0 0 0 0 0 0 0 0 0 	! [1 - 10]
@@ -1509,7 +1511,7 @@
 	0 0 0 0 0 0 0 0 0 0 	! [91 - 100]
 	0 0 0 0 0 0 0 0 0 0 	! [101 - 110]
 	0 0 0 0 0 0 0 0 0 0 	! [111 - 120]
-	0 0 ! [121 - 122]
+	0 0 0 ! [121 - 123]
 	)
     ..Net_Alpha ( 
 	100 100 100 100 100 100 100 100 100 100 	! [1 - 10]
@@ -1524,7 +1526,7 @@
 	100 100 100 100 100 100 100 100 100 100 	! [91 - 100]
 	100 100 100 100 100 100 100 100 100 100 	! [101 - 110]
 	100 100 100 100 100 100 100 100 100 100 	! [111 - 120]
-	100 100 ! [121 - 122]
+	100 100 100 ! [121 - 123]
 	)
     ..Net_Nopaque ( 
 	F F F F F F F F F F 	! [1 - 10]
@@ -1539,7 +1541,7 @@
 	F F F F F F F F F F 	! [91 - 100]
 	F F F F F F F F F F 	! [101 - 110]
 	F F F F F F F F F F 	! [111 - 120]
-	F F ! [121 - 122]
+	F F F ! [121 - 123]
 	)
     ..Net_Outline ( 
 	T T F T T T T T T T 	! [1 - 10]
@@ -1554,7 +1556,7 @@
 	T T T T T T T T T T 	! [91 - 100]
 	T T T T T T T T T T 	! [101 - 110]
 	T T T T T T T T T T 	! [111 - 120]
-	T T ! [121 - 122]
+	T T T ! [121 - 123]
 	)
     ..Netclass_Color (
 	0x00ffffff	! top     RGB(255,255,255)
@@ -1603,7 +1605,7 @@
 	F F F F F F F F F F 	! [91 - 100]
 	F F F F F F F F F F 	! [101 - 110]
 	F F F F F F F F F F 	! [111 - 120]
-	F F ! [121 - 122]
+	F F F ! [121 - 123]
 	)
     ..Netclass_On                        False	! top
                                          False	! bottom
@@ -1910,8 +1912,8 @@
 
 .view "PCB"
     ..extrema
-	(-119030795,-68257230)		! (xmin, ymin)
-	(484949885,195275050)		! (xmax, ymax)
+	(69487991,138137597)		! (xmin, ymin)
+	(149024899,186757337)		! (xmax, ymax)
     ..WindowPlacement
 	0x00000002	! flags
 	0x00000003	! showCmd

@@ -2,7 +2,7 @@
                                     Packager
                                     --------
 
-                      06:13 PM Thursday, November 17, 2016
+                       06:22 PM Sunday, November 20, 2016
                      Job Name: F:\Makahiya\PCB\Makahiya.prj
 
 
@@ -80,17 +80,18 @@
 
      Target PDB Name: Integration\LocalPartsDB.pdb
 
-     Number of Part Numbers: 35
-          Part Numb: 00-0001 -> Vend Part: 00-0001 
+     Number of Part Numbers: 36
           Part Numb: 00-0022 -> Vend Part: 00-0022 
           Part Numb: 00-0055 -> Vend Part: 00-0055 
           Part Numb: 00-0063 -> Vend Part: 00-0063 
           Part Numb: 00-0066 -> Vend Part: 00-0066 
           Part Numb: 00-0098 -> Vend Part: 00-0098 
           Part Numb: 03-0013 -> Vend Part: 03-0013 
+          Part Numb: 03-0015 -> Vend Part: 03-0015 
+          Part Numb: 03-0016 -> Vend Part: 03-0016 
+          Part Numb: 10-0018 -> Vend Part: 10-0018 
           Part Numb: 10-0031 -> Vend Part: 10-0031 
           Part Numb: 10-0036 -> Vend Part: 10-0036 
-          Part Numb: 10-0037 -> Vend Part: 10-0037 
           Part Numb: 10-0054 -> Vend Part: 10-0054 
           Part Numb: 10-0057 -> Vend Part: 10-0057 
           Part Numb: 10-0068 -> Vend Part: 10-0068 
@@ -101,9 +102,9 @@
           Part Numb: 20-0004 -> Vend Part: 20-0004 
           Part Numb: 30-0019 -> Vend Part: 30-0019 
           Part Numb: 40-0208 -> Vend Part: 40-0208 
-          Part Numb: 40-0263 -> Vend Part: 40-0263 
           Part Numb: 40-0288 -> Vend Part: 40-0288 
           Part Numb: 40-0303 -> Vend Part: 40-0303 
+          Part Numb: 40-0304 -> Vend Part: 40-0304 
           Part Numb: 50-0040 -> Vend Part: 50-0040 
           Part Numb: 70-0003 -> Vend Part: 70-0003 
           Part Numb: 70-0014 -> Vend Part: 70-0014 
@@ -147,7 +148,7 @@
 
 
 
-     119 nets were found containing 458 pins
+     120 nets were found containing 459 pins
      128 components were found
 
      Parsed netlist - Augmenting..

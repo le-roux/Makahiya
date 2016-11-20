@@ -39,3 +39,6 @@
 [2016-11-17 18.13.00] iCDB upgrade backup file [2016-11-16 11.24.12-2432] is excessive.
 [2016-11-17 18.13.00] Excessive iCDB upgrade backup file [2016-11-16 11.24.12-2432] removed.
 [2016-11-17 18.13.30] Successfully created [AutoSave] backup [2016-11-17 18.13.30 - auto.zip] requested by [DESKTOP-OU0BNIR:Sylvain].
+[2016-11-20 18.20.35] Successfully created [AutoSave] backup [2016-11-20 18.20.33 - auto.zip] requested by [DESKTOP-OU0BNIR:Sylvain].
+[2016-11-20 18.20.35] Removing excessive [AutoSave] backup file [F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-07 14.46.54 - auto.zip].
+[2016-11-20 18.20.35] [AutoSave] backup file [PCB\Default\ProjectBackup\backups\2016-11-07 14.46.54 - auto.zip] removed.
