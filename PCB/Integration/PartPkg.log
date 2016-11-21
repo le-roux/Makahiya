@@ -2,21 +2,21 @@
                                     Packager
                                     --------
 
-                       06:22 PM Sunday, November 20, 2016
-                     Job Name: F:\Makahiya\PCB\Makahiya.prj
+                       04:53 PM Monday, November 21, 2016
+         Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\Makahiya.prj
 
 
      Packager     Version: 020806.00
 
-        Commandline is: "D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"F:\Makahiya\PCB\Makahiya.prj" -CleanBuild -NoFill "
+        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\package "-uC:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb" -k -CleanBuild "-jC:\Users\Tanguy\Documents\ROSE\Makahiya\Makahiya.prj" "
 
-     The Common Database is at "F:\Makahiya\PCB\Default\default.icdb".
+     The Common Database is at "C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb".
 
      The Root of this design is "Schematic1".
 
      The Front End Snapshot of this design is "DCDV".
 
-     The PCB Design Path of this design is at "F:\Makahiya\PCB\PCB\PCB.pcb".
+     The PCB Design Path of this design is at "C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb".
 
      The Central Library is at "F:\Central_Libs\ENST.lmc".
 
@@ -37,8 +37,10 @@
      Properties that have been checked off in the Property Definition Editor
       found at Library Manager/Common Properties will be checked for value
       differences between the PartsDB and the non-null properties on symbols.
-     Those properties checked off (other than Part Number)
-      will not be transferred from the PartsDB to symbols.
+     Those properties checked off will be transferred from the PartsDB to all
+      symbols, both packaged and unpackaged.  However, the property values
+      transferred will be limited to the precision specified in the Notation
+      Settings dialog.
      The following properties were checked off in the Property Definition Editor:
        "Parametric"
        "Value2"
@@ -108,8 +110,8 @@
           Part Numb: 50-0040 -> Vend Part: 50-0040 
           Part Numb: 70-0003 -> Vend Part: 70-0003 
           Part Numb: 70-0014 -> Vend Part: 70-0014 
-          Part Numb: 70-0017 -> Vend Part: 70-0017 
           Part Numb: 70-0040 -> Vend Part: 70-0040 
+          Part Numb: 70-0053 -> Vend Part: 70-0053 
           Part Numb: 70-0078 -> Vend Part: 70-0078 
           Part Numb: 70-0081 -> Vend Part: 70-0081 
           Part Numb: 70-0087 -> Vend Part: 70-0087 
@@ -138,8 +140,8 @@
      No errors in Existing Schematic Packaging.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 128 Symbols:
-             128  ***************************
+     Clustering 129 Symbols:
+             129  ****************************
              100  **************************************************
               50  **************************************************
      Clustering is Complete
@@ -148,8 +150,8 @@
 
 
 
-     120 nets were found containing 459 pins
-     128 components were found
+     119 nets were found containing 461 pins
+     129 components were found
 
      Parsed netlist - Augmenting..
 
