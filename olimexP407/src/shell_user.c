@@ -4,7 +4,6 @@
 #include "chprintf.h"
 #include "stdlib.h"
 #include <string.h>
-#include "web.h"
 
 thread_t* shelltp = NULL;
 

@@ -103,7 +103,6 @@ include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
 # Other files (optional).
 include $(CHIBIOS)/test/rt/test.mk
-include $(CHIBIOS)/os/various/lwip_bindings/lwip.mk
 include $(CHIBIOS)/os/various/fatfs_bindings/fatfs.mk
 
 
@@ -128,7 +127,7 @@ CSRC = $(STARTUPSRC) \
        $(SRC)/pwm_user.c \
 	   $(SRC)/main.c \
 	   $(SRC)/usbcfg.c $(SRC)/shell_user.c \
-	   $(SRC)/web.c $(SRC)/sound.c
+	   $(SRC)/sound.c
 
 PCMSRC = pic.pcm
 
