@@ -1,6 +1,0 @@
-<map id="DACDriver" name="DACDriver">
-<area shape="rect" id="node5" href="$struct_d_a_c_conversion_group.html" title="DAC Conversion group structure. " alt="" coords="23,561,152,643"/>
-<area shape="rect" id="node2" href="$struct_d_a_c_config.html" title="Driver configuration structure. " alt="" coords="5,207,84,288"/>
-<area shape="rect" id="node3" href="$structdacparams__t.html" title="DAC channel parameters type. " alt="" coords="108,183,192,312"/>
-<area shape="rect" id="node4" href="$structstm32__dma__stream__t.html" title="STM32 DMA stream descriptor structure. " alt="" coords="87,5,213,123"/>
-</map>

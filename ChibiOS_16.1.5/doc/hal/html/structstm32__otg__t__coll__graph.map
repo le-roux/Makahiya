@@ -1,5 +1,0 @@
-<map id="stm32_otg_t" name="stm32_otg_t">
-<area shape="rect" id="node2" href="$structstm32__otg__out__ep__t.html" title="Device output endpoint registers group. " alt="" coords="5,5,125,159"/>
-<area shape="rect" id="node3" href="$structstm32__otg__in__ep__t.html" title="Device input endpoint registers group. " alt="" coords="150,5,263,159"/>
-<area shape="rect" id="node4" href="$structstm32__otg__host__chn__t.html" title="Host channel registers group. " alt="" coords="288,5,419,159"/>
-</map>

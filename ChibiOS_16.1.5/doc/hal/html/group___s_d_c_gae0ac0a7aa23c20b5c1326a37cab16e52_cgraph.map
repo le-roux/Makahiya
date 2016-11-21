@@ -1,6 +1,0 @@
-<map id="sdc_lld_read_special" name="sdc_lld_read_special">
-<area shape="rect" id="node2" href="$group___s_d_c.html#gac04000cc47010b27e1ea19d86817e6c0" title="Prepares to handle read transaction. " alt="" coords="191,5,317,41"/>
-<area shape="rect" id="node3" href="$group___s_d_c.html#ga93392c5297148eea683ec6d9bc79be3e" title="Sends an SDIO command with a short response expected and CRC. " alt="" coords="175,66,333,90"/>
-<area shape="rect" id="node5" href="$group___s_d_c.html#ga542ddf3dbc261b8b9e86a2954ff171e0" title="Wait end of data transaction and performs finalizations. " alt="" coords="173,114,335,138"/>
-<area shape="rect" id="node4" href="$group___s_d_c.html#ga2769aa9ad202410d6c0c79bc2b34f023" title="Gets SDC errors. " alt="" coords="383,66,507,90"/>
-</map>

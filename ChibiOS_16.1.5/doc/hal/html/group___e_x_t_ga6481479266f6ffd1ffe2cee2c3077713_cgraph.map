@@ -1,4 +1,0 @@
-<map id="extStop" name="extStop">
-<area shape="rect" id="node2" href="$group___e_x_t.html#ga632f90722a4c35ca1f572d4296dc8623" title="Deactivates the EXT peripheral. " alt="" coords="112,5,191,29"/>
-<area shape="rect" id="node3" href="$group___e_x_t.html#ga2607a7a6b1c4d517d00d49208722fe71" title="Disables EXTI IRQ sources. " alt="" coords="239,5,369,29"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="uartReceiveTimeout" name="uartReceiveTimeout">
-<area shape="rect" id="node2" href="$group___u_a_r_t.html#gaeeef4ed85ed76c1e916c77d4efb8b9c2" title="Starts a receive operation on the UART peripheral. " alt="" coords="172,5,296,29"/>
-<area shape="rect" id="node3" href="$group___u_a_r_t.html#gaee09f7e46f4ee4eb212440a33ffc82f1" title="Stops any ongoing receive operation. " alt="" coords="182,53,286,77"/>
-<area shape="rect" id="node4" href="$group___u_a_r_t.html#gaf6eeebdeb91ad7e692d73ceefa9eafb7" title="Stops any ongoing receive operation. " alt="" coords="344,53,467,77"/>
-</map>
