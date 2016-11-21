@@ -1,0 +1,155 @@
+[2016.11.21 12:59:39] [0000m.01s.123ms] [0] WELCOME
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] iCDB Server ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] Base flow version [7.9.4]
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] Machine [TANGUY-PC]  User [Tanguy]  PID [4200]
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] Operating system [Microsoft Windows 7 Home Premium Edition, 64-bit Service Pack 1 (build 7601)]
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] Current working dir [C:\Users\Tanguy\Documents\ROSE\Makahiya]
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] PATH [C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\help;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\_bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\ProgramData\Oracle\Java\javapath;C:\Python33\;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\Skype\Phone\;]
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] SDD_HOME [C:\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] SDD_PLATFORM [win32]
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] WDIR [C:\MentorGraphics\WDIR;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2016.11.21 12:59:39] [0000m.01s.310ms] [1] Local iCDB working dir [C:\MentorGraphics\WDIR\iCDB] on file system [NTFS]
+[2016.11.21 12:59:39] [0000m.01s.435ms] [1] S: Config file name [ServerWG.cfg]
+[2016.11.21 12:59:39] [0000m.01s.435ms] [2] S: Loading config files
+[2016.11.21 12:59:39] [0000m.01s.840ms] [1] Config file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\cdbsvr\ServerWG.cfg] not found
+[2016.11.21 12:59:39] [0000m.01s.840ms] [1] Config: Non-default value [System.SingleUserMode] = [no]
+[2016.11.21 12:59:39] [0000m.01s.856ms] [3] S: Config loaded
+[2016.11.21 12:59:40] [0000m.02s.262ms] [0] S: Project path [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb] on file system [NTFS]
+[2016.11.21 12:59:40] [0000m.02s.262ms] [0] S: Project global path [\\TANGUY-PC\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb] on file system [NTFS]
+[2016.11.21 12:59:40] [0000m.02s.262ms] [1] S: WARNING: No project file (.prj) path specified
+[2016.11.21 12:59:40] [0000m.02s.262ms] [1] S: WARNING: Database auto-repair support DISABLED
+[2016.11.21 12:59:40] [0000m.02s.262ms] [0] S: Multi-user mode (config)
+[2016.11.21 12:59:40] [0000m.02s.262ms] [0] S: Event polling mode autodetection
+[2016.11.21 12:59:40] [0000m.02s.433ms] [0] S: Started up automatically by iCDB Client: TANGUY-PC:Tanguy:4680
+[2016.11.21 12:59:40] [0000m.02s.433ms] [0] S: Auto close mode
+[2016.11.21 12:59:40] [0000m.02s.433ms] [0] S: Database ID [0032-dbf7-7d05-cdfa-8a1e-238d-a1e2-3850-a1c7-b655-d371-acad]
+[2016.11.21 12:59:40] [0000m.02s.433ms] [0] PathTranslator: BEGIN dumping
+[2016.11.21 12:59:40] [0000m.02s.433ms] [0] PathTranslator: Local -> global path prefix list
+[2016.11.21 12:59:40] [0000m.02s.480ms] [0] PathTranslator: [C:\Users] -> [\\TANGUY-PC\Users]
+[2016.11.21 12:59:40] [0000m.02s.480ms] [0] PathTranslator: Global -> local path prefix list
+[2016.11.21 12:59:40] [0000m.02s.480ms] [0] PathTranslator: [\\TANGUY-PC\Users] -> [C:\Users]
+[2016.11.21 12:59:40] [0000m.02s.480ms] [0] PathTranslator: END dumping
+[2016.11.21 12:59:40] [0000m.02s.527ms] [0] S: START
+[2016.11.21 12:59:40] [0000m.02s.527ms] [0] S: Server startup lock file created
+[2016.11.21 12:59:40] [0000m.02s.574ms] [0] S: Listening for client connections on port [10000]
+[2016.11.21 12:59:40] [0000m.02s.605ms] [0] S: Server network ID [Tanguy-PC:137.194.23.25,192.168.56.1,Tanguy-PC:10000]
+[2016.11.21 12:59:40] [0000m.02s.605ms] [0] S: Server GUID [ba80-aa03-deca-9fc4-ca1e-2381-b1e2-3850-e3a7-b655-d371-acad]
+[2016.11.21 12:59:40] [0000m.02s.605ms] [0] S: Project GUID [0032-dbf7-7d05-cdfa-8a1e-238d-a1e2-3850-a1c7-b655-d371-acad]
+[2016.11.21 12:59:40] [0000m.02s.620ms] [0] S: Wrote data to server address file
+[2016.11.21 12:59:40] [0000m.02s.620ms] [0] S: Server startup lock file removed
+[2016.11.21 12:59:40] [0000m.02s.745ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.11.21 12:59:44] [0000m.06s.614ms] [0] S: Plugins loaded: [PIM] [ENetGen70] 
+[2016.11.21 12:59:44] [0000m.06s.645ms] [0] S: Local disc access time: 66 us
+[2016.11.21 12:59:44] [0000m.06s.645ms] [0] S: File server access time: 63 us
+[2016.11.21 12:59:45] [0000m.07s.176ms] [0] Single file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\icdb.dat] size [149168 (145.7 kB)]
+[2016.11.21 12:59:45] [0000m.07s.176ms] [1] Single file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\icdb.dat] opened in read-write mode
+[2016.11.21 12:59:45] [0000m.07s.222ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.21 12:59:45] [0000m.07s.222ms] [0] Database GUARD OK: [149168]
+[2016.11.21 12:59:45] [0000m.07s.332ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.21 12:59:45] [0000m.07s.332ms] [0] Database GUARD OK: [149168]
+[2016.11.21 12:59:45] [0000m.07s.332ms] [0] SingleFile: [2c08-b5da-f269-9209] SFI version check [1009] [1009]
+[2016.11.21 12:59:45] [0000m.07s.347ms] [0] SingleFile: [2c08-b5da-f269-9209] Database SFI header has been read in [16ms 131us]
+[2016.11.21 12:59:45] [0000m.07s.566ms] [0] iCDB Server PI: Server & plugin session [3044]
+[2016.11.21 12:59:45] [0000m.07s.566ms] [0] iCDB Server PI: Opening database [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb]
+[2016.11.21 12:59:45] [0000m.07s.566ms] [0] iCDB Server PI: Database [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb] opened
+[2016.11.21 12:59:47] [0000m.09s.406ms] [0] iCDB Database: Checking existence of constraint definitions
+[2016.11.21 12:59:47] [0000m.09s.406ms] [0] iCDB Database: Checking constraint definitions version
+[2016.11.21 12:59:47] [0000m.09s.890ms] [0] iCDB Database: Creating database content backup before upgrade
+[2016.11.21 12:59:47] [0000m.09s.890ms] [1] iCDB Storage Server: Database backup: ProjectPath[C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb]
+[2016.11.21 12:59:48] [0000m.10s.389ms] [0] iCDB Storage Server Backup Thread: Database backup: BackupPath[C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\cdbback\2016-11-21 12.59.47-4200.zip]
+[2016.11.21 12:59:48] [0000m.10s.530ms] [0] iCDB Storage Server Backup Thread: Backup database DONE: Result[ Succeeded[TRUE]] BackupPath[C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\cdbback\2016-11-21 12.59.47-4200.zip]
+[2016.11.21 12:59:48] [0000m.10s.639ms] [0] iCDB Database: Database content backed up to [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\cdbback\2016-11-21 12.59.47-4200.zip] of size [236 719 bytes (231.2 kB)]  in [754ms 105us]
+[2016.11.21 12:59:48] [0000m.10s.982ms] [0] iCDB Database: Upgrading constraint definitions from version [ce_ee.cns=7.10.24;user.cns=b83f-5623-433f-8ba7-b0d3-ff70-1d3f-f750-68fb-38d7-a6d6-f38b]
+[2016.11.21 12:59:49] [0000m.11s.013ms] [0] iCDB Database: Loading snapshot [1:DCDV] version [2709]
+[2016.11.21 12:59:50] [0000m.12s.214ms] [0] iCDB Database: Snapshot [1:DCDV] loaded in [1s 206ms]
+[2016.11.21 12:59:50] [0000m.12s.339ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [1:DCDV]
+[2016.11.21 12:59:50] [0000m.12s.417ms] [0] iCDB Database: Constraint definitions for snapshot [1:DCDV] upgraded in [81ms 956us]
+[2016.11.21 12:59:50] [0000m.12s.417ms] [0] iCDB Database: Saving snapshot [1:DCDV]
+[2016.11.21 12:59:50] [0000m.12s.526ms] [0] iCDB Database: Snapshot [1:DCDV] saved in [104ms 108us]
+[2016.11.21 12:59:50] [0000m.12s.558ms] [1] CORE: Applying a fix no 110 stage [fsAtlasLoaded] to atlas [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s1\cdbcmps\dxdatl]
+[2016.11.21 12:59:50] [0000m.12s.589ms] [1] CORE: Fix: cleared overlapping drawing order!
+[2016.11.21 12:59:50] [0000m.12s.589ms] [1] CORE: Atlas fixed stage [fsAtlasLoaded] successfully [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s1\cdbcmps\dxdatl]
+[2016.11.21 12:59:50] [0000m.12s.963ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s1\cdbcatlg\catlgatl.v] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.431ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s1\cdbcnfgs\0bb0000010000050.blk\ces_obj_state] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.431ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s1\cdbcnfgs\0bb0000010000050.blk\cesatl.v] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.431ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s1\uids] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.431ms] [0] iCDB Database: Loading snapshot [2:PCB_Layout_Temp] version [2709]
+[2016.11.21 12:59:51] [0000m.13s.462ms] [0] iCDB Database: Snapshot [2:PCB_Layout_Temp] loaded in [20ms 156us]
+[2016.11.21 12:59:51] [0000m.13s.462ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [2:PCB_Layout_Temp]
+[2016.11.21 12:59:51] [0000m.13s.462ms] [0] iCDB Database: Constraint definitions for snapshot [2:PCB_Layout_Temp] upgraded in [7ms 119us]
+[2016.11.21 12:59:51] [0000m.13s.462ms] [0] iCDB Database: Saving snapshot [2:PCB_Layout_Temp]
+[2016.11.21 12:59:51] [0000m.13s.478ms] [0] iCDB Database: Snapshot [2:PCB_Layout_Temp] saved in [17ms 880us]
+[2016.11.21 12:59:51] [0000m.13s.494ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s2\cdbcatlg\catlgatl.v] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.494ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s2\cdbcnfgs\0bb0000010000050.blk\ces_obj_state] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.494ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s2\cdbcnfgs\0bb0000010000050.blk\cesatl.v] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.494ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s2\uids] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.494ms] [0] iCDB Database: Loading snapshot [3:PCB] version [2709]
+[2016.11.21 12:59:51] [0000m.13s.509ms] [0] iCDB Database: Snapshot [3:PCB] loaded in [10ms 978us]
+[2016.11.21 12:59:51] [0000m.13s.509ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [3:PCB]
+[2016.11.21 12:59:51] [0000m.13s.509ms] [0] iCDB Database: Constraint definitions for snapshot [3:PCB] upgraded in [5ms 866us]
+[2016.11.21 12:59:51] [0000m.13s.509ms] [0] iCDB Database: Saving snapshot [3:PCB]
+[2016.11.21 12:59:51] [0000m.13s.525ms] [0] iCDB Database: Snapshot [3:PCB] saved in [15ms 364us]
+[2016.11.21 12:59:51] [0000m.13s.540ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s3\cdbcatlg\catlgatl.v] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.540ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s3\cdbcnfgs\0bb0000010000050.blk\ces_obj_state] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.540ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s3\cdbcnfgs\0bb0000010000050.blk\cesatl.v] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.540ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s3\uids] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.540ms] [0] iCDB Database: Loading snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE] version [2709]
+[2016.11.21 12:59:51] [0000m.13s.540ms] [0] iCDB Database: Snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE] loaded in [2ms 546us]
+[2016.11.21 12:59:51] [0000m.13s.540ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE]
+[2016.11.21 12:59:51] [0000m.13s.587ms] [0] iCDB Database: Constraint definitions for snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE] upgraded in [33ms 959us]
+[2016.11.21 12:59:51] [0000m.13s.587ms] [0] iCDB Database: Saving snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE]
+[2016.11.21 12:59:51] [0000m.13s.587ms] [0] iCDB Database: Snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE] saved in [77us]
+[2016.11.21 12:59:51] [0000m.13s.587ms] [0] iCDB Database: Loading snapshot [5:RefSync] version [2709]
+[2016.11.21 12:59:51] [0000m.13s.603ms] [0] iCDB Database: Snapshot [5:RefSync] loaded in [14ms 955us]
+[2016.11.21 12:59:51] [0000m.13s.603ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [5:RefSync]
+[2016.11.21 12:59:51] [0000m.13s.603ms] [0] iCDB Database: Constraint definitions for snapshot [5:RefSync] upgraded in [5ms 613us]
+[2016.11.21 12:59:51] [0000m.13s.603ms] [0] iCDB Database: Saving snapshot [5:RefSync]
+[2016.11.21 12:59:51] [0000m.13s.618ms] [0] iCDB Database: Snapshot [5:RefSync] saved in [19ms 390us]
+[2016.11.21 12:59:51] [0000m.13s.618ms] [1] CORE: Applying a fix no 110 stage [fsAtlasLoaded] to atlas [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s5\cdbcmps\dxdatl]
+[2016.11.21 12:59:51] [0000m.13s.618ms] [1] CORE: Fix: cleared overlapping drawing order!
+[2016.11.21 12:59:51] [0000m.13s.618ms] [1] CORE: Atlas fixed stage [fsAtlasLoaded] successfully [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s5\cdbcmps\dxdatl]
+[2016.11.21 12:59:51] [0000m.13s.634ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s5\cdbcatlg\catlgatl.v] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.634ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s5\cdbcnfgs\0bb0000010000050.blk\ces_obj_state] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.634ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s5\cdbcnfgs\0bb0000010000050.blk\cesatl.v] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.634ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\s5\uids] - auto-saving it
+[2016.11.21 12:59:51] [0000m.13s.634ms] [0] iCDB Database: Constraint definitions upgraded to version [ce_ee.cns=7.10.24;user.cns=382b-6cc2-3a9b-e223-d38b-4082-48b4-0850-0880-b0df-a01e-19ca]
+[2016.11.21 12:59:51] [0000m.13s.790ms] [0] iCDB Server PI: Initializing plugins
+[2016.11.21 12:59:51] [0000m.13s.790ms] [0] iCDB Server PI: Plugins initialized
+[2016.11.21 12:59:51] [0000m.13s.790ms] [0] S: iCDB database loaded
+[2016.11.21 12:59:51] [0000m.13s.837ms] [0] S: Starting threads
+[2016.11.21 12:59:51] [0000m.13s.852ms] [0] BT: Listening for broadcast messages on port [10000]
+[2016.11.21 12:59:51] [0000m.13s.852ms] [0] ProjectBackupManager: WARNING: Could not startup Project Backup engine - functionality not initialized
+[2016.11.21 12:59:51] [0000m.13s.852ms] [1] CMT: There are no clients - waiting [10 seconds]
+[2016.11.21 12:59:51] [0000m.13s.899ms] [0] IT: Session [3045] for host [Tanguy-PC] user [Tanguy] with process ID [4680] created
+[2016.11.21 12:59:51] [0000m.13s.899ms] [1] SC[3045]: Registered sub-client [DCDV] with ID [1] for session ID [3045] host [Tanguy-PC] user [Tanguy] process ID [4680]
+[2016.11.21 12:59:51] [0000m.13s.962ms] [1] CMT: There are [1] clients now: 3045
+[2016.11.21 12:59:51] [0000m.13s.993ms] [1] SC[3045]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3045] host [Tanguy-PC] user [Tanguy] process ID [4680]
+[2016.11.21 12:59:52] [0000m.14s.071ms] [1] CMT: Removed client [3045]
+[2016.11.21 12:59:52] [0000m.14s.071ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2016.11.21 12:59:52] [0000m.14s.601ms] [0] IT: Session [3046] for host [Tanguy-PC] user [Tanguy] with process ID [4680] created
+[2016.11.21 12:59:52] [0000m.14s.601ms] [1] SC[3046]: Registered sub-client [DCDV] with ID [1] for session ID [3046] host [Tanguy-PC] user [Tanguy] process ID [4680]
+[2016.11.21 12:59:52] [0000m.14s.617ms] [1] SC[3046]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3046] host [Tanguy-PC] user [Tanguy] process ID [4680]
+[2016.11.21 12:59:52] [0000m.14s.726ms] [1] CMT: Removed client [3046]
+[2016.11.21 12:59:52] [0000m.14s.726ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2016.11.21 12:59:54] [0000m.16s.036ms] [0] CMT: Starting server auto-close
+[2016.11.21 12:59:54] [0000m.16s.130ms] [0] S: Closing server
+[2016.11.21 12:59:54] [0000m.16s.146ms] [0] ProjectBackupManager: WARNING: Could not shutdown Project Backup engine - not started yet
+[2016.11.21 12:59:54] [0000m.16s.302ms] [0] iCDB Server PI: Closing plugins
+[2016.11.21 12:59:54] [0000m.16s.302ms] [0] iCDB Server PI: Plugins closed
+[2016.11.21 12:59:54] [0000m.16s.302ms] [0] iCDB Server PI: Unloading database
+[2016.11.21 12:59:54] [0000m.16s.317ms] [0] iCDB Server PI: Saving storage
+[2016.11.21 12:59:54] [0000m.16s.317ms] [0] iCDB Server PI: Closing database
+[2016.11.21 12:59:54] [0000m.16s.317ms] [1] iCDB Server PI: Stats: Database defragmentation: max[2] avg[1] holes[0%] data[91%]
+[2016.11.21 12:59:54] [0000m.16s.317ms] [1] iCDB Server PI: Stats: Database file size [221816 (216.6 kB)]
+[2016.11.21 12:59:54] [0000m.16s.364ms] [0] iCDB Server PI: Database closed
+[2016.11.21 12:59:54] [0000m.16s.364ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [25] ticks
+[2016.11.21 12:59:54] [0000m.16s.364ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [12] microseconds
+[2016.11.21 12:59:54] [0000m.16s.364ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [2]
+[2016.11.21 12:59:54] [0000m.16s.364ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [155860] commands per second
+[2016.11.21 12:59:54] [0000m.16s.364ms] [0] Single file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\icdb.dat] closed with size [221816 (216.6 kB)]
+[2016.11.21 12:59:54] [0000m.16s.380ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.11.21 12:59:54] [0000m.16s.582ms] [0] S: STOP
