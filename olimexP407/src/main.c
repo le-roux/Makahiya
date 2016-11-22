@@ -25,12 +25,16 @@ int main(void) {
     pwmInit();
     pwmStart(&PWMD1, &pwm_config_tim1);
 
+    chBSemObjectInit(&audio_sem, true);
+    chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO + 1, audio_playback, NULL);
     // Play sound
     sound_set_pins();
+
     //sound_init();
     //sound_440();
     i2sStart(&I2SD3, &i2s3_cfg);
     i2sStartExchange(&I2SD3);
+
 
     // Init the SerialUSB
     sduObjectInit(&SDU1);

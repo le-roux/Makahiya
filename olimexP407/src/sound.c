@@ -6,6 +6,10 @@
 
 #include "sound.h"
 
+uint32_t i2s_tx_buf[I2S_BUF_SIZE];
+volatile uint32_t* buffer = i2s_tx_buf;
+binary_semaphore_t audio_sem;
+
 const I2SConfig i2s3_cfg = {
     i2s_tx_buf,
     NULL,
@@ -45,6 +49,7 @@ CH_IRQ_HANDLER(Vector10C) {
 }
 
 void play_sample(uint16_t left, uint16_t right) {
+  UNUSED(right);
   chMBPost(&i2s_queue, (0 << 16) | left, TIME_INFINITE);
   SPI3->CR2 |= SPI_CR2_TXEIE;
 }
@@ -78,13 +83,40 @@ void sound_440(void) {
 
 void i2s_cb(I2SDriver* driver, size_t offset, size_t n) {
     UNUSED(driver);
-    UNUSED(n);
-    // Play in loop
-    if (sound_index + I2S_BUF_SIZE / 2 > (uint32_t)&_binary_pic_pcm_size / 2)
-        sound_index = 0;
+    if (offset == n)
+        buffer = i2s_tx_buf + I2S_BUF_SIZE / 2;
+    else
+        buffer = i2s_tx_buf;
 
-    for (int i = 0; i < I2S_BUF_SIZE / 2; i++) {
-        i2s_tx_buf[offset + i] = 0x0000FFFF & (&_binary_pic_pcm_start)[sound_index + i];
+    chSysLockFromISR();
+    chBSemSignalI(&audio_sem);
+    chSysUnlockFromISR();
+}
+
+THD_WORKING_AREA(wa_audio, 4096);
+
+THD_FUNCTION(audio_playback, arg) {
+    const char* read_ptr = (char*)&_binary_pic_mp3_start;
+    int size = (int)&_binary_pic_mp3_size;
+    MP3FrameInfo frameInfo;
+    HMP3Decoder decoder;
+    int offs, err;
+    msg_t msg;
+    UNUSED(arg);
+
+    decoder = MP3InitDecoder();
+
+    while (TRUE) {
+        msg = chBSemWait(&audio_sem);
+        if (msg != MSG_OK)
+            continue;
+        offs = MP3FindSyncWord((unsigned char*)read_ptr, (int)&_binary_pic_mp3_size);
+        read_ptr += offs;
+
+        err = MP3Decode(decoder, (unsigned char**)&read_ptr, &size, (short*)buffer, 0);
+        if (err != 0)
+            continue; // TODO improve error management
+
+        MP3GetLastFrameInfo(decoder, &frameInfo);
     }
-    sound_index += I2S_BUF_SIZE / 2;
 }

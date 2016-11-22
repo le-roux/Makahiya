@@ -129,7 +129,8 @@ CSRC = $(STARTUPSRC) \
 	   $(SRC)/usbcfg.c $(SRC)/shell_user.c \
 	   $(SRC)/sound.c
 
-PCMSRC = pic.pcm
+PCMSRC =
+MP3SRC = pic.mp3
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -221,10 +222,10 @@ UADEFS =
 UINCDIR =
 
 # List the user directory to look for the libraries here
-ULIBDIR =
+ULIBDIR = 
 
 # List all user libraries here
-ULIBS = -lm
+ULIBS = -lm -lhelix -L../helix
 
 #
 # End of user defines
@@ -233,12 +234,16 @@ ULIBS = -lm
 RULESPATH = $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC
 include $(RULESPATH)/rules.mk
 
-$(BUILDDIR)/obj/pic.o: pic.pcm
+$(BUILDDIR)/obj/pic.o: pic.mp3
 	$(TRGT)objcopy --rename-section .data=.rodata,alloc,load,readonly,data,contents -I binary -O elf32-littlearm -B arm $^ $@
+
 #######
 # User targets
 #######
 .PHONY := clean
+
+helix:
+	make -C ../helix
 
 jlink:
 	JLinkGDBServer -if swd -device "STM32F407ZG" -LocalHostOnly
