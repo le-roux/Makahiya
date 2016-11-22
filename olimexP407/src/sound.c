@@ -84,11 +84,12 @@ void sound_440(void) {
 
 void i2s_cb(I2SDriver* driver, size_t offset, size_t n) {
     UNUSED(driver);
-    if (offset == n)
+    UNUSED(n);
+    if (offset != 0)
         buffer = i2s_tx_buf + I2S_BUF_SIZE / 2;
     else
         buffer = i2s_tx_buf;
-
+    palSetPad(GPIOF, 6);
     chSysLockFromISR();
     chThdResumeI(&audio_thread_ref, MSG_OK);
     chSysUnlockFromISR();
@@ -111,10 +112,15 @@ THD_FUNCTION(audio_playback, arg) {
         chSysLock();
         msg = chThdSuspendS(&audio_thread_ref);
         chSysUnlock();
-        if (msg != MSG_OK)
+        if (msg != MSG_OK) {
+            palClearPad(GPIOF, 6);
             continue;
+        }
+        palClearPad(GPIOF, 6);
         offs = MP3FindSyncWord((unsigned char*)read_ptr, (int)&_binary_pic_mp3_size);
         read_ptr += offs;
+        if (read_ptr >= (char*)&_binary_pic_mp3_end)
+            break;
 
         err = MP3Decode(decoder, (unsigned char**)&read_ptr, &size, (short*)buffer, 0);
         if (err != 0)

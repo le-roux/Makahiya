@@ -26,6 +26,8 @@ int main(void) {
     pwmStart(&PWMD1, &pwm_config_tim1);
 
     // Play sound
+    palSetPadMode(GPIOF, 6, PAL_MODE_OUTPUT_PUSHPULL);
+    palSetPad(GPIOF, 6);
     sound_set_pins();
     chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO + 1, audio_playback, NULL);
 
