@@ -1,61 +1,6 @@
 
-/* Sym: 90999200  Path 1: Schematic1  Page 1: Schematic1(1) */
+/* Sym: 90853832  Path 1: Schematic1  Page 1: Schematic1(1) */
 CHANGE 'Schematic1(1)' 	INSTANCE
-  SELECT COMP XCMP576                 /* Reference Desig is R5 */
-    PARAM 'Part Name' = 'RES_0603_E24' 
-    PARAM 'Value' = '10K ' 
-    PARAM 'Tolerance' = '5%' 
-    PARAM 'Description' = 'Resistor 10k ohms / 5% / case 0603' 
-    PARAM 'Part Label' = 'RES_10k_0603' 
-    PARAM 'Code Fournisseur' = 'RS : 322-9484' 
-    PARAM 'Cout HT' = '0.045' 
-  SELECT COMP XCMP575                 /* Reference Desig is SW1 */
-    PARAM 'Part Name' = 'SWITCH' 
-    PARAM 'Description' = 'Button Switch latéral / 2 pins / SMD / Omron B3U-3000P' 
-    PARAM 'Part Label' = 'B3U-3000P' 
-    PARAM 'Code Fournisseur' = 'Fa : 1333655' 
-    PARAM 'Cout HT' = '1.08' 
-  SELECT EXT XCMP574                  /* Reference Desig is J25 */
-    PARAM 'Part Name' = 'MINI_SWD_CONNECTOR' 
-    PARAM 'Description' = 'Dual row 1.27 CMS 2x5 points connector, Samtec FTSH-105-01-L-DV ' 
-    PARAM 'Part Label' = 'FTSH-105-01-L-DV' 
-    PARAM 'Code Fournisseur' = 'Fa : 1667759' 
-    PARAM 'Cout HT' = '1.96' 
-  SELECT COMP XCMP573                 /* Reference Desig is C35 */
-    PARAM 'Part Name' = 'CAPCERAM0805' 
-    PARAM 'Value' = '2,2uF' 
-    PARAM 'Tolerance' = '80%' 
-    PARAM 'Description' = 'Capacitor Ceramic Y5V / 2.2uF / 25V / +80% -20% / case 0805 / Murata GRM21BF51E225ZA01L' 
-    PARAM 'Part Label' = 'CAP C0805 2.2uF Y5V 25V' 
-    PARAM 'Dielectric' = 'Y5V' 
-    PARAM 'Voltage' = '25V' 
-    PARAM 'Code Fournisseur' = 'Fa : 4716656' 
-    PARAM 'Cout HT' = '0.05' 
-  SELECT COMP XCMP572                 /* Reference Desig is C32 */
-    PARAM 'Part Name' = 'CAPCERAM0805' 
-    PARAM 'Value' = '2,2uF' 
-    PARAM 'Tolerance' = '80%' 
-    PARAM 'Description' = 'Capacitor Ceramic Y5V / 2.2uF / 25V / +80% -20% / case 0805 / Murata GRM21BF51E225ZA01L' 
-    PARAM 'Part Label' = 'CAP C0805 2.2uF Y5V 25V' 
-    PARAM 'Dielectric' = 'Y5V' 
-    PARAM 'Voltage' = '25V' 
-    PARAM 'Code Fournisseur' = 'Fa : 4716656' 
-    PARAM 'Cout HT' = '0.05' 
-  SELECT COMP XCMP571                 /* Reference Desig is R4 */
-    PARAM 'Part Name' = 'RES_0603_E24' 
-    PARAM 'Value' = '10K ' 
-    PARAM 'Tolerance' = '5%' 
-    PARAM 'Description' = 'Resistor 10k ohms / 5% / case 0603' 
-    PARAM 'Part Label' = 'RES_10k_0603' 
-    PARAM 'Code Fournisseur' = 'RS : 322-9484' 
-    PARAM 'Cout HT' = '0.045' 
-  SELECT COMP XCMP570                 /* Reference Desig is R3 */
-    PARAM 'Part Name' = 'RES_0603_E24' 
-    PARAM 'Value' = '360 ' 
-    PARAM 'Tolerance' = '5%' 
-    PARAM 'Description' = 'Resistor 360 ohms / 5% / case 0603' 
-    PARAM 'Part Label' = 'RES_360_0603' 
-    PARAM 'Cout HT' = '0.045' 
   SELECT COMP XCMP475                 /* Reference Desig is STM32 */
     PARAM 'Part Name' = 'STM32F405RG' 
     PARAM 'Description' = 'ARM Cortex-M4 32b MCU, FPU, 210DMIPS, up to 1MB Flash/192-4KB RAM, USB OTG HS/FS, 17 TIMs, 3 ADCs, ST STM32F405RGT6, case LQFP64' 
@@ -131,6 +76,53 @@ CHANGE 'Schematic1(1)' 	INSTANCE
     PARAM 'Part Label' = 'CAP C0603 100nF X7R 16V' 
     PARAM 'Code Fournisseur' = 'Fa : 4765837' 
     PARAM 'Cout HT' = '0.014' 
+  SELECT COMP XCMP576                 /* Reference Desig is R5 */
+    PARAM 'Part Name' = 'RES_0603_E24' 
+    PARAM 'Value' = '10K ' 
+    PARAM 'Tolerance' = '5%' 
+    PARAM 'Description' = 'Resistor 10k ohms / 5% / case 0603' 
+    PARAM 'Part Label' = 'RES_10k_0603' 
+    PARAM 'Code Fournisseur' = 'RS : 322-9484' 
+    PARAM 'Cout HT' = '0.045' 
+  SELECT COMP XCMP575                 /* Reference Desig is SW1 */
+    PARAM 'Part Name' = 'SWITCH' 
+    PARAM 'Description' = 'Button Switch latéral / 2 pins / SMD / Omron B3U-3000P' 
+    PARAM 'Part Label' = 'B3U-3000P' 
+    PARAM 'Code Fournisseur' = 'Fa : 1333655' 
+    PARAM 'Cout HT' = '1.08' 
+  SELECT EXT XCMP574                  /* Reference Desig is J25 */
+    PARAM 'Part Name' = 'MINI_SWD_CONNECTOR' 
+    PARAM 'Description' = 'Dual row 1.27 CMS 2x5 points connector, Samtec FTSH-105-01-L-DV ' 
+    PARAM 'Part Label' = 'FTSH-105-01-L-DV' 
+    PARAM 'Code Fournisseur' = 'Fa : 1667759' 
+    PARAM 'Cout HT' = '1.96' 
+  SELECT COMP XCMP573                 /* Reference Desig is C35 */
+    PARAM 'Part Name' = 'CAPCERAM0805' 
+    PARAM 'Value' = '2,2uF' 
+    PARAM 'Tolerance' = '80%' 
+    PARAM 'Description' = 'Capacitor Ceramic Y5V / 2.2uF / 25V / +80% -20% / case 0805 / Murata GRM21BF51E225ZA01L' 
+    PARAM 'Part Label' = 'CAP C0805 2.2uF Y5V 25V' 
+    PARAM 'Dielectric' = 'Y5V' 
+    PARAM 'Voltage' = '25V' 
+    PARAM 'Code Fournisseur' = 'Fa : 4716656' 
+    PARAM 'Cout HT' = '0.05' 
+  SELECT COMP XCMP572                 /* Reference Desig is C32 */
+    PARAM 'Part Name' = 'CAPCERAM0805' 
+    PARAM 'Value' = '2,2uF' 
+    PARAM 'Tolerance' = '80%' 
+    PARAM 'Description' = 'Capacitor Ceramic Y5V / 2.2uF / 25V / +80% -20% / case 0805 / Murata GRM21BF51E225ZA01L' 
+    PARAM 'Part Label' = 'CAP C0805 2.2uF Y5V 25V' 
+    PARAM 'Dielectric' = 'Y5V' 
+    PARAM 'Voltage' = '25V' 
+    PARAM 'Code Fournisseur' = 'Fa : 4716656' 
+    PARAM 'Cout HT' = '0.05' 
+  SELECT COMP XCMP570                 /* Reference Desig is R3 */
+    PARAM 'Part Name' = 'RES_0603_E24' 
+    PARAM 'Value' = '360 ' 
+    PARAM 'Tolerance' = '5%' 
+    PARAM 'Description' = 'Resistor 360 ohms / 5% / case 0603' 
+    PARAM 'Part Label' = 'RES_360_0603' 
+    PARAM 'Cout HT' = '0.045' 
   SELECT COMP XCMP638                 /* Reference Desig is C33 */
     PARAM 'Part Name' = 'CAPCERAM0603' 
     PARAM 'Value' = '10uF' 
@@ -140,14 +132,54 @@ CHANGE 'Schematic1(1)' 	INSTANCE
     PARAM 'Code Fournisseur' = 'Fa : 1759393 ' 
     PARAM 'Cout HT' = '0.117' 
 
-/* Sym: 90997784  Path 1: Schematic1  Page 2: Schematic1(2) */
+/* Sym: 90866696  Path 1: Schematic1  Page 2: Schematic1(2) */
 CHANGE 'Schematic1(2)' 	INSTANCE
+  SELECT COMP XCMP379                 /* Reference Desig is R2 */
+    PARAM 'Part Name' = 'RES_0603_E24' 
+    PARAM 'Value' = '160 ' 
+    PARAM 'Tolerance' = '5%' 
+    PARAM 'Description' = 'Resistor 160 ohms / 5% / case 0603' 
+    PARAM 'Part Label' = 'RES_160_0603' 
+    PARAM 'Cout HT' = '0.045' 
+  SELECT COMP XCMP378                 /* Reference Desig is R1 */
+    PARAM 'Part Name' = 'RES_0603_E24' 
+    PARAM 'Value' = '160 ' 
+    PARAM 'Tolerance' = '5%' 
+    PARAM 'Description' = 'Resistor 160 ohms / 5% / case 0603' 
+    PARAM 'Part Label' = 'RES_160_0603' 
+    PARAM 'Cout HT' = '0.045' 
+  SELECT COMP XCMP377                 /* Reference Desig is D2 */
+    PARAM 'Part Name' = 'LED_RED_0805' 
+    PARAM 'Description' = 'Red LED SMD case 0805 Agilent HSMH-C670' 
+    PARAM 'Part Label' = 'RED' 
+    PARAM 'Code Fournisseur' = 'RS : 429-552' 
+    PARAM 'Cout HT' = '0.2755' 
+  SELECT COMP XCMP376                 /* Reference Desig is D1 */
+    PARAM 'Part Name' = 'LED_GREEN_0805' 
+    PARAM 'Description' = 'Green LED SMD case 0805 Agilent HSMG-C670' 
+    PARAM 'Part Label' = 'GREEN' 
+    PARAM 'Code Fournisseur' = 'RS : 429-568' 
+    PARAM 'Cout HT' = '0.48' 
+  SELECT COMP XCMP375                 /* Reference Desig is U2 */
+    PARAM 'Part Name' = 'RN42' 
+    PARAM 'Description' = 'Class 2 Bluetooth Module with EDR Support, with PCB antenna, Microchip RN42' 
+    PARAM 'Part Label' = 'RN42-I/RM' 
+    PARAM 'Code Fournisseur' = 'Fa: 2143310' 
+    PARAM 'Cout HT' = '12.65' 
   SELECT COMP XCMP364                 /* Reference Desig is U1 */
     PARAM 'Part Name' = 'AMW006' 
     PARAM 'Description' = 'Ultra-low power Wi-Fi networking module for battery powered applications , ACKME Networks AMW006 Numbat, 3.3V' 
     PARAM 'Part Label' = 'AMW006' 
     PARAM 'Code Fournisseur' = 'Fa : 2454198' 
     PARAM 'Cout HT' = '16.5' 
+  SELECT COMP XCMP374                 /* Reference Desig is C18 */
+    PARAM 'Part Name' = 'CAPCERAM0603' 
+    PARAM 'Value' = '10uF' 
+    PARAM 'Tolerance' = '20%' 
+    PARAM 'Description' = 'Capacitor Ceramic X5R / 10uF / 6.3V / ±20% / case 0603' 
+    PARAM 'Part Label' = 'CAP C0603 10uF X5R 6.3V' 
+    PARAM 'Code Fournisseur' = 'Fa : 1759393 ' 
+    PARAM 'Cout HT' = '0.117' 
   SELECT COMP XCMP373                 /* Reference Desig is C17 */
     PARAM 'Part Name' = 'CAPCERAM0603' 
     PARAM 'Value' = '10uF' 
@@ -192,55 +224,9 @@ CHANGE 'Schematic1(2)' 	INSTANCE
     PARAM 'Part Label' = 'U.FL-R-SMT01' 
     PARAM 'Code Fournisseur' = 'Fa : 3908021' 
     PARAM 'Cout HT' = '0.964' 
-  SELECT COMP XCMP379                 /* Reference Desig is R2 */
-    PARAM 'Part Name' = 'RES_0603_E24' 
-    PARAM 'Value' = '160 ' 
-    PARAM 'Tolerance' = '5%' 
-    PARAM 'Description' = 'Resistor 160 ohms / 5% / case 0603' 
-    PARAM 'Part Label' = 'RES_160_0603' 
-    PARAM 'Cout HT' = '0.045' 
-  SELECT COMP XCMP378                 /* Reference Desig is R1 */
-    PARAM 'Part Name' = 'RES_0603_E24' 
-    PARAM 'Value' = '160 ' 
-    PARAM 'Tolerance' = '5%' 
-    PARAM 'Description' = 'Resistor 160 ohms / 5% / case 0603' 
-    PARAM 'Part Label' = 'RES_160_0603' 
-    PARAM 'Cout HT' = '0.045' 
-  SELECT COMP XCMP377                 /* Reference Desig is D2 */
-    PARAM 'Part Name' = 'LED_RED_0805' 
-    PARAM 'Description' = 'Red LED SMD case 0805 Agilent HSMH-C670' 
-    PARAM 'Part Label' = 'RED' 
-    PARAM 'Code Fournisseur' = 'RS : 429-552' 
-    PARAM 'Cout HT' = '0.2755' 
-  SELECT COMP XCMP376                 /* Reference Desig is D1 */
-    PARAM 'Part Name' = 'LED_GREEN_0805' 
-    PARAM 'Description' = 'Green LED SMD case 0805 Agilent HSMG-C670' 
-    PARAM 'Part Label' = 'GREEN' 
-    PARAM 'Code Fournisseur' = 'RS : 429-568' 
-    PARAM 'Cout HT' = '0.48' 
-  SELECT COMP XCMP375                 /* Reference Desig is U2 */
-    PARAM 'Part Name' = 'RN42' 
-    PARAM 'Description' = 'Class 2 Bluetooth Module with EDR Support, with PCB antenna, Microchip RN42' 
-    PARAM 'Part Label' = 'RN42-I/RM' 
-    PARAM 'Code Fournisseur' = 'Fa: 2143310' 
-    PARAM 'Cout HT' = '12.65' 
-  SELECT COMP XCMP374                 /* Reference Desig is C18 */
-    PARAM 'Part Name' = 'CAPCERAM0603' 
-    PARAM 'Value' = '10uF' 
-    PARAM 'Tolerance' = '20%' 
-    PARAM 'Description' = 'Capacitor Ceramic X5R / 10uF / 6.3V / ±20% / case 0603' 
-    PARAM 'Part Label' = 'CAP C0603 10uF X5R 6.3V' 
-    PARAM 'Code Fournisseur' = 'Fa : 1759393 ' 
-    PARAM 'Cout HT' = '0.117' 
 
-/* Sym: 90998440  Path 1: Schematic1  Page 3: Schematic1(3) */
+/* Sym: 90865968  Path 1: Schematic1  Page 3: Schematic1(3) */
 CHANGE 'Schematic1(3)' 	INSTANCE
-  SELECT COMP XCMP643                 /* Reference Desig is C36 */
-    PARAM 'Part Name' = 'CAPCERAM0603' 
-    PARAM 'Value' = '4,7nF' 
-    PARAM 'Tolerance' = '10%' 
-    PARAM 'Description' = 'Capacitor Ceramic X7R / 4.7nF / 16V / ±10% / case 0603' 
-    PARAM 'Part Label' = 'CAP C0603 4.7nF X7R 16V' 
   SELECT COMP XCMP380                 /* Reference Desig is FDC1 */
     PARAM 'Part Name' = 'FDC2214' 
     PARAM 'Description' = '28-Bitt Capacitance-to-Digital Converter for Proximity and Level Sensing Applications,  Texas Instruments, FDC2214RGHT, case WQFN-E 16' 
@@ -309,6 +295,20 @@ CHANGE 'Schematic1(3)' 	INSTANCE
     PARAM 'Part Label' = 'CAP C0603 33pF NPO 50V' 
     PARAM 'Code Fournisseur' = 'Fa : 722029' 
     PARAM 'Cout HT' = '0.045' 
+  SELECT COMP XCMP643                 /* Reference Desig is C36 */
+    PARAM 'Part Name' = 'CAPCERAM0603' 
+    PARAM 'Value' = '4,7nF' 
+    PARAM 'Tolerance' = '10%' 
+    PARAM 'Description' = 'Capacitor Ceramic X7R / 4.7nF / 16V / ±10% / case 0603' 
+    PARAM 'Part Label' = 'CAP C0603 4.7nF X7R 16V' 
+  SELECT COMP XCMP409                 /* Reference Desig is L2 */
+    PARAM 'Part Name' = 'SELF' 
+    PARAM 'Value' = '18uH' 
+    PARAM 'Tolerance' = '10%' 
+    PARAM 'Description' = 'High frequency inductance, SMD, Series MLF, 18 µH, 5 mA, 0805, Multilayers, 0.8 ohm, Q=30, self res freq = 20-38MHz, TDK MLF2012C180K' 
+    PARAM 'Part Label' = 'SELF 18uH 0805' 
+    PARAM 'Code Fournisseur' = 'Fa : 1669551' 
+    PARAM 'Cout HT' = '0.172' 
   SELECT COMP XCMP408                 /* Reference Desig is L1 */
     PARAM 'Part Name' = 'SELF' 
     PARAM 'Value' = '18uH' 
@@ -373,6 +373,12 @@ CHANGE 'Schematic1(3)' 	INSTANCE
     PARAM 'Part Label' = 'CAP C0603 33pF NPO 50V' 
     PARAM 'Code Fournisseur' = 'Fa : 722029' 
     PARAM 'Cout HT' = '0.045' 
+  SELECT COMP XCMP579                 /* Reference Desig is U3 */
+    PARAM 'Part Name' = 'CS4344' 
+    PARAM 'Description' = 'Audio D/A Converter ICs Stereo DAC 24-Bit 192kHz, Cirrus Logic CS4344-CZZ, case TSSOP10' 
+    PARAM 'Part Label' = 'CS4344-CZZ' 
+    PARAM 'Code Fournisseur' = 'Mouser : 777-CS4344-CZZ' 
+    PARAM 'Cout HT' = '2.76' 
   SELECT EXT XCMP431                  /* Reference Desig is J11 */
     PARAM 'Part Name' = 'JACK-3P' 
     PARAM 'Description' = 'Embase jack, stereo 3.5mm, SMD, Lumberg 1503 02' 
@@ -455,14 +461,14 @@ CHANGE 'Schematic1(3)' 	INSTANCE
     PARAM 'Part Label' = 'SELF 18uH 0805' 
     PARAM 'Code Fournisseur' = 'Fa : 1669551' 
     PARAM 'Cout HT' = '0.172' 
-  SELECT COMP XCMP409                 /* Reference Desig is L2 */
-    PARAM 'Part Name' = 'SELF' 
-    PARAM 'Value' = '18uH' 
+  SELECT COMP XCMP616                 /* Reference Desig is C11 */
+    PARAM 'Part Name' = 'CAPCERAM0603' 
+    PARAM 'Value' = '100nF' 
     PARAM 'Tolerance' = '10%' 
-    PARAM 'Description' = 'High frequency inductance, SMD, Series MLF, 18 µH, 5 mA, 0805, Multilayers, 0.8 ohm, Q=30, self res freq = 20-38MHz, TDK MLF2012C180K' 
-    PARAM 'Part Label' = 'SELF 18uH 0805' 
-    PARAM 'Code Fournisseur' = 'Fa : 1669551' 
-    PARAM 'Cout HT' = '0.172' 
+    PARAM 'Description' = 'Capacitor Ceramic X7R / 100nF / 16V / ±10% / case 0603' 
+    PARAM 'Part Label' = 'CAP C0603 100nF X7R 16V' 
+    PARAM 'Code Fournisseur' = 'Fa : 4765837' 
+    PARAM 'Cout HT' = '0.014' 
   SELECT COMP XCMP603                 /* Reference Desig is C21 */
     PARAM 'Part Name' = 'CAPCERAM0603' 
     PARAM 'Value' = '10uF' 
@@ -537,26 +543,12 @@ CHANGE 'Schematic1(3)' 	INSTANCE
     PARAM 'Dielectric' = 'X7S' 
     PARAM 'Code Fournisseur' = 'Fa : 1844446' 
     PARAM 'Cout HT' = '1.12' 
-  SELECT COMP XCMP579                 /* Reference Desig is U3 */
-    PARAM 'Part Name' = 'CS4344' 
-    PARAM 'Description' = 'Audio D/A Converter ICs Stereo DAC 24-Bit 192kHz, Cirrus Logic CS4344-CZZ, case TSSOP10' 
-    PARAM 'Part Label' = 'CS4344-CZZ' 
-    PARAM 'Code Fournisseur' = 'Mouser : 777-CS4344-CZZ' 
-    PARAM 'Cout HT' = '2.76' 
   SELECT COMP XCMP617                 /* Reference Desig is C12 */
     PARAM 'Part Name' = 'CAPCERAM0603' 
     PARAM 'Value' = '1uF' 
     PARAM 'Tolerance' = '5%' 
     PARAM 'Description' = 'Capacitor Ceramic 1uF / X5R / 25V / ±5% / case 0603' 
     PARAM 'Part Label' = 'CAP C0603 1uF X5R 25V' 
-  SELECT COMP XCMP616                 /* Reference Desig is C11 */
-    PARAM 'Part Name' = 'CAPCERAM0603' 
-    PARAM 'Value' = '100nF' 
-    PARAM 'Tolerance' = '10%' 
-    PARAM 'Description' = 'Capacitor Ceramic X7R / 100nF / 16V / ±10% / case 0603' 
-    PARAM 'Part Label' = 'CAP C0603 100nF X7R 16V' 
-    PARAM 'Code Fournisseur' = 'Fa : 4765837' 
-    PARAM 'Cout HT' = '0.014' 
   SELECT COMP XCMP644                 /* Reference Desig is C37 */
     PARAM 'Part Name' = 'CAPCERAM0603' 
     PARAM 'Value' = '4,7nF' 
@@ -564,8 +556,16 @@ CHANGE 'Schematic1(3)' 	INSTANCE
     PARAM 'Description' = 'Capacitor Ceramic X7R / 4.7nF / 16V / ±10% / case 0603' 
     PARAM 'Part Label' = 'CAP C0603 4.7nF X7R 16V' 
 
-/* Sym: 91249128  Path 1: Schematic1  Page 4: Schematic1(5) */
+/* Sym: 91088208  Path 1: Schematic1  Page 4: Schematic1(5) */
 CHANGE 'Schematic1(5)' 	INSTANCE
+  SELECT COMP XCMP514                 /* Reference Desig is R8 */
+    PARAM 'Part Name' = 'RES_2512_E24' 
+    PARAM 'Value' = '2,2 ' 
+    PARAM 'Tolerance' = '1%' 
+    PARAM 'Description' = 'Resistor 2.2 ohms, 1%, 1W, case 2512' 
+    PARAM 'Part Label' = 'RES_2.2_2512' 
+    PARAM 'Code Fournisseur' = 'Fa : 1265193' 
+    PARAM 'Cout HT' = '0.133' 
   SELECT COMP XCMP512                 /* Reference Desig is Q10 */
     PARAM 'Part Name' = 'NMOS' 
     PARAM 'Description' = 'N-Channel MOSFET, 5.9A, 0.024ohms, Diodes Inc DMN2050L , case SOT23' 
@@ -614,6 +614,12 @@ CHANGE 'Schematic1(5)' 	INSTANCE
     PARAM 'Part Label' = 'RES_3.6_2010W' 
     PARAM 'Code Fournisseur' = 'Fa : 2294017' 
     PARAM 'Cout HT' = '0.23' 
+  SELECT COMP XCMP545                 /* Reference Desig is Q16 */
+    PARAM 'Part Name' = 'NMOS' 
+    PARAM 'Description' = 'N-Channel MOSFET, 5.9A, 0.024ohms, Diodes Inc DMN2050L , case SOT23' 
+    PARAM 'Part Label' = 'DMN2050L' 
+    PARAM 'Code Fournisseur' = 'Fa : 2061409 ' 
+    PARAM 'Cout HT' = '0.46' 
   SELECT COMP XCMP544                 /* Reference Desig is Q15 */
     PARAM 'Part Name' = 'NMOS' 
     PARAM 'Description' = 'N-Channel MOSFET, 5.9A, 0.024ohms, Diodes Inc DMN2050L , case SOT23' 
@@ -680,14 +686,12 @@ CHANGE 'Schematic1(5)' 	INSTANCE
     PARAM 'Part Label' = 'RES_2.2_2512' 
     PARAM 'Code Fournisseur' = 'Fa : 1265193' 
     PARAM 'Cout HT' = '0.133' 
-  SELECT COMP XCMP514                 /* Reference Desig is R8 */
-    PARAM 'Part Name' = 'RES_2512_E24' 
-    PARAM 'Value' = '2,2 ' 
-    PARAM 'Tolerance' = '1%' 
-    PARAM 'Description' = 'Resistor 2.2 ohms, 1%, 1W, case 2512' 
-    PARAM 'Part Label' = 'RES_2.2_2512' 
-    PARAM 'Code Fournisseur' = 'Fa : 1265193' 
-    PARAM 'Cout HT' = '0.133' 
+  SELECT COMP XCMP556                 /* Reference Desig is Q21 */
+    PARAM 'Part Name' = 'NMOS' 
+    PARAM 'Description' = 'N-Channel MOSFET, 5.9A, 0.024ohms, Diodes Inc DMN2050L , case SOT23' 
+    PARAM 'Part Label' = 'DMN2050L' 
+    PARAM 'Code Fournisseur' = 'Fa : 2061409 ' 
+    PARAM 'Cout HT' = '0.46' 
   SELECT COMP XCMP555                 /* Reference Desig is Q20 */
     PARAM 'Part Name' = 'NMOS' 
     PARAM 'Description' = 'N-Channel MOSFET, 5.9A, 0.024ohms, Diodes Inc DMN2050L , case SOT23' 
@@ -756,12 +760,11 @@ CHANGE 'Schematic1(5)' 	INSTANCE
     PARAM 'Part Label' = 'RES_2.2_2512' 
     PARAM 'Code Fournisseur' = 'Fa : 1265193' 
     PARAM 'Cout HT' = '0.133' 
-  SELECT COMP XCMP545                 /* Reference Desig is Q16 */
-    PARAM 'Part Name' = 'NMOS' 
-    PARAM 'Description' = 'N-Channel MOSFET, 5.9A, 0.024ohms, Diodes Inc DMN2050L , case SOT23' 
-    PARAM 'Part Label' = 'DMN2050L' 
-    PARAM 'Code Fournisseur' = 'Fa : 2061409 ' 
-    PARAM 'Cout HT' = '0.46' 
+  SELECT EXT XCMP611                  /* Reference Desig is J19 */
+    PARAM 'Part Name' = 'BARETTE' 
+    PARAM 'Description' = 'Jumper 3 points en ligne 2.54mm avec cavalier associe' 
+    PARAM 'Part Label' = 'JUMPER 3PTS' 
+    PARAM 'Cout HT' = '0.2' 
   SELECT EXT XCMP610                  /* Reference Desig is J18 */
     PARAM 'Part Name' = 'BARETTE' 
     PARAM 'Description' = 'Jumper 3 points en ligne 2.54mm avec cavalier associe' 
@@ -829,12 +832,6 @@ CHANGE 'Schematic1(5)' 	INSTANCE
     PARAM 'Part Label' = 'DMN2050L' 
     PARAM 'Code Fournisseur' = 'Fa : 2061409 ' 
     PARAM 'Cout HT' = '0.46' 
-  SELECT COMP XCMP556                 /* Reference Desig is Q21 */
-    PARAM 'Part Name' = 'NMOS' 
-    PARAM 'Description' = 'N-Channel MOSFET, 5.9A, 0.024ohms, Diodes Inc DMN2050L , case SOT23' 
-    PARAM 'Part Label' = 'DMN2050L' 
-    PARAM 'Code Fournisseur' = 'Fa : 2061409 ' 
-    PARAM 'Cout HT' = '0.46' 
   SELECT EXT XCMP642                  /* Reference Desig is J23 */
     PARAM 'Part Name' = 'MICROMATCH' 
     PARAM 'Description' = '8pins SMD femelle on board connector Micromatch  AMP 7-188275-8' 
@@ -875,11 +872,6 @@ CHANGE 'Schematic1(5)' 	INSTANCE
     PARAM 'Description' = 'Jumper 3 points en ligne 2.54mm avec cavalier associe' 
     PARAM 'Part Label' = 'JUMPER 3PTS' 
     PARAM 'Cout HT' = '0.2' 
-  SELECT EXT XCMP611                  /* Reference Desig is J19 */
-    PARAM 'Part Name' = 'BARETTE' 
-    PARAM 'Description' = 'Jumper 3 points en ligne 2.54mm avec cavalier associe' 
-    PARAM 'Part Label' = 'JUMPER 3PTS' 
-    PARAM 'Cout HT' = '0.2' 
   SELECT COMP XCMP637                 /* Reference Desig is R28 */
     PARAM 'Part Name' = 'RES_2512_E24' 
     PARAM 'Value' = '1,8 ' 
@@ -889,7 +881,7 @@ CHANGE 'Schematic1(5)' 	INSTANCE
     PARAM 'Code Fournisseur' = 'Fa : 2324193' 
     PARAM 'Cout HT' = '0.23' 
 
-/* Sym: 91124168  Path 1: Schematic1  Page 5: Schematic1(4) */
+/* Sym: 90980800  Path 1: Schematic1  Page 5: Schematic1(4) */
 CHANGE 'Schematic1(4)' 	INSTANCE
   SELECT COMP XCMP639                 /* Reference Desig is C16 */
     PARAM 'Part Name' = 'CAPCERAM1210' 

@@ -2,7 +2,7 @@
                                     Packager
                                     --------
 
-                       04:53 PM Monday, November 21, 2016
+                       01:25 PM Tuesday, November 22, 2016
          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\Makahiya.prj
 
 
@@ -140,8 +140,8 @@
      No errors in Existing Schematic Packaging.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 129 Symbols:
-             129  ****************************
+     Clustering 128 Symbols:
+             128  ***************************
              100  **************************************************
               50  **************************************************
      Clustering is Complete
@@ -150,8 +150,8 @@
 
 
 
-     119 nets were found containing 461 pins
-     129 components were found
+     118 nets were found containing 459 pins
+     128 components were found
 
      Parsed netlist - Augmenting..
 
