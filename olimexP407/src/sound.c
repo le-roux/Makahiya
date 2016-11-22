@@ -8,6 +8,7 @@
 
 uint32_t i2s_tx_buf[I2S_BUF_SIZE];
 volatile uint32_t* buffer = i2s_tx_buf;
+thread_reference_t audio_thread_ref = NULL;
 binary_semaphore_t audio_sem;
 
 const I2SConfig i2s3_cfg = {
@@ -89,7 +90,7 @@ void i2s_cb(I2SDriver* driver, size_t offset, size_t n) {
         buffer = i2s_tx_buf;
 
     chSysLockFromISR();
-    chBSemSignalI(&audio_sem);
+    chThdResumeI(&audio_thread_ref, MSG_OK);
     chSysUnlockFromISR();
 }
 
@@ -107,7 +108,9 @@ THD_FUNCTION(audio_playback, arg) {
     decoder = MP3InitDecoder();
 
     while (TRUE) {
-        msg = chBSemWait(&audio_sem);
+        chSysLock();
+        msg = chThdSuspendS(&audio_thread_ref);
+        chSysUnlock();
         if (msg != MSG_OK)
             continue;
         offs = MP3FindSyncWord((unsigned char*)read_ptr, (int)&_binary_pic_mp3_size);

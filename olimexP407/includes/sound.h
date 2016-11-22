@@ -28,8 +28,6 @@ extern uint32_t i2s_tx_buf[I2S_BUF_SIZE];
 
 extern const I2SConfig i2s3_cfg;
 
-extern binary_semaphore_t audio_sem;
-
 extern THD_WORKING_AREA(wa_audio, 4096);
 
 /******************************/
