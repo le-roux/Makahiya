@@ -58,7 +58,7 @@
 #define STM32_MCO2SEL                       STM32_MCO2SEL_SYSCLK
 #define STM32_MCO2PRE                       STM32_MCO2PRE_DIV5
 #define STM32_I2SSRC                        STM32_I2SSRC_PLLI2S
-#define STM32_PLLI2SN_VALUE                 213
+#define STM32_PLLI2SN_VALUE                 271
 #define STM32_PLLI2SR_VALUE                 2
 #define STM32_PVD_ENABLE                    FALSE
 #define STM32_PLS                           STM32_PLS_LEV0

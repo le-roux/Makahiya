@@ -19,7 +19,7 @@ I2SConfig i2s3_cfg = {
     I2S_HALF_BUF_SIZE,
     i2s_cb,
     0,
-    SPI_I2SPR_MCKOE | I2SDIV | SPI_I2SPR_ODD
+    SPI_I2SPR_MCKOE | I2SDIV
 };
 
 void sound_set_pins(void) {
