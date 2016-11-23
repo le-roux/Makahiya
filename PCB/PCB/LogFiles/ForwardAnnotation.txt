@@ -2,8 +2,8 @@
                                Forward Annotation
                                ------------------
 
-                       06:22 PM Sunday, November 20, 2016
-                      Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
+                      10:44 AM Wednesday, November 23, 2016
+          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
 
 
 Version:  01.01.00
@@ -23,7 +23,7 @@ Version:  01.01.00
 
      Target PDB Name: Work\Layout_Temp\PartsDB.pdb
 
-     Number of Part Numbers: 36
+     Number of Part Numbers: 37
           Part Numb: 00-0022 -> Vend Part: 00-0022 
           Part Numb: 00-0055 -> Vend Part: 00-0055 
           Part Numb: 00-0063 -> Vend Part: 00-0063 
@@ -51,8 +51,9 @@ Version:  01.01.00
           Part Numb: 50-0040 -> Vend Part: 50-0040 
           Part Numb: 70-0003 -> Vend Part: 70-0003 
           Part Numb: 70-0014 -> Vend Part: 70-0014 
-          Part Numb: 70-0017 -> Vend Part: 70-0017 
           Part Numb: 70-0040 -> Vend Part: 70-0040 
+          Part Numb: 70-0053 -> Vend Part: 70-0053 
+          Part Numb: 70-0074 -> Vend Part: 70-0074 
           Part Numb: 70-0078 -> Vend Part: 70-0078 
           Part Numb: 70-0081 -> Vend Part: 70-0081 
           Part Numb: 70-0087 -> Vend Part: 70-0087 
@@ -82,8 +83,8 @@ Version:  01.01.00
      INFO: Cell DXF_SVG battery is not in Central Library - Using local library.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 128 Symbols:
-             128  ***************************
+     Clustering 136 Symbols:
+             136  ***********************************
              100  **************************************************
               50  **************************************************
      Clustering is Complete
@@ -92,8 +93,8 @@ Version:  01.01.00
 
 
 
-     120 nets were found containing 459 pins
-     128 components were found
+     118 nets were found containing 450 pins
+     136 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
      A formatted Schematic Netlist has been created.
@@ -106,8 +107,8 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       06:22 PM Sunday, November 20, 2016
-                      Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
+                      10:45 AM Wednesday, November 23, 2016
+          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
 
 
 Version:  02.11.12
@@ -119,39 +120,7 @@ Version:  02.11.12
 	Schematic reference designator changes will be forward annotated.
 
 
-     WARNING:  The "R0603" cell used by "R28" in the Layout is not
-      valid for a "03-0015" Part Number.
-     INFO: Cell "R0603" is being replaced by cell "R2512".
-
-     WARNING:  The "R0603" cell used by "R27" in the Layout is not
-      valid for a "03-0015" Part Number.
-     INFO: Cell "R0603" is being replaced by cell "R2512".
-
-     WARNING:  The "R0603" cell used by "R26" in the Layout is not
-      valid for a "03-0015" Part Number.
-     INFO: Cell "R0603" is being replaced by cell "R2512".
-
-     WARNING:  The "R0603" cell used by "R25" in the Layout is not
-      valid for a "03-0016" Part Number.
-     INFO: Cell "R0603" is being replaced by cell "R2010W".
-
-     WARNING:  The "C0805" cell used by "C34" in the Layout is not
-      valid for a "10-0103" Part Number.
-     INFO: Cell "C0805" is being replaced by cell "C0603".
-
-     WARNING:  The "SOT89-5" cell used by "U4" in the Layout is not
-      valid for a "40-0304" Part Number.
-     INFO: Cell "SOT89-5" is being replaced by cell "SOT223".
-
-     WARNING:  The "C0805" cell used by "C33" in the Layout is not
-      valid for a "10-0103" Part Number.
-     INFO: Cell "C0805" is being replaced by cell "C0603".
-
-     WARNING:  The "C0603" cell used by "C16" in the Layout is not
-      valid for a "10-0018" Part Number.
-     INFO: Cell "C0603" is being replaced by cell "C1210".
-
-     Netload completed successfully with 8 warning(s).
+     Netload completed successfully with 0 warning(s).
      
      Back Annotating...
 
@@ -182,29 +151,9 @@ Version:  02.11.12
 
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
-	Assigned net GND to a via which was originally on net VCC.
-	Assigned net GND to a trace which was originally on net VCC.
-	Assigned net GND to a via which was originally on net VCC.
-	Assigned net GND to a trace which was originally on net VCC.
-	Assigned net GND to a trace which was originally on net VCC.
-	Assigned net GND to a via which was originally on net VCC.
-	Assigned net GND to a trace which was originally on net VCC.
-	Assigned net GND to a trace which was originally on net VCC.
-	Assigned net GND to a trace which was originally on net VCC.
-	Assigned net GND to a trace which was originally on net VCC.
-	Assigned net GND to a trace which was originally on net VCC.
-	Broke back a trace from the point (75011330, 54079665).
-	Broke back a trace from the point (66128258, 54079665).
-	Broke back a trace from the point (75029584, 38894689).
-
-Some nets were completely deleted from the Layout Design....
-	Deleted net PWR_5V, which has no pins, from the Layout Design.
-	Deleted net VCAP, which has no pins, from the Layout Design.
-	Deleted net XSIG010834, which has no pins, from the Layout Design.
-	Deleted net XSIG050260, which has no pins, from the Layout Design.
 
 Forward-Annotation on the Layout Design has been successfully completed.
 
-There were 11 reassignments of nets.
-There were 3 traces broken back.
-There were 4 nets removed from the Layout Design.
+There were 0 reassignments of nets.
+There were 0 traces broken back.
+There were 0 nets removed from the Layout Design.

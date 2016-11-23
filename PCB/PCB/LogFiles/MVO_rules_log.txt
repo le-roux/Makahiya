@@ -1,6 +1,6 @@
 
 Can not open Multiple Via Rules file. File doesn't exist:
-       'F:\Makahiya\PCB\PCB\Config\MultiViaRules.txt'
+       'C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\Config\MultiViaRules.txt'
 
 Can not open Multiple Via Rules file. File doesn't exist:
-       'F:\Makahiya\PCB\PCB\Layout\MVO_Rules.txt'
+       'C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\Layout\MVO_Rules.txt'

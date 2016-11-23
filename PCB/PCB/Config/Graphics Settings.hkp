@@ -2,10 +2,10 @@
 ! change it at your own peril
 
 !
-! Created 11/20/16 18:24:31
+! Created 11/23/16 22:06:14
 !
 
-.Global_Constants 123 2
+.Global_Constants 121 2
     ..File_Type Graphics_Settings
     ..Version Version_1
     ..Num_Views 1
@@ -15,11 +15,11 @@
 	0x00000003	! showCmd
 	(-1, -1)	! ptMinPosition
 	(-1, -1)	! ptMaxPosition
-	(-1952, -140) (-34,887)	! ..rcNormalPosition
+	(298, 102) (1304,614)	! ..rcNormalPosition
     ..Active_Place_Layer_Top             True
     ..Active_Place_Layer_Bottom          True
     ..Active_Place_Layer_Internal        False
-    ..Active_Route_Layer 0
+    ..Active_Route_Layer 1
     ..Trace_Layer_Color ( 
 	0x00ff6633 0x009933ff	! [1-2] RGB( 51,102,255)  RGB(255, 51,153)
 	0x0066ff99 0x000000ff	! [3-4] RGB(153,255,102)  RGB(255,  0,  0)
@@ -522,7 +522,7 @@
     ..Show_Plane_Data                    False
     ..Show_Plane_Without_Traces          False
     ..Show_Plane_Shapes                  True
-    ..Show_Fill_Plane_Shapes             False
+    ..Show_Fill_Plane_Shapes             True
     ..Show_Plane_Data_Behind_Traces      True
     ..Show_Dynamic_Area_Fills            False
     ..Delay_Daf_Update                   False
@@ -539,12 +539,12 @@
     ..Spacers_Shadow_Mode_Enabled        False
     ..Virtual_Pin_Ref_Color 0x0033cc33	! RGB( 51,204, 51)
     ..Virtual_Pin_Plc_Region_Color 0x00ffffff	! RGB(255,255,255)
-    ..Pad_Items_Collapsed                True
+    ..Pad_Items_Collapsed                False
     ..Grid_Items_Collapsed               False
     ..Bus_Items_Collapsed                False
     ..Netline_Items_Collapsed            False
-    ..Selhil_Items_Collapsed             True
-    ..Plane_Items_Collapsed              True
+    ..Selhil_Items_Collapsed             False
+    ..Plane_Items_Collapsed              False
     ..Cubal_Items_Collapsed              False
     ..Spacers_Items_Collapsed            False
     ..Virtual_Pin_Items_Collapsed        False
@@ -662,7 +662,7 @@
     ..Drill_Drawing_Through_Nopaque      False
     ..Drill_Drawing_Through_Outline      True
     ..Redline_Layer_Color 0x000000ff	! RGB(255,  0,  0)
-    ..Redline_Layer_On                   False
+    ..Redline_Layer_On                   True
     ..User_Draft_Color ( 
 	0x00ffffff 0x00cc99ff	! [1-2] RGB(255,255,255)  RGB(255,153,204)
 	0x000000ff 0x00000080	! [3-4] RGB(255,  0,  0)  RGB(128,  0,  0)
@@ -1020,7 +1020,7 @@
     ..Inactive_Bb_Via_Alpha 100
     ..Inactive_Bb_Via_Nopaque            False
     ..Inactive_Bb_Via_Outline            True
-    ..Inactive_Bb_Via_Drawn              False
+    ..Inactive_Bb_Via_Drawn              True
     ..Inner_Skipvia_Pad_Color 0x00dbdbdb	! RGB(219,219,219)
     ..Inner_Skipvia_Pad_Ptrnidx 0
     ..Inner_Skipvia_Pad_Alpha 100
@@ -1037,7 +1037,7 @@
     ..Pattern_Timing_Net_Ptrnidx 0
     ..Background_Color 0x00000000	! RGB(  0,  0,  0)
     ..Fab_Items_Collapsed                False
-    ..Draft_Items_Collapsed              True
+    ..Draft_Items_Collapsed              False
     ..Detail_View_Items_Collapsed        False
     ..Board_Items_Collapsed              False
     ..Panel_Items_Collapsed              False
@@ -1242,7 +1242,7 @@
     )
     ..Bondwire_Color (
 	0x00000000	! top     RGB(  0,  0,  0)
-	0x00000002	! bottom  RGB(  2,  0,  0)
+	0x00000000	! bottom  RGB(  0,  0,  0)
     )
     ..Wire_Level0_Color (
 	0x0099ff99	! top     RGB(153,255,153)
@@ -1294,9 +1294,9 @@
     )
     ..Part_Items_Collapsed               False
     ..Assm_Items_Collapsed               False
-    ..Silk_Items_Collapsed               True
+    ..Silk_Items_Collapsed               False
     ..Cell_Items_Collapsed               False
-    ..Tstpt_Items_Collapsed              True
+    ..Tstpt_Items_Collapsed              False
     ..Num_Buses 0
     ..Num_Constraints 2
     ..Net_Names ( 
@@ -1334,95 +1334,93 @@
 	"LED5_G"	! [32]
 	"LED5_R"	! [33]
 	"RESETn"	! [34]
-	"RS232_RX"	! [35]
-	"RS232_TX"	! [36]
-	"SWDCLK"	! [37]
-	"SWDIO"	! [38]
-	"WIFI_WKUP"	! [39]
-	"XSIG020001"	! [40]
-	"XSIG020035"	! [41]
-	"XSIG020038"	! [42]
-	"XSIG020039"	! [43]
-	"XSIG020040"	! [44]
-	"XSIG020041"	! [45]
-	"XSIG030075"	! [46]
-	"XSIG030080"	! [47]
-	"XSIG030087"	! [48]
-	"XSIG030093"	! [49]
-	"XSIG050085"	! [50]
-	"XSIG050086"	! [51]
-	"XSIG050138"	! [52]
-	"XSIG050139"	! [53]
-	"XSIG050149"	! [54]
-	"XSIG050150"	! [55]
-	"XSIG050160"	! [56]
-	"XSIG050161"	! [57]
-	"XSIG050171"	! [58]
-	"XSIG050172"	! [59]
-	"XSIG050173"	! [60]
-	"XSIG050174"	! [61]
-	"XSIG030191"	! [62]
-	"XSIG030196"	! [63]
-	"XSIG030199"	! [64]
-	"XSIG030202"	! [65]
-	"XSIG050175"	! [66]
-	"XSIG050176"	! [67]
-	"XSIG050177"	! [68]
-	"XSIG050178"	! [69]
-	"XSIG050179"	! [70]
-	"XSIG050180"	! [71]
-	"XSIG050181"	! [72]
-	"XSIG050182"	! [73]
-	"XSIG050183"	! [74]
-	"XSIG050184"	! [75]
-	"XSIG050191"	! [76]
-	"XSIG050192"	! [77]
-	"XSIG050195"	! [78]
-	"XSIG050196"	! [79]
-	"XSIG050198"	! [80]
-	"XSIG050199"	! [81]
-	"XSIG050200"	! [82]
-	"XSIG050201"	! [83]
-	"AUDIO_LRCK"	! [84]
-	"AUDIO_MCLK"	! [85]
-	"AUDIO_SCLK"	! [86]
-	"AUDIO_SDIN"	! [87]
-	"LED_HP_B"	! [88]
-	"LED_HP_G"	! [89]
-	"LED_HP_R"	! [90]
-	"LED_HP_W"	! [91]
-	"RS232-RX"	! [92]
-	"RS232-TX"	! [93]
-	"SERVO1"	! [94]
-	"SERVO2"	! [95]
-	"SERVO3"	! [96]
-	"SERVO4"	! [97]
-	"SERVO5"	! [98]
-	"WIFI_RX"	! [99]
-	"WIFI_TX"	! [100]
-	"XSIG010829"	! [101]
-	"XSIG010830"	! [102]
-	"XSIG010831"	! [103]
-	"XSIG030216"	! [104]
-	"XSIG030217"	! [105]
-	"XSIG030220"	! [106]
-	"XSIG030221"	! [107]
-	"XSIG030222"	! [108]
-	"XSIG030223"	! [109]
-	"XSIG030224"	! [110]
-	"XSIG030226"	! [111]
-	"XSIG050259"	! [112]
-	"XSIG050261"	! [113]
-	"XSIG050262"	! [114]
-	"XSIG050263"	! [115]
-	"XSIG050264"	! [116]
-	"XSIG050265"	! [117]
-	"XSIG050266"	! [118]
-	"VCC5"	! [119]
-	"XSIG010880"	! [120]
-	"XSIG010888"	! [121]
-	"XSIG010889"	! [122]
-	"XSIG050270"	! [123]
+	"SWDCLK"	! [35]
+	"SWDIO"	! [36]
+	"BT_RST"	! [37]
+	"XSIG020001"	! [38]
+	"XSIG020035"	! [39]
+	"XSIG020038"	! [40]
+	"XSIG020039"	! [41]
+	"XSIG020040"	! [42]
+	"XSIG020041"	! [43]
+	"XSIG030075"	! [44]
+	"XSIG030080"	! [45]
+	"XSIG030087"	! [46]
+	"XSIG030093"	! [47]
+	"XSIG050085"	! [48]
+	"XSIG050086"	! [49]
+	"XSIG050138"	! [50]
+	"XSIG050139"	! [51]
+	"XSIG050149"	! [52]
+	"XSIG050150"	! [53]
+	"XSIG050160"	! [54]
+	"XSIG050161"	! [55]
+	"XSIG050171"	! [56]
+	"XSIG050172"	! [57]
+	"XSIG050173"	! [58]
+	"XSIG050174"	! [59]
+	"XSIG030191"	! [60]
+	"XSIG030196"	! [61]
+	"XSIG030199"	! [62]
+	"XSIG030202"	! [63]
+	"XSIG050175"	! [64]
+	"XSIG050176"	! [65]
+	"XSIG050177"	! [66]
+	"XSIG050178"	! [67]
+	"XSIG050179"	! [68]
+	"XSIG050180"	! [69]
+	"XSIG050181"	! [70]
+	"XSIG050182"	! [71]
+	"XSIG050183"	! [72]
+	"XSIG050184"	! [73]
+	"XSIG050191"	! [74]
+	"XSIG050192"	! [75]
+	"XSIG050195"	! [76]
+	"XSIG050196"	! [77]
+	"XSIG050198"	! [78]
+	"XSIG050199"	! [79]
+	"XSIG050200"	! [80]
+	"XSIG050201"	! [81]
+	"AUDIO_LRCK"	! [82]
+	"AUDIO_MCLK"	! [83]
+	"AUDIO_SCLK"	! [84]
+	"AUDIO_SDIN"	! [85]
+	"LED_HP_B"	! [86]
+	"LED_HP_G"	! [87]
+	"LED_HP_R"	! [88]
+	"LED_HP_W"	! [89]
+	"SERVO1"	! [90]
+	"SERVO2"	! [91]
+	"SERVO3"	! [92]
+	"SERVO4"	! [93]
+	"SERVO5"	! [94]
+	"WIFI_RX"	! [95]
+	"WIFI_TX"	! [96]
+	"XSIG010829"	! [97]
+	"XSIG010830"	! [98]
+	"XSIG010831"	! [99]
+	"XSIG030216"	! [100]
+	"XSIG030217"	! [101]
+	"XSIG030220"	! [102]
+	"XSIG030221"	! [103]
+	"XSIG030222"	! [104]
+	"XSIG030223"	! [105]
+	"XSIG030224"	! [106]
+	"XSIG030226"	! [107]
+	"XSIG050263"	! [108]
+	"XSIG050264"	! [109]
+	"XSIG050265"	! [110]
+	"XSIG050266"	! [111]
+	"VCC5"	! [112]
+	"XSIG010888"	! [113]
+	"XSIG010889"	! [114]
+	"WIFI_CTS"	! [115]
+	"WIFI_RST"	! [116]
+	"WIFI_RTS"	! [117]
+	"XSIG050277"	! [118]
+	"XSIG050278"	! [119]
+	"XSIG050279"	! [120]
+	"XSIG050280"	! [121]
     )
     ..Netclass_Names ( 
 	"(Default)"	! [1]
@@ -1494,9 +1492,8 @@
 	0x00ffffff 0x00ffffff	! [113-114] RGB(255,255,255)  RGB(255,255,255)
 	0x00ffffff 0x00ffffff	! [115-116] RGB(255,255,255)  RGB(255,255,255)
 	0x00ffffff 0x00ffffff	! [117-118] RGB(255,255,255)  RGB(255,255,255)
-	        -1         -1	! [119-120] undefined  undefined
-	        -1         -1	! [121-122] undefined  undefined
-	        -1		! [123] undefined
+	0x00ffffff 0x00ffffff	! [119-120] RGB(255,255,255)  RGB(255,255,255)
+	0x00ffffff		! [121] RGB(255,255,255)
     )
     ..Net_Ptrnidx ( 
 	0 0 0 0 0 0 0 0 0 0 	! [1 - 10]
@@ -1511,7 +1508,7 @@
 	0 0 0 0 0 0 0 0 0 0 	! [91 - 100]
 	0 0 0 0 0 0 0 0 0 0 	! [101 - 110]
 	0 0 0 0 0 0 0 0 0 0 	! [111 - 120]
-	0 0 0 ! [121 - 123]
+	0 ! [121 - 121]
 	)
     ..Net_Alpha ( 
 	100 100 100 100 100 100 100 100 100 100 	! [1 - 10]
@@ -1526,7 +1523,7 @@
 	100 100 100 100 100 100 100 100 100 100 	! [91 - 100]
 	100 100 100 100 100 100 100 100 100 100 	! [101 - 110]
 	100 100 100 100 100 100 100 100 100 100 	! [111 - 120]
-	100 100 100 ! [121 - 123]
+	100 ! [121 - 121]
 	)
     ..Net_Nopaque ( 
 	F F F F F F F F F F 	! [1 - 10]
@@ -1541,7 +1538,7 @@
 	F F F F F F F F F F 	! [91 - 100]
 	F F F F F F F F F F 	! [101 - 110]
 	F F F F F F F F F F 	! [111 - 120]
-	F F F ! [121 - 123]
+	F ! [121 - 121]
 	)
     ..Net_Outline ( 
 	T T F T T T T T T T 	! [1 - 10]
@@ -1556,7 +1553,7 @@
 	T T T T T T T T T T 	! [91 - 100]
 	T T T T T T T T T T 	! [101 - 110]
 	T T T T T T T T T T 	! [111 - 120]
-	T T T ! [121 - 123]
+	T ! [121 - 121]
 	)
     ..Netclass_Color (
 	0x00ffffff	! top     RGB(255,255,255)
@@ -1605,7 +1602,7 @@
 	F F F F F F F F F F 	! [91 - 100]
 	F F F F F F F F F F 	! [101 - 110]
 	F F F F F F F F F F 	! [111 - 120]
-	F F F ! [121 - 123]
+	F ! [121 - 121]
 	)
     ..Netclass_On                        False	! top
                                          False	! bottom
@@ -1714,45 +1711,45 @@
     ..Clearance_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
     ..Elecnet_Lengthsummary_Clr 0x00ffffff	! RGB(255,255,255)
     ..Elecnet_Delaysummary_Clr 0x00ffffff	! RGB(255,255,255)
-    ..Signalproximity_Hzd_Clr 0x000000ff	! RGB(255,  0,  0)
-    ..Planeproximity_Hzd_Clr 0x00000099	! RGB(153,  0,  0)
-    ..Drillproximity_Hzd_Clr 0x00ffccff	! RGB(255,204,255)
-    ..Soldermaskproximity_Hzd_Clr 0x00ccff99	! RGB(153,255,204)
-    ..Soldermaskcl_Hzd_Clr 0x00ff0000	! RGB(  0,  0,255)
-    ..Exposureproximity_Hzd_Clr 0x00ff6699	! RGB(153,102,255)
-    ..Silkscreenproximity_Hzd_Clr 0x00ff00ff	! RGB(255,  0,255)
-    ..Signalsizetracewidth_Hzd_Clr 0x00ffcc99	! RGB(153,204,255)
-    ..Signalsizetracelength_Hzd_Clr 0x009999ff	! RGB(255,153,153)
-    ..Signalsizetrace_L_W_R_Hzd_Clr 0x00ff6600	! RGB(  0,102,255)
-    ..Signalsizetext_S_W_Hzd_Clr 0x00ffff00	! RGB(  0,255,255)
-    ..Thermalspoke_Hzd_Clr 0x0066ffff	! RGB(255,255,102)
-    ..Drillminannring_Hzd_Clr 0x00003366	! RGB(102, 51,  0)
-    ..Minholesize_Hzd_Clr 0x00666600	! RGB(  0,102,102)
-    ..Holeregistration_Hzd_Clr 0x00cc66ff	! RGB(255,102,204)
+    ..Signalproximity_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Planeproximity_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Drillproximity_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Soldermaskproximity_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Soldermaskcl_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Exposureproximity_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Silkscreenproximity_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Signalsizetracewidth_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Signalsizetracelength_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Signalsizetrace_L_W_R_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Signalsizetext_S_W_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Thermalspoke_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Drillminannring_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Minholesize_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Holeregistration_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
     ..Holemissing_Hzd_Clr 0x00ccccff	! RGB(255,204,204)
-    ..Solkmaskcoverage_Hzd_Clr 0x00ff9933	! RGB( 51,153,255)
+    ..Solkmaskcoverage_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
     ..Soldermaskmissing_Hzd_Clr 0x00003366	! RGB(102, 51,  0)
     ..Soldermaskpartial_Hzd_Clr 0x00006666	! RGB(102,102,  0)
-    ..Silkscreensize_Hzd_Clr 0x00cc6633	! RGB( 51,102,204)
-    ..Solderpasteproximity_Hzd_Clr 0x00009966	! RGB(102,153,  0)
+    ..Silkscreensize_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Solderpasteproximity_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
     ..Solderpasteextended_Hzd_Clr 0x00009966	! RGB(102,153,  0)
     ..Solderpasteequivalent_Hzd_Clr 0x00009966	! RGB(102,153,  0)
     ..Solderpasteinclusion_Hzd_Clr 0x00009966	! RGB(102,153,  0)
     ..Solderpastemissing_Hzd_Clr 0x00003366	! RGB(102, 51,  0)
     ..Solderpastepartial_Hzd_Clr 0x00006666	! RGB(102,102,  0)
     ..Onlineproximity_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
-    ..Severe_Hzd_Clr 0x000000ff	! RGB(255,  0,  0)
-    ..Warning_Hzd_Clr 0x0033ff66	! RGB(102,255, 51)
-    ..Moderate_Hzd_Clr 0x0000ffff	! RGB(255,255,  0)
-    ..Signalratiosliver_Hzd_Clr 0x00cccc33	! RGB( 51,204,204)
-    ..Signalpadentrysliver_Hzd_Clr 0x00800080	! RGB(128,  0,128)
-    ..Signalacuteasliver_Hzd_Clr 0x0000ff00	! RGB(  0,255,  0)
-    ..Signalpad2padsliver_Hzd_Clr 0x000099ff	! RGB(255,153,  0)
-    ..Planeratiosliver_Hzd_Clr 0x00006699	! RGB(153,102,  0)
-    ..Planepadentrysliver_Hzd_Clr 0x00006633	! RGB( 51,102,  0)
+    ..Severe_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Warning_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Moderate_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Signalratiosliver_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Signalpadentrysliver_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Signalacuteasliver_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Signalpad2padsliver_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Planeratiosliver_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Planepadentrysliver_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
     ..Planeacuteasliver_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
-    ..Planepad2padsliver_Hzd_Clr 0x009900ff	! RGB(255,  0,153)
-    ..Soldermaskratiosliver_Hzd_Clr 0x00ccff00	! RGB(  0,255,204)
+    ..Planepad2padsliver_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
+    ..Soldermaskratiosliver_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
     ..Valorseverity0_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
     ..Valorseverity1_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
     ..Valorseverity2_Hzd_Clr 0x00ffffff	! RGB(255,255,255)
@@ -1912,13 +1909,13 @@
 
 .view "PCB"
     ..extrema
-	(69487991,138137597)		! (xmin, ymin)
-	(149024899,186757337)		! (xmax, ymax)
+	(-135247992,-38682646)		! (xmin, ymin)
+	(166420908,91034981)		! (xmax, ymax)
     ..WindowPlacement
 	0x00000002	! flags
 	0x00000003	! showCmd
 	(-1, -1)	! ptMinPosition
-	(-8, -31)	! ptMaxPosition
+	(-8, -30)	! ptMaxPosition
 	(0, 0) (776,331)	! ..rcNormalPosition
     ..Is_Float_View                      False
     ..Is_Detail_View                     False
@@ -1983,13 +1980,13 @@
     ..Grid_All_Enabled                   True
     ..Grid_Place1_On                     True
     ..Grid_Place2_On                     True
-    ..Grid_Route_On                      False
-    ..Grid_Via_On                        False
-    ..Grid_Tpoint_On                     False
+    ..Grid_Route_On                      True
+    ..Grid_Via_On                        True
+    ..Grid_Tpoint_On                     True
     ..Grid_Jumper_On                     False
     ..Grid_Draft_On                      True
     ..Netline_All_Enabled                True
-    ..Netline_Ordered_Routed_On          False
+    ..Netline_Ordered_Routed_On          True
     ..Netline_Ordered_Open_On            True
     ..Netline_All_Open_On                True
     ..Classline_On                       True
@@ -2026,53 +2023,53 @@
     ..Solderpaste_On                     False	! top
                                          False	! bottom
     ..Drill_Drawing_Through_On           False
-    ..Redline_Layer_On                   False
+    ..Redline_Layer_On                   True
     ..All_User_Draft_Enabled             True
     ..User_Draft_On ( 
-	F F F F F F F F F F 	! [1 - 10]
-	F F F F F F F F F F 	! [11 - 20]
-	F F F F F F F F F F 	! [21 - 30]
-	F F F F F F F F F F 	! [31 - 40]
-	F F F F F F F F F F 	! [41 - 50]
-	F F F F F F F F F F 	! [51 - 60]
-	F F F F F F F F F F 	! [61 - 70]
-	F F F F F F F F F F 	! [71 - 80]
-	F F F F F F F F F F 	! [81 - 90]
-	F F F F F F F F F F 	! [91 - 100]
-	F F F F F F F F F F 	! [101 - 110]
-	F F F F F F F F F F 	! [111 - 120]
-	F F F F F F F F F F 	! [121 - 130]
-	F F F F F F F F F F 	! [131 - 140]
-	F F F F F F F F F F 	! [141 - 150]
-	F F F F F F F F F F 	! [151 - 160]
-	F F F F F F F F F F 	! [161 - 170]
-	F F F F F F F F F F 	! [171 - 180]
-	F F F F F F F F F F 	! [181 - 190]
-	F F F F F F F F F F 	! [191 - 200]
-	F F F F F F F F F F 	! [201 - 210]
-	F F F F F F F F F F 	! [211 - 220]
-	F F F F F F F F F F 	! [221 - 230]
-	F F F F F F F F F F 	! [231 - 240]
-	F F F F F F F F F F 	! [241 - 250]
+	F F T T T T T T T T 	! [1 - 10]
+	T T T T T T T T T T 	! [11 - 20]
+	T T T T T T T T T T 	! [21 - 30]
+	T T T T T T T T T T 	! [31 - 40]
+	T T T T T T T T T T 	! [41 - 50]
+	T T T T T T T T T T 	! [51 - 60]
+	T T T T T T T T T T 	! [61 - 70]
+	T T T T T T T T T T 	! [71 - 80]
+	T T T T T T T T T T 	! [81 - 90]
+	T T T T T T T T T T 	! [91 - 100]
+	T T T T T T T T T T 	! [101 - 110]
+	T T T T T T T T T T 	! [111 - 120]
+	T T T T T T T T T T 	! [121 - 130]
+	T T T T T T T T T T 	! [131 - 140]
+	T T T T T T T T T T 	! [141 - 150]
+	T T T T T T T T T T 	! [151 - 160]
+	T T T T T T T T T T 	! [161 - 170]
+	T T T T T T T T T T 	! [171 - 180]
+	T T T T T T T T T T 	! [181 - 190]
+	T T T T T T T T T T 	! [191 - 200]
+	T T T T T T T T T T 	! [201 - 210]
+	T T T T T T T T T T 	! [211 - 220]
+	T T T T T T T T T T 	! [221 - 230]
+	T T T T T T T T T T 	! [231 - 240]
+	T T T T T T T T T T 	! [241 - 250]
 	)
     ..All_Board_Items_Enabled            True
     ..Board_Outline_On                   True
     ..Route_Border_On                    True
-    ..Hard_Route_Fence_On                True
-    ..Soft_Route_Fence_On                True
+    ..Hard_Route_Fence_On                False
+    ..Soft_Route_Fence_On                False
     ..Contour_On                         True
     ..Contour_Span_On                    True
-    ..Cavity_On                          False
-    ..Milling_On                         False
+    ..Cavity_On                          True
+    ..Milling_On                         True
     ..Mounting_Hole_On                   True
     ..Other_Hole_On                      True
     ..Fiducial_On                        True 	! top
                                          True 	! bottom
-    ..Origin_On                          False
-    ..Nc_Drill_Origin_On                 False
+    ..Origin_On                          True
+    ..Nc_Drill_Origin_On                 True
     ..Route_Obstruct_On                  True
     ..Pad_Obstruct_On                    False
-    ..Rule_Area_On                       False
+    ..Rule_Area_On                       True
     ..Drc_Window_On                      True
     ..Manufacturing_Outline_On           True
     ..All_Panel_Items_Enabled            True
@@ -2113,8 +2110,8 @@
                                          True 	! bottom
     ..Jumper_Wire_On                     True 	! top
                                          True 	! bottom
-    ..Place_Obstruct_On                  True 	! top
-                                         True 	! bottom
+    ..Place_Obstruct_On                  False	! top
+                                         False	! bottom
     ..Room_On                            True 	! top
                                          True 	! bottom
     ..Pin_Text_On                        True 	! top
@@ -2135,42 +2132,42 @@
                                          True 	! bottom
     ..All_Silkscreen_Enabled             False	! top
                                          False	! bottom
-    ..Silk_Outline_On                    False	! top
-                                         False	! bottom
-    ..Silk_Part_Number_On                False	! top
-                                         False	! bottom
-    ..Silk_Ref_Des_On                    False	! top
-                                         False	! bottom
-    ..Silk_Altered_Data_On               False	! top
-                                         False	! bottom
+    ..Silk_Outline_On                    True 	! top
+                                         True 	! bottom
+    ..Silk_Part_Number_On                True 	! top
+                                         True 	! bottom
+    ..Silk_Ref_Des_On                    True 	! top
+                                         True 	! bottom
+    ..Silk_Altered_Data_On               True 	! top
+                                         True 	! bottom
     ..All_Cell_Enabled                   False	! top
                                          False	! bottom
     ..Cell_Name_On                       False	! top
                                          False	! bottom
     ..Cell_Timestamp_On                  True 	! top
                                          True 	! bottom
-    ..Cell_Glue_Spot_On                  False	! top
-                                         False	! bottom
-    ..Cell_Origin_On                     False	! top
-                                         False	! bottom
-    ..All_Tpoint_Enabled                 True 	! top
+    ..Cell_Glue_Spot_On                  True 	! top
                                          True 	! bottom
+    ..Cell_Origin_On                     False	! top
+                                         True 	! bottom
+    ..All_Tpoint_Enabled                 False	! top
+                                         False	! bottom
     ..Tpoint_Pad_On                      True 	! top
                                          True 	! bottom
-    ..Tpoint_Obstruct_On                 False	! top
-                                         False	! bottom
-    ..Tpoint_Assy_Ref_Des_On             False	! top
-                                         False	! bottom
-    ..Tpoint_Silk_Ref_Des_On             False	! top
-                                         False	! bottom
-    ..Tpoint_Probe_On                    False	! top
-                                         False	! bottom
+    ..Tpoint_Obstruct_On                 True 	! top
+                                         True 	! bottom
+    ..Tpoint_Assy_Ref_Des_On             True 	! top
+                                         True 	! bottom
+    ..Tpoint_Silk_Ref_Des_On             True 	! top
+                                         True 	! bottom
+    ..Tpoint_Probe_On                    True 	! top
+                                         True 	! bottom
     ..All_Wirebond_Enabled               True 	! top
                                          True 	! bottom
-    ..Diepinpad_On                       False	! top
-                                         False	! bottom
-    ..Bondwire_On                        False	! top
-                                         False	! bottom
+    ..Diepinpad_On                       True 	! top
+                                         True 	! bottom
+    ..Bondwire_On                        True 	! top
+                                         True 	! bottom
     ..Wire_Level0_On                     True 	! top
                                          True 	! bottom
     ..Wire_Level1_On                     True 	! top
