@@ -7,14 +7,14 @@
 #include "sound.h"
 
 uint32_t i2s_tx_buf[I2S_BUF_SIZE];
-volatile uint32_t* buffer = i2s_tx_buf;
+uint32_t* buffer = i2s_tx_buf;
 thread_reference_t audio_thread_ref = NULL;
-binary_semaphore_t audio_sem;
+BSEMAPHORE_DECL(audio_sem, true);
 
-const I2SConfig i2s3_cfg = {
+I2SConfig i2s3_cfg = {
     i2s_tx_buf,
     NULL,
-    I2S_BUF_SIZE,
+    I2S_HALF_BUF_SIZE,
     i2s_cb,
     0,
     SPI_I2SPR_MCKOE | I2SDIV | SPI_I2SPR_ODD
@@ -85,47 +85,48 @@ void sound_440(void) {
 void i2s_cb(I2SDriver* driver, size_t offset, size_t n) {
     UNUSED(driver);
     UNUSED(n);
-    if (offset != 0)
-        buffer = i2s_tx_buf + I2S_BUF_SIZE / 2;
-    else
-        buffer = i2s_tx_buf;
-    palSetPad(GPIOF, 6);
-    chSysLockFromISR();
-    chThdResumeI(&audio_thread_ref, MSG_OK);
-    chSysUnlockFromISR();
+    if (offset != 0) {// Second half of the buffer has been sent
+        chSysLockFromISR();
+        chBSemSignalI(&audio_sem);
+        chSysUnlockFromISR();
+    }
 }
 
 THD_WORKING_AREA(wa_audio, 4096);
 
 THD_FUNCTION(audio_playback, arg) {
-    const char* read_ptr = (char*)&_binary_pic_mp3_start;
+    unsigned char* read_ptr = (unsigned char*)&_binary_pic_mp3_start;
     int size = (int)&_binary_pic_mp3_size;
     MP3FrameInfo frameInfo;
     HMP3Decoder decoder;
-    int offs, err;
-    msg_t msg;
+    int offset, err, buffer_id;
     UNUSED(arg);
 
     decoder = MP3InitDecoder();
-
+    buffer_id = 1;
     while (TRUE) {
-        chSysLock();
-        msg = chThdSuspendS(&audio_thread_ref);
-        chSysUnlock();
-        if (msg != MSG_OK) {
-            palClearPad(GPIOF, 6);
-            continue;
-        }
-        palClearPad(GPIOF, 6);
-        offs = MP3FindSyncWord((unsigned char*)read_ptr, (int)&_binary_pic_mp3_size);
-        read_ptr += offs;
-        if (read_ptr >= (char*)&_binary_pic_mp3_end)
+        // Decode in buffer_x
+        offset = MP3FindSyncWord(read_ptr, (int)&_binary_pic_mp3_size);
+        read_ptr += offset;
+        if (read_ptr >= (unsigned char*)&_binary_pic_mp3_end)
             break;
-
-        err = MP3Decode(decoder, (unsigned char**)&read_ptr, &size, (short*)buffer, 0);
+        buffer_id = 1 - buffer_id;
+        buffer = &i2s_tx_buf[buffer_id * I2S_HALF_BUF_SIZE];
+        err = MP3Decode(decoder, &read_ptr, &size, (short*)buffer, 0);
         if (err != 0)
             continue; // TODO improve error management
 
         MP3GetLastFrameInfo(decoder, &frameInfo);
+        // Wait end of previous DMA
+        chBSemWait(&audio_sem);
+        // Stop DMA to update info
+        i2sStopExchange(&I2SD3);
+        i2sStop(&I2SD3);
+        // Update infos
+        i2s3_cfg.tx_buffer = buffer;
+        i2s3_cfg.size = frameInfo.outputSamps;
+        // Start DMA transfer
+        i2sStart(&I2SD3, &i2s3_cfg);
+        i2sStartExchange(&I2SD3);
     }
 }
