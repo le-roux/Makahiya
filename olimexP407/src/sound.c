@@ -3,6 +3,8 @@
 #include <math.h>
 #include "utils.h"
 #include <string.h>
+#include "chprintf.h"
+#include "usbcfg.h"
 
 #include "sound.h"
 
@@ -109,12 +111,14 @@ THD_FUNCTION(audio_playback, arg) {
         offset = MP3FindSyncWord(read_ptr, (int)&_binary_pic_mp3_size);
         read_ptr += offset;
         if (read_ptr >= (unsigned char*)&_binary_pic_mp3_end)
-            break;
+            read_ptr = (unsigned char*)&_binary_pic_mp3_start;
         buffer_id = 1 - buffer_id;
         buffer = &i2s_tx_buf[buffer_id * I2S_HALF_BUF_SIZE];
         err = MP3Decode(decoder, &read_ptr, &size, (short*)buffer, 0);
-        if (err != 0)
+        if (err != 0) {
+            read_ptr = (unsigned char*)&_binary_pic_mp3_start;
             continue; // TODO improve error management
+        }
 
         MP3GetLastFrameInfo(decoder, &frameInfo);
         // Wait end of previous DMA
