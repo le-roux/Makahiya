@@ -6,7 +6,9 @@ variables:
 
 olimex-build:
     stage: build
-    script: make -C olimexP407
+    script:
+        - make -C olimexP407 helix
+        - make -C olimexP407
 
 native-build:
     stage: build
