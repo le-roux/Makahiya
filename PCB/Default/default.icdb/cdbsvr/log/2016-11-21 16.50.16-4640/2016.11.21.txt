@@ -1,0 +1,99 @@
+[2016.11.21 16:50:16] [0000m.00s.280ms] [0] WELCOME
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] iCDB Server ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] Base flow version [7.9.4]
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] Machine [TANGUY-PC]  User [Tanguy]  PID [4640]
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] Operating system [Microsoft Windows 7 Home Premium Edition, 64-bit Service Pack 1 (build 7601)]
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] Current working dir [C:\Users\Tanguy\Documents\ROSE\Makahiya]
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] PATH [C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\help;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\_bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\ProgramData\Oracle\Java\javapath;C:\Python33\;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\Skype\Phone\;]
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] SDD_HOME [C:\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] SDD_PLATFORM [win32]
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] WDIR [C:\MentorGraphics\WDIR;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] Local iCDB working dir [C:\MentorGraphics\WDIR\iCDB] on file system [NTFS]
+[2016.11.21 16:50:16] [0000m.00s.390ms] [1] S: Config file name [ServerWG.cfg]
+[2016.11.21 16:50:16] [0000m.00s.390ms] [2] S: Loading config files
+[2016.11.21 16:50:16] [0000m.00s.530ms] [1] Config file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\cdbsvr\ServerWG.cfg] not found
+[2016.11.21 16:50:16] [0000m.00s.530ms] [1] Config: Non-default value [System.SingleUserMode] = [no]
+[2016.11.21 16:50:16] [0000m.00s.546ms] [3] S: Config loaded
+[2016.11.21 16:50:16] [0000m.00s.670ms] [0] S: Project path [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb] on file system [NTFS]
+[2016.11.21 16:50:16] [0000m.00s.670ms] [0] S: Project global path [\\TANGUY-PC\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb] on file system [NTFS]
+[2016.11.21 16:50:16] [0000m.00s.670ms] [1] S: WARNING: No project file (.prj) path specified
+[2016.11.21 16:50:16] [0000m.00s.670ms] [1] S: WARNING: Database auto-repair support DISABLED
+[2016.11.21 16:50:16] [0000m.00s.670ms] [0] S: Multi-user mode (config)
+[2016.11.21 16:50:16] [0000m.00s.670ms] [0] S: Event polling mode autodetection
+[2016.11.21 16:50:16] [0000m.00s.733ms] [0] S: Started up automatically by iCDB Client: TANGUY-PC:Tanguy:4556
+[2016.11.21 16:50:16] [0000m.00s.733ms] [0] S: Auto close mode
+[2016.11.21 16:50:16] [0000m.00s.733ms] [0] S: Database ID [0032-dbf7-7d05-cdfa-8a1e-238d-a1e2-3850-a1c7-b655-d371-acad]
+[2016.11.21 16:50:16] [0000m.00s.733ms] [0] PathTranslator: BEGIN dumping
+[2016.11.21 16:50:16] [0000m.00s.733ms] [0] PathTranslator: Local -> global path prefix list
+[2016.11.21 16:50:16] [0000m.00s.733ms] [0] PathTranslator: [C:\Users] -> [\\TANGUY-PC\Users]
+[2016.11.21 16:50:16] [0000m.00s.733ms] [0] PathTranslator: Global -> local path prefix list
+[2016.11.21 16:50:16] [0000m.00s.733ms] [0] PathTranslator: [\\TANGUY-PC\Users] -> [C:\Users]
+[2016.11.21 16:50:16] [0000m.00s.733ms] [0] PathTranslator: END dumping
+[2016.11.21 16:50:16] [0000m.00s.748ms] [0] S: START
+[2016.11.21 16:50:16] [0000m.00s.748ms] [0] S: Server startup lock file created
+[2016.11.21 16:50:16] [0000m.00s.748ms] [0] S: Listening for client connections on port [10000]
+[2016.11.21 16:50:16] [0000m.00s.780ms] [0] S: Server network ID [Tanguy-PC:137.194.22.109,192.168.56.1,Tanguy-PC:10000]
+[2016.11.21 16:50:16] [0000m.00s.780ms] [0] S: Server GUID [d7ff-8491-b532-2e9e-8b71-338d-b713-3850-6ea7-b645-8305-acad]
+[2016.11.21 16:50:16] [0000m.00s.780ms] [0] S: Project GUID [0032-dbf7-7d05-cdfa-8a1e-238d-a1e2-3850-a1c7-b655-d371-acad]
+[2016.11.21 16:50:16] [0000m.00s.780ms] [0] S: Wrote data to server address file
+[2016.11.21 16:50:16] [0000m.00s.780ms] [0] S: Server startup lock file removed
+[2016.11.21 16:50:16] [0000m.00s.811ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.11.21 16:50:18] [0000m.01s.950ms] [0] S: Plugins loaded: [PIM] [ENetGen70] 
+[2016.11.21 16:50:18] [0000m.01s.965ms] [0] S: Local disc access time: 56 us
+[2016.11.21 16:50:18] [0000m.01s.965ms] [0] S: File server access time: 55 us
+[2016.11.21 16:50:18] [0000m.02s.418ms] [0] Single file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\icdb.dat] size [238728 (233.1 kB)]
+[2016.11.21 16:50:18] [0000m.02s.418ms] [1] Single file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\icdb.dat] opened in read-write mode
+[2016.11.21 16:50:18] [0000m.02s.433ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.21 16:50:18] [0000m.02s.433ms] [0] Database GUARD OK: [238728]
+[2016.11.21 16:50:18] [0000m.02s.464ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.21 16:50:18] [0000m.02s.464ms] [0] Database GUARD OK: [238728]
+[2016.11.21 16:50:18] [0000m.02s.464ms] [0] SingleFile: [2c08-b5da-f269-9209] SFI version check [1009] [1009]
+[2016.11.21 16:50:18] [0000m.02s.480ms] [0] SingleFile: [2c08-b5da-f269-9209] Database SFI header has been read in [21ms 447us]
+[2016.11.21 16:50:18] [0000m.02s.792ms] [0] iCDB Server PI: Server & plugin session [3054]
+[2016.11.21 16:50:18] [0000m.02s.792ms] [0] iCDB Server PI: Opening database [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb]
+[2016.11.21 16:50:18] [0000m.02s.792ms] [0] iCDB Server PI: Database [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb] opened
+[2016.11.21 16:50:20] [0000m.04s.383ms] [0] iCDB Database: Checking existence of constraint definitions
+[2016.11.21 16:50:20] [0000m.04s.383ms] [0] iCDB Database: Checking constraint definitions version
+[2016.11.21 16:50:20] [0000m.04s.711ms] [1] iCDB Database: Constraint definitions version [ce_ee.cns=7.10.24;user.cns=382b-6cc2-3a9b-e223-d38b-4082-48b4-0850-0880-b0df-a01e-19ca] up to date
+[2016.11.21 16:50:20] [0000m.04s.804ms] [0] iCDB Server PI: Initializing plugins
+[2016.11.21 16:50:20] [0000m.04s.820ms] [0] iCDB Server PI: Plugins initialized
+[2016.11.21 16:50:20] [0000m.04s.820ms] [0] S: iCDB database loaded
+[2016.11.21 16:50:20] [0000m.04s.836ms] [0] S: Starting threads
+[2016.11.21 16:50:20] [0000m.04s.836ms] [0] BT: Listening for broadcast messages on port [10000]
+[2016.11.21 16:50:20] [0000m.04s.836ms] [0] ProjectBackupManager: WARNING: Could not startup Project Backup engine - functionality not initialized
+[2016.11.21 16:50:20] [0000m.04s.836ms] [1] CMT: There are no clients - waiting [10 seconds]
+[2016.11.21 16:50:20] [0000m.04s.882ms] [0] IT: Session [3055] for host [Tanguy-PC] user [Tanguy] with process ID [4556] created
+[2016.11.21 16:50:20] [0000m.04s.914ms] [1] SC[3055]: Registered sub-client [DCDV] with ID [1] for session ID [3055] host [Tanguy-PC] user [Tanguy] process ID [4556]
+[2016.11.21 16:50:21] [0000m.04s.945ms] [1] CMT: There are [1] clients now: 3055
+[2016.11.21 16:50:21] [0000m.04s.992ms] [1] SC[3055]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3055] host [Tanguy-PC] user [Tanguy] process ID [4556]
+[2016.11.21 16:50:21] [0000m.05s.054ms] [1] CMT: Removed client [3055]
+[2016.11.21 16:50:21] [0000m.05s.054ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2016.11.21 16:50:22] [0000m.06s.630ms] [0] IT: Session [3056] for host [Tanguy-PC] user [Tanguy] with process ID [4556] created
+[2016.11.21 16:50:22] [0000m.06s.630ms] [1] SC[3056]: Registered sub-client [DCDV] with ID [1] for session ID [3056] host [Tanguy-PC] user [Tanguy] process ID [4556]
+[2016.11.21 16:50:22] [0000m.06s.676ms] [1] SC[3056]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3056] host [Tanguy-PC] user [Tanguy] process ID [4556]
+[2016.11.21 16:50:22] [0000m.06s.692ms] [1] CMT: Removed client [3056]
+[2016.11.21 16:50:22] [0000m.06s.692ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2016.11.21 16:50:24] [0000m.08s.002ms] [0] CMT: Starting server auto-close
+[2016.11.21 16:50:24] [0000m.08s.049ms] [0] S: Closing server
+[2016.11.21 16:50:24] [0000m.08s.065ms] [0] ProjectBackupManager: WARNING: Could not shutdown Project Backup engine - not started yet
+[2016.11.21 16:50:24] [0000m.08s.174ms] [0] iCDB Server PI: Closing plugins
+[2016.11.21 16:50:24] [0000m.08s.174ms] [0] iCDB Server PI: Plugins closed
+[2016.11.21 16:50:24] [0000m.08s.174ms] [0] iCDB Server PI: Unloading database
+[2016.11.21 16:50:24] [0000m.08s.174ms] [0] iCDB Server PI: Saving storage
+[2016.11.21 16:50:24] [0000m.08s.221ms] [0] iCDB Server PI: Closing database
+[2016.11.21 16:50:24] [0000m.08s.221ms] [1] Hole: zero line at 238700 of size 16 bytes.
+[2016.11.21 16:50:24] [0000m.08s.221ms] [1] iCDB Server PI: Stats: Database defragmentation: max[2] avg[1] holes[4%] data[91%]
+[2016.11.21 16:50:24] [0000m.08s.221ms] [1] iCDB Server PI: Stats: Database file size [238728 (233.1 kB)]
+[2016.11.21 16:50:24] [0000m.08s.221ms] [1] Hole: zero line at 238700 of size 16 bytes.
+[2016.11.21 16:50:24] [0000m.08s.252ms] [0] iCDB Server PI: Database closed
+[2016.11.21 16:50:24] [0000m.08s.252ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [35] ticks
+[2016.11.21 16:50:24] [0000m.08s.252ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [17] microseconds
+[2016.11.21 16:50:24] [0000m.08s.252ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [2]
+[2016.11.21 16:50:24] [0000m.08s.252ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [111330] commands per second
+[2016.11.21 16:50:24] [0000m.08s.252ms] [0] Single file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\icdb.dat] closed with size [238728 (233.1 kB)]
+[2016.11.21 16:50:24] [0000m.08s.268ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.11.21 16:50:24] [0000m.08s.346ms] [0] S: STOP
