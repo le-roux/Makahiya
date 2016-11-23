@@ -21,7 +21,7 @@ extern int16_t _binary_pic_mp3_start;
 extern int16_t _binary_pic_mp3_size;
 extern int16_t _binary_pic_mp3_end;
 
-#define I2S_BUF_SIZE 2048
+#define I2S_BUF_SIZE 2304
 #define I2S_HALF_BUF_SIZE I2S_BUF_SIZE/2
 extern uint32_t i2s_tx_buf[I2S_BUF_SIZE];
 extern binary_semaphore_t audio_sem;

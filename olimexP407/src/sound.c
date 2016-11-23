@@ -11,7 +11,7 @@
 uint32_t i2s_tx_buf[I2S_BUF_SIZE];
 uint32_t* buffer = i2s_tx_buf;
 thread_reference_t audio_thread_ref = NULL;
-BSEMAPHORE_DECL(audio_sem, true);
+BSEMAPHORE_DECL(audio_sem, false);
 
 I2SConfig i2s3_cfg = {
     i2s_tx_buf,
@@ -87,7 +87,7 @@ void sound_440(void) {
 void i2s_cb(I2SDriver* driver, size_t offset, size_t n) {
     UNUSED(driver);
     UNUSED(n);
-    if (offset != 0) {// Second half of the buffer has been sent
+    if (offset != 0) { // Second half of the buffer has been sent
         chSysLockFromISR();
         chBSemSignalI(&audio_sem);
         chSysUnlockFromISR();
@@ -101,11 +101,12 @@ THD_FUNCTION(audio_playback, arg) {
     int size = (int)&_binary_pic_mp3_size;
     MP3FrameInfo frameInfo;
     HMP3Decoder decoder;
-    int offset, err, buffer_id;
+    int offset, err, buffer_id, start = 1;
     UNUSED(arg);
 
     decoder = MP3InitDecoder();
     buffer_id = 1;
+
     while (TRUE) {
         // Decode in buffer_x
         offset = MP3FindSyncWord(read_ptr, (int)&_binary_pic_mp3_size);
@@ -124,7 +125,10 @@ THD_FUNCTION(audio_playback, arg) {
         // Wait end of previous DMA
         chBSemWait(&audio_sem);
         // Stop DMA to update info
-        i2sStopExchange(&I2SD3);
+        if (start)
+            start = 0;
+        else
+            i2sStopExchange(&I2SD3);
         i2sStop(&I2SD3);
         // Update infos
         i2s3_cfg.tx_buffer = buffer;

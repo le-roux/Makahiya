@@ -36,8 +36,8 @@ int main(void) {
 
     //sound_init();
     //sound_440();
-    i2sStart(&I2SD3, &i2s3_cfg);
-    i2sStartExchange(&I2SD3);
+    //i2sStart(&I2SD3, &i2s3_cfg);
+    //i2sStartExchange(&I2SD3);
 
 
     // Init the SerialUSB
