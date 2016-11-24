@@ -117,14 +117,19 @@ THD_FUNCTION(audio_playback, arg) {
         buffer = &i2s_tx_buf[buffer_id * I2S_HALF_BUF_SIZE];
         err = MP3Decode(decoder, &read_ptr, &size, (short*)buffer, 0);
         if (err != 0) {
-            read_ptr = (unsigned char*)&_binary_pic_mp3_start;
-            continue; // TODO improve error management
+            palClearPad(GPIOF, 6);
+            chBSemWait(&audio_sem);
+            chThdSleepMilliseconds(5);
+            i2sStopExchange(&I2SD3);
+            i2sStop(&I2SD3);
+            break;// TODO improve error management
         }
 
         MP3GetLastFrameInfo(decoder, &frameInfo);
         // Wait end of previous DMA
         chBSemWait(&audio_sem);
         // Stop DMA to update info
+        chThdSleepMilliseconds(5);
         if (start)
             start = 0;
         else

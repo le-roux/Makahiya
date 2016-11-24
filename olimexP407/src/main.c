@@ -29,16 +29,10 @@ int main(void) {
     palSetPadMode(GPIOF, 6, PAL_MODE_OUTPUT_PUSHPULL);
     palSetPad(GPIOF, 6);
     sound_set_pins();
-    chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO + 1, audio_playback, NULL);
+    chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO - 1, audio_playback, NULL);
 
     // Living led thread
     chThdCreateStatic(wa_led, sizeof(wa_led), NORMALPRIO + 1, living_led, NULL);
-
-    //sound_init();
-    //sound_440();
-    //i2sStart(&I2SD3, &i2s3_cfg);
-    //i2sStartExchange(&I2SD3);
-
 
     // Init the SerialUSB
     sduObjectInit(&SDU1);
