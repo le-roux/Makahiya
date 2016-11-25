@@ -2,7 +2,7 @@
 ! change it at your own peril
 
 !
-! Created 11/23/16 10:47:09
+! Created 11/23/16 22:43:45
 !
 
 .Global_Constants 121 2
@@ -15,7 +15,7 @@
 	0x00000003	! showCmd
 	(-1, -1)	! ptMinPosition
 	(-1, -1)	! ptMaxPosition
-	(298, 102) (1304,614)	! ..rcNormalPosition
+	(0, 0) (1918,1027)	! ..rcNormalPosition
     ..Active_Place_Layer_Top             True
     ..Active_Place_Layer_Bottom          True
     ..Active_Place_Layer_Internal        False
@@ -1909,13 +1909,13 @@
 
 .view "PCB"
     ..extrema
-	(3548925,-1844264)		! (xmin, ymin)
-	(116674925,46799916)		! (xmax, ymax)
+	(-135247992,-39636679)		! (xmin, ymin)
+	(166420460,91989014)		! (xmax, ymax)
     ..WindowPlacement
 	0x00000002	! flags
 	0x00000003	! showCmd
 	(-1, -1)	! ptMinPosition
-	(-8, -30)	! ptMaxPosition
+	(-8, -31)	! ptMaxPosition
 	(0, 0) (776,331)	! ..rcNormalPosition
     ..Is_Float_View                      False
     ..Is_Detail_View                     False
@@ -2164,10 +2164,10 @@
                                          True 	! bottom
     ..All_Wirebond_Enabled               True 	! top
                                          True 	! bottom
-    ..Diepinpad_On                       False	! top
-                                         False	! bottom
-    ..Bondwire_On                        False	! top
-                                         False	! bottom
+    ..Diepinpad_On                       True 	! top
+                                         True 	! bottom
+    ..Bondwire_On                        True 	! top
+                                         True 	! bottom
     ..Wire_Level0_On                     True 	! top
                                          True 	! bottom
     ..Wire_Level1_On                     True 	! top
