@@ -21,16 +21,44 @@ extern int16_t _binary_pic_mp3_start;
 extern int16_t _binary_pic_mp3_size;
 extern int16_t _binary_pic_mp3_end;
 
-#define I2S_BUF_SIZE MAX_NSAMP*2
-#define I2S_HALF_BUF_SIZE MAX_NSAMP
-extern uint32_t i2s_tx_buf[I2S_BUF_SIZE];
-extern binary_semaphore_t audio_sem;
+/**
+ * Size of a sample in bytes
+ */
+#define SAMPLE_SIZE 2
+
+/**
+ * Size of buffers that hold mp3 decoded frames (in number of samples)
+ */
+#define I2S_BUF_SIZE MAX_NSAMP * MAX_NGRAN * MAX_NCHAN
+
+/**
+ * The buffer used for DMA transfer.
+ * Each half of this buffer holds a complete mp3 decoded frame.
+ */
+extern int16_t i2s_tx_buf[I2S_BUF_SIZE * 2];
+
+/**
+ * Number of intermediate buffers available for the mailbox
+ */
+#define AUDIO_BUFFERS_NB 4
+
+/**
+ * Multiplier for the volume
+ * Formula: sample * volumeMult / volumeDiv
+ */
+extern int8_t volumeMult;
+
+/**
+ * Divider for the volume
+ * Formula: sample * volumeMult / volumeDiv
+ */
+extern int8_t volumeDiv;
 
 #define I2SDIV 6
 
 extern I2SConfig i2s3_cfg;
 
-extern THD_WORKING_AREA(wa_audio, 4096);
+extern THD_WORKING_AREA(wa_audio, 512);
 
 /******************************/
 /*        Functions           */
