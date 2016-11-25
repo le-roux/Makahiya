@@ -65,3 +65,6 @@
 [2016-11-25 13.13.42] Successfully created [AutoSave] backup [2016-11-25 13.13.39 - auto.zip] requested by [DESKTOP-OU0BNIR:Sylvain].
 [2016-11-25 13.13.42] Removing excessive [AutoSave] backup file [F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-20 18.20.33 - auto.zip].
 [2016-11-25 13.13.42] [AutoSave] backup file [PCB\Default\ProjectBackup\backups\2016-11-20 18.20.33 - auto.zip] removed.
+[2016-11-25 17.13.39] Successfully created [AutoSave] backup [2016-11-25 17.13.39 - auto.zip] requested by [DESKTOP-OU0BNIR:Sylvain].
+[2016-11-25 17.13.39] Removing excessive [AutoSave] backup file [F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-23 08.02.11 - auto.zip].
+[2016-11-25 17.13.39] [AutoSave] backup file [PCB\Default\ProjectBackup\backups\2016-11-23 08.02.11 - auto.zip] removed.
