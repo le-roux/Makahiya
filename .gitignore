@@ -1,7 +1,4 @@
-*.o
-main
-code/doc/html/
-code/doc/latex/
-test/
-.dep/
-build/
+venv/
+sql*
+*egg*
+makahiya/__pycache__

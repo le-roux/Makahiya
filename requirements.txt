@@ -1,0 +1,7 @@
+pyramid==1.7.3
+webtest
+pytest
+pytest-cov
+sqlalchemy
+pyramid_debugtoolbar
+zope.sqlalchemy
