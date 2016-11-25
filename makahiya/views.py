@@ -43,11 +43,11 @@ def set_led(request):
 		led_id = int(led_id)
 		value = int(value)
 	except ValueError:
-		return HTTPBadRequest('Id or value is number')
+		return HTTPBadRequest('Some number could not be casted')
 	if(plant_id != id):
 		return HTTPBadRequest('Id is 42')
 	if(led_id < 0 or led_id > 5):
-		return HTTPBadRequest('Invalid led ID')
+		return HTTPBadRequest('Invalid LED ID')
 	if((color != 'R' and color != 'G' and color != 'B' and color != 'W') or (color == 'W' and led_id != 0)):
 		return HTTPBadRequest('Invalid color')
 	if(value < 0 or value > 255):

@@ -2,3 +2,5 @@ venv/
 sql*
 *egg*
 makahiya/__pycache__
+.cache/
+.coverage
