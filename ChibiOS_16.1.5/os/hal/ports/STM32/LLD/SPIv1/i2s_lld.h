@@ -92,7 +92,7 @@
  */
 #if !defined(STM32_I2S_SPI1_MODE) || defined(__DOXYGEN__)
 #define STM32_I2S_SPI1_MODE                 (STM32_I2S_MODE_MASTER |        \
-                                             STM32_I2S_MODE_RX)
+                                             STM32_I2S_MODE_TX)
 #endif
 
 /**
@@ -100,7 +100,7 @@
  */
 #if !defined(STM32_I2S_SPI2_MODE) || defined(__DOXYGEN__)
 #define STM32_I2S_SPI2_MODE                 (STM32_I2S_MODE_MASTER |        \
-                                             STM32_I2S_MODE_RX)
+                                             STM32_I2S_MODE_TX)
 #endif
 
 /**
