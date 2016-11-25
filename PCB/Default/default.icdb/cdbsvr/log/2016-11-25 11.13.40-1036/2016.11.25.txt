@@ -1,0 +1,546 @@
+[2016.11.25 11:13:40] [0000m.00s.015ms] [0] WELCOME
+[2016.11.25 11:13:40] [0000m.00s.015ms] [1] iCDB Server ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2016.11.25 11:13:40] [0000m.00s.015ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2016.11.25 11:13:40] [0000m.00s.015ms] [1] Base flow version [7.9.4]
+[2016.11.25 11:13:40] [0000m.00s.015ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.25 11:13:40] [0000m.00s.015ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.25 11:13:40] [0000m.00s.015ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2016.11.25 11:13:40] [0000m.00s.015ms] [1] Machine [DESKTOP-OU0BNIR]  User [Sylvain]  PID [1036]
+[2016.11.25 11:13:40] [0000m.00s.015ms] [1] Operating system [Microsoft Home Premium Edition, 64-bit (build 9200)]
+[2016.11.25 11:13:40] [0000m.00s.015ms] [1] Current working dir [F:\Makahiya\PCB]
+[2016.11.25 11:13:40] [0000m.00s.015ms] [1] PATH [D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\help;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\_bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\IntelSGXPSW\bin\x64\Release\;C:\Program Files\Intel\IntelSGXPSW\bin\win32\Release\;C:\Program Files (x86)\Skype\Phone\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Users\sylva\AppData\Local\atom\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib]
+[2016.11.25 11:13:40] [0000m.00s.015ms] [1] SDD_HOME [D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2016.11.25 11:13:40] [0000m.00s.015ms] [1] SDD_PLATFORM [win32]
+[2016.11.25 11:13:40] [0000m.00s.015ms] [1] WDIR [D:\Programmes\ROSE\MentorGraphics\WDIR;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2016.11.25 11:13:40] [0000m.00s.031ms] [1] Local iCDB working dir [D:\Programmes\ROSE\MentorGraphics\WDIR\iCDB] on file system [NTFS]
+[2016.11.25 11:13:40] [0000m.00s.031ms] [1] S: Config file name [ServerWG.cfg]
+[2016.11.25 11:13:40] [0000m.00s.031ms] [2] S: Loading config files
+[2016.11.25 11:13:40] [0000m.00s.031ms] [1] Config file [F:\Makahiya\PCB\Default\default.icdb\cdbsvr\ServerWG.cfg] not found
+[2016.11.25 11:13:40] [0000m.00s.031ms] [1] Config: Non-default value [System.SingleUserMode] = [no]
+[2016.11.25 11:13:40] [0000m.00s.031ms] [3] S: Config loaded
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] S: Project path [F:\Makahiya\PCB\Default\default.icdb] on file system [NTFS]
+[2016.11.25 11:13:40] [0000m.00s.031ms] [1] S: WARNING: No project file (.prj) path specified
+[2016.11.25 11:13:40] [0000m.00s.031ms] [1] S: WARNING: Database auto-repair support DISABLED
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] S: Multi-user mode (config)
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] S: Event polling mode autodetection
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] S: Started up automatically by iCDB Client: DESKTOP-OU0BNIR:Sylvain:2536
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] S: Auto close mode
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] S: Database ID [6d0e-289f-ee7d-86ad-dce0-8382-de08-3850-47c3-02b1-4343-70a8]
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] PathTranslator: BEGIN dumping
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] PathTranslator: Local -> global path prefix list
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] PathTranslator: Global -> local path prefix list
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] PathTranslator: END dumping
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] S: START
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] S: Server startup lock file created
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] S: Listening for client connections on port [10000]
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] S: Server network ID [DESKTOP-OU0BNIR:137.194.22.104,DESKTOP-OU0BNIR:10000]
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] S: Server GUID [fabe-e0e5-bec0-ecac-4de0-8389-de08-3850-c984-02b1-4343-70a8]
+[2016.11.25 11:13:40] [0000m.00s.031ms] [0] S: Project GUID [6d0e-289f-ee7d-86ad-dce0-8382-de08-3850-47c3-02b1-4343-70a8]
+[2016.11.25 11:13:40] [0000m.00s.046ms] [0] S: Wrote data to server address file
+[2016.11.25 11:13:40] [0000m.00s.046ms] [0] S: Server startup lock file removed
+[2016.11.25 11:13:40] [0000m.00s.046ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.11.25 11:13:40] [0000m.00s.062ms] [0] S: Plugins loaded: [PIM] [ENetGen70] 
+[2016.11.25 11:13:40] [0000m.00s.062ms] [0] S: Local disc access time: 24 us
+[2016.11.25 11:13:40] [0000m.00s.062ms] [0] S: File server access time: 25 us
+[2016.11.25 11:13:40] [0000m.00s.062ms] [0] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] size [193280 (188.8 kB)]
+[2016.11.25 11:13:40] [0000m.00s.062ms] [1] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] opened in read-write mode
+[2016.11.25 11:13:40] [0000m.00s.062ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.25 11:13:40] [0000m.00s.062ms] [0] Database GUARD OK: [193280]
+[2016.11.25 11:13:40] [0000m.00s.062ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.25 11:13:40] [0000m.00s.062ms] [0] Database GUARD OK: [193280]
+[2016.11.25 11:13:40] [0000m.00s.062ms] [0] SingleFile: [71c2-bdc3-01d8-3f96] SFI version check [1009] [1009]
+[2016.11.25 11:13:40] [0000m.00s.062ms] [0] SingleFile: [71c2-bdc3-01d8-3f96] Database SFI header has been read in [2ms 476us]
+[2016.11.25 11:13:40] [0000m.00s.062ms] [0] iCDB Server PI: Server & plugin session [3148]
+[2016.11.25 11:13:40] [0000m.00s.062ms] [0] iCDB Server PI: Opening database [F:\Makahiya\PCB\Default\default.icdb]
+[2016.11.25 11:13:40] [0000m.00s.062ms] [0] iCDB Server PI: Database [F:\Makahiya\PCB\Default\default.icdb] opened
+[2016.11.25 11:13:40] [0000m.00s.093ms] [0] iCDB Database: Checking existence of constraint definitions
+[2016.11.25 11:13:40] [0000m.00s.093ms] [0] iCDB Database: Checking constraint definitions version
+[2016.11.25 11:13:40] [0000m.00s.125ms] [1] iCDB Database: Constraint definitions version [ce_ee.cns=7.10.24;user.cns=b83f-5623-433f-8ba7-b0d3-ff70-1d3f-f750-68fb-38d7-a6d6-f38b] up to date
+[2016.11.25 11:13:40] [0000m.00s.312ms] [0] iCDB Server PI: Initializing plugins
+[2016.11.25 11:13:40] [0000m.00s.312ms] [0] iCDB Server PI: Plugins initialized
+[2016.11.25 11:13:40] [0000m.00s.312ms] [0] S: iCDB database loaded
+[2016.11.25 11:13:40] [0000m.00s.312ms] [0] S: Starting threads
+[2016.11.25 11:13:40] [0000m.00s.312ms] [0] BT: Listening for broadcast messages on port [10000]
+[2016.11.25 11:13:40] [0000m.00s.312ms] [0] ProjectBackupManager: WARNING: Could not startup Project Backup engine - functionality not initialized
+[2016.11.25 11:13:40] [0000m.00s.312ms] [1] CMT: There are no clients - waiting [10 seconds]
+[2016.11.25 11:13:40] [0000m.00s.312ms] [0] IT: Session [3149] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [2536] created
+[2016.11.25 11:13:40] [0000m.00s.312ms] [1] SC[3149]: Registered sub-client [DCDV] with ID [1] for session ID [3149] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2536]
+[2016.11.25 11:13:40] [0000m.00s.422ms] [1] CMT: There are [1] clients now: 3149
+[2016.11.25 11:13:59] [0000m.19s.767ms] [0] IT: Session [3150] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [6900] created
+[2016.11.25 11:13:59] [0000m.19s.767ms] [1] ProjectBackupManager: Client [ClientData[ClientNetAddress[DESKTOP-OU0BNIR] # ClientUserName[Sylvain] # ClientProcessID[6900] # SessionID[3150]] # SubClientData[SubClientName[] # SubClientID[0]]] set project file (.prj): local path [F:\Makahiya\PCB\Makahiya.prj], global path [F:\Makahiya\PCB\Makahiya.prj]
+[2016.11.25 11:13:59] [0000m.19s.877ms] [1] CMT: There are [2] clients now: 3149, 3150
+[2016.11.25 11:13:59] [0000m.19s.923ms] [1] SC[3150]: Registered sub-client [Expedition PCB_163609] with ID [1] for session ID [3150] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:14:00] [0000m.20s.002ms] [1] SC[3150]: Registered sub-client [EEVM] with ID [2] for session ID [3150] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:14:00] [0000m.20s.455ms] [1] SC[3150]: UnRegistered sub-client [EEVM] with ID [2] for session ID [3150] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:14:03] [0000m.23s.580ms] [1] SC[3150]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3150] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:14:10] [0000m.30s.040ms] [0] DFAMT: File server access time: 45 us
+[2016.11.25 11:19:47] [0006m.07s.009ms] [1] SC[3150]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3150] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:19:47] [0006m.07s.036ms] [1] SC[3150]: UnRegistered sub-client [Expedition PCB_163609] with ID [1] for session ID [3150] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:19:47] [0006m.07s.290ms] [1] CMT: Removed client [3150]
+[2016.11.25 11:19:47] [0006m.07s.290ms] [1] CMT: There are [1] clients now: 3149
+[2016.11.25 11:19:47] [0006m.07s.616ms] [0] IT: Session [3151] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [6900] created
+[2016.11.25 11:19:47] [0006m.07s.617ms] [1] SC[3151]: Registered sub-client [Expedition PCB_511468] with ID [1] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:19:47] [0006m.07s.634ms] [1] CMT: There are [2] clients now: 3149, 3151
+[2016.11.25 11:19:48] [0006m.08s.247ms] [1] SC[3151]: Registered sub-client [ExpeditionCrossProber] with ID [2] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:24:52] [0011m.11s.984ms] [0] IT: Session [3152] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11768] created
+[2016.11.25 11:24:52] [0011m.11s.984ms] [1] SC[3152]: Registered sub-client [ICDBC] with ID [1] for session ID [3152] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11768]
+[2016.11.25 11:24:52] [0011m.12s.021ms] [1] SC[3152]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [3152] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11768]
+[2016.11.25 11:24:52] [0011m.12s.053ms] [1] CMT: There are [3] clients now: 3149, 3151, 3152
+[2016.11.25 11:24:58] [0011m.18s.609ms] [1] SC[3152]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [3152] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11768]
+[2016.11.25 11:24:58] [0011m.18s.609ms] [1] SC[3152]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [3152] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11768]
+[2016.11.25 11:24:58] [0011m.18s.709ms] [1] CMT: Removed client [3152]
+[2016.11.25 11:24:58] [0011m.18s.709ms] [1] CMT: There are [2] clients now: 3149, 3151
+[2016.11.25 11:24:59] [0011m.19s.748ms] [0] IT: Session [3153] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [12176] created
+[2016.11.25 11:24:59] [0011m.19s.748ms] [1] SC[3153]: Registered sub-client [Packager_823609] with ID [1] for session ID [3153] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12176]
+[2016.11.25 11:24:59] [0011m.19s.795ms] [1] CMT: There are [3] clients now: 3149, 3151, 3153
+[2016.11.25 11:25:00] [0011m.20s.049ms] [1] SC[3153]: UnRegistered sub-client [Packager_823609] with ID [1] for session ID [3153] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12176]
+[2016.11.25 11:25:00] [0011m.20s.127ms] [1] CMT: Removed client [3153]
+[2016.11.25 11:25:00] [0011m.20s.127ms] [1] CMT: There are [2] clients now: 3149, 3151
+[2016.11.25 11:25:27] [0011m.47s.025ms] [0] IT: Session [3154] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [2516] created
+[2016.11.25 11:25:27] [0011m.47s.025ms] [1] SC[3154]: Registered sub-client [ICDBC] with ID [1] for session ID [3154] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2516]
+[2016.11.25 11:25:27] [0011m.47s.062ms] [1] SC[3154]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [3154] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2516]
+[2016.11.25 11:25:27] [0011m.47s.140ms] [1] CMT: There are [3] clients now: 3149, 3151, 3154
+[2016.11.25 11:25:29] [0011m.49s.111ms] [1] SC[3154]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [3154] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2516]
+[2016.11.25 11:25:29] [0011m.49s.111ms] [1] SC[3154]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [3154] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2516]
+[2016.11.25 11:25:29] [0011m.49s.180ms] [1] CMT: Removed client [3154]
+[2016.11.25 11:25:29] [0011m.49s.180ms] [1] CMT: There are [2] clients now: 3149, 3151
+[2016.11.25 11:25:29] [0011m.49s.881ms] [0] IT: Session [3155] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [6228] created
+[2016.11.25 11:25:29] [0011m.49s.896ms] [1] SC[3155]: Registered sub-client [Packager_853734] with ID [1] for session ID [3155] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6228]
+[2016.11.25 11:25:30] [0011m.49s.959ms] [1] CMT: There are [3] clients now: 3149, 3151, 3155
+[2016.11.25 11:25:30] [0011m.50s.128ms] [1] SC[3155]: UnRegistered sub-client [Packager_853734] with ID [1] for session ID [3155] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6228]
+[2016.11.25 11:25:30] [0011m.50s.181ms] [1] CMT: Removed client [3155]
+[2016.11.25 11:25:30] [0011m.50s.181ms] [1] CMT: There are [2] clients now: 3149, 3151
+[2016.11.25 11:25:37] [0011m.56s.989ms] [1] SC[3151]: UnRegistered sub-client [ExpeditionCrossProber] with ID [2] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:37] [0011m.57s.005ms] [1] SC[3151]: Registered sub-client [EEVM_EEVM_1700648] with ID [3] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:37] [0011m.57s.005ms] [1] SC[3151]: UnRegistered sub-client [EEVM_EEVM_1700648] with ID [3] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:37] [0011m.57s.052ms] [1] SC[3151]: Registered sub-client [JobPrefsDBPI_860921] with ID [4] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:37] [0011m.57s.074ms] [1] SC[3151]: UnRegistered sub-client [JobPrefsDBPI_860921] with ID [4] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:39] [0011m.58s.961ms] [1] SC[3151]: Registered sub-client [JobPrefsDBPI_862828] with ID [5] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:39] [0011m.58s.972ms] [1] SC[3151]: UnRegistered sub-client [JobPrefsDBPI_862828] with ID [5] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:39] [0011m.59s.208ms] [0] IT: Session [3156] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11964] created
+[2016.11.25 11:25:39] [0011m.59s.209ms] [1] SC[3156]: Registered sub-client [Packager_863046] with ID [1] for session ID [3156] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11964]
+[2016.11.25 11:25:39] [0011m.59s.310ms] [1] CMT: There are [3] clients now: 3149, 3151, 3156
+[2016.11.25 11:25:39] [0011m.59s.466ms] [1] SC[3156]: UnRegistered sub-client [Packager_863046] with ID [1] for session ID [3156] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11964]
+[2016.11.25 11:25:39] [0011m.59s.526ms] [1] CMT: Removed client [3156]
+[2016.11.25 11:25:39] [0011m.59s.526ms] [1] CMT: There are [2] clients now: 3149, 3151
+[2016.11.25 11:25:40] [0012m.00s.911ms] [0] IT: Session [3157] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [2512] created
+[2016.11.25 11:25:40] [0012m.00s.927ms] [1] SC[3157]: Registered sub-client [Expedition_864750] with ID [1] for session ID [3157] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2512]
+[2016.11.25 11:25:41] [0012m.00s.942ms] [1] CMT: There are [3] clients now: 3149, 3151, 3157
+[2016.11.25 11:25:41] [0012m.00s.975ms] [1] SC[3157]: UnRegistered sub-client [Expedition_864750] with ID [1] for session ID [3157] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2512]
+[2016.11.25 11:25:41] [0012m.01s.058ms] [1] CMT: Removed client [3157]
+[2016.11.25 11:25:41] [0012m.01s.058ms] [1] CMT: There are [2] clients now: 3149, 3151
+[2016.11.25 11:25:41] [0012m.01s.580ms] [0] IT: Session [3158] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [2512] created
+[2016.11.25 11:25:41] [0012m.01s.580ms] [1] SC[3158]: Registered sub-client [JobPrefsDBPI_865437] with ID [1] for session ID [3158] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2512]
+[2016.11.25 11:25:41] [0012m.01s.596ms] [1] SC[3158]: UnRegistered sub-client [JobPrefsDBPI_865437] with ID [1] for session ID [3158] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2512]
+[2016.11.25 11:25:41] [0012m.01s.612ms] [1] CMT: There are [3] clients now: 3149, 3151, 3158
+[2016.11.25 11:25:41] [0012m.01s.612ms] [1] CMT: Removed client [3158]
+[2016.11.25 11:25:41] [0012m.01s.612ms] [1] CMT: There are [2] clients now: 3149, 3151
+[2016.11.25 11:25:42] [0012m.02s.181ms] [0] IT: Session [3159] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [2512] created
+[2016.11.25 11:25:42] [0012m.02s.181ms] [1] SC[3159]: Registered sub-client [JobPrefsDBPI_866031] with ID [1] for session ID [3159] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2512]
+[2016.11.25 11:25:42] [0012m.02s.275ms] [1] CMT: There are [3] clients now: 3149, 3151, 3159
+[2016.11.25 11:25:42] [0012m.02s.381ms] [1] SC[3159]: UnRegistered sub-client [JobPrefsDBPI_866031] with ID [1] for session ID [3159] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2512]
+[2016.11.25 11:25:42] [0012m.02s.397ms] [1] CMT: Removed client [3159]
+[2016.11.25 11:25:42] [0012m.02s.397ms] [1] CMT: There are [2] clients now: 3149, 3151
+[2016.11.25 11:25:43] [0012m.03s.213ms] [0] IT: Session [3160] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [10336] created
+[2016.11.25 11:25:43] [0012m.03s.213ms] [1] SC[3160]: Registered sub-client [JobPrefsDBPI_867031] with ID [1] for session ID [3160] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [10336]
+[2016.11.25 11:25:43] [0012m.03s.229ms] [1] SC[3160]: Registered sub-client [Expedition_867109] with ID [2] for session ID [3160] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [10336]
+[2016.11.25 11:25:43] [0012m.03s.260ms] [1] CMT: There are [3] clients now: 3149, 3151, 3160
+[2016.11.25 11:25:43] [0012m.03s.282ms] [1] SC[3160]: UnRegistered sub-client [JobPrefsDBPI_867031] with ID [1] for session ID [3160] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [10336]
+[2016.11.25 11:25:43] [0012m.03s.329ms] [1] SC[3160]: UnRegistered sub-client [Expedition_867109] with ID [2] for session ID [3160] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [10336]
+[2016.11.25 11:25:43] [0012m.03s.376ms] [1] CMT: Removed client [3160]
+[2016.11.25 11:25:43] [0012m.03s.376ms] [1] CMT: There are [2] clients now: 3149, 3151
+[2016.11.25 11:25:44] [0012m.04s.014ms] [1] SC[3151]: Registered sub-client [EEVM_EEVM_147694084] with ID [6] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:44] [0012m.04s.014ms] [1] SC[3151]: UnRegistered sub-client [EEVM_EEVM_147694084] with ID [6] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:44] [0012m.04s.030ms] [1] SC[3151]: Registered sub-client [EEVM_EEVM_147694084] with ID [7] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:44] [0012m.04s.030ms] [1] SC[3151]: UnRegistered sub-client [EEVM_EEVM_147694084] with ID [7] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:44] [0012m.04s.030ms] [1] SC[3151]: Registered sub-client [EEVM_EEVM_311498572] with ID [8] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:44] [0012m.04s.030ms] [1] SC[3151]: UnRegistered sub-client [EEVM_EEVM_311498572] with ID [8] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:44] [0012m.04s.215ms] [1] SC[3151]: UnRegistered sub-client [Expedition PCB_511468] with ID [1] for session ID [3151] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:44] [0012m.04s.261ms] [1] CMT: Removed client [3151]
+[2016.11.25 11:25:44] [0012m.04s.261ms] [1] CMT: There are [1] clients now: 3149
+[2016.11.25 11:25:44] [0012m.04s.383ms] [0] IT: Session [3161] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [6900] created
+[2016.11.25 11:25:44] [0012m.04s.383ms] [1] SC[3161]: Registered sub-client [Expedition PCB_868234] with ID [1] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:44] [0012m.04s.477ms] [1] CMT: There are [2] clients now: 3149, 3161
+[2016.11.25 11:25:46] [0012m.06s.435ms] [1] SC[3161]: Registered sub-client [JobPrefsDBPI_870312] with ID [2] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:46] [0012m.06s.445ms] [1] SC[3161]: UnRegistered sub-client [JobPrefsDBPI_870312] with ID [2] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:25:46] [0012m.06s.452ms] [1] SC[3161]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:45] [0013m.05s.414ms] [0] IT: Session [3162] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [10804] created
+[2016.11.25 11:26:45] [0013m.05s.414ms] [1] SC[3162]: Registered sub-client [ICDBC] with ID [1] for session ID [3162] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [10804]
+[2016.11.25 11:26:45] [0013m.05s.433ms] [1] SC[3162]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [3162] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [10804]
+[2016.11.25 11:26:45] [0013m.05s.498ms] [1] CMT: There are [3] clients now: 3149, 3161, 3162
+[2016.11.25 11:26:46] [0013m.06s.900ms] [1] SC[3162]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [3162] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [10804]
+[2016.11.25 11:26:46] [0013m.06s.900ms] [1] SC[3162]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [3162] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [10804]
+[2016.11.25 11:26:47] [0013m.06s.985ms] [1] CMT: Removed client [3162]
+[2016.11.25 11:26:47] [0013m.06s.985ms] [1] CMT: There are [2] clients now: 3149, 3161
+[2016.11.25 11:26:53] [0013m.13s.091ms] [1] SC[3161]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:53] [0013m.13s.091ms] [1] SC[3161]: Registered sub-client [EEVM_EEVM_1700648] with ID [4] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:53] [0013m.13s.091ms] [1] SC[3161]: UnRegistered sub-client [EEVM_EEVM_1700648] with ID [4] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:53] [0013m.13s.376ms] [1] SC[3161]: Registered sub-client [JobPrefsDBPI_937250] with ID [5] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:53] [0013m.13s.392ms] [1] SC[3161]: UnRegistered sub-client [JobPrefsDBPI_937250] with ID [5] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:54] [0013m.14s.430ms] [1] SC[3161]: Registered sub-client [JobPrefsDBPI_938296] with ID [6] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:54] [0013m.14s.441ms] [1] SC[3161]: UnRegistered sub-client [JobPrefsDBPI_938296] with ID [6] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:54] [0013m.14s.687ms] [0] IT: Session [3163] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11632] created
+[2016.11.25 11:26:54] [0013m.14s.689ms] [1] SC[3163]: Registered sub-client [Packager_938531] with ID [1] for session ID [3163] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11632]
+[2016.11.25 11:26:54] [0013m.14s.765ms] [1] CMT: There are [3] clients now: 3149, 3161, 3163
+[2016.11.25 11:26:54] [0013m.14s.938ms] [1] SC[3163]: UnRegistered sub-client [Packager_938531] with ID [1] for session ID [3163] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11632]
+[2016.11.25 11:26:55] [0013m.14s.982ms] [1] CMT: Removed client [3163]
+[2016.11.25 11:26:55] [0013m.14s.982ms] [1] CMT: There are [2] clients now: 3149, 3161
+[2016.11.25 11:26:56] [0013m.15s.970ms] [0] IT: Session [3164] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11756] created
+[2016.11.25 11:26:56] [0013m.15s.970ms] [1] SC[3164]: Registered sub-client [Expedition_939812] with ID [1] for session ID [3164] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11756]
+[2016.11.25 11:26:56] [0013m.16s.017ms] [1] SC[3164]: UnRegistered sub-client [Expedition_939812] with ID [1] for session ID [3164] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11756]
+[2016.11.25 11:26:56] [0013m.16s.065ms] [1] CMT: There are [3] clients now: 3149, 3161, 3164
+[2016.11.25 11:26:56] [0013m.16s.065ms] [1] CMT: Removed client [3164]
+[2016.11.25 11:26:56] [0013m.16s.065ms] [1] CMT: There are [2] clients now: 3149, 3161
+[2016.11.25 11:26:56] [0013m.16s.613ms] [0] IT: Session [3165] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11756] created
+[2016.11.25 11:26:56] [0013m.16s.613ms] [1] SC[3165]: Registered sub-client [JobPrefsDBPI_940468] with ID [1] for session ID [3165] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11756]
+[2016.11.25 11:26:56] [0013m.16s.629ms] [1] SC[3165]: UnRegistered sub-client [JobPrefsDBPI_940468] with ID [1] for session ID [3165] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11756]
+[2016.11.25 11:26:56] [0013m.16s.697ms] [1] CMT: There are [3] clients now: 3149, 3161, 3165
+[2016.11.25 11:26:56] [0013m.16s.697ms] [1] CMT: Removed client [3165]
+[2016.11.25 11:26:56] [0013m.16s.697ms] [1] CMT: There are [2] clients now: 3149, 3161
+[2016.11.25 11:26:57] [0013m.17s.198ms] [0] IT: Session [3166] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11756] created
+[2016.11.25 11:26:57] [0013m.17s.198ms] [1] SC[3166]: Registered sub-client [JobPrefsDBPI_941046] with ID [1] for session ID [3166] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11756]
+[2016.11.25 11:26:57] [0013m.17s.230ms] [1] CMT: There are [3] clients now: 3149, 3161, 3166
+[2016.11.25 11:26:57] [0013m.17s.351ms] [1] SC[3166]: UnRegistered sub-client [JobPrefsDBPI_941046] with ID [1] for session ID [3166] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11756]
+[2016.11.25 11:26:57] [0013m.17s.467ms] [1] CMT: Removed client [3166]
+[2016.11.25 11:26:57] [0013m.17s.467ms] [1] CMT: There are [2] clients now: 3149, 3161
+[2016.11.25 11:26:58] [0013m.17s.983ms] [0] IT: Session [3167] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [10020] created
+[2016.11.25 11:26:58] [0013m.17s.983ms] [1] SC[3167]: Registered sub-client [JobPrefsDBPI_941828] with ID [1] for session ID [3167] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [10020]
+[2016.11.25 11:26:58] [0013m.17s.998ms] [1] SC[3167]: Registered sub-client [Expedition_941875] with ID [2] for session ID [3167] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [10020]
+[2016.11.25 11:26:58] [0013m.18s.030ms] [1] SC[3167]: UnRegistered sub-client [JobPrefsDBPI_941828] with ID [1] for session ID [3167] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [10020]
+[2016.11.25 11:26:58] [0013m.18s.045ms] [1] CMT: There are [3] clients now: 3149, 3161, 3167
+[2016.11.25 11:26:58] [0013m.18s.083ms] [1] SC[3167]: UnRegistered sub-client [Expedition_941875] with ID [2] for session ID [3167] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [10020]
+[2016.11.25 11:26:58] [0013m.18s.146ms] [1] CMT: Removed client [3167]
+[2016.11.25 11:26:58] [0013m.18s.146ms] [1] CMT: There are [2] clients now: 3149, 3161
+[2016.11.25 11:26:58] [0013m.18s.899ms] [1] SC[3161]: Registered sub-client [EEVM_EEVM_148843468] with ID [7] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:58] [0013m.18s.899ms] [1] SC[3161]: UnRegistered sub-client [EEVM_EEVM_148843468] with ID [7] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:58] [0013m.18s.914ms] [1] SC[3161]: Registered sub-client [EEVM_EEVM_148843468] with ID [8] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:58] [0013m.18s.914ms] [1] SC[3161]: UnRegistered sub-client [EEVM_EEVM_148843468] with ID [8] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:58] [0013m.18s.914ms] [1] SC[3161]: Registered sub-client [EEVM_EEVM_148843732] with ID [9] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:58] [0013m.18s.914ms] [1] SC[3161]: UnRegistered sub-client [EEVM_EEVM_148843732] with ID [9] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:59] [0013m.19s.030ms] [1] SC[3161]: UnRegistered sub-client [Expedition PCB_868234] with ID [1] for session ID [3161] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:59] [0013m.19s.130ms] [1] CMT: Removed client [3161]
+[2016.11.25 11:26:59] [0013m.19s.130ms] [1] CMT: There are [1] clients now: 3149
+[2016.11.25 11:26:59] [0013m.19s.600ms] [0] IT: Session [3168] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [6900] created
+[2016.11.25 11:26:59] [0013m.19s.615ms] [1] SC[3168]: Registered sub-client [Expedition PCB_943453] with ID [1] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:26:59] [0013m.19s.684ms] [1] CMT: There are [2] clients now: 3149, 3168
+[2016.11.25 11:27:01] [0013m.21s.305ms] [1] SC[3168]: Registered sub-client [JobPrefsDBPI_945171] with ID [2] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:27:01] [0013m.21s.314ms] [1] SC[3168]: UnRegistered sub-client [JobPrefsDBPI_945171] with ID [2] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:27:01] [0013m.21s.320ms] [1] SC[3168]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:02] [0022m.22s.680ms] [0] IT: Session [3169] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [9852] created
+[2016.11.25 11:36:02] [0022m.22s.680ms] [1] SC[3169]: Registered sub-client [ICDBC] with ID [1] for session ID [3169] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [9852]
+[2016.11.25 11:36:02] [0022m.22s.699ms] [1] SC[3169]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [3169] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [9852]
+[2016.11.25 11:36:02] [0022m.22s.749ms] [1] CMT: There are [3] clients now: 3149, 3168, 3169
+[2016.11.25 11:36:06] [0022m.26s.439ms] [1] SC[3169]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [3169] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [9852]
+[2016.11.25 11:36:06] [0022m.26s.454ms] [1] SC[3169]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [3169] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [9852]
+[2016.11.25 11:36:06] [0022m.26s.470ms] [1] CMT: Removed client [3169]
+[2016.11.25 11:36:06] [0022m.26s.470ms] [1] CMT: There are [2] clients now: 3149, 3168
+[2016.11.25 11:36:07] [0022m.27s.071ms] [0] IT: Session [3170] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [3640] created
+[2016.11.25 11:36:07] [0022m.27s.071ms] [1] SC[3170]: Registered sub-client [Packager_1490921] with ID [1] for session ID [3170] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [3640]
+[2016.11.25 11:36:07] [0022m.27s.102ms] [1] CMT: There are [3] clients now: 3149, 3168, 3170
+[2016.11.25 11:36:07] [0022m.27s.305ms] [1] SC[3170]: UnRegistered sub-client [Packager_1490921] with ID [1] for session ID [3170] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [3640]
+[2016.11.25 11:36:07] [0022m.27s.340ms] [1] CMT: Removed client [3170]
+[2016.11.25 11:36:07] [0022m.27s.340ms] [1] CMT: There are [2] clients now: 3149, 3168
+[2016.11.25 11:36:13] [0022m.33s.131ms] [1] SC[3168]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:13] [0022m.33s.147ms] [1] SC[3168]: Registered sub-client [EEVM_EEVM_1700648] with ID [4] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:13] [0022m.33s.147ms] [1] SC[3168]: UnRegistered sub-client [EEVM_EEVM_1700648] with ID [4] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:13] [0022m.33s.347ms] [1] SC[3168]: Registered sub-client [JobPrefsDBPI_1497218] with ID [5] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:13] [0022m.33s.363ms] [1] SC[3168]: UnRegistered sub-client [JobPrefsDBPI_1497218] with ID [5] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:15] [0022m.35s.011ms] [1] SC[3168]: Registered sub-client [JobPrefsDBPI_1498890] with ID [6] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:15] [0022m.35s.022ms] [1] SC[3168]: UnRegistered sub-client [JobPrefsDBPI_1498890] with ID [6] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:15] [0022m.35s.252ms] [0] IT: Session [3171] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11492] created
+[2016.11.25 11:36:15] [0022m.35s.253ms] [1] SC[3171]: Registered sub-client [Packager_1499093] with ID [1] for session ID [3171] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11492]
+[2016.11.25 11:36:15] [0022m.35s.291ms] [1] CMT: There are [3] clients now: 3149, 3168, 3171
+[2016.11.25 11:36:15] [0022m.35s.528ms] [1] SC[3171]: UnRegistered sub-client [Packager_1499093] with ID [1] for session ID [3171] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11492]
+[2016.11.25 11:36:15] [0022m.35s.616ms] [1] CMT: Removed client [3171]
+[2016.11.25 11:36:15] [0022m.35s.616ms] [1] CMT: There are [2] clients now: 3149, 3168
+[2016.11.25 11:36:16] [0022m.36s.570ms] [0] IT: Session [3172] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [3736] created
+[2016.11.25 11:36:16] [0022m.36s.570ms] [1] SC[3172]: Registered sub-client [Expedition_1500406] with ID [1] for session ID [3172] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [3736]
+[2016.11.25 11:36:16] [0022m.36s.586ms] [1] CMT: There are [3] clients now: 3149, 3168, 3172
+[2016.11.25 11:36:16] [0022m.36s.623ms] [1] SC[3172]: UnRegistered sub-client [Expedition_1500406] with ID [1] for session ID [3172] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [3736]
+[2016.11.25 11:36:16] [0022m.36s.701ms] [1] CMT: Removed client [3172]
+[2016.11.25 11:36:16] [0022m.36s.701ms] [1] CMT: There are [2] clients now: 3149, 3168
+[2016.11.25 11:36:17] [0022m.37s.239ms] [0] IT: Session [3173] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [3736] created
+[2016.11.25 11:36:17] [0022m.37s.239ms] [1] SC[3173]: Registered sub-client [JobPrefsDBPI_1501078] with ID [1] for session ID [3173] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [3736]
+[2016.11.25 11:36:17] [0022m.37s.255ms] [1] SC[3173]: UnRegistered sub-client [JobPrefsDBPI_1501078] with ID [1] for session ID [3173] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [3736]
+[2016.11.25 11:36:17] [0022m.37s.355ms] [1] CMT: There are [3] clients now: 3149, 3168, 3173
+[2016.11.25 11:36:17] [0022m.37s.355ms] [1] CMT: Removed client [3173]
+[2016.11.25 11:36:17] [0022m.37s.355ms] [1] CMT: There are [2] clients now: 3149, 3168
+[2016.11.25 11:36:17] [0022m.37s.823ms] [0] IT: Session [3174] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [3736] created
+[2016.11.25 11:36:17] [0022m.37s.823ms] [1] SC[3174]: Registered sub-client [JobPrefsDBPI_1501671] with ID [1] for session ID [3174] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [3736]
+[2016.11.25 11:36:17] [0022m.37s.902ms] [1] CMT: There are [3] clients now: 3149, 3168, 3174
+[2016.11.25 11:36:18] [0022m.37s.971ms] [1] SC[3174]: UnRegistered sub-client [JobPrefsDBPI_1501671] with ID [1] for session ID [3174] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [3736]
+[2016.11.25 11:36:18] [0022m.38s.002ms] [1] CMT: Removed client [3174]
+[2016.11.25 11:36:18] [0022m.38s.002ms] [1] CMT: There are [2] clients now: 3149, 3168
+[2016.11.25 11:36:18] [0022m.38s.556ms] [0] IT: Session [3175] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [7208] created
+[2016.11.25 11:36:18] [0022m.38s.556ms] [1] SC[3175]: Registered sub-client [JobPrefsDBPI_1502406] with ID [1] for session ID [3175] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7208]
+[2016.11.25 11:36:18] [0022m.38s.587ms] [1] SC[3175]: Registered sub-client [Expedition_1502453] with ID [2] for session ID [3175] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7208]
+[2016.11.25 11:36:18] [0022m.38s.640ms] [1] SC[3175]: UnRegistered sub-client [JobPrefsDBPI_1502406] with ID [1] for session ID [3175] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7208]
+[2016.11.25 11:36:18] [0022m.38s.655ms] [1] CMT: There are [3] clients now: 3149, 3168, 3175
+[2016.11.25 11:36:18] [0022m.38s.687ms] [1] SC[3175]: UnRegistered sub-client [Expedition_1502453] with ID [2] for session ID [3175] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7208]
+[2016.11.25 11:36:18] [0022m.38s.771ms] [1] CMT: Removed client [3175]
+[2016.11.25 11:36:18] [0022m.38s.771ms] [1] CMT: There are [2] clients now: 3149, 3168
+[2016.11.25 11:36:19] [0022m.39s.441ms] [1] SC[3168]: Registered sub-client [EEVM_EEVM_148841620] with ID [7] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:19] [0022m.39s.456ms] [1] SC[3168]: UnRegistered sub-client [EEVM_EEVM_148841620] with ID [7] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:19] [0022m.39s.456ms] [1] SC[3168]: Registered sub-client [EEVM_EEVM_148841620] with ID [8] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:19] [0022m.39s.456ms] [1] SC[3168]: UnRegistered sub-client [EEVM_EEVM_148841620] with ID [8] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:19] [0022m.39s.456ms] [1] SC[3168]: Registered sub-client [EEVM_EEVM_311494348] with ID [9] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:19] [0022m.39s.472ms] [1] SC[3168]: UnRegistered sub-client [EEVM_EEVM_311494348] with ID [9] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:19] [0022m.39s.587ms] [1] SC[3168]: UnRegistered sub-client [Expedition PCB_943453] with ID [1] for session ID [3168] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:19] [0022m.39s.672ms] [1] CMT: Removed client [3168]
+[2016.11.25 11:36:19] [0022m.39s.672ms] [1] CMT: There are [1] clients now: 3149
+[2016.11.25 11:36:19] [0022m.39s.872ms] [0] IT: Session [3176] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [6900] created
+[2016.11.25 11:36:19] [0022m.39s.872ms] [1] SC[3176]: Registered sub-client [Expedition PCB_1503734] with ID [1] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:19] [0022m.39s.888ms] [1] CMT: There are [2] clients now: 3149, 3176
+[2016.11.25 11:36:22] [0022m.41s.955ms] [1] SC[3176]: Registered sub-client [JobPrefsDBPI_1505828] with ID [2] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:22] [0022m.41s.965ms] [1] SC[3176]: UnRegistered sub-client [JobPrefsDBPI_1505828] with ID [2] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:36:22] [0022m.41s.971ms] [1] SC[3176]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:51] [0025m.11s.511ms] [0] IT: Session [3177] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [12064] created
+[2016.11.25 11:38:51] [0025m.11s.511ms] [1] SC[3177]: Registered sub-client [ICDBC] with ID [1] for session ID [3177] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12064]
+[2016.11.25 11:38:51] [0025m.11s.527ms] [1] CMT: There are [3] clients now: 3149, 3176, 3177
+[2016.11.25 11:38:51] [0025m.11s.546ms] [1] SC[3177]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [3177] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12064]
+[2016.11.25 11:38:53] [0025m.13s.529ms] [1] SC[3177]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [3177] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12064]
+[2016.11.25 11:38:53] [0025m.13s.529ms] [1] SC[3177]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [3177] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12064]
+[2016.11.25 11:38:53] [0025m.13s.583ms] [1] CMT: Removed client [3177]
+[2016.11.25 11:38:53] [0025m.13s.583ms] [1] CMT: There are [2] clients now: 3149, 3176
+[2016.11.25 11:38:53] [0025m.13s.630ms] [1] SC[3176]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:53] [0025m.13s.630ms] [1] SC[3176]: Registered sub-client [EEVM_EEVM_1700648] with ID [4] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:53] [0025m.13s.630ms] [1] SC[3176]: UnRegistered sub-client [EEVM_EEVM_1700648] with ID [4] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:53] [0025m.13s.814ms] [1] SC[3176]: Registered sub-client [JobPrefsDBPI_1657671] with ID [5] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:53] [0025m.13s.814ms] [1] SC[3176]: UnRegistered sub-client [JobPrefsDBPI_1657671] with ID [5] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:55] [0025m.15s.137ms] [1] SC[3176]: Registered sub-client [JobPrefsDBPI_1659015] with ID [6] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:55] [0025m.15s.160ms] [1] SC[3176]: UnRegistered sub-client [JobPrefsDBPI_1659015] with ID [6] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:55] [0025m.15s.408ms] [0] IT: Session [3178] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [7608] created
+[2016.11.25 11:38:55] [0025m.15s.409ms] [1] SC[3178]: Registered sub-client [Packager_1659250] with ID [1] for session ID [3178] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7608]
+[2016.11.25 11:38:55] [0025m.15s.434ms] [1] CMT: There are [3] clients now: 3149, 3176, 3178
+[2016.11.25 11:38:55] [0025m.15s.653ms] [1] SC[3178]: UnRegistered sub-client [Packager_1659250] with ID [1] for session ID [3178] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7608]
+[2016.11.25 11:38:55] [0025m.15s.759ms] [1] CMT: Removed client [3178]
+[2016.11.25 11:38:55] [0025m.15s.759ms] [1] CMT: There are [2] clients now: 3149, 3176
+[2016.11.25 11:38:56] [0025m.16s.675ms] [0] IT: Session [3179] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [12076] created
+[2016.11.25 11:38:56] [0025m.16s.675ms] [1] SC[3179]: Registered sub-client [Expedition_1660515] with ID [1] for session ID [3179] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12076]
+[2016.11.25 11:38:56] [0025m.16s.721ms] [1] CMT: There are [3] clients now: 3149, 3176, 3179
+[2016.11.25 11:38:56] [0025m.16s.721ms] [1] SC[3179]: UnRegistered sub-client [Expedition_1660515] with ID [1] for session ID [3179] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12076]
+[2016.11.25 11:38:56] [0025m.16s.837ms] [1] CMT: Removed client [3179]
+[2016.11.25 11:38:56] [0025m.16s.837ms] [1] CMT: There are [2] clients now: 3149, 3176
+[2016.11.25 11:38:57] [0025m.17s.322ms] [0] IT: Session [3180] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [12076] created
+[2016.11.25 11:38:57] [0025m.17s.322ms] [1] SC[3180]: Registered sub-client [JobPrefsDBPI_1661187] with ID [1] for session ID [3180] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12076]
+[2016.11.25 11:38:57] [0025m.17s.355ms] [1] SC[3180]: UnRegistered sub-client [JobPrefsDBPI_1661187] with ID [1] for session ID [3180] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12076]
+[2016.11.25 11:38:57] [0025m.17s.376ms] [1] CMT: There are [3] clients now: 3149, 3176, 3180
+[2016.11.25 11:38:57] [0025m.17s.376ms] [1] CMT: Removed client [3180]
+[2016.11.25 11:38:57] [0025m.17s.376ms] [1] CMT: There are [2] clients now: 3149, 3176
+[2016.11.25 11:38:57] [0025m.17s.907ms] [0] IT: Session [3181] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [12076] created
+[2016.11.25 11:38:57] [0025m.17s.907ms] [1] SC[3181]: Registered sub-client [JobPrefsDBPI_1661750] with ID [1] for session ID [3181] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12076]
+[2016.11.25 11:38:57] [0025m.17s.923ms] [1] CMT: There are [3] clients now: 3149, 3176, 3181
+[2016.11.25 11:38:58] [0025m.18s.060ms] [1] SC[3181]: UnRegistered sub-client [JobPrefsDBPI_1661750] with ID [1] for session ID [3181] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [12076]
+[2016.11.25 11:38:58] [0025m.18s.139ms] [1] CMT: Removed client [3181]
+[2016.11.25 11:38:58] [0025m.18s.139ms] [1] CMT: There are [2] clients now: 3149, 3176
+[2016.11.25 11:38:58] [0025m.18s.661ms] [0] IT: Session [3182] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11968] created
+[2016.11.25 11:38:58] [0025m.18s.661ms] [1] SC[3182]: Registered sub-client [JobPrefsDBPI_1662500] with ID [1] for session ID [3182] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11968]
+[2016.11.25 11:38:58] [0025m.18s.692ms] [1] CMT: There are [3] clients now: 3149, 3176, 3182
+[2016.11.25 11:38:58] [0025m.18s.692ms] [1] SC[3182]: Registered sub-client [Expedition_1662546] with ID [2] for session ID [3182] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11968]
+[2016.11.25 11:38:58] [0025m.18s.723ms] [1] SC[3182]: UnRegistered sub-client [JobPrefsDBPI_1662500] with ID [1] for session ID [3182] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11968]
+[2016.11.25 11:38:58] [0025m.18s.777ms] [1] SC[3182]: UnRegistered sub-client [Expedition_1662546] with ID [2] for session ID [3182] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11968]
+[2016.11.25 11:38:58] [0025m.18s.793ms] [1] CMT: Removed client [3182]
+[2016.11.25 11:38:58] [0025m.18s.793ms] [1] CMT: There are [2] clients now: 3149, 3176
+[2016.11.25 11:38:59] [0025m.19s.540ms] [1] SC[3176]: Registered sub-client [EEVM_EEVM_311498572] with ID [7] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:59] [0025m.19s.560ms] [1] SC[3176]: UnRegistered sub-client [EEVM_EEVM_311498572] with ID [7] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:59] [0025m.19s.562ms] [1] SC[3176]: Registered sub-client [EEVM_EEVM_311498572] with ID [8] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:59] [0025m.19s.562ms] [1] SC[3176]: UnRegistered sub-client [EEVM_EEVM_311498572] with ID [8] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:59] [0025m.19s.562ms] [1] SC[3176]: Registered sub-client [EEVM_EEVM_311492764] with ID [9] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:59] [0025m.19s.562ms] [1] SC[3176]: UnRegistered sub-client [EEVM_EEVM_311492764] with ID [9] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:59] [0025m.19s.693ms] [1] SC[3176]: UnRegistered sub-client [Expedition PCB_1503734] with ID [1] for session ID [3176] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:38:59] [0025m.19s.793ms] [1] CMT: Removed client [3176]
+[2016.11.25 11:38:59] [0025m.19s.793ms] [1] CMT: There are [1] clients now: 3149
+[2016.11.25 11:39:00] [0025m.20s.209ms] [0] IT: Session [3183] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [6900] created
+[2016.11.25 11:39:00] [0025m.20s.209ms] [1] SC[3183]: Registered sub-client [Expedition PCB_1664046] with ID [1] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:39:00] [0025m.20s.240ms] [1] CMT: There are [2] clients now: 3149, 3183
+[2016.11.25 11:39:02] [0025m.22s.001ms] [1] SC[3183]: Registered sub-client [JobPrefsDBPI_1665875] with ID [2] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:39:02] [0025m.22s.011ms] [1] SC[3183]: UnRegistered sub-client [JobPrefsDBPI_1665875] with ID [2] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 11:39:02] [0025m.22s.018ms] [1] SC[3183]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:00:43] [0047m.03s.399ms] [0] IT: Session [3184] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [7388] created
+[2016.11.25 12:00:43] [0047m.03s.415ms] [1] SC[3184]: Registered sub-client [ICDBC] with ID [1] for session ID [3184] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7388]
+[2016.11.25 12:00:43] [0047m.03s.430ms] [1] SC[3184]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [3184] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7388]
+[2016.11.25 12:00:43] [0047m.03s.446ms] [1] CMT: There are [3] clients now: 3149, 3183, 3184
+[2016.11.25 12:00:47] [0047m.07s.335ms] [1] SC[3184]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [3184] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7388]
+[2016.11.25 12:00:47] [0047m.07s.335ms] [1] SC[3184]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [3184] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7388]
+[2016.11.25 12:00:47] [0047m.07s.388ms] [1] CMT: Removed client [3184]
+[2016.11.25 12:00:47] [0047m.07s.388ms] [1] CMT: There are [2] clients now: 3149, 3183
+[2016.11.25 12:00:48] [0047m.08s.020ms] [0] IT: Session [3185] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [8368] created
+[2016.11.25 12:00:48] [0047m.08s.020ms] [1] SC[3185]: Registered sub-client [Packager_2971812] with ID [1] for session ID [3185] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8368]
+[2016.11.25 12:00:48] [0047m.08s.135ms] [1] CMT: There are [3] clients now: 3149, 3183, 3185
+[2016.11.25 12:00:48] [0047m.08s.305ms] [1] SC[3185]: UnRegistered sub-client [Packager_2971812] with ID [1] for session ID [3185] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8368]
+[2016.11.25 12:00:48] [0047m.08s.336ms] [1] CMT: Removed client [3185]
+[2016.11.25 12:00:48] [0047m.08s.336ms] [1] CMT: There are [2] clients now: 3149, 3183
+[2016.11.25 12:00:55] [0047m.15s.163ms] [1] SC[3183]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:00:55] [0047m.15s.163ms] [1] SC[3183]: Registered sub-client [EEVM_EEVM_1700648] with ID [4] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:00:55] [0047m.15s.163ms] [1] SC[3183]: UnRegistered sub-client [EEVM_EEVM_1700648] with ID [4] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:00:55] [0047m.15s.363ms] [1] SC[3183]: Registered sub-client [JobPrefsDBPI_2979234] with ID [5] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:00:55] [0047m.15s.379ms] [1] SC[3183]: UnRegistered sub-client [JobPrefsDBPI_2979234] with ID [5] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:00:56] [0047m.16s.482ms] [1] SC[3183]: Registered sub-client [JobPrefsDBPI_2980359] with ID [6] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:00:56] [0047m.16s.493ms] [1] SC[3183]: UnRegistered sub-client [JobPrefsDBPI_2980359] with ID [6] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:00:56] [0047m.16s.728ms] [0] IT: Session [3186] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [8340] created
+[2016.11.25 12:00:56] [0047m.16s.729ms] [1] SC[3186]: Registered sub-client [Packager_2980578] with ID [1] for session ID [3186] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8340]
+[2016.11.25 12:00:56] [0047m.16s.815ms] [1] CMT: There are [3] clients now: 3149, 3183, 3186
+[2016.11.25 12:00:57] [0047m.16s.988ms] [1] SC[3186]: UnRegistered sub-client [Packager_2980578] with ID [1] for session ID [3186] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8340]
+[2016.11.25 12:00:57] [0047m.17s.032ms] [1] CMT: Removed client [3186]
+[2016.11.25 12:00:57] [0047m.17s.032ms] [1] CMT: There are [2] clients now: 3149, 3183
+[2016.11.25 12:00:58] [0047m.18s.064ms] [0] IT: Session [3187] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [8556] created
+[2016.11.25 12:00:58] [0047m.18s.064ms] [1] SC[3187]: Registered sub-client [Expedition_2981921] with ID [1] for session ID [3187] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8556]
+[2016.11.25 12:00:58] [0047m.18s.095ms] [1] CMT: There are [3] clients now: 3149, 3183, 3187
+[2016.11.25 12:00:58] [0047m.18s.127ms] [1] SC[3187]: UnRegistered sub-client [Expedition_2981921] with ID [1] for session ID [3187] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8556]
+[2016.11.25 12:00:58] [0047m.18s.211ms] [1] CMT: Removed client [3187]
+[2016.11.25 12:00:58] [0047m.18s.211ms] [1] CMT: There are [2] clients now: 3149, 3183
+[2016.11.25 12:00:58] [0047m.18s.711ms] [0] IT: Session [3188] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [8556] created
+[2016.11.25 12:00:58] [0047m.18s.711ms] [1] SC[3188]: Registered sub-client [JobPrefsDBPI_2982578] with ID [1] for session ID [3188] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8556]
+[2016.11.25 12:00:58] [0047m.18s.742ms] [1] SC[3188]: UnRegistered sub-client [JobPrefsDBPI_2982578] with ID [1] for session ID [3188] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8556]
+[2016.11.25 12:00:58] [0047m.18s.758ms] [1] CMT: There are [3] clients now: 3149, 3183, 3188
+[2016.11.25 12:00:58] [0047m.18s.759ms] [1] CMT: Removed client [3188]
+[2016.11.25 12:00:58] [0047m.18s.759ms] [1] CMT: There are [2] clients now: 3149, 3183
+[2016.11.25 12:00:59] [0047m.19s.296ms] [0] IT: Session [3189] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [8556] created
+[2016.11.25 12:00:59] [0047m.19s.296ms] [1] SC[3189]: Registered sub-client [JobPrefsDBPI_2983140] with ID [1] for session ID [3189] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8556]
+[2016.11.25 12:00:59] [0047m.19s.312ms] [1] CMT: There are [3] clients now: 3149, 3183, 3189
+[2016.11.25 12:00:59] [0047m.19s.443ms] [1] SC[3189]: UnRegistered sub-client [JobPrefsDBPI_2983140] with ID [1] for session ID [3189] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [8556]
+[2016.11.25 12:00:59] [0047m.19s.528ms] [1] CMT: Removed client [3189]
+[2016.11.25 12:00:59] [0047m.19s.528ms] [1] CMT: There are [2] clients now: 3149, 3183
+[2016.11.25 12:01:00] [0047m.20s.097ms] [0] IT: Session [3190] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [9824] created
+[2016.11.25 12:01:00] [0047m.20s.097ms] [1] SC[3190]: Registered sub-client [JobPrefsDBPI_2983937] with ID [1] for session ID [3190] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [9824]
+[2016.11.25 12:01:00] [0047m.20s.129ms] [1] SC[3190]: Registered sub-client [Expedition_2983984] with ID [2] for session ID [3190] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [9824]
+[2016.11.25 12:01:00] [0047m.20s.198ms] [1] CMT: There are [3] clients now: 3149, 3183, 3190
+[2016.11.25 12:01:00] [0047m.20s.198ms] [1] SC[3190]: UnRegistered sub-client [JobPrefsDBPI_2983937] with ID [1] for session ID [3190] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [9824]
+[2016.11.25 12:01:00] [0047m.20s.265ms] [1] SC[3190]: UnRegistered sub-client [Expedition_2983984] with ID [2] for session ID [3190] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [9824]
+[2016.11.25 12:01:00] [0047m.20s.298ms] [1] CMT: Removed client [3190]
+[2016.11.25 12:01:00] [0047m.20s.298ms] [1] CMT: There are [2] clients now: 3149, 3183
+[2016.11.25 12:01:01] [0047m.21s.014ms] [1] SC[3183]: Registered sub-client [EEVM_EEVM_311493028] with ID [7] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:01:01] [0047m.21s.029ms] [1] SC[3183]: UnRegistered sub-client [EEVM_EEVM_311493028] with ID [7] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:01:01] [0047m.21s.029ms] [1] SC[3183]: Registered sub-client [EEVM_EEVM_311493028] with ID [8] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:01:01] [0047m.21s.029ms] [1] SC[3183]: UnRegistered sub-client [EEVM_EEVM_311493028] with ID [8] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:01:01] [0047m.21s.029ms] [1] SC[3183]: Registered sub-client [EEVM_EEVM_311495668] with ID [9] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:01:01] [0047m.21s.045ms] [1] SC[3183]: UnRegistered sub-client [EEVM_EEVM_311495668] with ID [9] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:01:01] [0047m.21s.167ms] [1] SC[3183]: UnRegistered sub-client [Expedition PCB_1664046] with ID [1] for session ID [3183] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:01:01] [0047m.21s.263ms] [1] CMT: Removed client [3183]
+[2016.11.25 12:01:01] [0047m.21s.263ms] [1] CMT: There are [1] clients now: 3149
+[2016.11.25 12:01:01] [0047m.21s.615ms] [0] IT: Session [3191] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [6900] created
+[2016.11.25 12:01:01] [0047m.21s.615ms] [1] SC[3191]: Registered sub-client [Expedition PCB_2985453] with ID [1] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:01:01] [0047m.21s.714ms] [1] CMT: There are [2] clients now: 3149, 3191
+[2016.11.25 12:01:04] [0047m.24s.040ms] [1] SC[3191]: Registered sub-client [JobPrefsDBPI_2987906] with ID [2] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:01:04] [0047m.24s.049ms] [1] SC[3191]: UnRegistered sub-client [JobPrefsDBPI_2987906] with ID [2] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:01:04] [0047m.24s.056ms] [1] SC[3191]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:17] [0053m.37s.198ms] [0] IT: Session [3192] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11280] created
+[2016.11.25 12:07:17] [0053m.37s.198ms] [1] SC[3192]: Registered sub-client [ICDBC] with ID [1] for session ID [3192] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11280]
+[2016.11.25 12:07:17] [0053m.37s.214ms] [1] SC[3192]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [3192] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11280]
+[2016.11.25 12:07:17] [0053m.37s.283ms] [1] CMT: There are [3] clients now: 3149, 3191, 3192
+[2016.11.25 12:07:19] [0053m.39s.617ms] [1] SC[3192]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [3192] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11280]
+[2016.11.25 12:07:19] [0053m.39s.617ms] [1] SC[3192]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [3192] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11280]
+[2016.11.25 12:07:19] [0053m.39s.633ms] [1] CMT: Removed client [3192]
+[2016.11.25 12:07:19] [0053m.39s.633ms] [1] CMT: There are [2] clients now: 3149, 3191
+[2016.11.25 12:07:24] [0053m.44s.390ms] [0] IT: Session [3193] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [3796] created
+[2016.11.25 12:07:24] [0053m.44s.390ms] [1] SC[3193]: Registered sub-client [ICDBC] with ID [1] for session ID [3193] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [3796]
+[2016.11.25 12:07:24] [0053m.44s.406ms] [1] CMT: There are [3] clients now: 3149, 3191, 3193
+[2016.11.25 12:07:24] [0053m.44s.406ms] [1] SC[3193]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [3193] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [3796]
+[2016.11.25 12:07:26] [0053m.46s.477ms] [1] SC[3193]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [3193] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [3796]
+[2016.11.25 12:07:26] [0053m.46s.477ms] [1] SC[3193]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [3193] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [3796]
+[2016.11.25 12:07:26] [0053m.46s.539ms] [1] CMT: Removed client [3193]
+[2016.11.25 12:07:26] [0053m.46s.539ms] [1] CMT: There are [2] clients now: 3149, 3191
+[2016.11.25 12:07:27] [0053m.47s.362ms] [0] IT: Session [3194] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [4060] created
+[2016.11.25 12:07:27] [0053m.47s.362ms] [1] SC[3194]: Registered sub-client [Packager_3371218] with ID [1] for session ID [3194] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [4060]
+[2016.11.25 12:07:27] [0053m.47s.425ms] [1] CMT: There are [3] clients now: 3149, 3191, 3194
+[2016.11.25 12:07:27] [0053m.47s.679ms] [1] SC[3194]: UnRegistered sub-client [Packager_3371218] with ID [1] for session ID [3194] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [4060]
+[2016.11.25 12:07:27] [0053m.47s.741ms] [1] CMT: Removed client [3194]
+[2016.11.25 12:07:27] [0053m.47s.741ms] [1] CMT: There are [2] clients now: 3149, 3191
+[2016.11.25 12:07:31] [0053m.51s.098ms] [0] IT: Session [3195] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [9488] created
+[2016.11.25 12:07:31] [0053m.51s.098ms] [1] SC[3195]: Registered sub-client [Packager_3374937] with ID [1] for session ID [3195] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [9488]
+[2016.11.25 12:07:31] [0053m.51s.199ms] [1] CMT: There are [3] clients now: 3149, 3191, 3195
+[2016.11.25 12:07:31] [0053m.51s.399ms] [1] SC[3195]: UnRegistered sub-client [Packager_3374937] with ID [1] for session ID [3195] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [9488]
+[2016.11.25 12:07:31] [0053m.51s.515ms] [1] CMT: Removed client [3195]
+[2016.11.25 12:07:31] [0053m.51s.515ms] [1] CMT: There are [2] clients now: 3149, 3191
+[2016.11.25 12:07:37] [0053m.57s.425ms] [1] SC[3191]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:37] [0053m.57s.425ms] [1] SC[3191]: Registered sub-client [EEVM_EEVM_1700648] with ID [4] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:37] [0053m.57s.425ms] [1] SC[3191]: UnRegistered sub-client [EEVM_EEVM_1700648] with ID [4] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:37] [0053m.57s.456ms] [1] SC[3191]: Registered sub-client [JobPrefsDBPI_3381328] with ID [5] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:37] [0053m.57s.478ms] [1] SC[3191]: UnRegistered sub-client [JobPrefsDBPI_3381328] with ID [5] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:38] [0053m.58s.809ms] [1] SC[3191]: Registered sub-client [JobPrefsDBPI_3382687] with ID [6] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:38] [0053m.58s.819ms] [1] SC[3191]: UnRegistered sub-client [JobPrefsDBPI_3382687] with ID [6] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:39] [0053m.58s.942ms] [0] IT: Session [3196] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [2248] created
+[2016.11.25 12:07:39] [0053m.58s.943ms] [1] SC[3196]: Registered sub-client [Packager_3382781] with ID [1] for session ID [3196] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2248]
+[2016.11.25 12:07:39] [0053m.59s.034ms] [1] CMT: There are [3] clients now: 3149, 3191, 3196
+[2016.11.25 12:07:39] [0053m.59s.191ms] [1] SC[3196]: UnRegistered sub-client [Packager_3382781] with ID [1] for session ID [3196] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2248]
+[2016.11.25 12:07:39] [0053m.59s.251ms] [1] CMT: Removed client [3196]
+[2016.11.25 12:07:39] [0053m.59s.251ms] [1] CMT: There are [2] clients now: 3149, 3191
+[2016.11.25 12:07:40] [0054m.00s.366ms] [0] IT: Session [3197] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11532] created
+[2016.11.25 12:07:40] [0054m.00s.366ms] [1] SC[3197]: Registered sub-client [Expedition_3384203] with ID [1] for session ID [3197] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11532]
+[2016.11.25 12:07:40] [0054m.00s.413ms] [1] SC[3197]: UnRegistered sub-client [Expedition_3384203] with ID [1] for session ID [3197] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11532]
+[2016.11.25 12:07:40] [0054m.00s.444ms] [1] CMT: There are [3] clients now: 3149, 3191, 3197
+[2016.11.25 12:07:40] [0054m.00s.444ms] [1] CMT: Removed client [3197]
+[2016.11.25 12:07:40] [0054m.00s.444ms] [1] CMT: There are [2] clients now: 3149, 3191
+[2016.11.25 12:07:41] [0054m.01s.029ms] [0] IT: Session [3198] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11532] created
+[2016.11.25 12:07:41] [0054m.01s.029ms] [1] SC[3198]: Registered sub-client [JobPrefsDBPI_3384875] with ID [1] for session ID [3198] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11532]
+[2016.11.25 12:07:41] [0054m.01s.050ms] [1] SC[3198]: UnRegistered sub-client [JobPrefsDBPI_3384875] with ID [1] for session ID [3198] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11532]
+[2016.11.25 12:07:41] [0054m.01s.114ms] [1] CMT: There are [3] clients now: 3149, 3191, 3198
+[2016.11.25 12:07:41] [0054m.01s.114ms] [1] CMT: Removed client [3198]
+[2016.11.25 12:07:41] [0054m.01s.114ms] [1] CMT: There are [2] clients now: 3149, 3191
+[2016.11.25 12:07:41] [0054m.01s.614ms] [0] IT: Session [3199] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11532] created
+[2016.11.25 12:07:41] [0054m.01s.614ms] [1] SC[3199]: Registered sub-client [JobPrefsDBPI_3385468] with ID [1] for session ID [3199] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11532]
+[2016.11.25 12:07:41] [0054m.01s.645ms] [1] CMT: There are [3] clients now: 3149, 3191, 3199
+[2016.11.25 12:07:41] [0054m.01s.767ms] [1] SC[3199]: UnRegistered sub-client [JobPrefsDBPI_3385468] with ID [1] for session ID [3199] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11532]
+[2016.11.25 12:07:41] [0054m.01s.882ms] [1] CMT: Removed client [3199]
+[2016.11.25 12:07:41] [0054m.01s.882ms] [1] CMT: There are [2] clients now: 3149, 3191
+[2016.11.25 12:07:42] [0054m.02s.399ms] [0] IT: Session [3200] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [1328] created
+[2016.11.25 12:07:42] [0054m.02s.399ms] [1] SC[3200]: Registered sub-client [JobPrefsDBPI_3386234] with ID [1] for session ID [3200] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1328]
+[2016.11.25 12:07:42] [0054m.02s.414ms] [1] CMT: There are [3] clients now: 3149, 3191, 3200
+[2016.11.25 12:07:42] [0054m.02s.414ms] [1] SC[3200]: Registered sub-client [Expedition_3386296] with ID [2] for session ID [3200] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1328]
+[2016.11.25 12:07:42] [0054m.02s.468ms] [1] SC[3200]: UnRegistered sub-client [JobPrefsDBPI_3386234] with ID [1] for session ID [3200] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1328]
+[2016.11.25 12:07:42] [0054m.02s.514ms] [1] SC[3200]: UnRegistered sub-client [Expedition_3386296] with ID [2] for session ID [3200] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1328]
+[2016.11.25 12:07:42] [0054m.02s.630ms] [1] CMT: Removed client [3200]
+[2016.11.25 12:07:42] [0054m.02s.630ms] [1] CMT: There are [2] clients now: 3149, 3191
+[2016.11.25 12:07:43] [0054m.03s.300ms] [1] SC[3191]: Registered sub-client [EEVM_EEVM_148840300] with ID [7] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:43] [0054m.03s.300ms] [1] SC[3191]: UnRegistered sub-client [EEVM_EEVM_148840300] with ID [7] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:43] [0054m.03s.300ms] [1] SC[3191]: Registered sub-client [EEVM_EEVM_148840300] with ID [8] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:43] [0054m.03s.315ms] [1] SC[3191]: UnRegistered sub-client [EEVM_EEVM_148840300] with ID [8] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:43] [0054m.03s.315ms] [1] SC[3191]: Registered sub-client [EEVM_EEVM_311495404] with ID [9] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:43] [0054m.03s.315ms] [1] SC[3191]: UnRegistered sub-client [EEVM_EEVM_311495404] with ID [9] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:43] [0054m.03s.431ms] [1] SC[3191]: UnRegistered sub-client [Expedition PCB_2985453] with ID [1] for session ID [3191] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:43] [0054m.03s.531ms] [1] CMT: Removed client [3191]
+[2016.11.25 12:07:43] [0054m.03s.531ms] [1] CMT: There are [1] clients now: 3149
+[2016.11.25 12:07:43] [0054m.03s.816ms] [0] IT: Session [3201] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [6900] created
+[2016.11.25 12:07:43] [0054m.03s.816ms] [1] SC[3201]: Registered sub-client [Expedition PCB_3387656] with ID [1] for session ID [3201] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:43] [0054m.03s.868ms] [1] CMT: There are [2] clients now: 3149, 3201
+[2016.11.25 12:07:47] [0054m.07s.506ms] [1] SC[3201]: Registered sub-client [JobPrefsDBPI_3391375] with ID [2] for session ID [3201] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:47] [0054m.07s.522ms] [1] SC[3201]: UnRegistered sub-client [JobPrefsDBPI_3391375] with ID [2] for session ID [3201] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 12:07:47] [0054m.07s.522ms] [1] SC[3201]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3201] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 13:13:42] [0120m.02s.423ms] [1] PrjBackupMgr: Successfully created Project Backup [F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-25 13.13.39 - auto.zip] with GUID [9bf3-7164-4f16-2e14-3fa2-8388-fa28-3850-8ed5-02b1-4343-70a8]
+[2016.11.25 13:13:42] [0120m.02s.423ms] [0] PrjBackupMgr: Removing excessive backup:  BackupGUID[7cf1-8444-e844-26a3-16bd-1386-6bd1-3850-685a-38d7-e6e6-f38b] CreationTime[Sunday, November 20, 2016 17:20:33] Type[Autosave] Creator[iCDB Server (2016-11-20 17.49.20-9644)] ApplicationName[iCDB Server (2016-11-20 17.49.20-9644)] UserName[Sylvain] MachineName[DESKTOP-OU0BNIR] Description[Autosave] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[] BackupFilePath[F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-20 18.20.33 - auto.zip] BackupFileSize[455525] Persistent[FALSE]
+[2016.11.25 13:13:42] [0120m.02s.423ms] [0] PrjBackupMgr: Project Backup file [F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-20 18.20.33 - auto.zip] with GUID [7cf1-8444-e844-26a3-16bd-1386-6bd1-3850-685a-38d7-e6e6-f38b] removed
+[2016.11.25 13:13:42] [0120m.02s.423ms] [0] PrjBackupEngine: Successfully created backup:  BackupGUID[9bf3-7164-4f16-2e14-3fa2-8388-fa28-3850-8ed5-02b1-4343-70a8] CreationTime[Friday, November 25, 2016 12:13:39] Type[Autosave] Creator[iCDB Server (2016-11-25 11.13.40-1036)] ApplicationName[iCDB Server (2016-11-25 11.13.40-1036)] UserName[Sylvain] MachineName[DESKTOP-OU0BNIR] Description[Autosave] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[] BackupFilePath[F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-25 13.13.39 - auto.zip] BackupFileSize[504130] Persistent[FALSE]
+[2016.11.25 13:51:37] [0157m.57s.336ms] [1] SC[3201]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3201] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 13:51:37] [0157m.57s.629ms] [1] SC[3201]: UnRegistered sub-client [Expedition PCB_3387656] with ID [1] for session ID [3201] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [6900]
+[2016.11.25 13:51:37] [0157m.57s.694ms] [1] CMT: Removed client [3201]
+[2016.11.25 13:51:37] [0157m.57s.694ms] [1] CMT: There are [1] clients now: 3149
+[2016.11.25 13:53:02] [0159m.22s.398ms] [1] SC[3149]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3149] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [2536]
+[2016.11.25 13:53:02] [0159m.22s.429ms] [1] CMT: Removed client [3149]
+[2016.11.25 13:53:02] [0159m.22s.429ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2016.11.25 13:53:04] [0159m.24s.040ms] [0] CMT: Starting server auto-close
+[2016.11.25 13:53:04] [0159m.24s.108ms] [0] S: Closing server
+[2016.11.25 13:53:04] [0159m.24s.209ms] [0] iCDB Server PI: Closing plugins
+[2016.11.25 13:53:04] [0159m.24s.209ms] [0] iCDB Server PI: Plugins closed
+[2016.11.25 13:53:04] [0159m.24s.209ms] [0] iCDB Server PI: Unloading database
+[2016.11.25 13:53:04] [0159m.24s.209ms] [0] iCDB Server PI: Saving storage
+[2016.11.25 13:53:04] [0159m.24s.209ms] [0] iCDB Server PI: Closing database
+[2016.11.25 13:53:04] [0159m.24s.277ms] [1] iCDB Server PI: Stats: Database defragmentation: max[2] avg[1] holes[53%] data[70%]
+[2016.11.25 13:53:04] [0159m.24s.277ms] [1] iCDB Server PI: Stats: Database file size [339392 (331.4 kB)]
+[2016.11.25 13:53:04] [0159m.24s.293ms] [1] iCDB Server PI: WARNING: Database needs defragmentation!
+[2016.11.25 13:53:04] [0159m.24s.308ms] [0] iCDB Server PI: Database closed
+[2016.11.25 13:53:04] [0159m.24s.308ms] [0] iCDB Server PI: Defragmenting database
+[2016.11.25 13:53:04] [0159m.24s.308ms] [0] iCDB Server PI: Creating database [F:\Makahiya\PCB\Default\default.icdb] backup to file [F:\Makahiya\PCB\Default\default.icdb\cdbback\2016-11-25 13.53.04-1036-d.zip]
+[2016.11.25 13:53:04] [0159m.24s.376ms] [0] iCDB Server PI: Database backup: DONE
+[2016.11.25 13:53:04] [0159m.24s.424ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.25 13:53:04] [0159m.24s.424ms] [0] Database GUARD OK: [339392]
+[2016.11.25 13:53:04] [0159m.24s.424ms] [0] SingleFile: [71c2-bdc3-01d8-3f96] SFI version check [1009] [1009]
+[2016.11.25 13:53:04] [0159m.24s.424ms] [0] SingleFile: [71c2-bdc3-01d8-3f96] Database SFI header has been read in [5ms 322us]
+[2016.11.25 13:53:04] [0159m.24s.555ms] [1] iCDB Server PI: Stats: Database file sizes: before[339392 (331.4 kB)], after[157424 (153.7 kB)], gain[181968 (177.7 kB)]
+[2016.11.25 13:53:04] [0159m.24s.611ms] [0] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] closed with size [157424 (153.7 kB)]
+[2016.11.25 13:53:04] [0159m.24s.611ms] [0] iCDB Server PI: Database defragmentation completed successfully
+[2016.11.25 13:53:04] [0159m.24s.611ms] [1] BackupTransaction: Removing database backup [F:\Makahiya\PCB\Default\default.icdb\cdbback\2016-11-25 13.53.04-1036-d.zip]
+[2016.11.25 13:53:04] [0159m.24s.611ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [1734303] ticks
+[2016.11.25 13:53:04] [0159m.24s.611ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [685155] microseconds
+[2016.11.25 13:53:04] [0159m.24s.611ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [2124]
+[2016.11.25 13:53:04] [0159m.24s.611ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [3100] commands per second
+[2016.11.25 13:53:04] [0159m.24s.758ms] [0] S: STOP

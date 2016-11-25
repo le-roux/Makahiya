@@ -2,8 +2,8 @@
                                Forward Annotation
                                ------------------
 
-                      10:44 AM Wednesday, November 23, 2016
-          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
+                       01:59 PM Friday, November 25, 2016
+                      Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
 
 
 Version:  01.01.00
@@ -38,8 +38,8 @@ Version:  01.01.00
           Part Numb: 10-0054 -> Vend Part: 10-0054 
           Part Numb: 10-0057 -> Vend Part: 10-0057 
           Part Numb: 10-0068 -> Vend Part: 10-0068 
-          Part Numb: 10-0075 -> Vend Part: 10-0075 
           Part Numb: 10-0077 -> Vend Part: 10-0077 
+          Part Numb: 10-0102 -> Vend Part: 10-0102 
           Part Numb: 10-0103 -> Vend Part: 10-0103 
           Part Numb: 20-0003 -> Vend Part: 20-0003 
           Part Numb: 20-0004 -> Vend Part: 20-0004 
@@ -49,12 +49,12 @@ Version:  01.01.00
           Part Numb: 40-0303 -> Vend Part: 40-0303 
           Part Numb: 40-0304 -> Vend Part: 40-0304 
           Part Numb: 50-0040 -> Vend Part: 50-0040 
+          Part Numb: 70-0001 -> Vend Part: 70-0001 
           Part Numb: 70-0003 -> Vend Part: 70-0003 
           Part Numb: 70-0014 -> Vend Part: 70-0014 
+          Part Numb: 70-0029 -> Vend Part: 70-0029 
           Part Numb: 70-0040 -> Vend Part: 70-0040 
           Part Numb: 70-0053 -> Vend Part: 70-0053 
-          Part Numb: 70-0074 -> Vend Part: 70-0074 
-          Part Numb: 70-0078 -> Vend Part: 70-0078 
           Part Numb: 70-0081 -> Vend Part: 70-0081 
           Part Numb: 70-0087 -> Vend Part: 70-0087 
           Part Numb: 80-0035 -> Vend Part: 80-0035 
@@ -93,7 +93,7 @@ Version:  01.01.00
 
 
 
-     118 nets were found containing 450 pins
+     118 nets were found containing 449 pins
      136 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
@@ -107,8 +107,8 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                      10:45 AM Wednesday, November 23, 2016
-          Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb
+                       01:59 PM Friday, November 25, 2016
+                      Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
 
 
 Version:  02.11.12
@@ -152,8 +152,12 @@ Version:  02.11.12
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
 
+Some nets were completely deleted from the Layout Design....
+	Deleted net XSIG030261, which has no pins, from the Layout Design.
+	Deleted net XSIG030262, which has no pins, from the Layout Design.
+
 Forward-Annotation on the Layout Design has been successfully completed.
 
 There were 0 reassignments of nets.
 There were 0 traces broken back.
-There were 0 nets removed from the Layout Design.
+There were 2 nets removed from the Layout Design.

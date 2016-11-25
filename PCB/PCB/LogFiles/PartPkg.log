@@ -2,21 +2,21 @@
                                     Packager
                                     --------
 
-                      10:44 AM Wednesday, November 23, 2016
-         Job Name: C:\Users\Tanguy\Documents\ROSE\Makahiya\Makahiya.prj
+                       01:59 PM Friday, November 25, 2016
+                     Job Name: F:\Makahiya\PCB\Makahiya.prj
 
 
      Packager     Version: 020806.00
 
-        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"C:\Users\Tanguy\Documents\ROSE\Makahiya\Makahiya.prj" -CleanBuild -NoFill "
+        Commandline is: "D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"F:\Makahiya\PCB\Makahiya.prj" -CleanBuild -NoFill "
 
-     The Common Database is at "C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb".
+     The Common Database is at "F:\Makahiya\PCB\Default\default.icdb".
 
      The Root of this design is "Schematic1".
 
      The Front End Snapshot of this design is "DCDV".
 
-     The PCB Design Path of this design is at "C:\Users\Tanguy\Documents\ROSE\Makahiya\PCB\PCB.pcb".
+     The PCB Design Path of this design is at "F:\Makahiya\PCB\PCB\PCB.pcb".
 
      The Central Library is at "F:\Central_Libs\ENST.lmc".
 
@@ -95,8 +95,8 @@
           Part Numb: 10-0054 -> Vend Part: 10-0054 
           Part Numb: 10-0057 -> Vend Part: 10-0057 
           Part Numb: 10-0068 -> Vend Part: 10-0068 
-          Part Numb: 10-0075 -> Vend Part: 10-0075 
           Part Numb: 10-0077 -> Vend Part: 10-0077 
+          Part Numb: 10-0102 -> Vend Part: 10-0102 
           Part Numb: 10-0103 -> Vend Part: 10-0103 
           Part Numb: 20-0003 -> Vend Part: 20-0003 
           Part Numb: 20-0004 -> Vend Part: 20-0004 
@@ -106,12 +106,12 @@
           Part Numb: 40-0303 -> Vend Part: 40-0303 
           Part Numb: 40-0304 -> Vend Part: 40-0304 
           Part Numb: 50-0040 -> Vend Part: 50-0040 
+          Part Numb: 70-0001 -> Vend Part: 70-0001 
           Part Numb: 70-0003 -> Vend Part: 70-0003 
           Part Numb: 70-0014 -> Vend Part: 70-0014 
+          Part Numb: 70-0029 -> Vend Part: 70-0029 
           Part Numb: 70-0040 -> Vend Part: 70-0040 
           Part Numb: 70-0053 -> Vend Part: 70-0053 
-          Part Numb: 70-0074 -> Vend Part: 70-0074 
-          Part Numb: 70-0078 -> Vend Part: 70-0078 
           Part Numb: 70-0081 -> Vend Part: 70-0081 
           Part Numb: 70-0087 -> Vend Part: 70-0087 
           Part Numb: 80-0035 -> Vend Part: 80-0035 
@@ -149,7 +149,7 @@
 
 
 
-     118 nets were found containing 450 pins
+     118 nets were found containing 449 pins
      136 components were found
 
      Parsed netlist - Augmenting..
