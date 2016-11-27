@@ -1,0 +1,9 @@
+image: rfc1149/rose-dev
+
+server-build:
+    stage: build
+    script: pip install -e .
+
+server-tests:
+    stage: test
+    script: pytest makahiya/tests.py -q
