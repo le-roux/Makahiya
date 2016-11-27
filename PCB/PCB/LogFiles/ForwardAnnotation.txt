@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                       01:59 PM Friday, November 25, 2016
+                       05:51 PM Sunday, November 27, 2016
                       Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
 
 
@@ -107,7 +107,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       01:59 PM Friday, November 25, 2016
+                       05:51 PM Sunday, November 27, 2016
                       Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
 
 
@@ -151,13 +151,15 @@ Version:  02.11.12
 
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
-
-Some nets were completely deleted from the Layout Design....
-	Deleted net XSIG030261, which has no pins, from the Layout Design.
-	Deleted net XSIG030262, which has no pins, from the Layout Design.
+	Assigned net LED5_B to a via which was originally on net LED5_G.
+	Assigned net LED5_B to a trace which was originally on net LED5_G.
+	Broke back a trace from the point (34960743, 39129119).
+	Assigned net LED5_G to a trace which was originally on net LED5_B.
+	Assigned net LED5_G to a via which was originally on net LED5_B.
+	Broke back a trace from the point (34883542, 37866837).
 
 Forward-Annotation on the Layout Design has been successfully completed.
 
-There were 0 reassignments of nets.
-There were 0 traces broken back.
-There were 2 nets removed from the Layout Design.
+There were 4 reassignments of nets.
+There were 2 traces broken back.
+There were 0 nets removed from the Layout Design.

@@ -1,0 +1,27 @@
+=======================================================================
+Expedition PCB - Pinnacle - Version 2015.0.676.129
+=======================================================================
+
+RELOAD CELLS
+
+Job Directory:  F:\Makahiya\PCB\PCB\
+
+
+Design Units:(mm)
+
+Replace Cell Log:   repCellLog16.txt
+
+Sun Nov 27 17:51:54 2016
+
+Reference Designator            Cell Name                         New Cell Name
+===============================================================================
+
+
+---------------  RELOAD CELLS  Sun Nov 27 17:51:54 2016  ---------------
+
+
+
+
+---------------    Sun Nov 27 17:51:54 2016  ---------------
+
+
