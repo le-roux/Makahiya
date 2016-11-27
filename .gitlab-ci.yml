@@ -1,11 +1,11 @@
 image: python:3.5
 
 server-build:
-	stage: build
-	script:
-		- pip install -r requirements.txt
-		- pip install -e .
+    stage: build
+    script:
+        - pip install -r requirements.txt
+        - pip install -e .
 
 server-tests:
-	stage: test
-	script: pytest makahiya/tests.py -q
+    stage: test
+    script: pytest makahiya/tests.py -q
