@@ -1,0 +1,183 @@
+[2016.11.28 17:12:49] [0000m.00s.031ms] [0] WELCOME
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] iCDB Server ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] Base flow version [7.9.4]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] Machine [DESKTOP-OU0BNIR]  User [Sylvain]  PID [5168]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] Operating system [Microsoft Home Premium Edition, 64-bit (build 9200)]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] Current working dir [F:\Makahiya\PCB]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] PATH [D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\help;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\_bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\IntelSGXPSW\bin\x64\Release\;C:\Program Files\Intel\IntelSGXPSW\bin\win32\Release\;C:\Program Files (x86)\Skype\Phone\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Users\sylva\AppData\Local\atom\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] SDD_HOME [D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] SDD_PLATFORM [win32]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] WDIR [D:\Programmes\ROSE\MentorGraphics\WDIR;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] Local iCDB working dir [D:\Programmes\ROSE\MentorGraphics\WDIR\iCDB] on file system [NTFS]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] S: Config file name [ServerWG.cfg]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [2] S: Loading config files
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] Config file [F:\Makahiya\PCB\Default\default.icdb\cdbsvr\ServerWG.cfg] not found
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] Config: Non-default value [System.SingleUserMode] = [no]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [3] S: Config loaded
+[2016.11.28 17:12:49] [0000m.00s.031ms] [0] S: Project path [F:\Makahiya\PCB\Default\default.icdb] on file system [NTFS]
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] S: WARNING: No project file (.prj) path specified
+[2016.11.28 17:12:49] [0000m.00s.031ms] [1] S: WARNING: Database auto-repair support DISABLED
+[2016.11.28 17:12:49] [0000m.00s.031ms] [0] S: Multi-user mode (config)
+[2016.11.28 17:12:49] [0000m.00s.031ms] [0] S: Event polling mode autodetection
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] S: Started up automatically by iCDB Client: DESKTOP-OU0BNIR:Sylvain:4920
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] S: Auto close mode
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] S: Database ID [6d0e-289f-ee7d-86ad-dce0-8382-de08-3850-47c3-02b1-4343-70a8]
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] PathTranslator: BEGIN dumping
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] PathTranslator: Local -> global path prefix list
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] PathTranslator: Global -> local path prefix list
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] PathTranslator: END dumping
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] S: START
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] S: Server startup lock file created
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] S: Listening for client connections on port [10000]
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] S: Server network ID [DESKTOP-OU0BNIR:137.194.22.148,DESKTOP-OU0BNIR:10000]
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] S: Server GUID [8210-cc71-e90c-94c4-1875-c386-875c-3850-4964-02b1-8383-70a8]
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] S: Project GUID [6d0e-289f-ee7d-86ad-dce0-8382-de08-3850-47c3-02b1-4343-70a8]
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] S: Wrote data to server address file
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] S: Server startup lock file removed
+[2016.11.28 17:12:49] [0000m.00s.046ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.11.28 17:12:49] [0000m.00s.062ms] [0] S: Plugins loaded: [PIM] [ENetGen70] 
+[2016.11.28 17:12:49] [0000m.00s.062ms] [0] S: Local disc access time: 28 us
+[2016.11.28 17:12:49] [0000m.00s.062ms] [0] S: File server access time: 28 us
+[2016.11.28 17:12:49] [0000m.00s.062ms] [0] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] size [169464 (165.5 kB)]
+[2016.11.28 17:12:49] [0000m.00s.062ms] [1] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] opened in read-write mode
+[2016.11.28 17:12:49] [0000m.00s.062ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.28 17:12:49] [0000m.00s.062ms] [0] Database GUARD OK: [169464]
+[2016.11.28 17:12:49] [0000m.00s.062ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.28 17:12:49] [0000m.00s.062ms] [0] Database GUARD OK: [169464]
+[2016.11.28 17:12:49] [0000m.00s.062ms] [0] SingleFile: [71c2-bdc3-01d8-3f96] SFI version check [1009] [1009]
+[2016.11.28 17:12:49] [0000m.00s.078ms] [0] SingleFile: [71c2-bdc3-01d8-3f96] Database SFI header has been read in [2ms 908us]
+[2016.11.28 17:12:49] [0000m.00s.078ms] [0] iCDB Server PI: Server & plugin session [3249]
+[2016.11.28 17:12:49] [0000m.00s.078ms] [0] iCDB Server PI: Opening database [F:\Makahiya\PCB\Default\default.icdb]
+[2016.11.28 17:12:49] [0000m.00s.078ms] [0] iCDB Server PI: Database [F:\Makahiya\PCB\Default\default.icdb] opened
+[2016.11.28 17:12:49] [0000m.00s.078ms] [0] iCDB Database: Checking existence of constraint definitions
+[2016.11.28 17:12:49] [0000m.00s.078ms] [0] iCDB Database: Checking constraint definitions version
+[2016.11.28 17:12:49] [0000m.00s.109ms] [1] iCDB Database: Constraint definitions version [ce_ee.cns=7.10.24;user.cns=b83f-5623-433f-8ba7-b0d3-ff70-1d3f-f750-68fb-38d7-a6d6-f38b] up to date
+[2016.11.28 17:12:50] [0000m.00s.312ms] [0] iCDB Server PI: Initializing plugins
+[2016.11.28 17:12:50] [0000m.00s.312ms] [0] iCDB Server PI: Plugins initialized
+[2016.11.28 17:12:50] [0000m.00s.312ms] [0] S: iCDB database loaded
+[2016.11.28 17:12:50] [0000m.00s.312ms] [0] S: Starting threads
+[2016.11.28 17:12:50] [0000m.00s.312ms] [0] BT: Listening for broadcast messages on port [10000]
+[2016.11.28 17:12:50] [0000m.00s.312ms] [0] ProjectBackupManager: WARNING: Could not startup Project Backup engine - functionality not initialized
+[2016.11.28 17:12:50] [0000m.00s.312ms] [1] CMT: There are no clients - waiting [10 seconds]
+[2016.11.28 17:12:50] [0000m.00s.312ms] [0] IT: Session [3250] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [4920] created
+[2016.11.28 17:12:50] [0000m.00s.312ms] [1] SC[3250]: Registered sub-client [DCDV] with ID [1] for session ID [3250] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [4920]
+[2016.11.28 17:12:50] [0000m.00s.422ms] [1] CMT: There are [1] clients now: 3250
+[2016.11.28 17:13:10] [0000m.20s.155ms] [0] IT: Session [3251] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [1568] created
+[2016.11.28 17:13:10] [0000m.20s.155ms] [1] ProjectBackupManager: Client [ClientData[ClientNetAddress[DESKTOP-OU0BNIR] # ClientUserName[Sylvain] # ClientProcessID[1568] # SessionID[3251]] # SubClientData[SubClientName[] # SubClientID[0]]] set project file (.prj): local path [F:\Makahiya\PCB\Makahiya.prj], global path [F:\Makahiya\PCB\Makahiya.prj]
+[2016.11.28 17:13:10] [0000m.20s.218ms] [1] CMT: There are [2] clients now: 3250, 3251
+[2016.11.28 17:13:10] [0000m.20s.296ms] [1] SC[3251]: Registered sub-client [Expedition PCB_115796] with ID [1] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:10] [0000m.20s.390ms] [1] SC[3251]: Registered sub-client [EEVM] with ID [2] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:10] [0000m.20s.906ms] [1] SC[3251]: UnRegistered sub-client [EEVM] with ID [2] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:14] [0000m.24s.204ms] [1] SC[3251]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:24] [0000m.34s.727ms] [0] DFAMT: File server access time: 40 us
+[2016.11.28 17:13:40] [0000m.50s.433ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_146109] with ID [4] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:40] [0000m.50s.449ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_146109] with ID [4] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:40] [0000m.50s.464ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_146140] with ID [5] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:40] [0000m.50s.464ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_146140] with ID [5] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:42] [0000m.52s.418ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_148093] with ID [6] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:42] [0000m.52s.418ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_148093] with ID [6] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:42] [0000m.52s.434ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_148109] with ID [7] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:42] [0000m.52s.449ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_148109] with ID [7] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.262ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_150921] with ID [8] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.262ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_150921] with ID [8] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.278ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_150937] with ID [9] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.278ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_150937] with ID [9] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.434ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_151109] with ID [10] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.434ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_151109] with ID [10] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.450ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_151125] with ID [11] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.450ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_151125] with ID [11] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.606ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_151265] with ID [12] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.606ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_151265] with ID [12] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.621ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_151281] with ID [13] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.621ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_151281] with ID [13] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.887ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_151562] with ID [14] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.887ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_151562] with ID [14] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.903ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_151578] with ID [15] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.55s.903ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_151578] with ID [15] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.56s.043ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_151718] with ID [16] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.56s.043ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_151718] with ID [16] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.56s.059ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_151734] with ID [17] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:45] [0000m.56s.059ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_151734] with ID [17] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.215ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_151875] with ID [18] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.215ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_151875] with ID [18] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.215ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_151890] with ID [19] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.231ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_151890] with ID [19] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.372ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_152046] with ID [20] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.372ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_152046] with ID [20] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.387ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_152062] with ID [21] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.387ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_152062] with ID [21] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.544ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_152218] with ID [22] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.544ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_152218] with ID [22] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.559ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_152234] with ID [23] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.559ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_152234] with ID [23] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.700ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_152375] with ID [24] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.700ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_152375] with ID [24] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.716ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_152390] with ID [25] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.716ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_152390] with ID [25] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.856ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_152531] with ID [26] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.872ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_152531] with ID [26] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.888ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_152546] with ID [27] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.56s.888ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_152546] with ID [27] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.57s.013ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_152687] with ID [28] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.57s.013ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_152687] with ID [28] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.57s.028ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_152703] with ID [29] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:46] [0000m.57s.028ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_152703] with ID [29] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:47] [0000m.57s.169ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_152843] with ID [30] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:47] [0000m.57s.184ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_152843] with ID [30] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:47] [0000m.57s.184ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_152859] with ID [31] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:47] [0000m.57s.200ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_152859] with ID [31] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:47] [0000m.57s.388ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_153062] with ID [32] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:47] [0000m.57s.388ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_153062] with ID [32] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:47] [0000m.57s.403ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_153078] with ID [33] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:47] [0000m.57s.403ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_153078] with ID [33] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:53] [0001m.03s.530ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_159218] with ID [34] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:53] [0001m.03s.546ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_159218] with ID [34] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:53] [0001m.03s.546ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_159234] with ID [35] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:53] [0001m.03s.546ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_159234] with ID [35] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:53] [0001m.03s.827ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_159515] with ID [36] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:53] [0001m.03s.827ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_159515] with ID [36] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:53] [0001m.03s.843ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_159531] with ID [37] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:53] [0001m.03s.843ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_159531] with ID [37] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:54] [0001m.04s.140ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_159828] with ID [38] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:54] [0001m.04s.140ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_159828] with ID [38] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:54] [0001m.04s.155ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_159843] with ID [39] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:54] [0001m.04s.155ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_159843] with ID [39] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:54] [0001m.04s.311ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_160000] with ID [40] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:54] [0001m.04s.311ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_160000] with ID [40] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:54] [0001m.04s.327ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_160015] with ID [41] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:13:54] [0001m.04s.327ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_160015] with ID [41] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:14:17] [0001m.27s.854ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_183531] with ID [42] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:14:17] [0001m.27s.869ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_183531] with ID [42] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:14:17] [0001m.27s.869ms] [1] SC[3251]: Registered sub-client [JobPrefsDBPI_183546] with ID [43] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:14:17] [0001m.27s.885ms] [1] SC[3251]: UnRegistered sub-client [JobPrefsDBPI_183546] with ID [43] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 17:26:11] [0013m.21s.662ms] [1] PrjBackupMgr: Successfully created Project Backup [F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-28 17.26.10 - auto.zip] with GUID [19d4-4612-3d5d-df92-2aa5-c387-aa5c-3850-4ef3-02b1-8383-70a8]
+[2016.11.28 17:26:11] [0013m.21s.678ms] [0] PrjBackupMgr: Removing excessive backup:  BackupGUID[9bf3-7164-4f16-2e14-3fa2-8388-fa28-3850-8ed5-02b1-4343-70a8] CreationTime[Friday, November 25, 2016 12:13:39] Type[Autosave] Creator[iCDB Server (2016-11-25 11.13.40-1036)] ApplicationName[iCDB Server (2016-11-25 11.13.40-1036)] UserName[Sylvain] MachineName[DESKTOP-OU0BNIR] Description[Autosave] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[] BackupFilePath[F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-25 13.13.39 - auto.zip] BackupFileSize[504130] Persistent[FALSE]
+[2016.11.28 17:26:11] [0013m.21s.678ms] [0] PrjBackupMgr: Project Backup file [F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-25 13.13.39 - auto.zip] with GUID [9bf3-7164-4f16-2e14-3fa2-8388-fa28-3850-8ed5-02b1-4343-70a8] removed
+[2016.11.28 17:26:11] [0013m.21s.678ms] [0] PrjBackupEngine: Successfully created backup:  BackupGUID[19d4-4612-3d5d-df92-2aa5-c387-aa5c-3850-4ef3-02b1-8383-70a8] CreationTime[Monday, November 28, 2016 16:26:10] Type[Autosave] Creator[iCDB Server (2016-11-28 17.12.49-5168)] ApplicationName[iCDB Server (2016-11-28 17.12.49-5168)] UserName[Sylvain] MachineName[DESKTOP-OU0BNIR] Description[Autosave] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[] BackupFilePath[F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-28 17.26.10 - auto.zip] BackupFileSize[546562] Persistent[FALSE]
+[2016.11.28 18:23:31] [0070m.41s.200ms] [1] SC[3251]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 18:23:31] [0070m.41s.450ms] [1] SC[3251]: UnRegistered sub-client [Expedition PCB_115796] with ID [1] for session ID [3251] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [1568]
+[2016.11.28 18:23:31] [0070m.41s.466ms] [1] CMT: Removed client [3251]
+[2016.11.28 18:23:31] [0070m.41s.466ms] [1] CMT: There are [1] clients now: 3250
+[2016.11.28 18:23:34] [0070m.44s.443ms] [1] SC[3250]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3250] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [4920]
+[2016.11.28 18:23:34] [0070m.44s.535ms] [1] CMT: Removed client [3250]
+[2016.11.28 18:23:34] [0070m.44s.535ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2016.11.28 18:23:36] [0070m.46s.154ms] [0] CMT: Starting server auto-close
+[2016.11.28 18:23:36] [0070m.46s.266ms] [0] S: Closing server
+[2016.11.28 18:23:36] [0070m.46s.423ms] [0] iCDB Server PI: Closing plugins
+[2016.11.28 18:23:36] [0070m.46s.423ms] [0] iCDB Server PI: Plugins closed
+[2016.11.28 18:23:36] [0070m.46s.423ms] [0] iCDB Server PI: Unloading database
+[2016.11.28 18:23:36] [0070m.46s.423ms] [0] iCDB Server PI: Saving storage
+[2016.11.28 18:23:36] [0070m.46s.423ms] [0] iCDB Server PI: Closing database
+[2016.11.28 18:23:36] [0070m.46s.485ms] [1] iCDB Server PI: Stats: Database defragmentation: max[2] avg[1] holes[2%] data[93%]
+[2016.11.28 18:23:36] [0070m.46s.485ms] [1] iCDB Server PI: Stats: Database file size [174984 (170.9 kB)]
+[2016.11.28 18:23:36] [0070m.46s.532ms] [0] iCDB Server PI: Database closed
+[2016.11.28 18:23:36] [0070m.46s.532ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [1133109] ticks
+[2016.11.28 18:23:36] [0070m.46s.532ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [447648] microseconds
+[2016.11.28 18:23:36] [0070m.46s.532ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [100]
+[2016.11.28 18:23:36] [0070m.46s.532ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [223] commands per second
+[2016.11.28 18:23:36] [0070m.46s.532ms] [0] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] closed with size [174984 (170.9 kB)]
+[2016.11.28 18:23:36] [0070m.46s.698ms] [0] S: STOP

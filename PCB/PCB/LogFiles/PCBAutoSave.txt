@@ -2,21 +2,29 @@
                                 Autosave Log File
                                 -----------------
 
-                       05:51 PM Sunday, November 27, 2016
+                       05:13 PM Monday, November 28, 2016
                       Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
 
-Autosave pending at 17:56:58 Sun  Attempting...
-Autosave completed successfully.  17:56:58 Sun
-Autosave pending at 18:07:58 Sun  Attempting...
-Autosave completed successfully.  18:07:59 Sun
-Autosave pending at 18:18:18 Sun  Attempting...
-Autosave completed successfully.  18:18:19 Sun
-Autosave pending at 18:25:58 Sun  Attempting...
-Autosave completed successfully.  18:25:59 Sun
+Autosave pending at 17:18:13 Mon  Attempting...
+Autosave completed successfully.  17:18:13 Mon
+Autosave pending at 17:28:38 Mon  Attempting...
+Autosave completed successfully.  17:28:38 Mon
+Autosave pending at 17:34:08 Mon  Attempting...
+Autosave completed successfully.  17:34:08 Mon
+Autosave pending at 17:39:08 Mon  Attempting...
+Autosave completed successfully.  17:39:08 Mon
+Autosave pending at 17:44:09 Mon  Attempting...
+Autosave completed successfully.  17:44:09 Mon
+Autosave pending at 17:49:09 Mon  Attempting...
+Autosave completed successfully.  17:49:09 Mon
+Autosave pending at 17:54:38 Mon  Attempting...
+Autosave completed successfully.  17:54:38 Mon
+Autosave pending at 18:06:17 Mon  Attempting...
+Autosave completed successfully.  18:06:17 Mon
 
                                Autosave log closed
                                -------------------
 
-                       06:31 PM Sunday, November 27, 2016
+                       06:23 PM Monday, November 28, 2016
                       Job Name: F:\Makahiya\PCB\PCB\PCB.pcb
 
