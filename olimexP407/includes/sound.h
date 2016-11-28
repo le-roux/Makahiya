@@ -11,10 +11,6 @@
 /*       Variables            */
 /******************************/
 
-#ifndef M_PI
-#define M_PI 3.1415926535
-#endif // M_PI
-
 extern uint32_t* buffer;
 
 extern int16_t _binary_pic_mp3_start;
