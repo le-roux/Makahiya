@@ -36,7 +36,7 @@ extern int16_t i2s_tx_buf[I2S_BUF_SIZE * 2];
 /**
  * Number of intermediate buffers available for the mailbox
  */
-#define AUDIO_BUFFERS_NB 4
+#define AUDIO_BUFFERS_NB 2
 
 /**
  * Multiplier for the volume
@@ -50,11 +50,18 @@ extern int8_t volumeMult;
  */
 extern int8_t volumeDiv;
 
+#define WORKING_BUFFER_SIZE 4000
+
+#define INPUT_BUFFER_SIZE 1000
+#define INPUT_BUFFERS_NB 4
+
 #define I2SDIV 6
 
 extern I2SConfig i2s3_cfg;
 
-extern THD_WORKING_AREA(wa_audio, 512);
+extern THD_WORKING_AREA(wa_audio, 1024);
+
+extern THD_WORKING_AREA(wa_audio_in, 2048);
 
 /******************************/
 /*        Functions           */
@@ -65,5 +72,6 @@ void sound_440(void);
 void i2s_cb(I2SDriver* driver, size_t offset, size_t n);
 
 extern THD_FUNCTION(audio_playback, arg);
+extern THD_FUNCTION(audio_in, arg);
 
 #endif // SOUND_H
