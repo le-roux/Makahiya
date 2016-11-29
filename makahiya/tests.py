@@ -16,12 +16,12 @@ def initTestDb():
 			model = Leds(uid=i, R=0, G=0, B=0, W=0)
 			DBSession.add(model)
 	return DBSession
-		
+
 class HomeViewTest(unittest.TestCase):
 	def setUp(self):
 		self.session = initTestDb()
 		self.config = testing.setUp()
-	
+
 	def tearDown(self):
 		self.session.remove()
 		testing.tearDown()
@@ -31,7 +31,7 @@ class HomeViewTest(unittest.TestCase):
 
 		request = testing.DummyRequest()
 		response = home(request)
-		self.assertEqual(response.status_code, 200)
+		self.assertEqual(range(1,6), response['ran'])
 
 class HomeFunctionalTests(unittest.TestCase):
     def setUp(self):
@@ -59,7 +59,7 @@ class SetLedTest(unittest.TestCase):
 	def setUp(self):
 		self.session = initTestDb()
 		self.config = testing.setUp()
-	
+
 	def tearDown(self):
 		self.session.remove()
 		testing.tearDown()

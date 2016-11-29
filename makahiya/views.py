@@ -6,30 +6,24 @@ from .models import DBSession, Leds
 id = 42
 
 # Home view
-@view_config(route_name='home')
+@view_config(route_name='home', renderer='led_view.pt')
 def home(request):
-	res = '<h1> Makahiya </h1>'
 	led = DBSession.query(Leds).filter_by(uid=0).one()
-	res += 'LED HP --> R = '
-	res += str(led.R)
-	res += ' ; G = '
-	res += str(led.G)
-	res += ' ; B = '
-	res += str(led.B)
-	res += ' ; W = '
-	res += str(led.W)
-	res += '</br>'
+	res = {}
+	res['ledHP_R'] = led.R
+	res['ledHP_G'] = led.G
+	res['ledHP_B'] = led.B
+	res['ledHP_W'] = led.W
+	ledM = []
 	for i in range(1, 6):
 		led = DBSession.query(Leds).filter_by(uid=i).one()
-		res += 'LED M' + str(i) + ' --> R = '
-		res += str(led.R)
-		res += ' ; G = '
-		res += str(led.G)
-		res += ' ; B = '
-		res += str(led.B)
-		res += '</br>'
+		values = (led.R, led.G, led.B)
+		ledM.append(values)
 
-	return Response(res)
+	res['ledM'] = ledM
+	res['ran'] = range(1, 6)
+	return res
+
 
 # Set LED color
 @view_config(route_name='set_led', request_method='POST')
@@ -63,4 +57,3 @@ def set_led(request):
 		led.W = value
 	DBSession.add(led)
 	return Response('<body>Good Request</body>')
-
