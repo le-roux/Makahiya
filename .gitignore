@@ -4,3 +4,4 @@ sql*
 server/makahiya/__pycache__
 .cache/
 .coverage
+*.pyc
