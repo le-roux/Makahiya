@@ -1,6 +1,6 @@
 venv/
 sql*
 *egg*
-makahiya/__pycache__
+server/makahiya/__pycache__
 .cache/
 .coverage
