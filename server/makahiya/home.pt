@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Makahiya</title>
+    <link rel="stylesheet"
+        href="${request.static_url('makahiya:static/app.css')}"/>
+</head>
+<body>
+    <h1 class="center">${title}</h1>
+    <p class="center">A ROSE project made at Telecom ParisTech</p>
+</body>
+</html>
