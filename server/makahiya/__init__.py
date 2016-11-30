@@ -13,6 +13,7 @@ def main(global_config, **settings):
 				root_factory='makahiya.models.Root')
 	config.include('pyramid_chameleon')
 	config.add_route('home', '/')
+	config.add_route('test', '/test')
 	config.add_route('set_led', '/api/v1/{plant_id}/actions/{led_id}/{color}/{value}')
 	config.scan('.views')
 	return config.make_wsgi_app()

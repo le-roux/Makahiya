@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Makahiya - test</title>
+    <title>Makahiya - led view</title>
 </head>
 <body>
 <h1>Makahiya</h1>
 <p>LED HP --> R = ${ledHP_R}; G = ${ledHP_G}; B = ${ledHP_B}; W = ${ledHP_W}</p>
 <p>
     <span tal:repeat="id ran">
-    LED M${id} --> 
+    LED M${id} -->
         <span tal:repeat="color ('R', 'G', 'B')">
             ${color} = ${ledM[repeat.id.index][repeat.color.index]};
         </span>

@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://git.heroku.com/makahiya.git
 	branch = master
-	commit = b860fb913f5b0d0f5b1135524ae0c42429973b2a
-	parent = 16cc60986eb071e3523da8f55d93f25aef912b69
+	commit = ac922c31f5ac37b653bbb6f217ca4691bafbe2d6
+	parent = 142264e1f1b97c07f99c717f21e569036121e4c3
 	cmdver = 0.3.0

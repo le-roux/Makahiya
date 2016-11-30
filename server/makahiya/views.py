@@ -24,6 +24,12 @@ def home(request):
 	res['ran'] = range(1, 6)
 	return res
 
+# test
+@view_config(route_name='test')
+def test(request):
+	res = '<h1>Makahiya</h1>'
+	return Response(res)
+
 
 # Set LED color
 @view_config(route_name='set_led', request_method='POST')
