@@ -74,6 +74,7 @@ THD_WORKING_AREA(wa_audio, 1024);
 THD_FUNCTION(audio_playback, arg) {
     int bytes_left = 0;
     HMP3Decoder decoder;
+    unsigned char* read_ptr;
     int offset, err;
     void* pbuf, *inbuf;
     UNUSED(arg);
@@ -100,6 +101,15 @@ THD_FUNCTION(audio_playback, arg) {
                 continue;
             }
 
+            if (inbuf == NULL) { // End of music
+                chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
+                chMBPost(&free_input_box, (msg_t)inbuf, TIME_INFINITE);
+                i2sStopExchange(&I2SD3);
+                i2sStop(&I2SD3);
+                started = false;
+                return;
+            }
+
             // Copy the new data at the end of the working buffer
             memcpy(&working_buffer[bytes_left], inbuf, INPUT_BUFFER_SIZE * 2);
             bytes_left += INPUT_BUFFER_SIZE * 2;
@@ -113,15 +123,21 @@ THD_FUNCTION(audio_playback, arg) {
             i2sStartExchange(&I2SD3);
             started = true;
         }
-
-        offset = MP3FindSyncWord((unsigned char*)working_buffer, bytes_left);
+        read_ptr = (unsigned char*)working_buffer;
+        offset = MP3FindSyncWord(read_ptr, bytes_left);
         bytes_left -=  offset;
         for (int i = 0; i < WORKING_BUFFER_SIZE - offset; i++)
             working_buffer[i] = working_buffer[i + offset]; // Erase the non-interesting part
 
         // Decode the mp3 block
-        err = MP3Decode(decoder, (unsigned char**)&working_buffer, &bytes_left, (int16_t*)pbuf, 0);
+        err = MP3Decode(decoder, &read_ptr, &bytes_left, (int16_t*)pbuf, 0);
+
+        for (int i = 0; i < bytes_left; i++)
+            working_buffer[i] = read_ptr[i];
+
         if (err != 0) {
+            chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
+
             i2sStopExchange(&I2SD3);
             i2sStop(&I2SD3);
             started = false;
@@ -160,5 +176,8 @@ THD_FUNCTION(audio_in, arg) {
 
         chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
     }
+    chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
+    inbuf = NULL;
+    chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
 
 }
