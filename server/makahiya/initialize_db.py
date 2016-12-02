@@ -1,6 +1,8 @@
 import os
 import sys
 import transaction
+import psycopg2
+import urlparse
 
 from sqlalchemy import engine_from_config
 
@@ -14,6 +16,18 @@ from .models import (
 	Leds,
 	Base,
 	)
+
+
+urlparse.uses_netloc.append("postgres")
+url = urlparse.urlparse(os.environ["DATABASE_URL"])
+
+conn = psycopg2.connect(
+    database=url.path[1:],
+    user=url.username,
+    password=url.password,
+    host=url.hostname,
+    port=url.port
+)
 
 
 def usage(argv):
@@ -36,4 +50,3 @@ def main(argv=sys.argv):
 		for i in range(0, 6):
 			model = Leds(uid=i, R=0, G=0, B=0, W=0)
 			DBSession.add(model)
-		
