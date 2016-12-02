@@ -75,7 +75,7 @@ THD_FUNCTION(audio_playback, arg) {
     int bytes_left = 0;
     HMP3Decoder decoder;
     unsigned char* read_ptr;
-    int offset, err;
+    volatile int offset, err;
     void* pbuf, *inbuf;
     UNUSED(arg);
 
@@ -141,7 +141,7 @@ THD_FUNCTION(audio_playback, arg) {
             i2sStopExchange(&I2SD3);
             i2sStop(&I2SD3);
             started = false;
-            return;// TODO improve error management
+            continue;// TODO improve error management
         }
 
         // Post the filled buffer
@@ -153,10 +153,8 @@ THD_WORKING_AREA(wa_audio_in, 2048);
 
 THD_FUNCTION(audio_in, arg) {
     UNUSED(arg);
+    int bytes_nb;
     void* inbuf;
-    int16_t* read_ptr;
-
-    read_ptr = &_binary_pic_mp3_start;
 
     // Init the free input buffers mailbox
     for (int i = 0; i < INPUT_BUFFERS_NB; i++)
@@ -164,15 +162,23 @@ THD_FUNCTION(audio_in, arg) {
 
     chThdSleepMilliseconds(100);
 
-    while (read_ptr < &_binary_pic_mp3_end) {
+    while (chSequentialStreamGet((BaseSequentialStream*)&SDU1) == -2) {
+        chThdSleepMilliseconds(10);
+    }
+
+    while (TRUE) {
         // Get a free buffer
         if (chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE) != MSG_OK) {
             chThdSleepMilliseconds(100);
             continue;
         }
 
-        memcpy(inbuf, read_ptr, INPUT_BUFFER_SIZE * 2);
-        read_ptr += INPUT_BUFFER_SIZE;
+        // Read file from serial link
+        bytes_nb = 0;
+        while(bytes_nb < INPUT_BUFFER_SIZE * 2) {
+            ((int8_t*)inbuf)[bytes_nb] = chSequentialStreamGet((BaseSequentialStream*)&SDU1);
+            bytes_nb++;
+        }
 
         chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
     }
