@@ -36,7 +36,7 @@ class HomeViewTest(unittest.TestCase):
 class HomeFunctionalTests(unittest.TestCase):
     def setUp(self):
         from pyramid.paster import get_app
-        app = get_app('development.ini')
+        app = get_app('tests.ini')
         from webtest import TestApp
         self.testapp = TestApp(app)
 
@@ -45,7 +45,7 @@ class HomeFunctionalTests(unittest.TestCase):
         DBSession.remove()
 
     def test_it(self):
-        res = self.testapp.get('/', status=200)
+        res = self.testapp.get('/led', status=200)
         self.assertIn(b'Makahiya', res.body)
         self.assertIn(b'LED HP', res.body)
         self.assertIn(b'LED M1', res.body)
