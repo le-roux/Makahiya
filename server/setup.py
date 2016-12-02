@@ -16,5 +16,6 @@ setup(name='makahiya',
       main = makahiya:main
       [console_scripts]
       initialize_db = makahiya.initialize_db:main
+      initialize_test_db = makahiya.initialize_test_db:main
       """,
 )
