@@ -30,7 +30,7 @@ volatile int count = 0;
 volatile bool started = false;
 
 int8_t volumeMult = 1;
-int8_t volumeDiv = 2;
+int8_t volumeDiv = 1;
 
 I2SConfig i2s3_cfg = {
     i2s_tx_buf,

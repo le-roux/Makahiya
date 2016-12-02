@@ -130,7 +130,7 @@ CSRC = $(STARTUPSRC) \
 	   $(SRC)/sound.c
 
 PCMSRC =
-MP3SRC = pic.mp3
+MP3SRC =
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
