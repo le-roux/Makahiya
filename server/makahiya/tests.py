@@ -36,7 +36,7 @@ class HomeViewTest(unittest.TestCase):
 class HomeFunctionalTests(unittest.TestCase):
     def setUp(self):
         from pyramid.paster import get_app
-        app = get_app('tests.ini')
+        app = get_app('server/tests.ini')
         from webtest import TestApp
         self.testapp = TestApp(app)
 
