@@ -6,7 +6,7 @@ from .models import DBSession, Leds
 id = 42
 
 # Home view
-@view_config(route_name='led', renderer='led_view.pt')
+@view_config(route_name='led', renderer='makahiya:templates/led_view.pt')
 def home(request):
 	led = DBSession.query(Leds).filter_by(uid=0).one()
 	res = {}
@@ -25,7 +25,7 @@ def home(request):
 	return res
 
 # test
-@view_config(route_name='home', renderer='home.pt')
+@view_config(route_name='home', renderer='makahiya:templates/home.pt')
 def test(request):
 	return {'title':'Makahiya'}
 

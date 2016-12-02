@@ -7,6 +7,9 @@ requires = [
 ]
 
 setup(name='makahiya',
+      version='0.0',
+      description='Server of Makahiya (ROSE 2017 project made at Telecom ParisTech)',
+      url='www.makahiya.herokuapp.com',
       install_requires=requires,
       entry_points="""\
       [paste.app_factory]
