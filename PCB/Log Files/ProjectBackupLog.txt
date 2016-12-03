@@ -77,3 +77,13 @@
 [2016-11-29 16.50.26] Successfully created [AutoSave] backup [2016-11-29 16.50.25 - auto.zip] requested by [DESKTOP-OU0BNIR:Sylvain].
 [2016-11-29 16.50.26] Removing excessive [AutoSave] backup file [F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-25 17.13.39 - auto.zip].
 [2016-11-29 16.50.26] [AutoSave] backup file [PCB\Default\ProjectBackup\backups\2016-11-25 17.13.39 - auto.zip] removed.
+[2016-12-03 18.54.59] Migrating iCDB upgrade backups from directory [PCB\Default\default.icdb\cdbback] to Project Backup format.
+[2016-12-03 18.54.59] Migrating iCDB upgrade backup file [2016-12-03 18.50.19-4980].
+[2016-12-03 18.55.00] Successfully created [Constraints Definition Upgrade] backup [2016-12-03 18.50.19 - consDefUpgr.zip] requested by [DESKTOP-OU0BNIR:Sylvain].
+[2016-12-03 18.55.00] Removing excessive [Constraints Definition Upgrade] backup file [E:\2017\MAKAHIYA\PCB\Default\ProjectBackup\backups\2016-11-23 22.42.22 - consDefUpgr.zip].
+[2016-12-03 18.55.00] [Constraints Definition Upgrade] backup file [PCB\Default\ProjectBackup\backups\2016-11-23 22.42.22 - consDefUpgr.zip] removed.
+[2016-12-03 18.55.00] Migrated iCDB content backup file [cdbback\2016-12-03 18.50.19-4980.zip] removed.
+[2016-12-03 18.55.00] Successfully migrated iCDB upgrade backup file [2016-12-03 18.50.19-4980] to Project Backup format [2016-12-03 18.50.19 - consDefUpgr.zip]
+[2016-12-03 18.55.00] Successfully created [AutoSave] backup [2016-12-03 18.55.00 - auto.zip] requested by [WIN10:root].
+[2016-12-03 18.55.00] Removing excessive [AutoSave] backup file [E:\2017\MAKAHIYA\PCB\Default\ProjectBackup\backups\2016-11-27 17.56.04 - auto.zip].
+[2016-12-03 18.55.00] [AutoSave] backup file [PCB\Default\ProjectBackup\backups\2016-11-27 17.56.04 - auto.zip] removed.

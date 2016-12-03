@@ -135,7 +135,7 @@
 ..PDME "Resistor Shapes" "0" "DEFAULT"
 ..PDME "Mounting Holes" "0" "DEFAULT"
 ..PDME "Part Holes" "0" "DEFAULT"
-..PDME "Placement Outlines" "254000" "DEFAULT"
+..PDME "Placement Outlines" "0" "DEFAULT"
 ..PDME "Part Pads SMD" "0" "DEFAULT"
 ..PDME "Bond Pads" "0" "DEFAULT"
 ..PDME "Test Pads" "0" "DEFAULT"

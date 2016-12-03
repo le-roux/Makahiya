@@ -2,21 +2,21 @@
                                     Packager
                                     --------
 
-                       05:51 PM Sunday, November 27, 2016
-                     Job Name: F:\Makahiya\PCB\Makahiya.prj
+                      07:37 PM Saturday, December 03, 2016
+                   Job Name: E:\2017\MAKAHIYA\PCB\Makahiya.prj
 
 
      Packager     Version: 020806.00
 
-        Commandline is: "D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"F:\Makahiya\PCB\Makahiya.prj" -CleanBuild -NoFill "
+        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"E:\2017\MAKAHIYA\PCB\Makahiya.prj" -CleanBuild -NoFill "
 
-     The Common Database is at "F:\Makahiya\PCB\Default\default.icdb".
+     The Common Database is at "E:\2017\MAKAHIYA\PCB\Default\default.icdb".
 
      The Root of this design is "Schematic1".
 
      The Front End Snapshot of this design is "DCDV".
 
-     The PCB Design Path of this design is at "F:\Makahiya\PCB\PCB\PCB.pcb".
+     The PCB Design Path of this design is at "E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb".
 
      The Central Library is at "F:\Central_Libs\ENST.lmc".
 
@@ -80,7 +80,7 @@
 
      Target PDB Name: Integration\LocalPartsDB.pdb
 
-     Number of Part Numbers: 37
+     Number of Part Numbers: 38
           Part Numb: 00-0022 -> Vend Part: 00-0022 
           Part Numb: 00-0055 -> Vend Part: 00-0055 
           Part Numb: 00-0063 -> Vend Part: 00-0063 
@@ -91,13 +91,13 @@
           Part Numb: 03-0016 -> Vend Part: 03-0016 
           Part Numb: 10-0018 -> Vend Part: 10-0018 
           Part Numb: 10-0031 -> Vend Part: 10-0031 
-          Part Numb: 10-0036 -> Vend Part: 10-0036 
           Part Numb: 10-0054 -> Vend Part: 10-0054 
           Part Numb: 10-0057 -> Vend Part: 10-0057 
           Part Numb: 10-0068 -> Vend Part: 10-0068 
           Part Numb: 10-0077 -> Vend Part: 10-0077 
           Part Numb: 10-0102 -> Vend Part: 10-0102 
           Part Numb: 10-0103 -> Vend Part: 10-0103 
+          Part Numb: 10-0112 -> Vend Part: 10-0112 
           Part Numb: 20-0003 -> Vend Part: 20-0003 
           Part Numb: 20-0004 -> Vend Part: 20-0004 
           Part Numb: 30-0019 -> Vend Part: 30-0019 
@@ -105,6 +105,7 @@
           Part Numb: 40-0288 -> Vend Part: 40-0288 
           Part Numb: 40-0303 -> Vend Part: 40-0303 
           Part Numb: 40-0304 -> Vend Part: 40-0304 
+          Part Numb: 50-0039 -> Vend Part: 50-0039 
           Part Numb: 50-0040 -> Vend Part: 50-0040 
           Part Numb: 70-0001 -> Vend Part: 70-0001 
           Part Numb: 70-0003 -> Vend Part: 70-0003 
@@ -139,8 +140,8 @@
      No errors in Existing Schematic Packaging.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 136 Symbols:
-             136  ***********************************
+     Clustering 137 Symbols:
+             137  ************************************
              100  **************************************************
               50  **************************************************
      Clustering is Complete
@@ -149,8 +150,8 @@
 
 
 
-     118 nets were found containing 449 pins
-     136 components were found
+     119 nets were found containing 452 pins
+     137 components were found
 
      Parsed netlist - Augmenting..
 
