@@ -2,7 +2,7 @@
                                     Packager
                                     --------
 
-                      07:37 PM Saturday, December 03, 2016
+                       09:38 PM Sunday, December 04, 2016
                    Job Name: E:\2017\MAKAHIYA\PCB\Makahiya.prj
 
 
@@ -83,8 +83,8 @@
      Number of Part Numbers: 38
           Part Numb: 00-0022 -> Vend Part: 00-0022 
           Part Numb: 00-0055 -> Vend Part: 00-0055 
-          Part Numb: 00-0063 -> Vend Part: 00-0063 
           Part Numb: 00-0066 -> Vend Part: 00-0066 
+          Part Numb: 00-0085 -> Vend Part: 00-0085 
           Part Numb: 00-0098 -> Vend Part: 00-0098 
           Part Numb: 03-0013 -> Vend Part: 03-0013 
           Part Numb: 03-0015 -> Vend Part: 03-0015 
@@ -140,8 +140,8 @@
      No errors in Existing Schematic Packaging.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 137 Symbols:
-             137  ************************************
+     Clustering 138 Symbols:
+             138  *************************************
              100  **************************************************
               50  **************************************************
      Clustering is Complete
@@ -150,8 +150,8 @@
 
 
 
-     119 nets were found containing 452 pins
-     137 components were found
+     118 nets were found containing 454 pins
+     138 components were found
 
      Parsed netlist - Augmenting..
 

@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                      07:37 PM Saturday, December 03, 2016
+                       09:38 PM Sunday, December 04, 2016
                    Job Name: E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb
 
 
@@ -26,8 +26,8 @@ Version:  01.01.00
      Number of Part Numbers: 38
           Part Numb: 00-0022 -> Vend Part: 00-0022 
           Part Numb: 00-0055 -> Vend Part: 00-0055 
-          Part Numb: 00-0063 -> Vend Part: 00-0063 
           Part Numb: 00-0066 -> Vend Part: 00-0066 
+          Part Numb: 00-0085 -> Vend Part: 00-0085 
           Part Numb: 00-0098 -> Vend Part: 00-0098 
           Part Numb: 03-0013 -> Vend Part: 03-0013 
           Part Numb: 03-0015 -> Vend Part: 03-0015 
@@ -81,11 +81,15 @@ Version:  01.01.00
       
      No errors in Existing Schematic Packaging.
 
+     INFO: Cell (_VB_DRILL_DRAWING_)THRU is not in Central Library - Using local library.
+
+     INFO: Cell (_VB_DRILL_SYMBOLS_)THRU is not in Central Library - Using local library.
+
      INFO: Cell DXF_SVG battery is not in Central Library - Using local library.
 
      The Common DataBase has been read and will be packaged.
-     Clustering 137 Symbols:
-             137  ************************************
+     Clustering 138 Symbols:
+             138  *************************************
              100  **************************************************
               50  **************************************************
      Clustering is Complete
@@ -94,8 +98,8 @@ Version:  01.01.00
 
 
 
-     119 nets were found containing 452 pins
-     137 components were found
+     118 nets were found containing 454 pins
+     138 components were found
 
      Creating a formatted Schematic Netlist (LogFiles\SchematicNetlist.txt)...
      A formatted Schematic Netlist has been created.
@@ -108,7 +112,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                      07:38 PM Saturday, December 03, 2016
+                       09:38 PM Sunday, December 04, 2016
                    Job Name: E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb
 
 
@@ -121,15 +125,9 @@ Version:  02.11.12
 	Schematic reference designator changes will be forward annotated.
 
 
-     WARNING:  The "C0805" cell used by "C32" in the Layout is not
-      valid for a "10-0112" Part Number.
-     INFO: Cell "C0805" is being replaced by cell "C0603".
+	WARNING:  "R3" is being removed from the Layout since it is no longer in the schematic.
 
-     WARNING:  The "C0805" cell used by "C35" in the Layout is not
-      valid for a "10-0112" Part Number.
-     INFO: Cell "C0805" is being replaced by cell "C0603".
-
-     Netload completed successfully with 2 warning(s).
+     Netload completed successfully with 1 warning(s).
      
      Back Annotating...
 
@@ -160,9 +158,15 @@ Version:  02.11.12
 
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
+	Assigned net XSIG010830 to a trace which was originally on net XSIG010829.
+	Assigned net XSIG010830 to a via which was originally on net XSIG010829.
+	Assigned net XSIG010830 to a trace which was originally on net XSIG010829.
+
+Some nets were completely deleted from the Layout Design....
+	Deleted net XSIG010829, which has no pins, from the Layout Design.
 
 Forward-Annotation on the Layout Design has been successfully completed.
 
-There were 0 reassignments of nets.
+There were 3 reassignments of nets.
 There were 0 traces broken back.
-There were 0 nets removed from the Layout Design.
+There were 1 nets removed from the Layout Design.
