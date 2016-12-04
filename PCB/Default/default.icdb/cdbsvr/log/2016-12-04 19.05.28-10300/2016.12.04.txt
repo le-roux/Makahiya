@@ -1,0 +1,138 @@
+[2016.12.04 19:05:28] [0000m.00s.031ms] [0] WELCOME
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] iCDB Server ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] Base flow version [7.9.4]
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] Machine [DESKTOP-OU0BNIR]  User [Sylvain]  PID [10300]
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] Operating system [Microsoft Home Premium Edition, 64-bit (build 9200)]
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] Current working dir [F:\Makahiya\PCB]
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] PATH [D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\help;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\_bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\IntelSGXPSW\bin\x64\Release\;C:\Program Files\Intel\IntelSGXPSW\bin\win32\Release\;C:\Program Files (x86)\Skype\Phone\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Users\sylva\AppData\Local\atom\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib]
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] SDD_HOME [D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] SDD_PLATFORM [win32]
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] WDIR [D:\Programmes\ROSE\MentorGraphics\WDIR;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] Local iCDB working dir [D:\Programmes\ROSE\MentorGraphics\WDIR\iCDB] on file system [NTFS]
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] S: Config file name [ServerWG.cfg]
+[2016.12.04 19:05:28] [0000m.00s.031ms] [2] S: Loading config files
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] Config file [F:\Makahiya\PCB\Default\default.icdb\cdbsvr\ServerWG.cfg] not found
+[2016.12.04 19:05:28] [0000m.00s.031ms] [1] Config: Non-default value [System.SingleUserMode] = [no]
+[2016.12.04 19:05:28] [0000m.00s.046ms] [3] S: Config loaded
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: Project path [F:\Makahiya\PCB\Default\default.icdb] on file system [NTFS]
+[2016.12.04 19:05:28] [0000m.00s.046ms] [1] S: WARNING: No project file (.prj) path specified
+[2016.12.04 19:05:28] [0000m.00s.046ms] [1] S: WARNING: Database auto-repair support DISABLED
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: Multi-user mode (config)
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: Event polling mode autodetection
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: Started up automatically by iCDB Client: DESKTOP-OU0BNIR:Sylvain:7024
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: Auto close mode
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: Database ID [d1a2-80fd-6d20-81b1-8ea5-448d-ea54-4850-af1c-38e7-76b6-f38b]
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] PathTranslator: BEGIN dumping
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] PathTranslator: Local -> global path prefix list
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] PathTranslator: Global -> local path prefix list
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] PathTranslator: END dumping
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: START
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: Server startup lock file created
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: Listening for client connections on port [10000]
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: Server network ID [DESKTOP-OU0BNIR:137.194.20.225,192.168.1.14,DESKTOP-OU0BNIR:10000]
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: Server GUID [7a31-7202-3ed9-e540-8ea5-448d-ea54-4850-adfb-38e7-76b6-f38b]
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: Project GUID [d1a2-80fd-6d20-81b1-8ea5-448d-ea54-4850-af1c-38e7-76b6-f38b]
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: Wrote data to server address file
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] S: Server startup lock file removed
+[2016.12.04 19:05:28] [0000m.00s.046ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.12.04 19:05:29] [0000m.00s.388ms] [0] S: Plugins loaded: [PIM] [ENetGen70] 
+[2016.12.04 19:05:29] [0000m.00s.388ms] [0] S: Local disc access time: 69 us
+[2016.12.04 19:05:29] [0000m.00s.388ms] [0] S: File server access time: 52 us
+[2016.12.04 19:05:29] [0000m.00s.388ms] [0] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] size [159600 (155.9 kB)]
+[2016.12.04 19:05:29] [0000m.00s.388ms] [1] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] opened in read-write mode
+[2016.12.04 19:05:29] [0000m.00s.388ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.12.04 19:05:29] [0000m.00s.388ms] [0] Database GUARD OK: [159600]
+[2016.12.04 19:05:29] [0000m.00s.388ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.12.04 19:05:29] [0000m.00s.388ms] [0] Database GUARD OK: [159600]
+[2016.12.04 19:05:29] [0000m.00s.388ms] [0] SingleFile: [ff64-0d53-de3b-bd8d] SFI version check [1009] [1009]
+[2016.12.04 19:05:29] [0000m.00s.388ms] [0] SingleFile: [ff64-0d53-de3b-bd8d] Database SFI header has been read in [2ms 582us]
+[2016.12.04 19:05:29] [0000m.00s.388ms] [0] iCDB Server PI: Server & plugin session [3321]
+[2016.12.04 19:05:29] [0000m.00s.388ms] [0] iCDB Server PI: Opening database [F:\Makahiya\PCB\Default\default.icdb]
+[2016.12.04 19:05:29] [0000m.00s.388ms] [0] iCDB Server PI: Database [F:\Makahiya\PCB\Default\default.icdb] opened
+[2016.12.04 19:05:29] [0000m.00s.576ms] [0] iCDB Database: Checking existence of constraint definitions
+[2016.12.04 19:05:29] [0000m.00s.576ms] [0] iCDB Database: Checking constraint definitions version
+[2016.12.04 19:05:29] [0000m.00s.638ms] [0] iCDB Database: Creating database content backup before upgrade
+[2016.12.04 19:05:29] [0000m.00s.638ms] [1] iCDB Storage Server: Database backup: ProjectPath[F:\Makahiya\PCB\Default\default.icdb]
+[2016.12.04 19:05:29] [0000m.00s.638ms] [0] iCDB Storage Server Backup Thread: Database backup: BackupPath[F:\Makahiya\PCB\Default\default.icdb\cdbback\2016-12-04 19.05.29-10300.zip]
+[2016.12.04 19:05:29] [0000m.00s.701ms] [0] iCDB Storage Server Backup Thread: Backup database DONE: Result[ Succeeded[TRUE]] BackupPath[F:\Makahiya\PCB\Default\default.icdb\cdbback\2016-12-04 19.05.29-10300.zip]
+[2016.12.04 19:05:29] [0000m.00s.701ms] [0] iCDB Database: Database content backed up to [F:\Makahiya\PCB\Default\default.icdb\cdbback\2016-12-04 19.05.29-10300.zip] of size [260 082 bytes (254.0 kB)]  in [68ms 9us]
+[2016.12.04 19:05:29] [0000m.00s.701ms] [0] iCDB Database: Upgrading constraint definitions from version [ce_ee.cns=7.10.24;user.cns=d492-f1b8-a4a5-c728-c3d8-bc71-4d8b-c750-7d5c-3bf8-e806-e5f5]
+[2016.12.04 19:05:29] [0000m.00s.701ms] [0] iCDB Database: Loading snapshot [1:DCDV] version [2709]
+[2016.12.04 19:05:29] [0000m.00s.717ms] [0] iCDB Database: Snapshot [1:DCDV] loaded in [9ms 379us]
+[2016.12.04 19:05:29] [0000m.00s.717ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [1:DCDV]
+[2016.12.04 19:05:29] [0000m.00s.717ms] [0] iCDB Database: Constraint definitions for snapshot [1:DCDV] upgraded in [2ms 751us]
+[2016.12.04 19:05:29] [0000m.00s.717ms] [0] iCDB Database: Saving snapshot [1:DCDV]
+[2016.12.04 19:05:29] [0000m.00s.717ms] [0] iCDB Database: Snapshot [1:DCDV] saved in [78us]
+[2016.12.04 19:05:29] [0000m.00s.717ms] [1] CORE: Applying a fix no 110 stage [fsAtlasLoaded] to atlas [F:\Makahiya\PCB\Default\default.icdb\s1\cdbcmps\dxdatl]
+[2016.12.04 19:05:29] [0000m.00s.717ms] [1] CORE: Fix: cleared overlapping drawing order!
+[2016.12.04 19:05:29] [0000m.00s.717ms] [1] CORE: Atlas fixed stage [fsAtlasLoaded] successfully [F:\Makahiya\PCB\Default\default.icdb\s1\cdbcmps\dxdatl]
+[2016.12.04 19:05:29] [0000m.00s.732ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [F:\Makahiya\PCB\Default\default.icdb\s1\cdbcatlg\catlgatl.v] - auto-saving it
+[2016.12.04 19:05:29] [0000m.00s.779ms] [0] iCDB Database: Loading snapshot [2:PCB_Layout_Temp] version [2709]
+[2016.12.04 19:05:29] [0000m.00s.779ms] [0] iCDB Database: Snapshot [2:PCB_Layout_Temp] loaded in [9ms 862us]
+[2016.12.04 19:05:29] [0000m.00s.779ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [2:PCB_Layout_Temp]
+[2016.12.04 19:05:29] [0000m.00s.795ms] [0] iCDB Database: Constraint definitions for snapshot [2:PCB_Layout_Temp] upgraded in [4ms 924us]
+[2016.12.04 19:05:29] [0000m.00s.795ms] [0] iCDB Database: Saving snapshot [2:PCB_Layout_Temp]
+[2016.12.04 19:05:29] [0000m.00s.795ms] [0] iCDB Database: Snapshot [2:PCB_Layout_Temp] saved in [189us]
+[2016.12.04 19:05:29] [0000m.00s.795ms] [0] iCDB Database: Loading snapshot [3:PCB] version [2709]
+[2016.12.04 19:05:29] [0000m.00s.810ms] [0] iCDB Database: Snapshot [3:PCB] loaded in [8ms 268us]
+[2016.12.04 19:05:29] [0000m.00s.810ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [3:PCB]
+[2016.12.04 19:05:29] [0000m.00s.810ms] [0] iCDB Database: Constraint definitions for snapshot [3:PCB] upgraded in [3ms 668us]
+[2016.12.04 19:05:29] [0000m.00s.810ms] [0] iCDB Database: Saving snapshot [3:PCB]
+[2016.12.04 19:05:29] [0000m.00s.810ms] [0] iCDB Database: Snapshot [3:PCB] saved in [75us]
+[2016.12.04 19:05:29] [0000m.00s.826ms] [0] iCDB Database: Loading snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE] version [2709]
+[2016.12.04 19:05:29] [0000m.00s.826ms] [0] iCDB Database: Snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE] loaded in [2ms 177us]
+[2016.12.04 19:05:29] [0000m.00s.826ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE]
+[2016.12.04 19:05:29] [0000m.00s.826ms] [0] iCDB Database: Constraint definitions for snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE] upgraded in [363us]
+[2016.12.04 19:05:29] [0000m.00s.826ms] [0] iCDB Database: Saving snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE]
+[2016.12.04 19:05:29] [0000m.00s.826ms] [0] iCDB Database: Snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE] saved in [53us]
+[2016.12.04 19:05:29] [0000m.00s.826ms] [0] iCDB Database: Loading snapshot [5:RefSync] version [2709]
+[2016.12.04 19:05:29] [0000m.00s.842ms] [0] iCDB Database: Snapshot [5:RefSync] loaded in [12ms 229us]
+[2016.12.04 19:05:29] [0000m.00s.842ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [5:RefSync]
+[2016.12.04 19:05:29] [0000m.00s.842ms] [0] iCDB Database: Constraint definitions for snapshot [5:RefSync] upgraded in [4ms 312us]
+[2016.12.04 19:05:29] [0000m.00s.842ms] [0] iCDB Database: Saving snapshot [5:RefSync]
+[2016.12.04 19:05:29] [0000m.00s.842ms] [0] iCDB Database: Snapshot [5:RefSync] saved in [83us]
+[2016.12.04 19:05:29] [0000m.00s.842ms] [1] CORE: Applying a fix no 110 stage [fsAtlasLoaded] to atlas [F:\Makahiya\PCB\Default\default.icdb\s5\cdbcmps\dxdatl]
+[2016.12.04 19:05:29] [0000m.00s.842ms] [1] CORE: Fix: cleared overlapping drawing order!
+[2016.12.04 19:05:29] [0000m.00s.842ms] [1] CORE: Atlas fixed stage [fsAtlasLoaded] successfully [F:\Makahiya\PCB\Default\default.icdb\s5\cdbcmps\dxdatl]
+[2016.12.04 19:05:29] [0000m.00s.857ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [F:\Makahiya\PCB\Default\default.icdb\s5\cdbcatlg\catlgatl.v] - auto-saving it
+[2016.12.04 19:05:29] [0000m.00s.857ms] [0] iCDB Database: Constraint definitions upgraded to version [ce_ee.cns=7.10.24;user.cns=b83f-5623-433f-8ba7-b0d3-ff70-1d3f-f750-68fb-38d7-a6d6-f38b]
+[2016.12.04 19:05:29] [0000m.01s.107ms] [0] iCDB Server PI: Initializing plugins
+[2016.12.04 19:05:29] [0000m.01s.107ms] [0] iCDB Server PI: Plugins initialized
+[2016.12.04 19:05:29] [0000m.01s.107ms] [0] S: iCDB database loaded
+[2016.12.04 19:05:29] [0000m.01s.107ms] [0] S: Starting threads
+[2016.12.04 19:05:29] [0000m.01s.107ms] [0] BT: Listening for broadcast messages on port [10000]
+[2016.12.04 19:05:29] [0000m.01s.107ms] [0] ProjectBackupManager: WARNING: Could not startup Project Backup engine - functionality not initialized
+[2016.12.04 19:05:29] [0000m.01s.107ms] [1] CMT: There are no clients - waiting [10 seconds]
+[2016.12.04 19:05:29] [0000m.01s.107ms] [0] IT: Session [3322] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [7024] created
+[2016.12.04 19:05:29] [0000m.01s.107ms] [1] SC[3322]: Registered sub-client [DCDV] with ID [1] for session ID [3322] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7024]
+[2016.12.04 19:05:29] [0000m.01s.123ms] [1] SC[3322]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3322] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7024]
+[2016.12.04 19:05:29] [0000m.01s.217ms] [1] CMT: There are [1] clients now: 3322
+[2016.12.04 19:05:29] [0000m.01s.217ms] [1] CMT: Removed client [3322]
+[2016.12.04 19:05:29] [0000m.01s.217ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2016.12.04 19:05:30] [0000m.01s.654ms] [0] IT: Session [3323] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [7024] created
+[2016.12.04 19:05:30] [0000m.01s.654ms] [1] SC[3323]: Registered sub-client [DCDV] with ID [1] for session ID [3323] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7024]
+[2016.12.04 19:05:30] [0000m.01s.654ms] [1] SC[3323]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3323] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [7024]
+[2016.12.04 19:05:30] [0000m.01s.764ms] [1] CMT: Removed client [3323]
+[2016.12.04 19:05:30] [0000m.01s.764ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2016.12.04 19:05:32] [0000m.03s.405ms] [0] CMT: Starting server auto-close
+[2016.12.04 19:05:32] [0000m.03s.514ms] [0] S: Closing server
+[2016.12.04 19:05:32] [0000m.03s.545ms] [0] ProjectBackupManager: WARNING: Could not shutdown Project Backup engine - not started yet
+[2016.12.04 19:05:32] [0000m.03s.702ms] [0] iCDB Server PI: Closing plugins
+[2016.12.04 19:05:32] [0000m.03s.702ms] [0] iCDB Server PI: Plugins closed
+[2016.12.04 19:05:32] [0000m.03s.702ms] [0] iCDB Server PI: Unloading database
+[2016.12.04 19:05:32] [0000m.03s.889ms] [0] iCDB Server PI: Saving storage
+[2016.12.04 19:05:32] [0000m.03s.905ms] [0] iCDB Server PI: Closing database
+[2016.12.04 19:05:32] [0000m.03s.967ms] [1] iCDB Server PI: Stats: Database defragmentation: max[2] avg[1] holes[0%] data[96%]
+[2016.12.04 19:05:32] [0000m.03s.967ms] [1] iCDB Server PI: Stats: Database file size [168120 (164.2 kB)]
+[2016.12.04 19:05:32] [0000m.04s.030ms] [0] iCDB Server PI: Database closed
+[2016.12.04 19:05:32] [0000m.04s.030ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [25] ticks
+[2016.12.04 19:05:32] [0000m.04s.030ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [9] microseconds
+[2016.12.04 19:05:32] [0000m.04s.030ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [2]
+[2016.12.04 19:05:32] [0000m.04s.030ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [202499] commands per second
+[2016.12.04 19:05:32] [0000m.04s.045ms] [0] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] closed with size [168120 (164.2 kB)]
+[2016.12.04 19:05:32] [0000m.04s.045ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.12.04 19:05:32] [0000m.04s.280ms] [0] S: STOP
