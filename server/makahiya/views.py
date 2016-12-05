@@ -2,12 +2,13 @@ from pyramid.response import Response
 from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config
 from .models import DBSession, Leds
+from velruse import login_url
 
 id = 42
 
 # Home view
 @view_config(route_name='led', renderer='makahiya:templates/led_view.pt')
-def home(request):
+def led_view(request):
 	led = DBSession.query(Leds).filter_by(uid=0).one()
 	res = {}
 	res['ledHP_R'] = led.R
@@ -26,8 +27,12 @@ def home(request):
 
 # test
 @view_config(route_name='home', renderer='makahiya:templates/home.pt')
-def test(request):
-	return {'title':'Makahiya'}
+def home(request):
+	session = request.session
+	if 'logged' not in session:
+		session['logged'] = 0
+	return {'title':'Makahiya',
+			'logged':session['logged']}
 
 
 # Set LED color
@@ -62,3 +67,14 @@ def set_led(request):
 		led.W = value
 	DBSession.add(led)
 	return Response('<body>Good Request</body>')
+
+@view_config(route_name='login', renderer='makahiya:templates/login.pt')
+def login(request):
+	return {"google_login_url": login_url(request, 'google')}
+
+@view_config(context='velruse.AuthenticationComplete',
+			renderer='makahiya:templates/logged.pt')
+def login_callback(request):
+	session = request.session
+	session['logged'] = 1
+	return {}
