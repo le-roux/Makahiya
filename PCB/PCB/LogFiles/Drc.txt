@@ -2,7 +2,7 @@
                                 DRC - (Final DRC)
                                 -----------------
 
-                       09:56 PM Sunday, December 04, 2016
+                       03:10 PM Monday, December 05, 2016
                    Job Name: E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb
 
 
@@ -451,7 +451,7 @@
 
 
     Check Trace Widths                            : YES
-        Hazards Found : 53
+        Hazards Found : 56
 
 
     Check Single Point Nets                       : YES
@@ -514,7 +514,7 @@
 
 
 
-    Total Connectivity/SpecialRules Hazards Found : 53
+    Total Connectivity/SpecialRules Hazards Found : 56
 
 
 
@@ -522,8 +522,8 @@
 
 
 
-    Total DRC Hazards Found : 55
+    Total DRC Hazards Found : 58
 
 
 
-                         09:56 PM Sunday, December 04, 2016
+                         03:10 PM Monday, December 05, 2016

@@ -101,3 +101,6 @@
 [2016-12-04 20.09.31] Removing excessive [Constraints Definition Upgrade] backup file [E:\2017\MAKAHIYA\PCB\Default\ProjectBackup\backups\2016-12-04 19.05.29 - consDefUpgr.zip].
 [2016-12-04 20.09.31] [Constraints Definition Upgrade] backup file [PCB\Default\ProjectBackup\backups\2016-12-04 19.05.29 - consDefUpgr.zip] removed.
 [2016-12-04 20.09.31] Migrated iCDB content backup file [cdbback\2016-12-04 20.09.31-1692.zip] removed.
+[2016-12-05 14.56.41] Successfully created [AutoSave] backup [2016-12-05 14.56.40 - auto.zip] requested by [WIN10:root].
+[2016-12-05 14.56.41] Removing excessive [AutoSave] backup file [E:\2017\MAKAHIYA\PCB\Default\ProjectBackup\backups\2016-11-29 16.50.25 - auto.zip].
+[2016-12-05 14.56.41] [AutoSave] backup file [PCB\Default\ProjectBackup\backups\2016-11-29 16.50.25 - auto.zip] removed.
