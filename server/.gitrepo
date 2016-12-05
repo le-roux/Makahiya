@@ -4,8 +4,8 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = https://git.heroku.com/makahiya2.git
+	remote = https://git.heroku.com/makahiya.git
 	branch = master
-	commit = 78b6189d521dfed177ed8da29b9bbc519da1fb95
-	parent = 82eaf770f419f9d60104c86fbcd5ca251dbfa875
+	commit = 4e2cae647b1c2b9b41c8f2a321ba990d09341ea9
+	parent = 5c04a9f89246b32dc66832efdad5b0ccd5061662
 	cmdver = 0.3.0
