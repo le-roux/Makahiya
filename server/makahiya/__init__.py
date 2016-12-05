@@ -14,7 +14,7 @@ loop = None
 
 def launch_websocket():
 	asyncio.set_event_loop(loop)
-	start_server = websockets.serve(led, "0.0.0.0", 8765)
+	start_server = websockets.serve(led, "localhost", 80)
 	loop.run_until_complete(start_server)
 	loop.run_forever()
 	
