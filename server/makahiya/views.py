@@ -2,6 +2,10 @@ from pyramid.response import Response
 from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config
 from .models import DBSession, Leds
+from .websocket import led_producer
+from . import loop
+
+import asyncio
 
 id = 42
 
@@ -61,4 +65,5 @@ def set_led(request):
 	if (color == 'W'):
 		led.W = value
 	DBSession.add(led)
+	asyncio.run_coroutine_threadsafe(led_producer(led_id, color, value), loop)
 	return Response('<body>Good Request</body>')
