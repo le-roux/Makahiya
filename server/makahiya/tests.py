@@ -31,6 +31,13 @@ class HomeViewTest(unittest.TestCase):
 
 		request = testing.DummyRequest()
 		response = home(request)
+		self.assertEqual('Makahiya', response['title'])
+
+	def test_led_view(self):
+		from .views import led_view
+
+		request = testing.DummyRequest()
+		response = led_view(request)
 		self.assertEqual(range(1,6), response['ran'])
 
 class HomeFunctionalTests(unittest.TestCase):

@@ -7,4 +7,5 @@ server-tests:
         - pip install -r server/requirements.txt
         - pip install -e server
         - initialize_test_db server/tests.ini
+	- export PORT=8765
         - pytest server/makahiya/tests.py -q
