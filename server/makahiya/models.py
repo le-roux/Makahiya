@@ -19,7 +19,7 @@ DBSession = scoped_session(
 	sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
-
+# Table containing the leds status.
 class Leds(Base):
 	__tablename__ = 'leds'
 	uid = Column(Integer, primary_key=True)
@@ -28,7 +28,7 @@ class Leds(Base):
 	B = Column(Integer)
 	W = Column(Integer)
 
-
+# Authorization stuff (access control list).
 class Root(object):
 	__acl__ = [(Allow, Everyone, 'view'),
 		 (Allow, 'group:editors', 'edit')]

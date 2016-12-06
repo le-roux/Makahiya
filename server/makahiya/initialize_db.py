@@ -31,6 +31,9 @@ conn = psycopg2.connect(
 
 
 def usage(argv):
+	"""
+		Print the proper usage of the module.
+	"""
 	cmd = os.path.basename(argv[0])
 	print('usage: %s <config_uri>\n'
 	    '(example: "%s production.ini")' % (cmd, cmd))
@@ -43,12 +46,25 @@ def main(argv=sys.argv):
 	config_uri = argv[1]
 	setup_logging(config_uri)
 	settings = get_appsettings(config_uri)
+
+	# Create a SQLAlchemy engine.
+	# The second argument ('sqlalchemy.') is the prefix to search for in
+	# settings in order to find the relevant information to configure the
+	# engine.
 	engine = engine_from_config(settings, 'sqlalchemy.')
+
+	# Connect the engine to the session.
 	DBSession.configure(bind=engine)
+
+	# ??
 	Base.metadata.create_all(engine)
-	cmd = "DELETE FROM leds;"
-	engine.execute(cmd)
+
+	# Clear the current content of the leds table.
+	engine.execute("DELETE FROM leds;")
+
+	# Fill the database with initial values.
 	with transaction.manager:
+		# Create (if necessary) and fill the 'leds' table.
 		for i in range(0, 6):
 			model = Leds(uid=i, R=0, G=0, B=0, W=0)
 			DBSession.add(model)
