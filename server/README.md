@@ -19,3 +19,9 @@ List of the files (and short description):
 - **tests.ini**: the configuration file for the automatic tests (used for
     continuous integration).
 - **makahiya/**: all the Python code of the server.
+
+
+List of the paths (and function):
+- **/**: home page
+- **/leds**: display the content of the __leds__ table.
+- **/login**: offer a button to log in with google
