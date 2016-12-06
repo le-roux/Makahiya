@@ -70,7 +70,10 @@ def set_led(request):
 	if (color == 'W'):
 		led.W = value
 	DBSession.add(led)
-	asyncio.run_coroutine_threadsafe(led_producer(led_id, color, value), loop)
+
+	if (loop != None):
+		asyncio.run_coroutine_threadsafe(led_producer(led_id, color, value), loop)
+
 	return Response('<body>Good Request</body>')
 
 @view_config(route_name='login', renderer='makahiya:templates/login.pt')

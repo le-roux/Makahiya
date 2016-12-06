@@ -5,6 +5,7 @@ from sqlalchemy import engine_from_config
 
 from .models import DBSession, Base
 
+import os
 import asyncio
 import websockets
 from threading import Thread
@@ -15,7 +16,7 @@ loop = None
 
 def launch_websocket():
 	asyncio.set_event_loop(loop)
-	start_server = websockets.serve(led, "0.0.0.0", 8765)
+	start_server = websockets.serve(led, "0.0.0.0", os.environ['PORT'])
 	loop.run_until_complete(start_server)
 	loop.run_forever()
 
