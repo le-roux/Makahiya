@@ -1,8 +1,6 @@
 import os
 import sys
 import transaction
-import psycopg2
-import urllib.parse
 
 from sqlalchemy import engine_from_config
 
@@ -17,23 +15,10 @@ from .models import (
 	Base,
 	)
 
-
-urllib.parse.uses_netloc.append("postgres")
-url = urllib.parse.urlparse(os.environ["DATABASE_URL"])
-
-conn = psycopg2.connect(
-    database=url.path[1:],
-    user=url.username,
-    password=url.password,
-    host=url.hostname,
-    port=url.port
-)
-
-
 def usage(argv):
 	cmd = os.path.basename(argv[0])
 	print('usage: %s <config_uri>\n'
-	    '(example: "%s production.ini")' % (cmd, cmd))
+	    '(example: "%s development.ini")' % (cmd, cmd))
 	sys.exit(1)
 
 

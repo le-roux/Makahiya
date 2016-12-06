@@ -18,7 +18,7 @@ from .models import (
 def usage(argv):
 	cmd = os.path.basename(argv[0])
 	print('usage: %s <config_uri>\n'
-	    '(example: "%s development.ini")' % (cmd, cmd))
+	    '(example: "%s tests.ini")' % (cmd, cmd))
 	sys.exit(1)
 
 
@@ -31,6 +31,8 @@ def main(argv=sys.argv):
 	engine = engine_from_config(settings, 'sqlalchemy.')
 	DBSession.configure(bind=engine)
 	Base.metadata.create_all(engine)
+	cmd = "DELETE FROM leds;"
+	engine.execute(cmd)
 	with transaction.manager:
 		for i in range(0, 6):
 			model = Leds(uid=i, R=0, G=0, B=0, W=0)
