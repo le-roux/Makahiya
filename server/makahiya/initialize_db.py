@@ -14,6 +14,7 @@ from pyramid.paster import (
 from .models import (
 	DBSession,
 	Leds,
+	Users,
 	Base,
 	)
 
@@ -56,7 +57,7 @@ def main(argv=sys.argv):
 	# Connect the engine to the session.
 	DBSession.configure(bind=engine)
 
-	# ??
+	# Create the tables (if they don't already exist).
 	Base.metadata.create_all(engine)
 
 	# Clear the current content of the leds table.
@@ -64,7 +65,10 @@ def main(argv=sys.argv):
 
 	# Fill the database with initial values.
 	with transaction.manager:
-		# Create (if necessary) and fill the 'leds' table.
+		# Fill the 'leds' table.
 		for i in range(0, 6):
 			model = Leds(uid=i, R=0, G=0, B=0, W=0)
 			DBSession.add(model)
+		# Fill the 'users' table
+		user = Users(uid=0, email='sylvain.leroux3@gmail.com', level=1)
+		DBSession.add(user)

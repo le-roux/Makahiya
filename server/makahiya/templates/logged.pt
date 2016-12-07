@@ -5,5 +5,7 @@
 </head>
 <body>
     <h1>Welcome</h1>
+    <p tal:condition='editor'>You're editor</p>
+    <p tal:condition='viewer'>You're viewer</p>
 </body>
 </html>

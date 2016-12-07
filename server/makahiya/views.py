@@ -1,8 +1,12 @@
 from pyramid.response import Response
 from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config
+<<<<<<< HEAD
 from aiopyramid.websocket.config import WebsocketMapper
 from .models import DBSession, Leds
+=======
+from .models import DBSession, Leds, Users
+>>>>>>> 4d5fd3cc3e852483c12b9997b1df8aeb6b8c5fb5
 from velruse import login_url
 from .websocket import led_producer
 from . import loop
@@ -91,8 +95,12 @@ def login(request):
 			renderer='makahiya:templates/logged.pt')
 def login_callback(request):
 	session = request.session
-	session['logged'] = 1
-	return {}
+	context = request.context
+	user = DBSession.query(Users).filter_by(email=context.profile['verifiedEmail']).first()
+	session['logged'] = user.level
+	viewer = not user.level
+	return {'editor': user.level,
+			'viewer': viewer}
 
 @view_config(route_name='ws', mapper=WebsocketMapper)
 def echo(ws):
