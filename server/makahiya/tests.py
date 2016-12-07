@@ -41,31 +41,35 @@ class HomeViewTest(unittest.TestCase):
 		self.assertEqual(range(1,6), response['ran'])
 
 class HomeFunctionalTests(unittest.TestCase):
-    def setUp(self):
-        from pyramid.paster import get_app
-        app = get_app('server/tests.ini')
-        from webtest import TestApp
-        self.testapp = TestApp(app)
+	def setUp(self):
+		from pyramid.paster import get_app
+		app = get_app('server/tests.ini')
+		from webtest import TestApp
+		self.testapp = TestApp(app)
+		from . import loop
+		loop = None
 
-    def tearDown(self):
-        from .models import DBSession
-        DBSession.remove()
+	def tearDown(self):
+		from .models import DBSession
+		DBSession.remove()
 
-    def test_it(self):
-        res = self.testapp.get('/led', status=200)
-        self.assertIn(b'Makahiya', res.body)
-        self.assertIn(b'LED HP', res.body)
-        self.assertIn(b'LED M1', res.body)
-        self.assertIn(b'LED M2', res.body)
-        self.assertIn(b'LED M3', res.body)
-        self.assertIn(b'LED M4', res.body)
-        self.assertIn(b'LED M5', res.body)
+	def test_it(self):
+		res = self.testapp.get('/led', status=200)
+		self.assertIn(b'Makahiya', res.body)
+		self.assertIn(b'LED HP', res.body)
+		self.assertIn(b'LED M1', res.body)
+		self.assertIn(b'LED M2', res.body)
+		self.assertIn(b'LED M3', res.body)
+		self.assertIn(b'LED M4', res.body)
+		self.assertIn(b'LED M5', res.body)
 
 class SetLedTest(unittest.TestCase):
 
 	def setUp(self):
 		self.session = initTestDb()
 		self.config = testing.setUp()
+		from . import loop
+		loop = None
 
 	def tearDown(self):
 		self.session.remove()
