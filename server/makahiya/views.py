@@ -10,26 +10,7 @@ import asyncio
 
 id = 42
 
-# Home view
-@view_config(route_name='led', renderer='makahiya:templates/led_view.pt')
-def led_view(request):
-	led = DBSession.query(Leds).filter_by(uid=0).one()
-	res = {}
-	res['ledHP_R'] = led.R
-	res['ledHP_G'] = led.G
-	res['ledHP_B'] = led.B
-	res['ledHP_W'] = led.W
-	ledM = []
-	for i in range(1, 6):
-		led = DBSession.query(Leds).filter_by(uid=i).one()
-		values = (led.R, led.G, led.B)
-		ledM.append(values)
-
-	res['ledM'] = ledM
-	res['ran'] = range(1, 6)
-	return res
-
-# test
+# home page
 @view_config(route_name='home', renderer='makahiya:templates/home.pt')
 def home(request):
 	session = request.session
@@ -38,6 +19,31 @@ def home(request):
 	return {'title':'Makahiya',
 			'logged':session['logged']}
 
+# led view
+@view_config(route_name='led', renderer='makahiya:templates/led_view.pt')
+def led_view(request):
+	# Query the first row (representing the powerful led) of the table 'leds'.
+	led = DBSession.query(Leds).filter_by(uid=0).one()
+
+	# Set the values in a dictionary
+	res = {}
+	res['ledHP_R'] = led.R
+	res['ledHP_G'] = led.G
+	res['ledHP_B'] = led.B
+	res['ledHP_W'] = led.W
+
+	# Fill an array with the values of the normal leds.
+	ledM = []
+	led_range = range(1, 6)
+	for i in led_range:
+		# Query the database for led i from table 'leds'.
+		led = DBSession.query(Leds).filter_by(uid=i).one()
+		values = (led.R, led.G, led.B)
+		ledM.append(values)
+
+	res['ledM'] = ledM
+	res['ran'] = led_range
+	return res
 
 # Set LED color
 @view_config(route_name='set_led', request_method='POST')
