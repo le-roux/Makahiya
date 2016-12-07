@@ -2,7 +2,7 @@ venv/
 sql*
 test
 *egg*
-server/makahiya/__pycache__
+makahiya/__pycache__
 .cache/
 .coverage
 *.pyc

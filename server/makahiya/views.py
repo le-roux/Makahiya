@@ -2,7 +2,6 @@ from pyramid.response import Response
 from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config
 from .models import Session, Leds, Users
-from sqlalchemy.orm import (scoped_session)
 from aiopyramid.websocket.config import WebsocketMapper
 from aiopyramid.config import CoroutineMapper
 from .models import Session, Leds, Users
