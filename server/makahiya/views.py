@@ -2,14 +2,17 @@ from pyramid.response import Response
 from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config
 from aiopyramid.websocket.config import WebsocketMapper
+from aiopyramid.config import CoroutineMapper
 from .models import DBSession, Leds, Users
 from velruse import login_url
-from .websocket import led_producer
-from . import loop
 
 import asyncio
+import threading
 
 id = 42
+var = asyncio.Condition()
+message = None
+
 
 # home page
 @view_config(route_name='home', renderer='makahiya:templates/home.pt')
@@ -47,7 +50,7 @@ def led_view(request):
 	return res
 
 # Set LED color
-@view_config(route_name='set_led', request_method='POST')
+@view_config(route_name='set_led', request_method='POST', mapper=CoroutineMapper)
 def set_led(request):
 	plant_id = request.matchdict['plant_id']
 	led_id = request.matchdict['led_id']
@@ -78,10 +81,23 @@ def set_led(request):
 		led.W = value
 	DBSession.add(led)
 
-	if (loop != None):
-		asyncio.run_coroutine_threadsafe(led_producer(led_id, color, value), loop)
+#	thread = threading.Thread(target=forward, args=(str(led_id) + ' ' + color + ' ' + str(value),))
+#	thread.start()
+
+	global message
+	message = str(led_id) + ' ' + color + ' ' + str(value)
+	yield from var.acquire()
+	var.notify()
+	var.release()
 
 	return Response('<body>Good Request</body>')
+
+def forward(msg):
+	global message
+	message = msg
+	yield from var.acquire()
+	var.notify()
+	var.release()
 
 @view_config(route_name='login', renderer='makahiya:templates/login.pt')
 def login(request):
@@ -101,8 +117,8 @@ def login_callback(request):
 @view_config(route_name='ws', mapper=WebsocketMapper)
 def echo(ws):
 	while True:
-		message = yield from ws.recv()
-		if message is None:
-			break
+		yield from var.acquire()
+		yield from var.wait()
+		var.release()
 		yield from ws.send(message)
 
