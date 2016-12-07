@@ -5,6 +5,7 @@ import psycopg2
 import urllib.parse
 
 from sqlalchemy import engine_from_config
+from sqlalchemy.orm import relationship
 
 from pyramid.paster import (
 	get_appsettings,
@@ -12,7 +13,7 @@ from pyramid.paster import (
 	)
 
 from .models import (
-	DBSession,
+	Session,
 	Leds,
 	Users,
 	Base,
@@ -60,15 +61,18 @@ def main(argv=sys.argv):
 	# Create the tables (if they don't already exist).
 	Base.metadata.create_all(engine)
 
-	# Clear the current content of the leds table.
+	# Clear the current content of the tables.
 	engine.execute("DELETE FROM leds;")
+	#engine.execute("DELETE FROM users;")
+	session = Session()
+	Users.leds = relationship("Leds", back_populates="user")
+	Base.metadata.create_all(engine)
 
-	# Fill the database with initial values.
-	with transaction.manager:
-		# Fill the 'leds' table.
-		for i in range(0, 6):
-			model = Leds(uid=i, R=0, G=0, B=0, W=0)
-			DBSession.add(model)
-		# Fill the 'users' table
-		user = Users(uid=0, email='sylvain.leroux3@gmail.com', level=1)
-		DBSession.add(user)
+	# Fill the 'users' table with initial values.
+	user = Users(uid=0, email='sylvain.leroux3@gmail.com', level=1)
+	session.add(user)
+
+	# Fill the 'leds' table with initial values.
+	for i in range(0, 6):
+		model = Leds(uid=i, R=0, G=0, B=0, W=0)
+		DBSession.add(model)

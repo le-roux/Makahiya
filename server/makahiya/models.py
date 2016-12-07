@@ -5,6 +5,7 @@ from sqlalchemy import (
 	Integer,
 	Text,
 	String,
+	ForeignKey,
 	)
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -12,26 +13,15 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import (
 	scoped_session,
 	sessionmaker,
+	relationship,
 	)
 
-from zope.sqlalchemy import ZopeTransactionExtension
-
 # Handle to the database.
-DBSession = scoped_session(
-	sessionmaker(extension=ZopeTransactionExtension()))
+Session = sessionmaker()
 
 # Base element representing the database. It'll hold all the tables we'll
 # create in a declarative way (using Python classes).
 Base = declarative_base()
-
-# Table containing the leds status.
-class Leds(Base):
-	__tablename__ = 'leds'
-	uid = Column(Integer, primary_key=True)
-	R = Column(Integer)
-	G = Column(Integer)
-	B = Column(Integer)
-	W = Column(Integer)
 
 class Users(Base):
 	"""
@@ -44,6 +34,18 @@ class Users(Base):
 	uid = Column(Integer, primary_key=True)
 	email = Column(String)
 	level = Column(Integer)
+
+# Table containing the leds status.
+class Leds(Base):
+	__tablename__ = 'leds'
+	uid = Column(Integer, primary_key=True)
+	userid = Column(Integer, ForeignKey('users.uid'))
+	R = Column(Integer)
+	G = Column(Integer)
+	B = Column(Integer)
+	W = Column(Integer)
+
+	user = relationship("Users", back_populates="leds")
 
 # Authorization stuff (access control list).
 class Root(object):

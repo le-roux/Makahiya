@@ -6,7 +6,7 @@
         href="${request.static_url('makahiya:static/app.css')}"/>
 </head>
 <body>
-<h1>Makahiya</h1>
+<h1>Makahiya - User id: ${user_id}</h1>
 <p>LED HP --> R = ${ledHP_R}; G = ${ledHP_G}; B = ${ledHP_B}; W = ${ledHP_W}</p>
 <p>
     <span tal:repeat="id ran">
