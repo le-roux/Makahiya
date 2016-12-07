@@ -2,4 +2,4 @@
 set -e
 python setup.py develop
 initialize_db production.ini
-gunicorn --paste production.ini
+python runapp.py
