@@ -1,7 +1,7 @@
 from pyramid.response import Response
 from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config
-from .models import DBSession, Leds
+from .models import DBSession, Leds, Users
 from velruse import login_url
 from .websocket import led_producer
 from . import loop
@@ -90,5 +90,9 @@ def login(request):
 			renderer='makahiya:templates/logged.pt')
 def login_callback(request):
 	session = request.session
-	session['logged'] = 1
-	return {}
+	context = request.context
+	user = DBSession.query(Users).filter_by(email=context.profile['verifiedEmail']).first()
+	session['logged'] = user.level
+	viewer = not user.level
+	return {'editor': user.level,
+			'viewer': viewer}

@@ -12,6 +12,7 @@ from pyramid.paster import (
 from .models import (
 	DBSession,
 	Leds,
+	Users,
 	Base,
 	)
 
@@ -37,3 +38,5 @@ def main(argv=sys.argv):
 		for i in range(0, 6):
 			model = Leds(uid=i, R=0, G=0, B=0, W=0)
 			DBSession.add(model)
+		user = Users(uid=0, email='sylvain.leroux3@gmail.com', level=1)
+		DBSession.add(user)
