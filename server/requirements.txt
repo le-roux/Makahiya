@@ -9,3 +9,6 @@ zope.sqlalchemy
 psycopg2
 velruse
 websockets
+gunicorn
+aiopyramid
+aiohttp

@@ -1,6 +1,7 @@
 from pyramid.response import Response
 from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config
+from aiopyramid.websocket.config import WebsocketMapper
 from .models import DBSession, Leds
 from velruse import login_url
 from .websocket import led_producer
@@ -92,3 +93,12 @@ def login_callback(request):
 	session = request.session
 	session['logged'] = 1
 	return {}
+
+@view_config(route_name='ws', mapper=WebsocketMapper)
+def echo(ws):
+	while True:
+		message = yield from ws.recv()
+		if message is None:
+			break
+		yield from ws.send(message)
+

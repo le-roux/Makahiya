@@ -36,13 +36,14 @@ def main(global_config, **settings):
 	config.add_route('led', '/led')
 	config.add_route('set_led', '/api/v1/{plant_id}/actions/{led_id}/{color}/{value}')
 	config.add_route('login', '/login')
+	config.add_route('ws', '/ws')
 	config.add_static_view(name='static', path='makahiya:static')
 
 	global loop
 	loop = asyncio.get_event_loop()
 	thread = Thread(target = launch_websocket)
 	thread.setDaemon(True)
-	thread.start()
+#	thread.start()
 
 	config.scan('.views')
 	return config.make_wsgi_app()
