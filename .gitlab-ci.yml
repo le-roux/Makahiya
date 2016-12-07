@@ -4,8 +4,8 @@ image: python:3.5
 server-tests:
     stage: test
     script:
-        - pip install -r server/requirements.txt
-        - pip install -e server
-        - initialize_test_db server/tests.ini
+        - pip install -r requirements.txt
+        - pip install -e .
+        - initialize_test_db tests.ini
         - export PORT=8765
-        - pytest server/makahiya/tests.py -q
+        - pytest makahiya/tests.py -q
