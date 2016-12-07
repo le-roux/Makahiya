@@ -75,4 +75,5 @@ def main(argv=sys.argv):
 	# Fill the 'leds' table with initial values.
 	for i in range(0, 6):
 		model = Leds(uid=i, R=0, G=0, B=0, W=0)
-		DBSession.add(model)
+		session.add(model)
+	session.commit()
