@@ -1,1 +1,1 @@
-web: gunicorn --paste production.ini
+web: ./run
