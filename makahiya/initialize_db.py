@@ -56,7 +56,7 @@ def main(argv=sys.argv):
 	engine = engine_from_config(settings, 'sqlalchemy.')
 
 	# Connect the engine to the session.
-	DBSession.configure(bind=engine)
+	Session.configure(bind=engine)
 
 	# Create the tables (if they don't already exist).
 	Base.metadata.create_all(engine)
@@ -75,4 +75,4 @@ def main(argv=sys.argv):
 	# Fill the 'leds' table with initial values.
 	for i in range(0, 6):
 		model = Leds(uid=i, R=0, G=0, B=0, W=0)
-		DBSession.add(model)
+		Session.add(model)
