@@ -41,6 +41,7 @@ def main(global_config, **settings):
 	global loop
 	loop = asyncio.get_event_loop()
 	thread = Thread(target = launch_websocket)
+	thread.setDaemon(True)
 	thread.start()
 
 	config.scan('.views')
