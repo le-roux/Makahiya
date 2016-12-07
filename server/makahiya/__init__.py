@@ -3,7 +3,7 @@ from pyramid.session import SignedCookieSessionFactory
 
 from sqlalchemy import engine_from_config
 
-from .models import DBSession, Base
+from .models import Session, Base
 
 import os
 import asyncio
@@ -22,7 +22,7 @@ def launch_websocket():
 
 def main(global_config, **settings):
 	engine = engine_from_config(settings, 'sqlalchemy.')
-	DBSession.configure(bind=engine)
+	Session.configure(bind=engine)
 	Base.metadata.bind = engine
 	session_factory = SignedCookieSessionFactory('makahiya')
 

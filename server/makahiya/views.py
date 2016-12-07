@@ -1,7 +1,7 @@
 from pyramid.response import Response
 from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config
-from .models import DBSession, Leds, Users
+from .models import Session, Leds, Users
 from velruse import login_url
 from .websocket import led_producer
 from . import loop
@@ -23,7 +23,8 @@ def home(request):
 @view_config(route_name='led', renderer='makahiya:templates/led_view.pt')
 def led_view(request):
 	# Query the first row (representing the powerful led) of the table 'leds'.
-	led = DBSession.query(Leds).filter_by(uid=0).one()
+	session = Session()
+	led = session.query(Leds).filter_by(uid=0).one()
 
 	# Set the values in a dictionary
 	res = {}
@@ -31,13 +32,14 @@ def led_view(request):
 	res['ledHP_G'] = led.G
 	res['ledHP_B'] = led.B
 	res['ledHP_W'] = led.W
+	res['user_id'] = led.userid
 
 	# Fill an array with the values of the normal leds.
 	ledM = []
 	led_range = range(1, 6)
 	for i in led_range:
 		# Query the database for led i from table 'leds'.
-		led = DBSession.query(Leds).filter_by(uid=i).one()
+		led = session.query(Leds).filter_by(uid=i).one()
 		values = (led.R, led.G, led.B)
 		ledM.append(values)
 
@@ -48,6 +50,7 @@ def led_view(request):
 # Set LED color
 @view_config(route_name='set_led', request_method='POST')
 def set_led(request):
+	session = Session()
 	plant_id = request.matchdict['plant_id']
 	led_id = request.matchdict['led_id']
 	color = request.matchdict['color']
@@ -66,7 +69,7 @@ def set_led(request):
 		return HTTPBadRequest('Invalid color')
 	if(value < 0 or value > 255):
 		return HTTPBadRequest('Invalid value')
-	led = DBSession.query(Leds).filter_by(uid=led_id).one()
+	led = session.query(Leds).filter_by(uid=led_id).one()
 	if (color == 'R'):
 		led.R = value
 	if (color == 'G'):
@@ -75,7 +78,7 @@ def set_led(request):
 		led.B = value
 	if (color == 'W'):
 		led.W = value
-	DBSession.add(led)
+	session.add(led)
 
 	if (loop != None):
 		asyncio.run_coroutine_threadsafe(led_producer(led_id, color, value), loop)
@@ -89,10 +92,10 @@ def login(request):
 @view_config(context='velruse.AuthenticationComplete',
 			renderer='makahiya:templates/logged.pt')
 def login_callback(request):
-	session = request.session
+	session = Session()
 	context = request.context
-	user = DBSession.query(Users).filter_by(email=context.profile['verifiedEmail']).first()
-	session['logged'] = user.level
+	user = session.query(Users).filter_by(email=context.profile['verifiedEmail']).first()
+	request.session['logged'] = user.level
 	viewer = not user.level
 	return {'editor': user.level,
 			'viewer': viewer}
