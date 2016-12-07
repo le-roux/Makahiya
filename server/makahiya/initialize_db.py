@@ -72,4 +72,3 @@ def main(argv=sys.argv):
 		# Fill the 'users' table
 		user = Users(uid=0, email='sylvain.leroux3@gmail.com', level=1)
 		DBSession.add(user)
-		DBSession.commit()
