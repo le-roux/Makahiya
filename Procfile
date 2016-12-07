@@ -1,1 +1,1 @@
-web: gunicorn makahiya:app
+web: gunicorn --paste production.ini

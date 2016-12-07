@@ -39,11 +39,13 @@ class Users(Base):
 class Leds(Base):
 	__tablename__ = 'leds'
 	uid = Column(Integer, primary_key=True)
-	userid = Column(Integer)
+	userid = Column(Integer, ForeignKey('users.uid'))
 	R = Column(Integer)
 	G = Column(Integer)
 	B = Column(Integer)
 	W = Column(Integer)
+
+	user = relationship("Users", back_populates="leds")
 
 # Authorization stuff (access control list).
 class Root(object):
@@ -52,3 +54,4 @@ class Root(object):
 
 	def __init__(self, request):
 		pass
+
