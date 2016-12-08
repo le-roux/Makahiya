@@ -5,25 +5,25 @@
 uint32_t data, id;
 int ret;
 
+#define SENSOR_1 0
+
 int main(int argc, char* argv[]) {
     UNUSED(argc);
     UNUSED(argv);
     id = 0;
-    init();
+    init(SENSOR_1);
     printf("Start\n");
-    for (int i = 0; i < 10; i++) {
-        ret = scanf("%i\n", &data);
-        add_value(data);
-        id++;
-    }
-    update_default_value();
-    printf("Default value updated: average %i, min = %i, max = %i\n", default_value, default_value - MARGIN, default_value + MARGIN);
+    for (int i = 0; i < BUFFER_SIZE; i++)
+        add_value(SENSOR_1, i);
+    update_default_value(SENSOR_1);
     while(ret == 1) {
         id++;
         ret = scanf("%i\n", &data);
-        if (add_value(data))
-            printf("Touch detected (index: %i, average %i)\n", id, average);
+        add_value(SENSOR_1, data);
+        if (detect_action(SENSOR_1) == 1)
+            printf("Touch detected (index: %i, average %u)\n", id, *average);
     }
-    printf("End (index: %i)\n", id);
+    update_default_value(SENSOR_1);
+    linear_regression(SENSOR_1);
     return 0;
 }

@@ -1,0 +1,4 @@
+<map id="mode_detect" name="mode_detect">
+<area shape="rect" id="node2" href="$group___s_d_c.html#ga93392c5297148eea683ec6d9bc79be3e" title="Sends an SDIO command with a short response expected and CRC. " alt="" coords="137,5,296,29"/>
+<area shape="rect" id="node3" href="$group___s_d_c.html#ga2769aa9ad202410d6c0c79bc2b34f023" title="Gets SDC errors. " alt="" coords="344,5,468,29"/>
+</map>

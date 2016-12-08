@@ -1,0 +1,5 @@
+<map id="halInit" name="halInit">
+<area shape="rect" id="node2" href="$group___h_a_l.html#ga07d5821e5a06754e2ce920c97890d06f" title="Low level HAL driver initialization. " alt="" coords="104,29,175,53"/>
+<area shape="rect" id="node3" href="$group___h_a_l.html#ga7c20e7cc2204e118a5c21c5fa04a510a" title="Initializes the backup domain. " alt="" coords="223,5,375,29"/>
+<area shape="rect" id="node4" href="$group___s_t_m32___d_m_a.html#ga2efa21dedda1992b5cb10ca9335d17f2" title="STM32 DMA helper initialization. " alt="" coords="270,53,327,77"/>
+</map>

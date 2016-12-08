@@ -1,0 +1,4 @@
+<map id="pwmStop" name="pwmStop">
+<area shape="rect" id="node2" href="$group___p_w_m.html#ga48b759363af69a6aaee37a362ed5bfd2" title="Deactivates the PWM peripheral. " alt="" coords="120,5,207,29"/>
+<area shape="rect" id="node3" href="$group___c_o_m_m_o_n___a_r_m_c_mx___n_v_i_c.html#gafdc14a7abfb6cb5fd2dd93a05767bbf8" title="Disables an interrupt handler. " alt="" coords="255,5,361,29"/>
+</map>

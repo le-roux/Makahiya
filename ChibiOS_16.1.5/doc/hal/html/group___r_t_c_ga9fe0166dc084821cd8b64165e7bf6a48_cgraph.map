@@ -1,0 +1,5 @@
+<map id="rtcGetTime" name="rtcGetTime">
+<area shape="rect" id="node2" href="$group___r_t_c.html#ga48ba5473cc2ecd526fceb6282f65a860" title="Get current time. " alt="" coords="128,29,225,53"/>
+<area shape="rect" id="node3" href="$group___r_t_c.html#ga6b6214c93d4426ffb8a428e712256cf6" title="Converts time from TR register encoding to timespec. " alt="" coords="274,5,375,29"/>
+<area shape="rect" id="node4" href="$group___r_t_c.html#ga7172497c6c8b01e4b335577ac1c98842" title="Converts date from DR register encoding to timespec. " alt="" coords="273,53,376,77"/>
+</map>
