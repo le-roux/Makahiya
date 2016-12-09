@@ -30,17 +30,33 @@ def main(argv=sys.argv):
 	config_uri = argv[1]
 	setup_logging(config_uri)
 	settings = get_appsettings(config_uri)
+
+	# Create a SQLAlchemy engine.
+	# The second argument ('sqlalchemy.') is the prefix to search for in
+	# settings in order to find the relevant information to configure the
+	# engine.
 	engine = engine_from_config(settings, 'sqlalchemy.')
-	Base.metadata.create_all(engine)
+
+	# Connect the engine to the session.
 	Session.configure(bind=engine)
+
+	# Create the tables (if they don't already exist).
+	Base.metadata.create_all(engine)
+
+	# Clear the current content of the tables.
 	engine.execute("DELETE FROM leds;")
 	engine.execute("DELETE FROM users;")
+
+	# Open a transaction with the database.
 	session = Session()
-	Users.leds = relationship("Leds", back_populates="user")
-	Base.metadata.create_all(engine)
+
+	# Fill the 'users' table with initial values.
 	user = Users(uid=0, email='sylvain.leroux3@gmail.com', level=1)
 	session.add(user)
+
+	# Fill the 'leds' table with initial values.
 	for i in range(0, 6):
 		model = Leds(uid=i, R=0, G=0, B=0, W=0, userid=0)
 		session.add(model)
 	session.commit()
+
