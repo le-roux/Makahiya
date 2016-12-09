@@ -86,10 +86,36 @@ def set_led(request):
 	session.add(led)
 	session.commit()
 
+	global message, new
+	yield from var.acquire()
+	message = 'led ' + str(led_id) + ' ' + color + ' ' + str(value)
+	new = 1
+	var.notify()
+	var.release()
+
+	return Response('<body>Good Request</body>')
+
+@view_config(route_name='set_servo', request_method='POST', mapper=CoroutineMapper)
+def set_servo(request):
+	plant_id = request.matchdict['plant_id']
+	servo_id = request.matchdict['servo_id']
+	value = request.matchdict['value']
+	try:
+		plant_id = int(plant_id)
+		servo_id = int(servo_id)
+		value = int(value)
+	except ValueError:
+		return HTTPBadRequest('Some number could not be casted')
+	if(plant_id != id):
+		return HTTPBadRequest('Id is 42')
+	if(servo_id < 0 or servo_id > 4):
+		return HTTPBadRequest('Invalid servo ID')
+	if(value < 0 or value > 200):
+		return HTTPBadRequest('Invalid value')
 
 	global message, new
 	yield from var.acquire()
-	message = str(led_id) + ' ' + color + ' ' + str(value)
+	message = 'servo ' + str(servo_id) + ' ' + str(value)
 	new = 1
 	var.notify()
 	var.release()
