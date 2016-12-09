@@ -11,21 +11,33 @@ def initTestDb():
 			Leds,
 			Base,
 			Users)
-	engine = create_engine('sqlite:///test')
-	session = scoped_session(Session)
+	engine = create_engine('sqlite:///citest')
+
+	# Connect the engine to the session.
+	Session.configure(bind=engine)
+
+	# Create the tables (if they don't already exist).
 	Base.metadata.create_all(engine)
-	session.configure(bind=engine)
+
+	# Clear the current content of the tables.
 	engine.execute("DELETE FROM leds;")
 	engine.execute("DELETE FROM users;")
-	Users.leds = relationship("Leds", back_populates="user")
-	Base.metadata.create_all(engine)
-	user = Users(uid=0, email='sylvain.leroux3@gmail.com', level=1)
-	with transaction.manager:
-		for i in range(0, 6):
-			model = Leds(uid=i, R=0, G=0, B=0, W=0, userid=0)
-			session.add(model)
-	return session
 
+	# Open a transaction with the database.
+	session = Session()
+
+	# Fill the 'users' table with initial values.
+	user = Users(uid=0, email='sylvain.leroux3@gmail.com', level=1)
+	session.add(user)
+
+	# Fill the 'leds' table with initial values.
+	for i in range(0, 6):
+		model = Leds(uid=i, R=0, G=0, B=0, W=0, userid=0)
+		session.add(model)
+	session.commit()
+
+	return scoped_session(session)
+	
 class HomeViewTest(unittest.TestCase):
 	def setUp(self):
 		self.session = initTestDb()

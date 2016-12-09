@@ -1,6 +1,6 @@
 venv/
 sql*
-test
+*test
 *egg*
 makahiya/__pycache__
 .cache/
