@@ -15,8 +15,7 @@
 /*       Variables     */
 /***********************/
 extern THD_WORKING_AREA(logging_wa, LOGGING_WA_SIZE);
-extern uint8_t logging_buffer[LOGGING_BUFFER_SIZE];
-extern binary_semaphore_t logging_bsem;
+extern uint8_t logging_buffer;
 
 /***********************/
 /*       Functions     */
