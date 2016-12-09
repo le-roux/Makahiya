@@ -64,10 +64,10 @@ def main(argv=sys.argv):
 
 	# Clear the current content of the tables.
 	engine.execute("DELETE FROM leds;")
-	#engine.execute("DELETE FROM users;")
+	engine.execute("DELETE FROM users;")
+
+	# Open a transaction with the database.
 	session = Session()
-	Users.leds = relationship("Leds", back_populates="user")
-	Base.metadata.create_all(engine)
 
 	# Fill the 'users' table with initial values.
 	user = Users(uid=0, email='sylvain.leroux3@gmail.com', level=1)
@@ -75,5 +75,6 @@ def main(argv=sys.argv):
 
 	# Fill the 'leds' table with initial values.
 	for i in range(0, 6):
-		model = Leds(uid=i, R=0, G=0, B=0, W=0)
+		model = Leds(uid=i, R=0, G=0, B=0, W=0, userid=0)
 		session.add(model)
+	session.commit()
