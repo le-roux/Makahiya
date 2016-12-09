@@ -8,8 +8,8 @@
 /***********************/
 /*        Defines      */
 /***********************/
-#define LOGGING_WA_SIZE 2048
-#define LOGGING_BUFFER_SIZE 8
+#define LOGGING_WA_SIZE 128
+#define LOGGING_BUFFER_SIZE 32
 
 /***********************/
 /*       Variables     */

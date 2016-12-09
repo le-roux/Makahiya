@@ -10,8 +10,8 @@
 #include "chprintf.h"
 #include "usbcfg.h"
 #include "shell_user.h"
-#include "usart.h"
 #include "logging.h"
+#include "serial_user.h"
 
 /*
  * Entry point
@@ -44,9 +44,9 @@ int main(void) {
     // Init the shell
     shellInit();
 
-    // Init the uart
-    uart_set_pins();
-    uartStart(&UARTD3, &uart3_cfg);
+    // Init the serial
+    sdInit();
+    serial_set_pin();
 
     // Loop forever.
     while (true) {
