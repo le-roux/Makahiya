@@ -157,7 +157,7 @@ async def plant(ws):
 		await pr.get_var(plant_id).acquire()
 
 		if listener_task in done:
-			pr.set_message(plant_id, listener_task.result())
+			msg = listener_task.result()
 			await ws.send(msg)
 			pr.get_var(plant_id).notify()
 			pr.get_var(plant_id).release()
