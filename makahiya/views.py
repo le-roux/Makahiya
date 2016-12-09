@@ -12,6 +12,7 @@ import asyncio
 id = 42
 var = asyncio.Condition()
 message = None
+new = 0
 
 
 # home page
@@ -84,20 +85,14 @@ def set_led(request):
 		led.W = value
 	session.add(led)
 
-	global message
-	message = str(led_id) + ' ' + color + ' ' + str(value)
+	global message, new
 	yield from var.acquire()
+	message = str(led_id) + ' ' + color + ' ' + str(value)
+	new = 1
 	var.notify()
 	var.release()
 
 	return Response('<body>Good Request</body>')
-
-def forward(msg):
-	global message
-	message = msg
-	yield from var.acquire()
-	var.notify()
-	var.release()
 
 @view_config(route_name='login', renderer='makahiya:templates/login.pt')
 def login(request):
@@ -114,10 +109,36 @@ def login_callback(request):
 	return {'editor': user.level,
 			'viewer': viewer}
 
+async def socket_send():
+	await var.acquire()
+	await var.wait()
+	var.release()
+
 @view_config(route_name='ws', mapper=WebsocketMapper)
-def echo(ws):
+async def echo(ws):
 	while True:
-		yield from var.acquire()
-		yield from var.wait()
+		listener_task = asyncio.ensure_future(ws.recv())
+		producer_task = asyncio.ensure_future(socket_send())
+		done, pending = await asyncio.wait(
+		    [listener_task, producer_task],
+		    return_when=asyncio.FIRST_COMPLETED)
+
+		await var.acquire()
+
+		if listener_task in done:
+			msg = listener_task.result()
+			await ws.send(msg)
+			var.notify()
+			var.release()
+			await asyncio.wait([producer_task])
+			await var.acquire()
+		else:
+			listener_task.cancel()
+
+		global new
+		if(new):
+			await ws.send(message)
+			new = 0
+
 		var.release()
-		yield from ws.send(message)
+
