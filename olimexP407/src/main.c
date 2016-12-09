@@ -10,6 +10,8 @@
 #include "chprintf.h"
 #include "usbcfg.h"
 #include "shell_user.h"
+#include "usart.h"
+#include "logging.h"
 
 /*
  * Entry point
@@ -25,17 +27,11 @@ int main(void) {
     pwmInit();
     pwmStart(&PWMD1, &pwm_config_tim1);
 
-    // Play sound
-    palSetPadMode(GPIOF, 6, PAL_MODE_OUTPUT_PUSHPULL);
-    palSetPad(GPIOF, 6);
-    sound_set_pins();
-    chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO + 1, audio_playback, NULL);
-
     // Living led thread
     chThdCreateStatic(wa_led, sizeof(wa_led), NORMALPRIO - 1, living_led, NULL);
 
-    // Receive data
-    chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 1, audio_in, NULL);
+    // Logging thread
+    chThdCreateStatic(logging_wa, sizeof(logging_wa), NORMALPRIO - 1, logging, NULL);
 
     // Init the SerialUSB
     sduObjectInit(&SDU1);
@@ -45,8 +41,21 @@ int main(void) {
     usbStart(serusbcfg.usbp, &usbcfg);
     usbConnectBus(serusbcfg.usbp);
 
+    // Init the shell
+    shellInit();
+
+    // Init the uart
+    uart_set_pins();
+    uartStart(&UARTD3, &uart3_cfg);
+
     // Loop forever.
     while (true) {
+        if (!shelltp & (SDU1.config->usbp->state == USB_ACTIVE))
+            shelltp = shellCreate(&shell_cfg1, SHELL_WA_SIZE, NORMALPRIO);
+        else if (chThdTerminatedX(shelltp)) {
+            chThdRelease(shelltp);
+            shelltp = NULL;
+        }
         chThdSleepMilliseconds(1000);
     }
 
