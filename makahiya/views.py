@@ -84,6 +84,7 @@ def set_led(request):
 	if (color == 'W'):
 		led.W = value
 	session.add(led)
+	session.commit()
 
 
 	global message, new
