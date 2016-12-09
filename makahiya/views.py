@@ -2,18 +2,17 @@ from pyramid.response import Response
 from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config
 from .models import Session, Leds, Users
-from aiopyramid.websocket.config import WebsocketMapper
+from .custom_mapper import CustomWebsocketMapper
 from aiopyramid.config import CoroutineMapper
 from .models import Session, Leds, Users
 from velruse import login_url
+from .plant_register import PlantRegister
 
 import asyncio
+import pyramid
 
 id = 42
-var = asyncio.Condition()
-message = None
-new = 0
-
+pr = PlantRegister()
 
 # home page
 @view_config(route_name='home', renderer='makahiya:templates/home.pt')
@@ -86,12 +85,11 @@ def set_led(request):
 	session.add(led)
 	session.commit()
 
-	global message, new
-	yield from var.acquire()
-	message = 'led ' + str(led_id) + ' ' + color + ' ' + str(value)
-	new = 1
-	var.notify()
-	var.release()
+	yield from pr.get_var(plant_id).acquire()
+	pr.set_message(plant_id, 'led ' + str(led_id) + ' ' + color + ' ' + str(value))
+	pr.set_new(plant_id, 1)
+	pr.get_var(plant_id).notify()
+	pr.get_var(plant_id).release()
 
 	return Response('<body>Good Request</body>')
 
@@ -113,12 +111,11 @@ def set_servo(request):
 	if(value < 0 or value > 200):
 		return HTTPBadRequest('Invalid value')
 
-	global message, new
-	yield from var.acquire()
-	message = 'servo ' + str(servo_id) + ' ' + str(value)
-	new = 1
-	var.notify()
-	var.release()
+	yield from pr.get_var(plant_id).acquire()
+	pr.set_message(plant_id, 'servo ' + str(servo_id) + ' ' + str(value))
+	pr.set_new(plant_id, 1)
+	pr.get_var(plant_id).notify()
+	pr.get_var(plant_id).release()
 
 	return Response('<body>Good Request</body>')
 
@@ -137,36 +134,41 @@ def login_callback(request):
 	return {'editor': user.level,
 			'viewer': viewer}
 
-async def socket_send():
-	await var.acquire()
-	await var.wait()
-	var.release()
+async def socket_send(plant_id):
+	await pr.get_var(plant_id).acquire()
+	await pr.get_var(plant_id).wait()
+	pr.get_var(plant_id).release()
 
-@view_config(route_name='ws', mapper=WebsocketMapper)
-async def echo(ws):
+@view_config(route_name='plant_ws', mapper=CustomWebsocketMapper)
+async def plant(ws):
+	plant_id = ws.matchdict['plant_id']
+	try:
+		plant_id = int(plant_id)
+	except ValueError:
+		return HTTPBadRequest('id is a number')
+	pr.register(plant_id)
 	while True:
 		listener_task = asyncio.ensure_future(ws.recv())
-		producer_task = asyncio.ensure_future(socket_send())
+		producer_task = asyncio.ensure_future(socket_send(plant_id))
 		done, pending = await asyncio.wait(
 		    [listener_task, producer_task],
 		    return_when=asyncio.FIRST_COMPLETED)
 
-		await var.acquire()
+		await pr.get_var(plant_id).acquire()
 
 		if listener_task in done:
-			msg = listener_task.result()
+			pr.set_message(plant_id, listener_task.result())
 			await ws.send(msg)
-			var.notify()
-			var.release()
+			pr.get_var(plant_id).notify()
+			pr.get_var(plant_id).release()
 			await asyncio.wait([producer_task])
-			await var.acquire()
+			await pr.get_var(plant_id).acquire()
 		else:
 			listener_task.cancel()
 
-		global new
-		if(new):
-			await ws.send(message)
-			new = 0
+		if(pr.get_new(plant_id)):
+			await ws.send(pr.get_message(plant_id))
+			pr.set_new(plant_id, 0)
 
-		var.release()
+		pr.get_var(plant_id).release()
 

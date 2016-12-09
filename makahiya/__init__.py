@@ -27,7 +27,7 @@ def main(global_config, **settings):
 	config.add_route('set_led', '/api/v1/{plant_id}/actions/led/{led_id}/{color}/{value}')
 	config.add_route('set_servo', '/api/v1/{plant_id}/actions/servo/{servo_id}/{value}')
 	config.add_route('login', '/login')
-	config.add_route('ws', '/ws')
+	config.add_route('plant_ws', '/ws/plant/{plant_id}')
 	config.add_static_view(name='static', path='makahiya:static')
 
 	config.scan('.views')
