@@ -3,4 +3,4 @@ sed -i "14s/.*/port = '$PORT'/" production.ini
 set -e
 python setup.py develop
 initialize_db production.ini
-gunicorn --paste prduction.ini
+gunicorn --paste production.ini
