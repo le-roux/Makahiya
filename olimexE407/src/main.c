@@ -30,7 +30,6 @@ int main(void) {
     sduStart(&SDU1, &serusbcfg);
 
     usbDisconnectBus(serusbcfg.usbp);
-    chThdSleepMilliseconds(1500);
     usbStart(serusbcfg.usbp, &usbcfg);
     usbConnectBus(serusbcfg.usbp);
 
