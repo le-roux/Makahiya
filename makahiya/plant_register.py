@@ -14,6 +14,10 @@ class PlantRegister():
 		if not (id in self.dict):
 			self.dict[id] = PlantWS()
 
+	def unregister(self, id):
+		if (id in self.dict):
+			del self.dict[id]
+
 	def get_message(self, id):
 		return self.dict[id].message
 

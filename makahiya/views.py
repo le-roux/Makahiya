@@ -9,7 +9,9 @@ from velruse import login_url
 from .plant_register import PlantRegister
 
 import asyncio
+import concurrent
 import pyramid
+import websockets
 
 id = 42
 pr = PlantRegister()
@@ -141,34 +143,50 @@ async def socket_send(plant_id):
 
 @view_config(route_name='plant_ws', mapper=CustomWebsocketMapper)
 async def plant(ws):
-	plant_id = ws.matchdict['plant_id']
+	plant_id = 0
+	listener_task = None
+	produecer_task = None
 	try:
-		plant_id = int(plant_id)
-	except ValueError:
-		return HTTPBadRequest('id is a number')
-	pr.register(plant_id)
-	while True:
-		listener_task = asyncio.ensure_future(ws.recv())
-		producer_task = asyncio.ensure_future(socket_send(plant_id))
-		done, pending = await asyncio.wait(
-		    [listener_task, producer_task],
-		    return_when=asyncio.FIRST_COMPLETED)
+		plant_id = ws.matchdict['plant_id']
+		try:
+			plant_id = int(plant_id)
+		except ValueError:
+			return HTTPBadRequest('id is a number')
+		pr.register(plant_id)
+		while True:
+			listener_task = asyncio.ensure_future(ws.recv())
+			producer_task = asyncio.ensure_future(socket_send(plant_id))
+			done, pending = await asyncio.wait(
+			    [listener_task, producer_task],
+			    return_when=asyncio.FIRST_COMPLETED)
 
-		await pr.get_var(plant_id).acquire()
+			await pr.get_var(plant_id).acquire()
 
-		if listener_task in done:
-			msg = listener_task.result()
-			await ws.send(msg)
+			if listener_task in done:
+				msg = listener_task.result()
+				if(msg == None):
+					print ("Closing")
+				await ws.send(msg)
+				pr.get_var(plant_id).notify()
+				pr.get_var(plant_id).release()
+				await asyncio.wait([producer_task])
+				await pr.get_var(plant_id).acquire()
+			else:
+				listener_task.cancel()
+
+			if(pr.get_new(plant_id)):
+				await ws.send(pr.get_message(plant_id))
+				pr.set_new(plant_id, 0)
+
+			pr.get_var(plant_id).release()
+	except websockets.exceptions.ConnectionClosed:
+		if (not pr.get_var(plant_id).locked()):
+			await pr.get_var(plant_id).acquire()
+		if (listener_task != None):
+			listener_task.cancel()
+		if (producer_task != None):
 			pr.get_var(plant_id).notify()
 			pr.get_var(plant_id).release()
 			await asyncio.wait([producer_task])
-			await pr.get_var(plant_id).acquire()
-		else:
-			listener_task.cancel()
-
-		if(pr.get_new(plant_id)):
-			await ws.send(pr.get_message(plant_id))
-			pr.set_new(plant_id, 0)
-
-		pr.get_var(plant_id).release()
+		pr.unregister(plant_id)
 
