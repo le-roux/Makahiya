@@ -34,6 +34,15 @@ def home(request):
 	return {'title':'Makahiya',
 			'logged':session['logged']}
 
+# upload mp3 file
+@view_config(route_name='upload', renderer='makahiya:templates/upload.pt')
+def upload(request):
+	if request.method == 'POST':
+		image = request.params['image']
+		open ('file.mp3', 'wb').write(image.file.read())
+		return Response('File uploaded')
+	return {}
+
 # led view
 @view_config(route_name='led', renderer='makahiya:templates/led_view.pt')
 def led_view(request):
