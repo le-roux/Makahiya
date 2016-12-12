@@ -13,10 +13,11 @@ import concurrent
 import pyramid
 import websockets
 
-id = 42
+# Registering connected plants and clients and managing synchronization between websockets
 plants = WebsocketRegister('Plants')
 clients = WebsocketRegister('Clients')
 
+# Coroutine to send a message from a websocket
 async def send_to_socket(register, id, msg):
 	await register.get_var(id).acquire()
 	register.set_message(id, msg)
@@ -75,8 +76,8 @@ async def set_led(request):
 		value = int(value)
 	except ValueError:
 		return HTTPBadRequest('Some number could not be casted')
-	if(plant_id != id):
-		return HTTPBadRequest('Id is 42')
+	if(plant_id < 0):
+		return HTTPBadRequest('Id is positive')
 	if(led_id < 0 or led_id > 5):
 		return HTTPBadRequest('Invalid LED ID')
 	if((color != 'R' and color != 'G' and color != 'B' and color != 'W') or (color == 'W' and led_id != 0)):
@@ -99,6 +100,7 @@ async def set_led(request):
 
 	return Response('<body>Good Request</body>')
 
+# Send a command to a servomotor
 @view_config(route_name='set_servo', request_method='POST', mapper=CoroutineMapper)
 async def set_servo(request):
 	plant_id = request.matchdict['plant_id']
@@ -110,8 +112,8 @@ async def set_servo(request):
 		value = int(value)
 	except ValueError:
 		return HTTPBadRequest('Some number could not be casted')
-	if(plant_id != id):
-		return HTTPBadRequest('Id is 42')
+	if(plant_id < 0):
+		return HTTPBadRequest('Id is positive')
 	if(servo_id < 0 or servo_id > 4):
 		return HTTPBadRequest('Invalid servo ID')
 	if(value < 0 or value > 200):
@@ -136,11 +138,13 @@ def login_callback(request):
 	return {'editor': user.level,
 			'viewer': viewer}
 
+# Coroutine that waits until send_to_socket is called
 async def wait_producer(register, id):
 	await register.get_var(id).acquire()
 	await register.get_var(id).wait()
 	register.get_var(id).release()
 
+# Websocket between the server and a plant
 @view_config(route_name='plant_ws', mapper=CustomWebsocketMapper)
 async def plant(ws):
 	plant_id = 0
@@ -154,6 +158,11 @@ async def plant(ws):
 			return HTTPBadRequest('id is a number')
 		plants.register(plant_id)
 		while True:
+
+			# Creates a task that waits for an incoming message
+			# and another one that waits for a call to send_to_socket
+			# Then it waits until one of these task finishes
+
 			listener_task = asyncio.ensure_future(ws.recv())
 			producer_task = asyncio.ensure_future(wait_producer(plants, plant_id))
 			done, pending = await asyncio.wait(
@@ -166,6 +175,10 @@ async def plant(ws):
 				msg = listener_task.result()
 				if clients.registered(plant_id):
 					await send_to_socket(clients, plant_id, msg)
+
+				# Finishing the producer_task to avoid problems
+				# with the condition when the task is recreated
+
 				plants.get_var(plant_id).notify()
 				plants.get_var(plant_id).release()
 				await asyncio.wait([producer_task])
@@ -179,6 +192,9 @@ async def plant(ws):
 
 			plants.get_var(plant_id).release()
 	except websockets.exceptions.ConnectionClosed:
+
+		# Deleting tasks before returning
+
 		if (not plants.get_var(plant_id).locked()):
 			await plants.get_var(plant_id).acquire()
 		if (listener_task != None):
@@ -189,6 +205,7 @@ async def plant(ws):
 			await asyncio.wait([producer_task])
 		plants.unregister(plant_id)
 
+# Websocket between the server and a client
 @view_config(route_name='client_ws', mapper=CustomWebsocketMapper)
 async def client(ws):
 	client_id = 0
@@ -207,6 +224,11 @@ async def client(ws):
 			await send_to_socket(plants, client_id, 'Hello')
 			await ws.send('Connection with id ' + str(client_id) + ' established')
 			while True:
+
+				# Creates a task that waits for an incoming message
+				# and another one that waits for a call to send_to_socket
+				# Then it waits until one of these task finishes
+
 				listener_task = asyncio.ensure_future(ws.recv())
 				producer_task = asyncio.ensure_future(wait_producer(clients, id))
 				done, pending = await asyncio.wait(
@@ -218,6 +240,10 @@ async def client(ws):
 				if listener_task in done:
 					msg = listener_task.result()
 					await send_to_socket(plants, client_id, msg)
+
+					# Finishing the producer_task to avoid problems
+					# with the condition when the task is recreated
+
 					clients.get_var(client_id).notify()
 					clients.get_var(client_id).release()
 					await asyncio.wait([producer_task])
@@ -231,6 +257,9 @@ async def client(ws):
 
 				clients.get_var(client_id).release()
 	except websockets.exceptions.ConnectionClosed:
+
+		# Deleting tasks before returning
+
 		if (not clients.get_var(client_id).locked()):
 			await clients.get_var(client_id).acquire()
 		if (listener_task != None):

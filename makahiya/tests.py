@@ -109,7 +109,7 @@ class SetLedTest(unittest.TestCase):
 		from .views import set_led
 
 		request = testing.DummyRequest()
-		request.matchdict['plant_id'] = '24'
+		request.matchdict['plant_id'] = '-42'
 		request.matchdict['led_id'] = '1'
 		request.matchdict['color'] = 'R'
 		request.matchdict['value'] = '19'
