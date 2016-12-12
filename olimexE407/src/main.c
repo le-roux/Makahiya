@@ -23,7 +23,7 @@ int main(void) {
     chThdCreateStatic(wa_led, sizeof(wa_led), NORMALPRIO - 1, living_led, NULL);
 
     // Logging thread
-    chThdCreateStatic(logging_wa, sizeof(logging_wa), NORMALPRIO - 1, logging, NULL);
+    //chThdCreateStatic(logging_wa, sizeof(logging_wa), NORMALPRIO - 1, logging, NULL);
 
     // Init the SerialUSB
     sduObjectInit(&SDU1);
