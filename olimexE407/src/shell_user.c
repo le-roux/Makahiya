@@ -8,11 +8,9 @@
 #include "wifi.h"
 
 thread_t* shelltp = NULL;
-static const char* address = "http://www.makahiya.herokuapp.com";
+static const char* address = "http://makahiya.herokuapp.com";
 static const char* get = "http_get ";
 static const char* post = "http_post ";
-static const char* download = "http_download ";
-static const char* read = "read ";
 
 void serial_start(BaseSequentialStream* chp, int argc, char* argv[]) {
     UNUSED(chp);
@@ -29,7 +27,6 @@ void serial_stop(BaseSequentialStream* chp, int argc, char* argv[]) {
 }
 
 void send(BaseSequentialStream* chp, int argc, char* argv[]) {
-    UNUSED(chp);
     UNUSED(argc);
     UNUSED(argv);
     int length = 0;
@@ -48,6 +45,14 @@ void send(BaseSequentialStream* chp, int argc, char* argv[]) {
     serial_tx_buffer[length] = '\n';
     length++;
     sdWrite(&SD3, serial_tx_buffer, length);
+
+    (void)get_response();
+    chprintf(chp, response_body);
+    wifi_connection conn;
+    get_channel_id(response_body, &conn);
+    read(conn);
+    (void)get_response();
+    chprintf(chp, response_body);
 }
 
 void post_led(BaseSequentialStream* chp, int argc, char* argv[]) {
@@ -86,62 +91,45 @@ void read_music(BaseSequentialStream* chp, int argc, char* argv[]) {
     strcat((char*)serial_tx_buffer, "/static/music.mp3\n");
     length += strlen("/static/music.mp3\n");
 
+    for (int i = 0; i < length; i++)
+        chSequentialStreamPut(chp, serial_tx_buffer[i]);
+    chprintf(chp, "\r\n");
+
     // Actually send the request
     sdWrite(&SD3, serial_tx_buffer, length);
 
     // Read the response code
-    sdRead(&SD3, (uint8_t*)response_code, WIFI_HEADER_SIZE);
-    wifi_response out = parse_response_code();
+    wifi_response_header out = get_response();
     if (out.error == 1)
         chprintf(chp, "Error (code: %i)\r\n", out.error_code);
     else
         chprintf(chp, "Success (size: %i)\r\n", out.length);
-    if (out.error_code != -1) {
-        // Read the channel id given to this connection.
-        sdRead(&SD3, (uint8_t*)response_body, out.length);
-        response_body[out.length] = '\0';
+    if (out.error_code != -1)
         chprintf(chp, "Body: %s", response_body);
-        get_channel_id(response_body, out.channel_id);
-    }
+
+    wifi_connection conn;
+    get_channel_id(response_body, &conn);
 
     /**
      * Read the content of the mp3 file.
      */
-    length = 0;
-
-    char tmp[3];
-    itoa(WIFI_BUFFER_SIZE - 2, tmp, 10);
-
-    // Prepare the read request.
-    strcpy((char*)serial_tx_buffer, read);
-    length += strlen(read);
-    strcat((char*)serial_tx_buffer, out.channel_id);
-    length += strlen(out.channel_id);
-    strcat((char*)serial_tx_buffer, " ");
-    length += strlen(" ");
-    strcat((char*)serial_tx_buffer, tmp);
-    length += strlen(tmp);
-    strcat((char*)serial_tx_buffer, "\n");
-    length += strlen("\n");
 
     do {
         // Actually send the read request
+        read(conn);
         for (int i = 0; i < length; i++)
             chSequentialStreamPut(chp, serial_tx_buffer[i]);
         chprintf(chp, "\r\n");
-        sdWrite(&SD3, serial_tx_buffer, length);
-        chprintf(chp, "read request sent\r\n");
 
         // Read the response
-        sdRead(&SD3, (uint8_t*)response_code, WIFI_HEADER_SIZE);
-        chprintf(chp, "header received\r\n");
-        out = parse_response_code();
+        out = get_response();
         if (out.error) {
             chprintf(chp, "Error\r\n");
             return; // TODO improve error management
         }
         chprintf(chp, "--> %i bytes read\r\n", out.length - 2);
-        sdRead(&SD3, (uint8_t*)response_body, out.length);
+        for (int i = 0; i < out.length - 2; i++)
+            chSequentialStreamPut(chp, response_body[i]);
     } while (out.length != 0);
 }
 

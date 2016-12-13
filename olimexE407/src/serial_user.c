@@ -7,6 +7,8 @@ SerialConfig serial_cfg = {
     0
 };
 
+SerialDriver* wifi_SD = &SD3;
+
 uint8_t serial_tx_buffer[SERIAL_TX_BUFFER_SIZE];
 
 void serial_set_pin(void) {
