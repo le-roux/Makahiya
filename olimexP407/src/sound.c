@@ -7,6 +7,7 @@
 #include "usbcfg.h"
 
 #include "sound.h"
+#include "wifi.h"
 
 int16_t i2s_tx_buf[I2S_BUF_SIZE * 2];
 thread_reference_t audio_thread_ref = NULL;
@@ -23,6 +24,9 @@ static msg_t input_buffers[INPUT_BUFFERS_NB];
 static msg_t free_input_buffers[INPUT_BUFFERS_NB];
 MAILBOX_DECL(input_box, input_buffers, INPUT_BUFFERS_NB);
 MAILBOX_DECL(free_input_box, free_input_buffers, INPUT_BUFFERS_NB);
+
+BSEMAPHORE_DECL(audio_bsem, true);
+static BSEMAPHORE_DECL(decode_bsem, true);
 
 static int8_t working_buffer[WORKING_BUFFER_SIZE];
 
@@ -65,6 +69,7 @@ void i2s_cb(I2SDriver* driver, size_t offset, size_t n) {
         i2s_tx_buf[offset + i] = ((int16_t*)pbuf)[i] * volumeMult / volumeDiv;
 
     // Release the buffer
+    palTogglePad(GPIOF, 6);
     chMBPostI(&free_box, (msg_t)pbuf);
     chSysUnlockFromISR();
 }
@@ -72,7 +77,7 @@ void i2s_cb(I2SDriver* driver, size_t offset, size_t n) {
 THD_WORKING_AREA(wa_audio, 1024);
 
 THD_FUNCTION(audio_playback, arg) {
-    int bytes_left = 0;
+    int bytes_left = 0, count = 0;
     HMP3Decoder decoder;
     unsigned char* read_ptr;
     volatile int offset, err;
@@ -84,6 +89,8 @@ THD_FUNCTION(audio_playback, arg) {
         (void)chMBPost(&free_box, (msg_t)&buf[i], TIME_INFINITE);
 
     decoder = MP3InitDecoder();
+
+    chBSemWait(&decode_bsem);
 
     while (TRUE) {
         // Get a free buffer (for output)
@@ -135,16 +142,22 @@ THD_FUNCTION(audio_playback, arg) {
         for (int i = 0; i < bytes_left; i++)
             working_buffer[i] = read_ptr[i];
 
-        if (err != 0) {
+        if (err != 0 && err != -1) {
             chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
-
+            chprintf((BaseSequentialStream*)&SDU1, "stop err= %i\r\n", err);
+            chThdSleepMilliseconds(10);
             i2sStopExchange(&I2SD3);
             i2sStop(&I2SD3);
             started = false;
-            continue;// TODO improve error management
+            continue; // TODO improve error management
+        } else if (err == -1) {
+            chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
+            continue;
         }
 
         // Post the filled buffer
+        chprintf((BaseSequentialStream*)&SDU1, "play %i\r\n", count);
+        count++;
         chMBPost(&audio_box, (msg_t)pbuf, TIME_INFINITE);
     }
 }
@@ -155,17 +168,17 @@ THD_FUNCTION(audio_in, arg) {
     UNUSED(arg);
     int bytes_nb;
     void* inbuf;
+    int bytes_consumed, initial_buffering = 0, decode_started = 0, copy;
+    wifi_response_header out;
 
     // Init the free input buffers mailbox
     for (int i = 0; i < INPUT_BUFFERS_NB; i++)
         chMBPost(&free_input_box, (msg_t)&in_buf[i], TIME_INFINITE);
 
-    chThdSleepMilliseconds(100);
+    bytes_consumed = WIFI_BUFFER_SIZE;
+    out.length = WIFI_BUFFER_SIZE;
 
-    while (chSequentialStreamGet((BaseSequentialStream*)&SDU1) == -2) {
-        chThdSleepMilliseconds(10);
-    }
-
+    chBSemWait(&audio_bsem);
     while (TRUE) {
         // Get a free buffer
         if (chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE) != MSG_OK) {
@@ -173,14 +186,33 @@ THD_FUNCTION(audio_in, arg) {
             continue;
         }
 
-        // Read file from serial link
+        // Read file from wifi
         bytes_nb = 0;
         while(bytes_nb < INPUT_BUFFER_SIZE * 2) {
-            ((int8_t*)inbuf)[bytes_nb] = chSequentialStreamGet((BaseSequentialStream*)&SDU1);
-            bytes_nb++;
+            if (bytes_consumed >= out.length - 2) { // Need to perform a new read.
+                bytes_consumed = 0;
+                read(audio_conn);
+                out = get_response();
+                if (out.error)
+                    return;
+            }
+            // copy = min(out.length - 2 -bytes_consumed, 2 * INPUT_BUFFER_SIZE - bytes_nb)
+            copy = out.length - 2 - bytes_consumed;
+            if (2 * INPUT_BUFFER_SIZE - bytes_nb < copy)
+                copy = 2 * INPUT_BUFFER_SIZE - bytes_nb;
+            memcpy(&((int8_t*)inbuf)[bytes_nb], &response_body[bytes_consumed], copy);
+            bytes_nb += copy;
+            bytes_consumed += copy;
         }
+        if (initial_buffering % 10 == 0)
+            chprintf((BaseSequentialStream*)&SDU1, "post %i\r\n", initial_buffering);
 
         chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
+        if ((initial_buffering > 28) & (!decode_started)) {
+            chBSemSignal(&decode_bsem);
+            decode_started = 1;
+        }
+        initial_buffering++;
     }
     chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
     inbuf = NULL;

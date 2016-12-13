@@ -123,7 +123,7 @@ CSRC = $(STARTUPSRC) \
        $(SRC)/pwm_user.c \
 	   $(SRC)/main.c \
 	   $(SRC)/usbcfg.c $(SRC)/shell_user.c \
-	   $(SRC)/sound.c $(SRC)/logging.c $(SRC)/serial_user.c
+	   $(SRC)/sound.c $(SRC)/serial_user.c $(SRC)/wifi.c
 
 PCMSRC =
 MP3SRC =

@@ -10,7 +10,6 @@
 #include "chprintf.h"
 #include "usbcfg.h"
 #include "shell_user.h"
-#include "logging.h"
 #include "serial_user.h"
 
 /*
@@ -27,11 +26,16 @@ int main(void) {
     pwmInit();
     pwmStart(&PWMD1, &pwm_config_tim1);
 
+    palSetPadMode(GPIOF, 6, PAL_MODE_OUTPUT_PUSHPULL);
+    palSetPad(GPIOF, 6);
+
     // Living led thread
     chThdCreateStatic(wa_led, sizeof(wa_led), NORMALPRIO - 1, living_led, NULL);
 
-    // Logging thread
-    chThdCreateStatic(logging_wa, sizeof(logging_wa), NORMALPRIO - 1, logging, NULL);
+    // Audio threads
+    sound_set_pins();
+    chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO + 1, audio_playback, NULL);
+    chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 2, audio_in, NULL);
 
     // Init the SerialUSB
     sduObjectInit(&SDU1);
@@ -41,12 +45,13 @@ int main(void) {
     usbStart(serusbcfg.usbp, &usbcfg);
     usbConnectBus(serusbcfg.usbp);
 
+    // Init the serial
+    serial_set_pin();
+    sdStart(wifi_SD, &serial_cfg);
+
     // Init the shell
     shellInit();
 
-    // Init the serial
-    sdInit();
-    serial_set_pin();
 
     // Loop forever.
     while (true) {
