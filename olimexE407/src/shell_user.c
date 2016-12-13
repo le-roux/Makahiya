@@ -117,20 +117,32 @@ void read_music(BaseSequentialStream* chp, int argc, char* argv[]) {
     length += strlen(read);
     strcat((char*)serial_tx_buffer, out.channel_id);
     length += strlen(out.channel_id);
+    strcat((char*)serial_tx_buffer, " ");
+    length += strlen(" ");
     strcat((char*)serial_tx_buffer, tmp);
     length += strlen(tmp);
+    strcat((char*)serial_tx_buffer, "\n");
+    length += strlen("\n");
 
     do {
         // Actually send the read request
+        for (int i = 0; i < length; i++)
+            chSequentialStreamPut(chp, serial_tx_buffer[i]);
+        chprintf(chp, "\r\n");
         sdWrite(&SD3, serial_tx_buffer, length);
+        chprintf(chp, "read request sent\r\n");
 
         // Read the response
         sdRead(&SD3, (uint8_t*)response_code, WIFI_HEADER_SIZE);
+        chprintf(chp, "header received\r\n");
         out = parse_response_code();
-        if (out.error)
-          return; // TODO improve error management
+        if (out.error) {
+            chprintf(chp, "Error\r\n");
+            return; // TODO improve error management
+        }
+        chprintf(chp, "--> %i bytes read\r\n", out.length - 2);
         sdRead(&SD3, (uint8_t*)response_body, out.length);
-    } while (out.length == WIFI_BUFFER_SIZE);
+    } while (out.length != 0);
 }
 
 const ShellCommand commands[] = {

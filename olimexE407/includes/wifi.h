@@ -5,10 +5,10 @@
 /*        Defines      */
 /***********************/
 typedef struct wifi_response {
-    int error = 1;
-    int error_code = -1;
-    int length = 0;
-    char channel_id[3] = NULL;
+    int error;
+    int error_code;
+    int length;
+    char channel_id[3];
 } wifi_response;
 
 #define WIFI_HEADER_SIZE 9
