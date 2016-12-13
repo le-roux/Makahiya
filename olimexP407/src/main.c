@@ -10,7 +10,6 @@
 #include "chprintf.h"
 #include "usbcfg.h"
 #include "shell_user.h"
-#include "logging.h"
 #include "serial_user.h"
 
 /*
@@ -29,9 +28,6 @@ int main(void) {
 
     // Living led thread
     chThdCreateStatic(wa_led, sizeof(wa_led), NORMALPRIO - 1, living_led, NULL);
-
-    // Logging thread
-    chThdCreateStatic(logging_wa, sizeof(logging_wa), NORMALPRIO - 1, logging, NULL);
 
     // Init the SerialUSB
     sduObjectInit(&SDU1);
