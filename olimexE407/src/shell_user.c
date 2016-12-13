@@ -16,14 +16,14 @@ void serial_start(BaseSequentialStream* chp, int argc, char* argv[]) {
     UNUSED(chp);
     UNUSED(argc);
     UNUSED(argv);
-    sdStart(&SD3, &serial_cfg);
+    sdStart(wifi_SD, &serial_cfg);
 }
 
 void serial_stop(BaseSequentialStream* chp, int argc, char* argv[]) {
     UNUSED(chp);
     UNUSED(argc);
     UNUSED(argv);
-    sdStop(&SD3);
+    sdStop(wifi_SD);
 }
 
 void send(BaseSequentialStream* chp, int argc, char* argv[]) {
@@ -44,7 +44,7 @@ void send(BaseSequentialStream* chp, int argc, char* argv[]) {
     }
     serial_tx_buffer[length] = '\n';
     length++;
-    sdWrite(&SD3, serial_tx_buffer, length);
+    sdWrite(wifi_SD, serial_tx_buffer, length);
 
     (void)get_response();
     chprintf(chp, response_body);
@@ -96,7 +96,7 @@ void read_music(BaseSequentialStream* chp, int argc, char* argv[]) {
     chprintf(chp, "\r\n");
 
     // Actually send the request
-    sdWrite(&SD3, serial_tx_buffer, length);
+    sdWrite(wifi_SD, serial_tx_buffer, length);
 
     // Read the response code
     wifi_response_header out = get_response();
