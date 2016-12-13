@@ -38,6 +38,8 @@ extern char response_code[WIFI_HEADER_SIZE];
  */
 extern char response_body[WIFI_BUFFER_SIZE];
 
+extern wifi_connection audio_conn;
+
 /***********************/
 /*       Functions     */
 /***********************/

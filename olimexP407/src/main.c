@@ -29,6 +29,10 @@ int main(void) {
     // Living led thread
     chThdCreateStatic(wa_led, sizeof(wa_led), NORMALPRIO - 1, living_led, NULL);
 
+    // Audio threads
+    chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO + 1, audio_playback, NULL);
+    chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 1, audio_in, NULL);
+
     // Init the SerialUSB
     sduObjectInit(&SDU1);
     sduStart(&SDU1, &serusbcfg);

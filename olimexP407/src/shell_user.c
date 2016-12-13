@@ -6,6 +6,7 @@
 #include <string.h>
 #include "serial_user.h"
 #include "wifi.h"
+#include "sound.h"
 
 thread_t* shelltp = NULL;
 static const char* address = "http://makahiya.herokuapp.com";
@@ -84,6 +85,7 @@ void read_music(BaseSequentialStream* chp, int argc, char* argv[]) {
 
     // Read the response code
     wifi_response_header out = get_response();
+    chprintf(chp, "get response\r\n");
     if (out.error == 1)
         chprintf(chp, "Error (code: %i)\r\n", out.error_code);
     else
@@ -91,29 +93,13 @@ void read_music(BaseSequentialStream* chp, int argc, char* argv[]) {
     if (out.error_code != -1)
         chprintf(chp, "Body: %s", response_body);
 
-    wifi_connection conn;
-    get_channel_id(response_body, &conn);
+    get_channel_id(response_body, &audio_conn);
 
     /**
      * Read the content of the mp3 file.
      */
-    do {
-        // Actually send the read request
-        read(conn);
-        for (int i = 0; i < length; i++)
-            chSequentialStreamPut(chp, serial_tx_buffer[i]);
-        chprintf(chp, "\r\n");
 
-        // Read the response
-        out = get_response();
-        if (out.error) {
-            chprintf(chp, "Error\r\n");
-            return; // TODO improve error management
-        }
-        chprintf(chp, "--> %i bytes read\r\n", out.length - 2);
-        for (int i = 0; i < out.length - 2; i++)
-            chSequentialStreamPut(chp, response_body[i]);
-    } while (out.length != 0);
+    chBSemSignal(&audio_bsem);
 }
 
 const ShellCommand commands[] = {

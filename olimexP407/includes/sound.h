@@ -62,6 +62,7 @@ extern I2SConfig i2s3_cfg;
 extern THD_WORKING_AREA(wa_audio, 1024);
 
 extern THD_WORKING_AREA(wa_audio_in, 2048);
+extern binary_semaphore_t audio_bsem;
 
 /******************************/
 /*        Functions           */

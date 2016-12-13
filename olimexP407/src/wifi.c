@@ -14,6 +14,7 @@
 /***********************/
 char response_code[WIFI_HEADER_SIZE];
 char response_body[WIFI_BUFFER_SIZE];
+wifi_connection audio_conn;
 static const char* read_cmd = "read ";
 
 /***********************/
@@ -59,7 +60,6 @@ wifi_response_header get_response(void) {
 
 void read(wifi_connection conn) {
     int length = 0;
-    char tmp[4];
 
     // Prepare the read request.
     strcpy((char*)serial_tx_buffer, read_cmd);
@@ -68,9 +68,8 @@ void read(wifi_connection conn) {
     length += strlen(conn.channel_id);
     strcat((char*)serial_tx_buffer, " ");
     length += strlen(" ");
-    itoa(WIFI_BUFFER_SIZE - 2, tmp, 10);
-    strcat((char*)serial_tx_buffer, tmp);
-    length += strlen(tmp);
+    strcat((char*)serial_tx_buffer, "498");
+    length += strlen("498");
     strcat((char*)serial_tx_buffer, "\n");
     length += strlen("\n");
 

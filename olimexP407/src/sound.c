@@ -7,6 +7,7 @@
 #include "usbcfg.h"
 
 #include "sound.h"
+#include "wifi.h"
 
 int16_t i2s_tx_buf[I2S_BUF_SIZE * 2];
 thread_reference_t audio_thread_ref = NULL;
@@ -23,6 +24,8 @@ static msg_t input_buffers[INPUT_BUFFERS_NB];
 static msg_t free_input_buffers[INPUT_BUFFERS_NB];
 MAILBOX_DECL(input_box, input_buffers, INPUT_BUFFERS_NB);
 MAILBOX_DECL(free_input_box, free_input_buffers, INPUT_BUFFERS_NB);
+
+BSEMAPHORE_DECL(audio_bsem, true);
 
 static int8_t working_buffer[WORKING_BUFFER_SIZE];
 
@@ -155,17 +158,15 @@ THD_FUNCTION(audio_in, arg) {
     UNUSED(arg);
     int bytes_nb;
     void* inbuf;
+    int bytes_consumed;
+    wifi_response_header out;
 
     // Init the free input buffers mailbox
     for (int i = 0; i < INPUT_BUFFERS_NB; i++)
         chMBPost(&free_input_box, (msg_t)&in_buf[i], TIME_INFINITE);
 
-    chThdSleepMilliseconds(100);
-
-    while (chSequentialStreamGet((BaseSequentialStream*)&SDU1) == -2) {
-        chThdSleepMilliseconds(10);
-    }
-
+    chBSemWait(&audio_bsem);
+    chprintf((BaseSequentialStream*)&SDU1, "start audio reception\r\n");
     while (TRUE) {
         // Get a free buffer
         if (chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE) != MSG_OK) {
@@ -173,12 +174,23 @@ THD_FUNCTION(audio_in, arg) {
             continue;
         }
 
-        // Read file from serial link
+        // Read file from wifi
         bytes_nb = 0;
+        bytes_consumed = WIFI_BUFFER_SIZE;
+
         while(bytes_nb < INPUT_BUFFER_SIZE * 2) {
-            ((int8_t*)inbuf)[bytes_nb] = chSequentialStreamGet((BaseSequentialStream*)&SDU1);
+            if (bytes_consumed >= out.length - 2) { // Need to perform a new read.
+                bytes_consumed = 0;
+                read(audio_conn);
+                out = get_response();
+                if (out.error)
+                    return;
+            }
+            ((int8_t*)inbuf)[bytes_nb] = (int8_t)response_body[bytes_consumed];
             bytes_nb++;
+            bytes_consumed++;
         }
+        chprintf((BaseSequentialStream*)&SDU1, "post\r\n");
 
         chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
     }
