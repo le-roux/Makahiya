@@ -19,7 +19,6 @@ static const char* read_cmd = "read ";
 /***********************/
 /*       Functions     */
 /***********************/
-
 static wifi_response_header parse_response_code(void) {
     wifi_response_header out;
     for (int i = 0; i < 7; i++)
