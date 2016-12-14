@@ -148,10 +148,10 @@ def login_callback(request):
 			'viewer': viewer}
 
 # Coroutine that waits until send_to_socket is called
-async def wait_producer(register, id):
-	await register.get_var(id).acquire()
-	await register.get_var(id).wait()
-	register.get_var(id).release()
+async def wait_producer(register, identifier):
+	await register.get_var(identifier).acquire()
+	await register.get_var(identifier).wait()
+	register.get_var(identifier).release()
 
 # Websocket between the server and a plant
 @view_config(route_name='plant_ws', mapper=CustomWebsocketMapper)
@@ -182,16 +182,16 @@ async def plant(ws):
 
 			if listener_task in done:
 				msg = listener_task.result()
-				if clients.registered(plant_id):
+				if (clients.registered(plant_id)):
 					await send_to_socket(clients, plant_id, msg)
 
-				# Finishing the producer_task to avoid problems
-				# with the condition when the task is recreated
+					# Finishing the producer_task to avoid problems
+					# with the condition when the task is recreated
 
-				plants.get_var(plant_id).notify()
-				plants.get_var(plant_id).release()
-				await asyncio.wait([producer_task])
-				await plants.get_var(plant_id).acquire()
+					plants.get_var(plant_id).notify()
+					plants.get_var(plant_id).release()
+					await asyncio.wait([producer_task])
+					await plants.get_var(plant_id).acquire()
 			else:
 				listener_task.cancel()
 
@@ -239,7 +239,7 @@ async def client(ws):
 				# Then it waits until one of these task finishes
 
 				listener_task = asyncio.ensure_future(ws.recv())
-				producer_task = asyncio.ensure_future(wait_producer(clients, id))
+				producer_task = asyncio.ensure_future(wait_producer(clients, client_id))
 				done, pending = await asyncio.wait(
 				    [listener_task, producer_task],
 				    return_when=asyncio.FIRST_COMPLETED)
@@ -248,15 +248,20 @@ async def client(ws):
 
 				if listener_task in done:
 					msg = listener_task.result()
-					await send_to_socket(plants, client_id, msg)
+					if plants.registered(client_id):
+						await send_to_socket(plants, client_id, msg)
 
-					# Finishing the producer_task to avoid problems
-					# with the condition when the task is recreated
+						# Finishing the producer_task to avoid problems
+						# with the condition when the task is recreated
 
-					clients.get_var(client_id).notify()
-					clients.get_var(client_id).release()
-					await asyncio.wait([producer_task])
-					await clients.get_var(client_id).acquire()
+						clients.get_var(client_id).notify()
+						clients.get_var(client_id).release()
+						await asyncio.wait([producer_task])
+						await clients.get_var(client_id).acquire()
+					else:
+						await ws.send("Connection to the plant lost, exiting")
+						clients.unregister(client_id)
+						break
 				else:
 					listener_task.cancel()
 

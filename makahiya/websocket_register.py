@@ -11,33 +11,33 @@ class WebsocketRegister():
 		self.name = name
 		self.dict = {}
 	
-	def register(self, id):
-		if not (id in self.dict):
-			self.dict[id] = WS()
-			print (str(id) + ' registered in ' + self.name)
+	def register(self, identifier):
+		if not (identifier in self.dict):
+			self.dict[identifier] = WS()
+			print (str(identifier) + ' registered in ' + self.name)
 
-	def unregister(self, id):
-		if (id in self.dict):
-			del self.dict[id]
-			print (str(id) + ' unregistered in ' + self.name)
+	def unregister(self, identifier):
+		if (identifier in self.dict):
+			del self.dict[identifier]
+			print (str(identifier) + ' unregistered in ' + self.name)
 
-	def get_message(self, id):
-		return self.dict[id].message
+	def get_message(self, identifier):
+		return self.dict[identifier].message
 
-	def set_message(self, id, message):
-		self.dict[id].message = message
+	def set_message(self, identifier, message):
+		self.dict[identifier].message = message
 
-	def get_var(self, id):
-		return self.dict[id].var
+	def get_var(self, identifier):
+		return self.dict[identifier].var
 
-	def get_new(self, id):
-		return self.dict[id].new
+	def get_new(self, identifier):
+		return self.dict[identifier].new
 
-	def set_new(self, id, val):
-		self.dict[id].new = val
+	def set_new(self, identifier, val):
+		self.dict[identifier].new = val
 		
-	def registered(self, id):
-		if (id in self.dict):
+	def registered(self, identifier):
+		if (identifier in self.dict):
 			return True
 		else:
 			return False
