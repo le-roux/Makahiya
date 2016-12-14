@@ -141,6 +141,7 @@ THD_FUNCTION(audio_playback, arg) {
         if (err != 0) {
             chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
 
+            chThdSleepMilliseconds(10);
             i2sStopExchange(&I2SD3);
             i2sStop(&I2SD3);
             started = false;
@@ -177,6 +178,7 @@ THD_FUNCTION(audio_in, arg) {
         // Read file from wifi
         bytes_nb = 0;
         bytes_consumed = WIFI_BUFFER_SIZE;
+        out.length = WIFI_BUFFER_SIZE;
 
         while(bytes_nb < INPUT_BUFFER_SIZE * 2) {
             if (bytes_consumed >= out.length - 2) { // Need to perform a new read.

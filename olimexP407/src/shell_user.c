@@ -86,13 +86,14 @@ void read_music(BaseSequentialStream* chp, int argc, char* argv[]) {
     // Read the response code
     wifi_response_header out = get_response();
     chprintf(chp, "get response\r\n");
-    if (out.error == 1)
+    if (out.error == 1) {
         chprintf(chp, "Error (code: %i)\r\n", out.error_code);
+        return;
+    }
     else
         chprintf(chp, "Success (size: %i)\r\n", out.length);
-    if (out.error_code != -1)
-        chprintf(chp, "Body: %s", response_body);
 
+    chprintf(chp, "Body: %s", response_body);
     get_channel_id(response_body, &audio_conn);
 
     /**
