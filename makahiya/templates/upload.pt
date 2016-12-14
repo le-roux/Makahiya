@@ -1,4 +1,4 @@
-<HTML><BODY><h1> Upload some mp3</h1><h3> The plant will then be able to play it !</h3>
+<HTML><BODY><h1> Upload some mp3</h1><h3> The plant will then be able to play it</h3>
     <form method="POST" enctype="multipart/form-data" action="upload">
         File: <input type="file" name="image" /><br />
         <input type="submit" value="Upload">
