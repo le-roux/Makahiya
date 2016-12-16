@@ -7,6 +7,15 @@
 
 /**
  * Aggregates all the information available in the command return codes.
+ *
+ * @var error : boolean value indicating if an error occured
+ * @var error_code : the error code. Possible values are:
+ *      - -1: incorrect header received.
+ *      - -2:
+ *      - -3: header not fully received.
+ *      - -4: nothing to read two sequential times -> stop the audio.
+ * @var length : number of bytes actually sent by the Wi-Fi module in the
+ *      following payload.
  */
 typedef struct wifi_response_header {
     int error;
@@ -14,15 +23,31 @@ typedef struct wifi_response_header {
     int length;
 } wifi_response_header;
 
+#define HEADER_ERROR   -1
+
+#define HEADER_TIMEOUT -3
+#define NO_DATA        -4
+
 /**
  * Aggregates all the information about a running connection.
+ *
+ * @var channel_id string containing the id of the channel allocated to this
+ *      connection.
  */
 typedef struct wifi_connection {
     char channel_id[3];
 } wifi_connection;
 
+/**
+ * Size (in bytes) of the buffer that contains the headers (and size of the
+ *      headers).
+ */
 #define WIFI_HEADER_SIZE 9
-#define WIFI_BUFFER_SIZE 1500
+
+/**
+ * Size (in bytes) of the buffer that contains the payload.
+ */
+#define WIFI_BUFFER_SIZE 1462
 
 /***********************/
 /*       Variables     */
@@ -38,6 +63,9 @@ extern char response_code[WIFI_HEADER_SIZE];
  */
 extern char response_body[WIFI_BUFFER_SIZE];
 
+/**
+ * Variable to store the channel id of the audio download connection.
+ */
 extern wifi_connection audio_conn;
 
 /***********************/
@@ -66,6 +94,14 @@ wifi_response_header get_response(void);
  *
  * @param conn The connection to read data from.
  */
-void read(wifi_connection conn);
+void read_buffer(wifi_connection conn);
+
+/** @brief Issue a read request to the Wi-Fi module.
+ *
+ * @param conn The connection to read data from.
+ * @param size The number of bytes to read (the actual number of bytes read can
+ *  be lower). **WARNING**: This value must be lower than WIFI_BUFFER_SIZE - 2.
+ */
+void read(wifi_connection conn, int size);
 
 #endif

@@ -11,6 +11,7 @@
 #include "usbcfg.h"
 #include "shell_user.h"
 #include "serial_user.h"
+#include "utils.h"
 
 /*
  * Entry point
