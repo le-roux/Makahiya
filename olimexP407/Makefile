@@ -123,7 +123,7 @@ CSRC = $(STARTUPSRC) \
        $(SRC)/pwm_user.c \
 	   $(SRC)/main.c \
 	   $(SRC)/usbcfg.c $(SRC)/shell_user.c \
-	   $(SRC)/sound.c $(SRC)/serial_user.c $(SRC)/wifi.c
+	   $(SRC)/sound.c $(SRC)/serial_user.c $(SRC)/wifi.c $(SRC)/utils.c
 
 PCMSRC =
 MP3SRC =
@@ -237,6 +237,7 @@ $(BUILDDIR)/obj/pic.o: pic.mp3
 # User targets
 #######
 .PHONY := clean
+TEST_DIR := ./test_dir
 
 helix:
 	make -C ../helix
@@ -246,3 +247,15 @@ jlink:
 
 gdb:
 	$(TRGT)gdb $(BUILDDIR)/ch.elf
+
+test:
+	gcc -c $(TEST_DIR)/test.c -o $(TEST_DIR)/test.o -iquote ./includes/
+	gcc -c src/utils.c -o $(TEST_DIR)/utils.o -iquote ./includes/ -std=c99
+	gcc $(TEST_DIR)/test.o $(TEST_DIR)/utils.o -lcriterion -o $(TEST_DIR)/$@
+
+run_test: test
+	$(TEST_DIR)/test
+
+clean_test:
+	rm -f $(TEST_DIR)/*.o
+	rm -f $(TEST_DIR)/test

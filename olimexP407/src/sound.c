@@ -204,8 +204,6 @@ THD_FUNCTION(audio_in, arg) {
             bytes_nb += copy;
             bytes_consumed += copy;
         }
-        if (initial_buffering % 10 == 0)
-            chprintf((BaseSequentialStream*)&SDU1, "post %i\r\n", initial_buffering);
 
         chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
         if ((initial_buffering > 28) & (!decode_started)) {

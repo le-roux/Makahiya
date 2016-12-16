@@ -44,10 +44,14 @@ void get_channel_id(char* response_body, wifi_connection* conn) {
 }
 
 wifi_response_header get_response(void) {
-    sdRead(wifi_SD, (uint8_t*)response_code, WIFI_HEADER_SIZE);
-    wifi_response_header out = parse_response_code();
-    //for (int i = 0; i < WIFI_HEADER_SIZE; i++)
-    //    chSequentialStreamPut((BaseSequentialStream*)&SDU1, response_code[i]);
+    int res = sdRead(wifi_SD, (uint8_t*)response_code, WIFI_HEADER_SIZE);
+    wifi_response_header out;
+    if (res != WIFI_HEADER_SIZE) {
+        out.error = 1;
+        out.error_code = -3;
+        return out;
+    }
+    out = parse_response_code();
     if (out.error & (out.error_code == -1))
         return out; // No recovery solution
 
@@ -70,8 +74,12 @@ void read(wifi_connection conn) {
     length += strlen(conn.channel_id);
     strcat((char*)serial_tx_buffer, " ");
     length += strlen(" ");
-    strcat((char*)serial_tx_buffer, "1498");
-    length += strlen("1498");
+    char tmp[5];
+    int_to_char(tmp, WIFI_BUFFER_SIZE - 2);
+    DEBUG("size: ");
+    DEBUG(tmp);
+    strcat((char*)serial_tx_buffer, tmp);
+    length += strlen(tmp);
     strcat((char*)serial_tx_buffer, "\n");
     length += strlen("\n");
 
