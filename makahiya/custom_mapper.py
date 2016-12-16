@@ -22,7 +22,7 @@ class CustomWebsocketMapper(AsyncioMapperBase):
 
             def switch_protocols():
                 # TODO: Determine if there is a more standard way to do this
-                ws_protocol = websockets.WebSocketCommonProtocol()
+                ws_protocol = websockets.WebSocketCommonProtocol(timeout=0)
                 ws_protocol.matchdict = request.matchdict
                 transport = request.environ['async.writer'].transport
 
