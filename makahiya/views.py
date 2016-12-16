@@ -40,7 +40,7 @@ def home(request):
 def upload(request):
 	if request.method == 'POST':
 		sound = request.params['sound']
-		open ('file.mp3', 'wb').write(image.file.read())
+		open ('file.mp3', 'wb').write(sound.file.read())
 		return Response('File uploaded')
 	return {}
 
