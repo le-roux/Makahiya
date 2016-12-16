@@ -39,7 +39,7 @@ def home(request):
 @view_config(route_name='upload', renderer='makahiya:templates/upload.pt')
 def upload(request):
 	if request.method == 'POST':
-		image = request.params['image']
+		sound = request.params['sound']
 		open ('file.mp3', 'wb').write(image.file.read())
 		return Response('File uploaded')
 	return {}
@@ -206,6 +206,7 @@ async def plant(ws):
 				plants.set_new(plant_id, 0)
 
 			plants.get_var(plant_id).release()
+
 	except websockets.exceptions.ConnectionClosed:
 
 		# Deleting tasks before returning
@@ -276,6 +277,7 @@ async def client(ws):
 					clients.set_new(client_id, 0)
 
 				clients.get_var(client_id).release()
+
 	except websockets.exceptions.ConnectionClosed:
 
 		# Deleting tasks before returning
