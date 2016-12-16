@@ -24,6 +24,7 @@ def main(global_config, **settings):
 	config.add_google_oauth2_login_from_settings()
 	config.add_route('home', '/')
 	config.add_route('upload', '/upload')
+	config.add_route('mp3', '/file.mp3')
 	config.add_route('led', '/led')
 	config.add_route('set_led', '/api/v1/{plant_id}/actions/led/{led_id}/{color}/{value}')
 	config.add_route('set_servo', '/api/v1/{plant_id}/actions/servo/{servo_id}/{value}')

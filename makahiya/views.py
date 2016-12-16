@@ -1,4 +1,5 @@
 from pyramid.response import Response
+from pyramid.response import FileResponse
 from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config
 from .models import Session, Leds, Users
@@ -42,6 +43,11 @@ def upload(request):
 		open ('file.mp3', 'wb').write(image.file.read())
 		return Response('File uploaded')
 	return {}
+
+#download the mp3 file
+@view_config(route_name = 'mp3')
+def download(request):
+	return FileResponse('/home/tanguy/makahiya/file.mp3', request=request, content_type='audio/mp3')
 
 # led view
 @view_config(route_name='led', renderer='makahiya:templates/led_view.pt')
