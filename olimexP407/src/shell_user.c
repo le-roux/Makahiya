@@ -57,7 +57,7 @@ void send(BaseSequentialStream* chp, int argc, char* argv[]) {
     (void)get_response();
     chprintf(chp, response_body);
     wifi_connection conn;
-    get_channel_id(response_body, &conn);
+    get_channel_id(&conn);
     read_buffer(conn);
     (void)get_response();
     chprintf(chp, response_body);
@@ -93,7 +93,7 @@ void read_music(BaseSequentialStream* chp, int argc, char* argv[]) {
     else
         chprintf(chp, "Success (size: %i)\r\nBody: %s", out.length,response_body);
 
-    get_channel_id(response_body, &audio_conn);
+    get_channel_id(&audio_conn);
 
     /**
      * Read the content of the mp3 file.

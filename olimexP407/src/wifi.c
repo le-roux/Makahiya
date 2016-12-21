@@ -38,7 +38,7 @@ wifi_response_header parse_response_code(void) {
     return out;
 }
 
-void get_channel_id(char* response_body, wifi_connection* conn) {
+void get_channel_id(wifi_connection* conn) {
     int i = 0;
     while (isdigit(response_body[i])) {
         conn->channel_id[i] = response_body[i];

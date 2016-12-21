@@ -79,11 +79,9 @@ wifi_response_header parse_response_code(void);
 
 /** @brief Decode the input buffer as the channel id and store it in conn.
  *
- * @param input A buffer containing the id allocated to the current connection
- *      by the Wi-Fi module.
  * @param conn Output variable where to store the id.
  */
-void get_channel_id(char* input, wifi_connection* conn);
+void get_channel_id(wifi_connection* conn);
 
 /** @brief Retrieve and decode the return code of a command.
  *
