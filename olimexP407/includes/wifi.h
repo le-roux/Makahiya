@@ -68,6 +68,9 @@ extern char response_body[WIFI_BUFFER_SIZE];
  */
 extern wifi_connection audio_conn;
 
+extern const char* address;
+extern const char* get;
+
 /***********************/
 /*       Functions     */
 /***********************/
@@ -106,5 +109,7 @@ void read_buffer(wifi_connection conn);
  *  be lower). **WARNING**: This value must be lower than WIFI_BUFFER_SIZE - 2.
  */
 void read(wifi_connection conn, int size);
+
+void read_music(char* path);
 
 #endif

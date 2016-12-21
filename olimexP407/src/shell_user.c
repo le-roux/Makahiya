@@ -6,11 +6,8 @@
 #include <string.h>
 #include "serial_user.h"
 #include "wifi.h"
-#include "sound.h"
 
 thread_t* shelltp = NULL;
-static const char* address = "http://makahiya.herokuapp.com";
-static const char* get = "http_get ";
 
 void servo(BaseSequentialStream* chp, int argc, char* argv[]) {
     if (argc != 1) {
@@ -18,20 +15,6 @@ void servo(BaseSequentialStream* chp, int argc, char* argv[]) {
         return;
     }
     pwmEnableChannel(&PWMD1, 0, 70 + atoi(argv[0]));
-}
-
-void serial_start(BaseSequentialStream* chp, int argc, char* argv[]) {
-    UNUSED(chp);
-    UNUSED(argc);
-    UNUSED(argv);
-    sdStart(wifi_SD, &serial_cfg);
-}
-
-void serial_stop(BaseSequentialStream* chp, int argc, char* argv[]) {
-    UNUSED(chp);
-    UNUSED(argc);
-    UNUSED(argv);
-    sdStop(wifi_SD);
 }
 
 void send(BaseSequentialStream* chp, int argc, char* argv[]) {
@@ -63,51 +46,18 @@ void send(BaseSequentialStream* chp, int argc, char* argv[]) {
     chprintf(chp, response_body);
 }
 
-void read_music(BaseSequentialStream* chp, int argc, char* argv[]) {
+void read_music_shell(BaseSequentialStream* chp, int argc, char* argv[]) {
+    UNUSED(chp);
     UNUSED(argc);
     UNUSED(argv);
-    int length = 0;
 
-    // Prepare the request to send
-    strcpy((char*)serial_tx_buffer, get);
-    length += strlen(get);
-    strcat((char*)serial_tx_buffer, address);
-    length += strlen(address);
-    strcat((char*)serial_tx_buffer, "/static/music.mp3\n");
-    length += strlen("/static/music.mp3\n");
-
-    for (int i = 0; i < length; i++)
-        chSequentialStreamPut(chp, serial_tx_buffer[i]);
-    chprintf(chp, "\r\n");
-
-    // Actually send the request
-    sdWrite(wifi_SD, serial_tx_buffer, length);
-
-    // Read the response code
-    wifi_response_header out = get_response();
-    if (out.error == 1) {
-        chprintf(chp, "Error (code: %i)\r\n", out.error_code);
-        chprintf(chp, "Body: %s", response_body);
-        return;
-    }
-    else
-        chprintf(chp, "Success (size: %i)\r\nBody: %s", out.length,response_body);
-
-    get_channel_id(&audio_conn);
-
-    /**
-     * Read the content of the mp3 file.
-     */
-
-    chBSemSignal(&audio_bsem);
+    read_music("/static/music.mp3");
 }
 
 const ShellCommand commands[] = {
   {"servo", servo},
-  {"serial_start", serial_start},
-  {"serial_stop", serial_stop},
   {"send", send},
-  {"read_music", read_music},
+  {"read_music", read_music_shell},
   {NULL, NULL}
 };
 

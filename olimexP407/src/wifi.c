@@ -10,6 +10,7 @@
 #include "chprintf.h"
 #include "serial_user.h"
 #include "utils.h"
+#include "sound.h"
 #endif // TEST
 
 /***********************/
@@ -19,6 +20,8 @@ char response_code[WIFI_HEADER_SIZE];
 char response_body[WIFI_BUFFER_SIZE];
 wifi_connection audio_conn;
 static const char* const read_cmd = "read ";
+const char* address = "http://makahiya.herokuapp.com";
+const char* get = "http_get ";
 #define MEASURE_TIME 0
 
 /***********************/
@@ -126,6 +129,39 @@ void read(wifi_connection conn, int size) {
 
     // Actually send the request.
     sdWrite(wifi_SD, serial_tx_buffer, length);
+}
+
+void read_music(char* path) {
+    int length = 0;
+
+    // Prepare the request to send
+    strcpy((char*)serial_tx_buffer, get);
+    length += strlen(get);
+    strcat((char*)serial_tx_buffer, address);
+    length += strlen(address);
+    strcat((char*)serial_tx_buffer, path);
+    length += strlen(path);
+    strcat((char*)serial_tx_buffer, "\n");
+    length += strlen("\n");
+
+    // Actually send the request
+    sdWrite(wifi_SD, serial_tx_buffer, length);
+
+    // Read the response code
+    wifi_response_header out = get_response();
+    if (out.error == 1) {
+        DEBUG("Error (code: %i)\r\n", out.error_code);
+        DEBUG("Body: %s", response_body);
+        return;
+    } else
+        DEBUG("Success (size: %i)\r\nBody: %s", out.length,response_body);
+
+    get_channel_id(&audio_conn);
+
+    /**
+     * Start the reading of the mp3 file.
+     */
+    chBSemSignal(&audio_bsem);
 }
 
 #endif // TEST
