@@ -72,6 +72,11 @@ extern wifi_connection audio_conn;
 /*       Functions     */
 /***********************/
 
+/**
+ * Exported for tests only.
+ */
+wifi_response_header parse_response_code(void);
+
 /** @brief Decode the input buffer as the channel id and store it in conn.
  *
  * @param input A buffer containing the id allocated to the current connection

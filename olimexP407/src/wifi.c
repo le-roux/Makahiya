@@ -1,14 +1,16 @@
 #include "wifi.h"
 #include "stdlib.h"
 #include <ctype.h>
+#include <string.h>
 
+#ifndef TEST
 #include "ch.h"
 #include "hal.h"
 #include "usbcfg.h"
 #include "chprintf.h"
 #include "serial_user.h"
-#include <string.h>
 #include "utils.h"
+#endif // TEST
 
 /***********************/
 /*       Variables     */
@@ -22,7 +24,7 @@ static const char* const read_cmd = "read ";
 /***********************/
 /*       Functions     */
 /***********************/
-static wifi_response_header parse_response_code(void) {
+wifi_response_header parse_response_code(void) {
     wifi_response_header out;
     if (response_code[0] != 'R') {
         out.error = 1;
@@ -45,6 +47,7 @@ void get_channel_id(char* response_body, wifi_connection* conn) {
     conn->channel_id[i] = '\0';
 }
 
+#ifndef TEST
 wifi_response_header get_response(void) {
     static int end;
     wifi_response_header out;
@@ -124,3 +127,5 @@ void read(wifi_connection conn, int size) {
     // Actually send the request.
     sdWrite(wifi_SD, serial_tx_buffer, length);
 }
+
+#endif // TEST

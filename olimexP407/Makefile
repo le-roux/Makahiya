@@ -157,7 +157,6 @@ ASMSRC = $(STARTUPASM) $(PORTASM) $(OSALASM)
 
 INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
          $(HALINC) $(PLATFORMINC) $(BOARDINC) $(TESTINC) \
-         $(LWINC) $(FATFSINC) \
          $(CHIBIOS)/os/hal/lib/streams $(CHIBIOS)/os/various \
 		 $(INCLUDES)
 
@@ -236,7 +235,7 @@ $(BUILDDIR)/obj/pic.o: pic.mp3
 #######
 # User targets
 #######
-.PHONY := clean
+.PHONY := clean clean_test
 TEST_DIR := ./test_dir
 
 helix:
@@ -248,10 +247,12 @@ jlink:
 gdb:
 	$(TRGT)gdb $(BUILDDIR)/ch.elf
 
-test:
-	gcc -c $(TEST_DIR)/test.c -o $(TEST_DIR)/test.o -iquote ./includes/
-	gcc -c src/utils.c -o $(TEST_DIR)/utils.o -iquote ./includes/ -std=c99
-	gcc $(TEST_DIR)/test.o $(TEST_DIR)/utils.o -lcriterion -o $(TEST_DIR)/$@
+test: $(TEST_DIR)/test.c $(TEST_DIR)/utils.o $(TEST_DIR)/wifi.o
+	gcc -c $(TEST_DIR)/test.c -o $(TEST_DIR)/test.o -iquote $(INCLUDES)
+	gcc $(TEST_DIR)/test.o $(TEST_DIR)/utils.o $(TEST_DIR)/wifi.o -lcriterion -o $(TEST_DIR)/$@
+
+$(TEST_DIR)/%.o: $(SRC)/%.c
+	gcc -c $^ -o $@ -iquote $(INCLUDES) -std=c99 -DTEST
 
 run_test: test
 	$(TEST_DIR)/test
