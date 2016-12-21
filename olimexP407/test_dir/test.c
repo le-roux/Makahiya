@@ -37,4 +37,16 @@ Test(suite_2, test_parse_response_code) {
     cr_expect(out.error == 1);
     cr_expect(out.error_code == 3);
     cr_expect(out.length == 72);
+
+    strcpy(response_code, "000003\r\n");
+    out = parse_response_code();
+    cr_expect(out.error == 1);
+    cr_expect(out.error_code == HEADER_ERROR);
+}
+
+Test(suite_2, test_get_channel_id) {
+    wifi_connection conn;
+    strcpy(response_body, "0\r\n");
+    get_channel_id(&conn);
+    cr_expect(strcmp(conn.channel_id, "0") == 0);
 }
