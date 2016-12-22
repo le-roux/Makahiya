@@ -188,6 +188,7 @@ async def plant(ws):
 
 			if listener_task in done:
 				msg = listener_task.result()
+				print (msg)
 				if (clients.registered(plant_id)):
 					await send_to_socket(clients, plant_id, msg)
 
@@ -198,6 +199,8 @@ async def plant(ws):
 					plants.get_var(plant_id).release()
 					await asyncio.wait([producer_task])
 					await plants.get_var(plant_id).acquire()
+				else:
+					print ('No client listening')
 			else:
 				listener_task.cancel()
 
@@ -255,6 +258,7 @@ async def client(ws):
 
 				if listener_task in done:
 					msg = listener_task.result()
+					print (msg)
 					if plants.registered(client_id):
 						await send_to_socket(plants, client_id, msg)
 
