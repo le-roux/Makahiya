@@ -194,7 +194,7 @@ THD_FUNCTION(audio_in, arg) {
             while (bytes_consumed >= out.length - 2) { // Need to perform a new read.
                 bytes_consumed = 0;
                 read_buffer(audio_conn);
-                out = get_response();
+                out = get_response(true);
                 if (out.error && out.error_code != NO_DATA)
                     continue;
                 else

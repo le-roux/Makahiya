@@ -37,12 +37,12 @@ void send(BaseSequentialStream* chp, int argc, char* argv[]) {
     length++;
     sdWrite(wifi_SD, serial_tx_buffer, length);
 
-    (void)get_response();
+    (void)get_response(false);
     chprintf(chp, response_body);
     wifi_connection conn;
     get_channel_id(&conn);
     read_buffer(conn);
-    (void)get_response();
+    (void)get_response(false);
     chprintf(chp, response_body);
 }
 

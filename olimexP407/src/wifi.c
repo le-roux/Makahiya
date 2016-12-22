@@ -22,6 +22,7 @@ wifi_connection audio_conn;
 static const char* const read_cmd = "read ";
 const char* address = "http://makahiya.herokuapp.com";
 const char* get = "http_get ";
+static MUTEX_DECL(serial_mutex);
 #define MEASURE_TIME 0
 
 /***********************/
@@ -51,7 +52,7 @@ void get_channel_id(wifi_connection* conn) {
 }
 
 #ifndef TEST
-wifi_response_header get_response(void) {
+wifi_response_header get_response(int timeout) {
     static int end;
     wifi_response_header out;
 
@@ -59,7 +60,14 @@ wifi_response_header get_response(void) {
     systime_t start = chVTGetSystemTime();
     #endif
 
-    int res = sdReadTimeout(wifi_SD, (uint8_t*)response_code, WIFI_HEADER_SIZE, MS2ST(400));
+    int res;
+
+    chMtxLock(&serial_mutex);
+    if (timeout)
+        res = sdReadTimeout(wifi_SD, (uint8_t*)response_code, WIFI_HEADER_SIZE, MS2ST(400));
+    else
+        res = sdRead(wifi_SD, (uint8_t*)response_code, WIFI_HEADER_SIZE);
+    chMtxUnlock(&serial_mutex);
 
     #if MEASURE_TIME
     DEBUG("header laps -> %d", ST2MS(chVTTimeElapsedSinceX(start)));
@@ -84,7 +92,12 @@ wifi_response_header get_response(void) {
         start = chVTGetSystemTime();
         #endif
 
-        res = sdReadTimeout(wifi_SD, (uint8_t*)response_body, out.length, MS2ST(80));
+        chMtxLock(&serial_mutex);
+        if (timeout)
+            res = sdReadTimeout(wifi_SD, (uint8_t*)response_body, out.length, MS2ST(80));
+        else
+            res = sdRead(wifi_SD, (uint8_t*)response_body, out.length);
+        chMtxUnlock(&serial_mutex);
 
         #if MEASURE_TIME
         DEBUG("body laps -> %d", ST2MS(chVTTimeElapsedSinceX(start)));
@@ -128,7 +141,9 @@ void read(wifi_connection conn, int size) {
     length += strlen("\n\r");
 
     // Actually send the request.
+    chMtxLock(&serial_mutex);
     sdWrite(wifi_SD, serial_tx_buffer, length);
+    chMtxUnlock(&serial_mutex);
 }
 
 void read_music(char* path) {
@@ -145,10 +160,12 @@ void read_music(char* path) {
     length += strlen("\n");
 
     // Actually send the request
+    chMtxLock(&serial_mutex);
     sdWrite(wifi_SD, serial_tx_buffer, length);
+    chMtxUnlock(&serial_mutex);
 
     // Read the response code
-    wifi_response_header out = get_response();
+    wifi_response_header out = get_response(true);
     if (out.error == 1) {
         DEBUG("Error (code: %i)\r\n", out.error_code);
         DEBUG("Body: %s", response_body);
@@ -162,6 +179,20 @@ void read_music(char* path) {
      * Start the reading of the mp3 file.
      */
     chBSemSignal(&audio_bsem);
+}
+
+void send_cmd(char* cmd) {
+    chDbgCheck(strlen(cmd) < SERIAL_TX_BUFFER_SIZE - 1);
+
+    int length = 0;
+    strcpy((char*)serial_tx_buffer, cmd);
+    length += strlen(cmd);
+    strcat((char*)serial_tx_buffer, "\n");
+    length += strlen("\n");
+
+    chMtxLock(&serial_mutex);
+    sdWrite(wifi_SD, serial_tx_buffer, length);
+    chMtxUnlock(&serial_mutex);
 }
 
 #endif // TEST

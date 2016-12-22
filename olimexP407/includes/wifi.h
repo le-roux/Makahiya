@@ -88,10 +88,13 @@ void get_channel_id(wifi_connection* conn);
 
 /** @brief Retrieve and decode the return code of a command.
  *
+ * @param timeout Boolean value that indicates whether or not timeouts are
+ *      required for blocking function calls.
+ *
  * @return A structure containing all the information available in the
  *      code returned by the command previously sent to the Wi-Fi module.
  */
-wifi_response_header get_response(void);
+wifi_response_header get_response(int timeout);
 
 /** @brief Issue a read request to the Wi-Fi module.
  *
@@ -111,5 +114,10 @@ void read_buffer(wifi_connection conn);
 void read(wifi_connection conn, int size);
 
 void read_music(char* path);
+
+/** @brief Send a command to the Wi-Fi module.
+ *
+ */
+void send_cmd(char* cmd);
 
 #endif
