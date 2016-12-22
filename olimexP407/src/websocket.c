@@ -58,6 +58,13 @@ THD_FUNCTION(websocket, arg) {
                     break;
                 }
             }
+            strcpy(cmd, "write ");
+            strcat(cmd, conn.channel_id);
+            strcat(cmd, " 5");
+            send_cmd(cmd);
+            send_cmd("abcd");
+            get_response(true);
+            DEBUG("write %s", response_body);
         }
     }
 }
