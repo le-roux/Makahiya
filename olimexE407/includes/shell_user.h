@@ -1,5 +1,5 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef SHELL_USER_H
+#define SHELL_USER_H
 
 #include "ch.h"
 #include "hal.h"

@@ -22,8 +22,11 @@ wifi_connection audio_conn;
 static const char* const read_cmd = "read ";
 const char* address = "http://makahiya.herokuapp.com";
 const char* get = "http_get ";
-static MUTEX_DECL(serial_mutex);
 #define MEASURE_TIME 0
+
+#ifndef TEST
+static MUTEX_DECL(serial_mutex);
+#endif
 
 /***********************/
 /*       Functions     */
