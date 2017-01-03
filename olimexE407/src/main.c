@@ -8,6 +8,7 @@
 #include "usbcfg.h"
 #include "shell_user.h"
 #include "i2c_user.h"
+#include "fdc2214.h"
 
 /*
  * Entry point
@@ -36,18 +37,22 @@ int main(void) {
     i2c_set_pins();
     i2cStart(&I2CD2, &i2c2_cfg);
     msg_t status;
-    chThdSleepMilliseconds(160);
+    chThdSleepMilliseconds(10);
     tx_buffer[0] = 0x7F;
     tx_buffer[1] = DEVICE_ID_H;
     tx_buffer[2] = DEVICE_ID_L;
-    status = i2cMasterTransmitTimeout(&I2CD2, FDC_ADDR, tx_buffer, 3, rx_buffer, 0, MS2ST(4));
-    status = i2cMasterTransmitTimeout(&I2CD2, FDC_ADDR, tx_buffer, 1, rx_buffer, 2, MS2ST(4));
+    status = i2cMasterTransmitTimeout(&I2CD2, FDC1_ADDR, tx_buffer, 1, rx_buffer, 2, MS2ST(4));
     if (status != MSG_OK)
         chprintf((BaseSequentialStream*)&SDU1, "failure\r\n");
     else
         chprintf((BaseSequentialStream*)&SDU1, "read: %x\r\n", rx_buffer);
     if (i2cGetErrors(&I2CD2) & I2C_ACK_FAILURE)
         chprintf((BaseSequentialStream*)&SDU1, "ack failure\r\n");
+
+    read_register(FDC1_ADDR, CONFIG_REG_ADDR);
+    config &= ~SLEEP_MODE;
+    write_register(FDC1_ADDR, CONFIG_REG_ADDR, config);
+    read_register(FDC1_ADDR, CONFIG_REG_ADDR);
     // Loop forever.
     while (true) {
         if (!shelltp & (SDU1.config->usbp->state == USB_ACTIVE))
