@@ -53,7 +53,7 @@ def download(request):
 @view_config(route_name='led', renderer='makahiya:templates/led_view.pt')
 def led_view(request):
 	# Query the first row (representing the powerful led) of the table 'leds'.
-	session = Session()
+	session = request.session
 	led = session.query(Leds).filter_by(uid=0).one()
 
 	# Set the values in a dictionary
@@ -80,7 +80,7 @@ def led_view(request):
 # Set LED color
 @view_config(route_name='set_led', request_method='POST', mapper=CoroutineMapper)
 async def set_led(request):
-	session = Session()
+	session = request.session
 	plant_id = request.matchdict['plant_id']
 	led_id = request.matchdict['led_id']
 	color = request.matchdict['color']
@@ -145,10 +145,10 @@ def login(request):
 @view_config(context='velruse.AuthenticationComplete',
 			renderer='makahiya:templates/logged.pt')
 def login_callback(request):
-	session = Session()
+	session = request.session
 	context = request.context
 	user = session.query(Users).filter_by(email=context.profile['verifiedEmail']).first()
-	request.session['logged'] = user.level
+	session['logged'] = user.level
 	viewer = not user.level
 	return {'editor': user.level,
 			'viewer': viewer}
@@ -296,4 +296,3 @@ async def client(ws):
 			await asyncio.wait([producer_task])
 		await send_to_socket(plants, client_id, 'Goodbye')
 		clients.unregister(client_id)
-
