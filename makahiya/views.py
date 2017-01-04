@@ -34,7 +34,7 @@ def download(request):
 @view_config(route_name='led', renderer='makahiya:templates/led_view.pt')
 def led_view(request):
 	# Query the first row (representing the powerful led) of the table 'leds'.
-	session = request.session
+	session = Session()
 	led = session.query(Leds).filter_by(uid=0).one()
 
 	# Set the values in a dictionary
@@ -129,4 +129,3 @@ def login_callback(request):
 	viewer = not user.level
 	return {'editor': user.level,
 			'viewer': viewer}
-
