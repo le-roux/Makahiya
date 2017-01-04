@@ -1,0 +1,4 @@
+<map id="usbInitEndpointI" name="usbInitEndpointI">
+<area shape="rect" id="node2" href="$group___u_s_b.html#ga56beda46a0db91e28a97d5710f66827e" title="Enables an endpoint. " alt="" coords="152,5,273,29"/>
+<area shape="rect" id="node3" href="$group___u_s_b.html#ga16b16095d3fc03569684abfd629dc016" title="Allocates a block from the FIFO RAM memory. " alt="" coords="321,5,411,29"/>
+</map>

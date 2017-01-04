@@ -1,0 +1,7 @@
+<map id="sdStop" name="sdStop">
+<area shape="rect" id="node2" href="$group___h_a_l___q_u_e_u_e_s.html#ga2730ebec5dc542ae61620d56f96df88a" title="Resets an input queue. " alt="" coords="115,5,176,29"/>
+<area shape="rect" id="node3" href="$group___h_a_l___q_u_e_u_e_s.html#ga9f4fbb494634137859b1b6d614ca239f" title="Resets an output queue. " alt="" coords="113,53,178,77"/>
+<area shape="rect" id="node4" href="$group___s_e_r_i_a_l.html#gae6846b20159e89464b61665f50468d8f" title="Low level serial driver stop. " alt="" coords="108,101,183,125"/>
+<area shape="rect" id="node5" href="$group___s_e_r_i_a_l.html#ga6d563f169da8692e3443bdf554e22914" title="USART de&#45;initialization. " alt="" coords="245,77,323,101"/>
+<area shape="rect" id="node6" href="$group___c_o_m_m_o_n___a_r_m_c_mx___n_v_i_c.html#gafdc14a7abfb6cb5fd2dd93a05767bbf8" title="Disables an interrupt handler. " alt="" coords="231,125,337,149"/>
+</map>

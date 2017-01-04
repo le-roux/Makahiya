@@ -1,0 +1,5 @@
+<map id="MACDriver" name="MACDriver">
+<area shape="rect" id="node2" href="$structstm32__eth__tx__descriptor__t.html" title="Type of an STM32 Ethernet transmit descriptor. " alt="" coords="5,5,153,111"/>
+<area shape="rect" id="node3" href="$structstm32__eth__rx__descriptor__t.html" title="Type of an STM32 Ethernet receive descriptor. " alt="" coords="178,5,327,111"/>
+<area shape="rect" id="node4" href="$struct_m_a_c_config.html" title="Driver configuration structure. " alt="" coords="352,23,447,93"/>
+</map>

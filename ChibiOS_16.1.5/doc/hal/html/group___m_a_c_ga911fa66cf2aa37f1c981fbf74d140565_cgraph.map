@@ -1,0 +1,5 @@
+<map id="mac_lld_stop" name="mac_lld_stop">
+<area shape="rect" id="node2" href="$group___m_a_c.html#ga752399cc55bfe5a4a70e639fd6583a40" title="Reads a PHY register. " alt="" coords="159,5,222,29"/>
+<area shape="rect" id="node3" href="$group___m_a_c.html#gacd5c934f8e5b4a37c8fa6eb57040d878" title="Writes a PHY register. " alt="" coords="159,53,223,77"/>
+<area shape="rect" id="node4" href="$group___c_o_m_m_o_n___a_r_m_c_mx___n_v_i_c.html#gafdc14a7abfb6cb5fd2dd93a05767bbf8" title="Disables an interrupt handler. " alt="" coords="137,101,244,125"/>
+</map>
