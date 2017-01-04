@@ -5,9 +5,6 @@ from sqlalchemy import engine_from_config
 
 from .models import Session, Base
 
-import os
-import asyncio
-import websockets
 from threading import Thread
 
 def main(global_config, **settings):
@@ -34,5 +31,6 @@ def main(global_config, **settings):
 	config.add_static_view(name='static', path='makahiya:static')
 
 	config.scan('.views')
+	config.scan('.websockets')
 	return config.make_wsgi_app()
 
