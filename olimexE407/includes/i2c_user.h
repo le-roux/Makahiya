@@ -6,7 +6,7 @@
 
 #define TIMEOUT MS2ST(4)
 
-#define FDC1_ADDR 0x2A
+#define FDC1_ADDR 0x2B
 #define DEVICE_ID_AADDR 0x7F
 #define DEVICE_ID_L 0x55
 #define DEVICE_ID_H 0x30

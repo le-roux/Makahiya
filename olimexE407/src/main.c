@@ -36,23 +36,29 @@ int main(void) {
     // Init the i2c
     i2c_set_pins();
     i2cStart(&I2CD2, &i2c2_cfg);
-    msg_t status;
-    chThdSleepMilliseconds(10);
-    tx_buffer[0] = 0x7F;
-    tx_buffer[1] = DEVICE_ID_H;
-    tx_buffer[2] = DEVICE_ID_L;
-    status = i2cMasterTransmitTimeout(&I2CD2, FDC1_ADDR, tx_buffer, 1, rx_buffer, 2, MS2ST(4));
-    if (status != MSG_OK)
-        chprintf((BaseSequentialStream*)&SDU1, "failure\r\n");
-    else
-        chprintf((BaseSequentialStream*)&SDU1, "read: %x\r\n", rx_buffer);
-    if (i2cGetErrors(&I2CD2) & I2C_ACK_FAILURE)
-        chprintf((BaseSequentialStream*)&SDU1, "ack failure\r\n");
+    i2cflags_t status;
+    do {
+        chThdSleepMilliseconds(100);
+        status = init_sensor();
+    } while (status != I2C_NO_ERROR);
 
-    read_register(FDC1_ADDR, CONFIG_REG_ADDR);
-    config &= ~SLEEP_MODE;
-    write_register(FDC1_ADDR, CONFIG_REG_ADDR, config);
-    read_register(FDC1_ADDR, CONFIG_REG_ADDR);
+    for (int i = 0; i < 100; i++) {
+        chThdSleepMilliseconds(20);
+        status = read_register(FDC1_ADDR, STATUS);
+        if (status != I2C_NO_ERROR) {
+            chprintf((BaseSequentialStream*)&SDU1, "error %i\r\n", (int)i2cGetErrors(&I2CD2));
+            continue;
+        }
+        status = 0;
+        status &= rx_buffer[0] << 8;
+        status &= rx_buffer[1];
+        if (status & DRDY) {
+            status = read_register(FDC1_ADDR, DATA_MSB_CH0);
+            if (status != MSG_OK)
+                break;
+        }
+    }
+
     // Loop forever.
     while (true) {
         if (!shelltp & (SDU1.config->usbp->state == USB_ACTIVE))
