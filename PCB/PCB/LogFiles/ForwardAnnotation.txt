@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                       09:38 PM Sunday, December 04, 2016
+                       06:18 AM Thursday, January 05, 2017
                    Job Name: E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb
 
 
@@ -112,7 +112,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       09:38 PM Sunday, December 04, 2016
+                       06:18 AM Thursday, January 05, 2017
                    Job Name: E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb
 
 
@@ -125,9 +125,7 @@ Version:  02.11.12
 	Schematic reference designator changes will be forward annotated.
 
 
-	WARNING:  "R3" is being removed from the Layout since it is no longer in the schematic.
-
-     Netload completed successfully with 1 warning(s).
+     Netload completed successfully with 0 warning(s).
      
      Back Annotating...
 
@@ -158,15 +156,9 @@ Version:  02.11.12
 
                  Beginning Netload on the Layout Design.
            ---------------------------------------------------
-	Assigned net XSIG010830 to a trace which was originally on net XSIG010829.
-	Assigned net XSIG010830 to a via which was originally on net XSIG010829.
-	Assigned net XSIG010830 to a trace which was originally on net XSIG010829.
-
-Some nets were completely deleted from the Layout Design....
-	Deleted net XSIG010829, which has no pins, from the Layout Design.
 
 Forward-Annotation on the Layout Design has been successfully completed.
 
-There were 3 reassignments of nets.
+There were 0 reassignments of nets.
 There were 0 traces broken back.
-There were 1 nets removed from the Layout Design.
+There were 0 nets removed from the Layout Design.

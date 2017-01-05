@@ -107,3 +107,6 @@
 [2016-12-06 12.59.00] Successfully created [AutoSave] backup [2016-12-06 12.58.59 - auto.zip] requested by [WIN10:root].
 [2016-12-06 12.59.00] Removing excessive [AutoSave] backup file [E:\2017\MAKAHIYA\PCB\Default\ProjectBackup\backups\2016-12-03 18.55.00 - auto.zip].
 [2016-12-06 12.59.00] [AutoSave] backup file [PCB\Default\ProjectBackup\backups\2016-12-03 18.55.00 - auto.zip] removed.
+[2017-01-05 06.14.46] Successfully created [AutoSave] backup [2017-01-05 06.14.45 - auto.zip] requested by [WIN10:root].
+[2017-01-05 06.14.46] Removing excessive [AutoSave] backup file [E:\2017\MAKAHIYA\PCB\Default\ProjectBackup\backups\2016-12-04 19.09.44 - auto.zip].
+[2017-01-05 06.14.46] [AutoSave] backup file [PCB\Default\ProjectBackup\backups\2016-12-04 19.09.44 - auto.zip] removed.
