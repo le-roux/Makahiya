@@ -1,20 +1,20 @@
-from pyramid.response import Response
-from pyramid.response import FileResponse
-from pyramid.httpexceptions import HTTPBadRequest
+from pyramid.response import Response, FileResponse
+from pyramid.httpexceptions import HTTPBadRequest, HTTPFound
 from pyramid.view import view_config
 from .models import Session, Leds, Users
 from velruse import login_url
-
+from pyramid.security import remember, forget
 import pyramid
+import logging
+import colander
+import deform.widget
+log = logging.getLogger(__name__)
 
 # home page
 @view_config(route_name='home', renderer='makahiya:templates/home.pt')
 def home(request):
-	session = request.session
-	if 'logged' not in session:
-		session['logged'] = 0
 	return {'title':'Makahiya',
-			'logged':session['logged']}
+		'id':request.authenticated_userid if not request.authenticated_userid == None else ''}
 
 # upload mp3 file
 @view_config(route_name='upload', renderer='makahiya:templates/upload.pt')
@@ -115,17 +115,72 @@ async def set_servo(request):
 
 	return Response('<body>Good Request</body>')
 
+# Security related views (login & logout)
 @view_config(route_name='login', renderer='makahiya:templates/login.pt')
 def login(request):
 	return {"google_login_url": login_url(request, 'google')}
 
-@view_config(context='velruse.AuthenticationComplete',
-			renderer='makahiya:templates/logged.pt')
+@view_config(context='velruse.AuthenticationComplete')
 def login_callback(request):
-	session = request.session
-	context = request.context
-	user = session.query(Users).filter_by(email=context.profile['verifiedEmail']).first()
-	session['logged'] = user.level
-	viewer = not user.level
-	return {'editor': user.level,
-			'viewer': viewer}
+	email = request.context.profile['verifiedEmail']
+	session = Session()
+	if 'status' in request.session and request.session['status'] == 1:
+		# Check that this user doesn't already exist
+		if session.query(Users).filter_by(email=email).first() is None:
+			# Create this user in the database
+			session.add(Users(email=email, level=2, plant_id=request.session['plant_id']))
+			headers = remember(request, email)
+			return HTTPFound('/board')
+		else: # User already existing
+			request.session['status'] = 2
+			return HTTPFound('/subscribe')
+	else:
+		# Check that this user in in the database
+		if session.query(Users).filter_by(email=email).first() is None:
+			request.session['status'] = 3
+			return HTTPFound('/subscribe')
+		else: # User exists
+			headers = remember(request, email)
+			return HTTPFound(location = "/", headers = headers)
+
+@view_config(route_name='logout', permission='logged')
+def logout(request):
+	headers = forget(request)
+	return HTTPFound(location='https://google.com/accounts/logout', headers = headers)
+
+class SubscribePage(colander.MappingSchema):
+	plant_id = colander.SchemaNode(colander.Int())
+
+class SecurityViews(object):
+	def __init__(self, request):
+		self.request = request
+
+	@property
+	def subscribe_form(self):
+		schema = SubscribePage()
+		return deform.Form(schema, buttons=('Associate with Google account',))
+
+	@property
+	def reqts(self):
+		return self.subscribe_form.get_widget_resources()
+
+	@view_config(route_name='subscribe', renderer='makahiya:templates/subscribe.pt')
+	def subscribe(self):
+		form = self.subscribe_form.render()
+
+		if 'Associate_with_Google_account' in self.request.params:
+			values = self.request.POST.items()
+			try:
+				pages = self.subscribe_form.validate(values)
+			except deform.ValidationFailure as e:
+				return dict(form=e.render())
+			self.request.session['status'] = 1
+			self.request.session['plant_id'] = pages['plant_id']
+			log.debug('session ' + str(self.request.session))
+			log.debug('url: ' + str(login_url(self.request, 'google')))
+			return HTTPFound(login_url(self.request, 'google'))
+
+		# First access to this page
+		if 'status' not in self.request.session:
+			self.request.session['status'] = 0
+		return dict({'status':self.request.session['status']}, form=form)

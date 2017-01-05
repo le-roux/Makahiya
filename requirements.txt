@@ -7,7 +7,7 @@ sqlalchemy
 pyramid_debugtoolbar
 zope.sqlalchemy
 psycopg2
-velruse
+./velruse
 websockets
 gunicorn
 aiopyramid

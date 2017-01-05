@@ -6,8 +6,14 @@
         href="${request.static_url('makahiya:static/app.css')}"/>
 </head>
 <body>
-    <h1 class="center">${title}</h1>
-    <p class="center">A ROSE project made at Telecom ParisTech</p>
-    <p tal:condition="logged">You're logged</p>
+    <header>
+        <a class='ref' href='/'>Home</a>
+        <a class='center'>${title}</a>
+        <a tal:condition='python:len(id) == 0' href='/login' class='ref'>Login</a>
+        <a tal:condition="python:len(id) > 0" href='/logout' class='ref'>Logout</a>
+    </header>
+    <section>
+        <p class="center">A ROSE project made at Telecom ParisTech</p>
+    </section>
 </body>
 </html>

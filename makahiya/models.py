@@ -1,4 +1,4 @@
-from pyramid.security import Allow, Everyone
+from pyramid.security import Allow, Everyone, Authenticated
 
 from sqlalchemy import (
 	Column,
@@ -34,6 +34,7 @@ class Users(Base):
 	uid = Column(Integer, primary_key=True)
 	email = Column(String)
 	level = Column(Integer)
+	plant_id = Column(Integer)
 
 # Table containing the leds status.
 class Leds(Base):
@@ -48,7 +49,11 @@ class Leds(Base):
 # Authorization stuff (access control list).
 class Root(object):
 	__acl__ = [(Allow, Everyone, 'view'),
-		 (Allow, 'group:editors', 'edit')]
+		 (Allow, 'group:editors', 'edit'),
+		 (Allow, Authenticated, 'logged')]
 
 	def __init__(self, request):
 		pass
+
+def get_user_level(userid):
+    return Session().query(Users).filter_by(email=userid).first().level

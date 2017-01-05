@@ -1,5 +1,8 @@
 from pyramid.config import Configurator
 from pyramid.session import SignedCookieSessionFactory
+from pyramid.authentication import AuthTktAuthenticationPolicy
+from pyramid.authorization import ACLAuthorizationPolicy
+from .security import groupfinder
 
 from sqlalchemy import engine_from_config
 
@@ -13,12 +16,15 @@ def main(global_config, **settings):
 	Base.metadata.bind = engine
 	session_factory = SignedCookieSessionFactory('makahiya')
 
+
 	config = Configurator(settings=settings,
 				root_factory='makahiya.models.Root',
 				session_factory=session_factory)
 	config.include('pyramid_chameleon')
 	config.include('velruse.providers.google_oauth2')
 	config.add_google_oauth2_login_from_settings()
+
+	# Route configuration
 	config.add_route('home', '/')
 	config.add_route('upload', '/upload')
 	config.add_route('mp3', '/file.mp3')
@@ -26,11 +32,22 @@ def main(global_config, **settings):
 	config.add_route('set_led', '/api/v1/{plant_id}/actions/led/{led_id}/{color}/{value}')
 	config.add_route('set_servo', '/api/v1/{plant_id}/actions/servo/{servo_id}/{value}')
 	config.add_route('login', '/login')
+	config.add_route('logout', '/logout')
+	config.add_route('subscribe', '/subscribe')
+	config.add_route('subscribe_callback', '/subscribe/callback')
 	config.add_route('plant_ws', '/ws/plants/{plant_id}')
 	config.add_route('client_ws', '/ws/clients/{client_id}')
 	config.add_static_view(name='static', path='makahiya:static')
+	config.add_static_view('deform_static', 'deform:static/')
+
+	# Security configuration
+	authn_policy = AuthTktAuthenticationPolicy('secret',
+	 					callback = groupfinder, hashalg='sha512')
+	authz_policy = ACLAuthorizationPolicy()
+	config.set_authentication_policy(authn_policy)
+	config.set_authorization_policy(authz_policy)
+
 
 	config.scan('.views')
 	config.scan('.websockets')
 	return config.make_wsgi_app()
-
