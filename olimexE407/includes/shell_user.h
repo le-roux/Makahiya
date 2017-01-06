@@ -5,6 +5,6 @@
 #include "ch.h"
 #include "hal.h"
 
-void startSerialShell(void);
+void initBluetooth(void);
 
 #endif

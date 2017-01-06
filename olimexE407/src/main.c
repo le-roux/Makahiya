@@ -27,7 +27,7 @@ int main(void) {
 
 	// Init the serial
 	serial_set_pin();
-	startSerialShell();
+	initBluetooth();
 
 	// Loop forever.
 	while (true) {
