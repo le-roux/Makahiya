@@ -112,8 +112,8 @@ class GoogleOAuth2Provider(object):
             response_type='code',
             client_id=self.consumer_key,
             redirect_uri=request.route_url(self.callback_route),
-            approval_prompt=approval_prompt,
-            access_type='offline',
+            prompt="select_account",
+			access_type='offline',
             state=state)
         return HTTPFound(location=auth_url)
 

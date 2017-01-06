@@ -176,8 +176,6 @@ class SecurityViews(object):
 				return dict(form=e.render())
 			self.request.session['status'] = 1
 			self.request.session['plant_id'] = pages['plant_id']
-			log.debug('session ' + str(self.request.session))
-			log.debug('url: ' + str(login_url(self.request, 'google')))
 			return HTTPFound(login_url(self.request, 'google'))
 
 		# First access to this page
