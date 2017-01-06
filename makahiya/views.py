@@ -1,21 +1,32 @@
 from pyramid.response import Response, FileResponse
 from pyramid.httpexceptions import HTTPBadRequest, HTTPFound
 from pyramid.view import view_config
-from .models import Session, Leds, Users
-from velruse import login_url
+from pyramid.renderers import get_renderer
+from pyramid.interfaces import IBeforeRender
+from pyramid.events import subscriber
 from pyramid.security import remember, forget
 import pyramid
+from .models import Session, Leds, Users, get_user_plant_id
+from velruse import login_url
 import logging
 import colander
 import deform.widget
 log = logging.getLogger(__name__)
 
+@subscriber(IBeforeRender)
+def globals_factory(event):
+	master = get_renderer('templates/master.pt').implementation()
+	event['master'] = master
+
 # home page
 @view_config(route_name='home', renderer='makahiya:templates/home.pt')
 def home(request):
 	request.session['status'] = 0
-	return {'title':'Makahiya',
+	res = {'title':'Makahiya',
 		'email':request.authenticated_userid if not request.authenticated_userid == None else ''}
+	if len(res['email']) > 0:
+		res['plant_id'] = get_user_plant_id(res['email'])
+	return res
 
 # upload mp3 file
 @view_config(route_name='upload', renderer='makahiya:templates/upload.pt')
@@ -252,6 +263,7 @@ def board(request):
 
 		res['ledM'] = ledM
 		res['ran'] = led_range
+		res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ')'
 
 		return res
 	else:

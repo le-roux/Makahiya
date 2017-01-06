@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title metal:define-slot="title"
+        tal:content="context/title | python:None">${title}</title>
+    <link rel="stylesheet"
+        href="${request.static_url('makahiya:static/app.css')}"/>
+</head>
+<body>
+    <header>
+        <a class='ref' href='/'>Home</a>
+        <a class='center'>${title}</a>
+        <a tal:condition='python:len(email) == 0' href='/login' class='ref'>Login with Google</a>
+        <a tal:condition="python:len(email) > 0" href='/logout' class='ref'>Logout (${email})</a>
+    </header>
+
+    <section>
+        <metal:slot metal:define-slot="body"/>
+    </section>
+</body>
+</html>
