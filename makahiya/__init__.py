@@ -27,6 +27,7 @@ def main(global_config, **settings):
 	# Route configuration
 	config.add_route('home', '/')
 	config.add_route('board', '/{plant_id}/board')
+	config.add_route('wrong_id', '/wrong_id')
 	config.add_route('led', '/led')
 	config.add_route('upload', '/upload')
 	config.add_route('mp3', '/file.mp3')

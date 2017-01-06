@@ -13,8 +13,9 @@ log = logging.getLogger(__name__)
 # home page
 @view_config(route_name='home', renderer='makahiya:templates/home.pt')
 def home(request):
+	request.session['status'] = 0
 	return {'title':'Makahiya',
-		'id':request.authenticated_userid if not request.authenticated_userid == None else ''}
+		'email':request.authenticated_userid if not request.authenticated_userid == None else ''}
 
 # upload mp3 file
 @view_config(route_name='upload', renderer='makahiya:templates/upload.pt')
@@ -58,14 +59,10 @@ def led_view(request):
 	res['ran'] = led_range
 	return res
 
-@view_config(route_name='board', renderer='makahiya:templates/board.pt', permission='view')
-def board(request):
-	session = Session()
-	plant_id = session.query(Users).filter_by(email=str(request.authenticated_userid)).first().plant_id
-	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
-		return {'email':request.authenticated_userid}
-	else:
-		return {'email': 'Wrong plant id'}
+
+@view_config(route_name='wrong_id', renderer='makahiya:templates/wrong_id.pt')
+def wrong_id(request):
+	return{}
 
 # Set LED color
 @view_config(route_name='set_led', request_method='POST')
@@ -127,7 +124,7 @@ async def set_servo(request):
 # Security related views (login & logout)
 @view_config(route_name='login', renderer='makahiya:templates/login.pt')
 def login(request):
-	return {"google_login_url": login_url(request, 'google')}
+	return HTTPFound(login_url(request, 'google'))
 
 @view_config(context='velruse.AuthenticationComplete')
 def login_callback(request):
@@ -137,9 +134,12 @@ def login_callback(request):
 		# Check that this user doesn't already exist
 		if session.query(Users).filter_by(email=email).first() is None:
 			# Create this user in the database
-			session.add(Users(email=email, level=2, plant_id=request.session['plant_id']))
+			plant_id = request.session['plant_id']
+			session.add(Users(email=email, level=2, plant_id=plant_id))
+			session.commit()
+			request.session['status'] = 0
 			headers = remember(request, email)
-			return HTTPFound('/board', headers=headers)
+			return HTTPFound('/' + str(plant_id) + '/board', headers=headers)
 		else: # User already existing
 			request.session['status'] = 2
 			return HTTPFound('/subscribe')
@@ -161,6 +161,104 @@ def logout(request):
 
 class SubscribePage(colander.MappingSchema):
 	plant_id = colander.SchemaNode(colander.Int())
+
+class BoardPage(object):
+	def __init__(self, request):
+		self.request = request
+
+	@property
+	def led_form(self):
+		schema = SubscribePage()
+		return deform.Form(schema, buttons=('Send',))
+
+	@property
+	def reqts(self):
+		return self.led_form.get_widget_resources()
+
+@view_config(route_name='board', renderer='makahiya:templates/board.pt', permission='view')
+def board(request):
+	plant_id = None
+	email = request.authenticated_userid
+	session = Session()
+	user = session.query(Users).filter_by(email=email).first()
+	if user is not None:
+		plant_id = user.plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		res = {'email': email,
+				'plant_id': plant_id}
+
+		if request.method == 'POST':
+			log.debug('POST: ' + str(request.POST))
+
+			# Modification on the powerful led
+			if 'ledH_R' in request.POST:
+				# TODO change filter for leds
+				ledHP = session.query(Leds).filter_by(uid=0).one()
+				try:
+					ledHP.R = int(request.POST.getone('ledH_R'))
+				except ValueError as e:
+					pass
+				try:
+					ledHP.G = int(request.POST.getone('ledH_G'))
+				except ValueError as e:
+					pass
+				try:
+					ledHP.B = int(request.POST.getone('ledH_B'))
+				except ValueError as e:
+					pass
+				try:
+					ledHP.W = int(request.POST.getone('ledH_W'))
+				except ValueError as e:
+					pass
+				session.commit()
+				# TODO send the values to websocket
+
+			# Modification on a medium led
+			for i in range(1,6):
+				if 'ledM' + str(i) + 'R' in request.POST:
+					led = session.query(Leds).filter_by(uid=i).one()
+					try:
+						led.R = int(request.POST.getone('ledM'+str(i)+'R'))
+					except ValueError as e:
+						pass
+					try:
+						led.G = int(request.POST.getone('ledM'+str(i)+'G'))
+					except ValueError as e:
+						pass
+					try:
+						led.B = int(request.POST.getone('ledM'+str(i)+'B'))
+						log.debug('led.b: ' + str(led.B))
+					except ValueError as e:
+						pass
+					session.commit()
+					# TODO send values to the websocket
+
+		# Get the leds colors
+		led = session.query(Leds).filter_by(uid=0).one()
+		res['ledHP_R'] = led.R
+		res['ledHP_G'] = led.G
+		res['ledHP_B'] = led.B
+		res['ledHP_W'] = led.W
+		res['user_id'] = led.userid
+
+		# Fill an array with the values of the normal leds.
+		ledM = []
+		led_range = range(1, 6)
+		for i in led_range:
+			# Query the database for led i from table 'leds'.
+			led = session.query(Leds).filter_by(uid=i).one()
+			values = (led.R, led.G, led.B)
+			ledM.append(values)
+
+		res['ledM'] = ledM
+		res['ran'] = led_range
+
+		return res
+	else:
+		return HTTPFound('/wrong_id')
+
+
+
 
 class SecurityViews(object):
 	def __init__(self, request):
@@ -192,6 +290,7 @@ class SecurityViews(object):
 		# First access to this page
 		if 'status' not in self.request.session:
 			self.request.session['status'] = 0
+		log.debug('status: ' + str(self.request.session['status']))
 		return dict({'status':self.request.session['status']}, form=form)
 
 @view_config(route_name='users', renderer='makahiya:templates/users.pt', permission='sudo')
@@ -199,12 +298,10 @@ def users(request):
 	session = Session()
 	res = {}
 	users = []
-	i = 0
 	for user in session.query(Users).order_by(Users.email):
 		us = {'email':user.email, 'level':user.level, 'plant_id':user.plant_id}
 		users.append(us)
-		i += 1
 		log.debug('user: ' + user.email)
-	res['number'] = range(0, i)
+	res['number'] = range(0, len(users))
 	res['users'] = users
 	return res

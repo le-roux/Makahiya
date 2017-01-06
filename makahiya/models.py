@@ -1,4 +1,5 @@
 from pyramid.security import Allow, Everyone, Authenticated
+import colander
 
 from sqlalchemy import (
 	Column,
@@ -59,3 +60,33 @@ class Root(object):
 
 def get_user_level(userid):
     return Session().query(Users).filter_by(email=userid).first().level
+
+class LedsForm(colander.MappingSchema):
+	ledH_R = colander.SchemaNode(colander.Int())
+	ledH_G = colander.SchemaNode(colander.Int())
+	ledH_B = colander.SchemaNode(colander.Int())
+	ledH_W = colander.SchemaNode(colander.Int())
+
+	led1_R = colander.SchemaNode(colander.Int())
+	led1_G = colander.SchemaNode(colander.Int())
+	led1_B = colander.SchemaNode(colander.Int())
+
+	led2_R = colander.SchemaNode(colander.Int())
+	led2_G = colander.SchemaNode(colander.Int())
+	led2_B = colander.SchemaNode(colander.Int())
+
+	led3_R = colander.SchemaNode(colander.Int())
+	led3_G = colander.SchemaNode(colander.Int())
+	led3_B = colander.SchemaNode(colander.Int())
+
+	led4_R = colander.SchemaNode(colander.Int())
+	led4_G = colander.SchemaNode(colander.Int())
+	led4_B = colander.SchemaNode(colander.Int())
+
+	led5_R = colander.SchemaNode(colander.Int())
+	led5_G = colander.SchemaNode(colander.Int())
+	led5_B = colander.SchemaNode(colander.Int())
+
+	led6_R = colander.SchemaNode(colander.Int())
+	led6_G = colander.SchemaNode(colander.Int())
+	led6_B = colander.SchemaNode(colander.Int())

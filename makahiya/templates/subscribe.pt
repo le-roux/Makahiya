@@ -15,7 +15,7 @@
         </tal:block>
 </head>
 <body>
-    <p tal:condition="status == 2">This email address is already registered</p>
+    <p tal:condition="python:int(status) == 2">This email address is already registered</p>
     <p>${structure: form}</p>
     <script type="text/javascript">
         deform.load()

@@ -7,4 +7,6 @@ GROUPS = {
 
 def groupfinder(userid, request):
     user = Session().query(Users).filter_by(email=userid).first()
+    if user is None:
+        return []
     return GROUPS.get(user.level, [])
