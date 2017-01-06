@@ -1,6 +1,9 @@
 from pyramid.response import Response, FileResponse
 from pyramid.httpexceptions import HTTPBadRequest, HTTPFound
 from pyramid.view import view_config
+from pyramid.renderers import get_renderer
+from pyramid.interfaces import IBeforeRender
+from pyramid.events import subscriber
 from .models import Session, Leds, Users
 from velruse import login_url
 from pyramid.security import remember, forget
@@ -9,6 +12,11 @@ import logging
 import colander
 import deform.widget
 log = logging.getLogger(__name__)
+
+@subscriber(IBeforeRender)
+def globals_factory(event):
+	master = get_renderer('templates/master.pt').implementation()
+	event['master'] = master
 
 # home page
 @view_config(route_name='home', renderer='makahiya:templates/home.pt')

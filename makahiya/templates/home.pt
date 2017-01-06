@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Makahiya</title>
-    <link rel="stylesheet"
-        href="${request.static_url('makahiya:static/app.css')}"/>
-</head>
-<body>
-    <header>
-        <a class='ref' href='/'>Home</a>
-        <a class='center'>${title}</a>
-        <a tal:condition='python:len(id) == 0' href='/login' class='ref'>Login</a>
-        <a tal:condition="python:len(id) > 0" href='/logout' class='ref'>Logout</a>
-    </header>
+<metal:macro use-macro="master">
+    <metal:slot fill-slot="title">
+        <title>Makahiya - home</title>
+    </metal:slot>
 
-    <section>
+    <metal:slot fill-slot="body">
         <p class="center">A ROSE project made at Telecom ParisTech</p>
-        <a href='/subscribe'>Subscribe</a>
-    </section>
-</body>
-</html>
+        <p class="center"> <a href='/subscribe'>Subscribe</a> </p>
+    </metal:slot>
+</metal:macro>
