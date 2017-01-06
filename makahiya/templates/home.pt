@@ -12,8 +12,10 @@
         <a tal:condition='python:len(id) == 0' href='/login' class='ref'>Login</a>
         <a tal:condition="python:len(id) > 0" href='/logout' class='ref'>Logout</a>
     </header>
+
     <section>
         <p class="center">A ROSE project made at Telecom ParisTech</p>
+        <a href='/subscribe'>Subscribe</a>
     </section>
 </body>
 </html>

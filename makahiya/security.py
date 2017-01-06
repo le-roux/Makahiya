@@ -1,7 +1,8 @@
 from .models import Session, Users
 
 GROUPS = {
-    1: ['group:editors']
+    1: ['group:editors', 'group:sudo', 'group:viewers'],
+    2: ['group:viewers']
 }
 
 def groupfinder(userid, request):

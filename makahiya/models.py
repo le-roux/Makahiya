@@ -49,8 +49,10 @@ class Leds(Base):
 # Authorization stuff (access control list).
 class Root(object):
 	__acl__ = [(Allow, Everyone, 'view'),
-		 (Allow, 'group:editors', 'edit'),
-		 (Allow, Authenticated, 'logged')]
+		(Allow, Authenticated, 'logged'),
+		(Allow, 'group:sudo', 'sudo'),
+		(Allow, 'group:editors', 'edit'),
+		(Allow, 'group:viewers', 'view')]
 
 	def __init__(self, request):
 		pass

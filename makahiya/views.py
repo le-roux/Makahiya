@@ -58,6 +58,15 @@ def led_view(request):
 	res['ran'] = led_range
 	return res
 
+@view_config(route_name='board', renderer='makahiya:templates/board.pt', permission='view')
+def board(request):
+	session = Session()
+	plant_id = session.query(Users).filter_by(email=str(request.authenticated_userid)).first().plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		return {'email':request.authenticated_userid}
+	else:
+		return {'email': 'Wrong plant id'}
+
 # Set LED color
 @view_config(route_name='set_led', request_method='POST')
 async def set_led(request):
@@ -130,7 +139,7 @@ def login_callback(request):
 			# Create this user in the database
 			session.add(Users(email=email, level=2, plant_id=request.session['plant_id']))
 			headers = remember(request, email)
-			return HTTPFound('/board')
+			return HTTPFound('/board', headers=headers)
 		else: # User already existing
 			request.session['status'] = 2
 			return HTTPFound('/subscribe')
@@ -146,7 +155,9 @@ def login_callback(request):
 @view_config(route_name='logout', permission='logged')
 def logout(request):
 	headers = forget(request)
-	return HTTPFound(location='https://google.com/accounts/logout', headers = headers)
+	request.session['state'] = 0
+	request.session['plant_id'] = -1
+	return HTTPFound(location='/', headers = headers)
 
 class SubscribePage(colander.MappingSchema):
 	plant_id = colander.SchemaNode(colander.Int())
@@ -182,3 +193,18 @@ class SecurityViews(object):
 		if 'status' not in self.request.session:
 			self.request.session['status'] = 0
 		return dict({'status':self.request.session['status']}, form=form)
+
+@view_config(route_name='users', renderer='makahiya:templates/users.pt', permission='sudo')
+def users(request):
+	session = Session()
+	res = {}
+	users = []
+	i = 0
+	for user in session.query(Users).order_by(Users.email):
+		us = {'email':user.email, 'level':user.level, 'plant_id':user.plant_id}
+		users.append(us)
+		i += 1
+		log.debug('user: ' + user.email)
+	res['number'] = range(0, i)
+	res['users'] = users
+	return res
