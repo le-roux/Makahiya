@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>Makahiya - board</title>
+    <link rel='stylesheet' href="${request.static_url('makahiya:static/app.css')}"/>
+</head>
+<body>
+    Email: ${email}<br><br>
+    Plant_id: ${plant_id}
+
+
+    <form method="post" action='/${plant_id}/board'>
+        ledH_R -> <input type='text' value=${ledHP_R} name='ledH_R'/><br>
+        ledH_G -> <input type='text' value=${ledHP_G} name='ledH_G'/><br>
+        ledH_B -> <input type='text' value=${ledHP_B} name='ledH_B'/><br>
+        ledH_W -> <input type='text' value=${ledHP_W} name='ledH_W'/><br>
+        <input type='submit' value="Send"/>
+    </form>
+
+    <p>
+        <form tal:repeat="id ran" method='post' action='/${plant_id}/board'>
+            LED M${id} -->
+            <span tal:repeat="color ('R', 'G', 'B')">
+                ${color} =
+                <input tal:define="name string:ledM$id$color"
+                    type='text'
+                    value=${ledM[repeat.id.index][repeat.color.index]}
+                    name=${name}
+                    placeholder=''/>
+            </span>
+            <input type='submit' value='Send'/>
+            <br>
+        </form>
+    </p>
+
+</body>
+</html>

@@ -26,17 +26,19 @@ def main(global_config, **settings):
 
 	# Route configuration
 	config.add_route('home', '/')
+	config.add_route('board', '/{plant_id}/board')
+	config.add_route('wrong_id', '/wrong_id')
+	config.add_route('led', '/led')
 	config.add_route('upload', '/upload')
 	config.add_route('mp3', '/file.mp3')
-	config.add_route('led', '/led')
 	config.add_route('set_led', '/api/v1/{plant_id}/actions/led/{led_id}/{color}/{value}')
 	config.add_route('set_servo', '/api/v1/{plant_id}/actions/servo/{servo_id}/{value}')
 	config.add_route('login', '/login')
 	config.add_route('logout', '/logout')
 	config.add_route('subscribe', '/subscribe')
-	config.add_route('subscribe_callback', '/subscribe/callback')
 	config.add_route('plant_ws', '/ws/plants/{plant_id}')
 	config.add_route('client_ws', '/ws/clients/{client_id}')
+	config.add_route('users', '/users')
 	config.add_static_view(name='static', path='makahiya:static')
 	config.add_static_view('deform_static', 'deform:static/')
 
