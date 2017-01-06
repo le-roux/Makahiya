@@ -1,0 +1,5 @@
+<map id="uartSendFullTimeout" name="uartSendFullTimeout">
+<area shape="rect" id="node2" href="$group___u_a_r_t.html#ga1e25c8da94128f260d3d8683db114326" title="Starts a transmission on the UART peripheral. " alt="" coords="176,5,289,29"/>
+<area shape="rect" id="node3" href="$group___u_a_r_t.html#gaedd13992b5f0fe148c77dc88c5b2e5c2" title="Stops any ongoing transmission. " alt="" coords="187,53,278,77"/>
+<area shape="rect" id="node4" href="$group___u_a_r_t.html#gaec269894b7a38cc224a92469728dac28" title="Stops any ongoing transmission. " alt="" coords="337,53,449,77"/>
+</map>

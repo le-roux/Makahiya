@@ -1,0 +1,4 @@
+<map id="sdc_lld_write_aligned" name="sdc_lld_write_aligned">
+<area shape="rect" id="node2" href="$group___s_d_c.html#gaad70bd0ddad7c1ea0086a5e99b885456" title="Wait for the card to complete pending operations. " alt="" coords="176,5,307,41"/>
+<area shape="rect" id="node3" href="$group___s_d_c.html#ga93392c5297148eea683ec6d9bc79be3e" title="Sends an SDIO command with a short response expected and CRC. " alt="" coords="355,11,513,35"/>
+</map>
