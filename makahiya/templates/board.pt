@@ -1,27 +1,49 @@
 <metal:macro use-macro="master">
     <metal:slot fill-slot="body">
-        <form method="post" action='/${plant_id}/board'>
-            ledH_R -> <input type='text' value=${ledHP_R} name='ledH_R'/><br>
-            ledH_G -> <input type='text' value=${ledHP_G} name='ledH_G'/><br>
-            ledH_B -> <input type='text' value=${ledHP_B} name='ledH_B'/><br>
-            ledH_W -> <input type='text' value=${ledHP_W} name='ledH_W'/><br>
-            <input type='submit' value="Send"/>
-        </form>
+        <h1>LED HP</h1>
+        <table>
+            <tr>
+                <th tal:repeat="color ('R', 'G', 'B', 'W')">
+                    ${color}
+                </th>
+            </tr>
+            <tr>
+                <form method="post" action='/${plant_id}/board'>
+                    <td><input type='text' value=${ledHP_R} name='ledH_R'/></td>
+                    <td><input type='text' value=${ledHP_G} name='ledH_G'/></td>
+                    <td><input type='text' value=${ledHP_B} name='ledH_B'/></td>
+                    <td><input type='text' value=${ledHP_W} name='ledH_W'/></td>
+                    <td><input type='submit' value="Send"/></td>
+                </form>
+            </tr>
+        </table>
 
-        <p>
+        <h1>LED M</h1>
+        <table>
+            <tr>
+                <th>LED ID</th>
+                <div tal:repeat="color ('R', 'G', 'B')">
+                    <th>${color}</th>
+                </div>
+                <th>Send</th>
+            <tr>
             <form tal:repeat="id ran" method='post' action='/${plant_id}/board'>
-                LED M${id} -->
-                <span tal:repeat="color ('R', 'G', 'B')">
-                    ${color} =
-                    <input tal:define="name string:ledM$id$color"
-                        type='text'
-                        value=${ledM[repeat.id.index][repeat.color.index]}
-                        name=${name}
-                        placeholder=''/>
-                </span>
-                <input type='submit' value='Send'/>
-                <br>
+                <tr>
+                    <td>
+                        LED ${id}
+                    </td>
+                    <td tal:repeat="color ('R', 'G', 'B')">
+                        <input tal:define="name string:ledM$id$color"
+                            type='text'
+                            value=${ledM[repeat.id.index][repeat.color.index]}
+                            name=${name}
+                            placeholder=''/>
+                    </td>
+                    <td>
+                        <input type='submit' value='Send'/>
+                    </td>
+                </tr>
             </form>
-        </p>
+        </table>
     </metal:slot>
 </metal:macro>
