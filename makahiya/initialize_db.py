@@ -70,11 +70,11 @@ def main(argv=sys.argv):
 	session = Session()
 
 	# Fill the 'users' table with initial values.
-	user = Users(uid=0, email='sylvain.leroux3@gmail.com', level=1)
+	user = Users(email='sylvain.leroux3@gmail.com', level=1, plant_id=0)
 	session.add(user)
 
 	# Fill the 'leds' table with initial values.
 	for i in range(0, 6):
-		model = Leds(uid=i, R=0, G=0, B=0, W=0, userid=0)
+		model = Leds(R=0, G=0, B=0, W=0, plant_id=0, led_id=i)
 		session.add(model)
 	session.commit()

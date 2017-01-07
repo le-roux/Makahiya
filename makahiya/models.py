@@ -41,7 +41,8 @@ class Users(Base):
 class Leds(Base):
 	__tablename__ = 'leds'
 	uid = Column(Integer, primary_key=True)
-	userid = Column(Integer)
+	plant_id = Column(Integer)
+	led_id = Column(Integer)
 	R = Column(Integer)
 	G = Column(Integer)
 	B = Column(Integer)
