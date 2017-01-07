@@ -61,6 +61,9 @@ class Root(object):
 def get_user_level(userid):
     return Session().query(Users).filter_by(email=userid).first().level
 
+def get_user_plant_id(userid):
+	return Session().query(Users).filter_by(email=userid).first().plant_id
+
 class LedsForm(colander.MappingSchema):
 	ledH_R = colander.SchemaNode(colander.Int())
 	ledH_G = colander.SchemaNode(colander.Int())

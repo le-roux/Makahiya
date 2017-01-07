@@ -6,5 +6,10 @@
     <metal:slot fill-slot="body">
         <p class="center">A ROSE project made at Telecom ParisTech</p>
         <p class="center"> <a href='/subscribe'>Subscribe</a> </p>
+        <p tal:condition='python:len(email) > 0' class="center">
+            <a tal:define="link string:/$plant_id/board" href=${link}>
+                Plant management page
+            </a>
+        </p>
     </metal:slot>
 </metal:macro>

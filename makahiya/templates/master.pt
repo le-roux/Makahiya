@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title metal:define-slot="title"
-        tal:content="context/title | python:None">Makahiya</title>
+        tal:content="context/title | python:None">${title}</title>
     <link rel="stylesheet"
         href="${request.static_url('makahiya:static/app.css')}"/>
 </head>
