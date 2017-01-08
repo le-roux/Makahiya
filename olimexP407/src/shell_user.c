@@ -8,8 +8,6 @@
 #include "wifi.h"
 
 thread_t* shelltp = NULL;
-static const char* address = "http://makahiya.herokuapp.com";
-static const char* get = "http_get ";
 
 void servo(BaseSequentialStream* chp, int argc, char* argv[]) {
     if (argc != 1) {
