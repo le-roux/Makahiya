@@ -27,17 +27,17 @@ def initTestDb():
 	session = Session()
 
 	# Fill the 'users' table with initial values.
-	user = Users(uid=0, email='sylvain.leroux3@gmail.com', level=1)
+	user = Users(email='sylvain.leroux3@gmail.com', level=1, plant_id=0)
 	session.add(user)
 
 	# Fill the 'leds' table with initial values.
 	for i in range(0, 6):
-		model = Leds(uid=i, R=0, G=0, B=0, W=0, userid=0)
+		model = Leds(R=0, G=0, B=0, W=0, plant_id=0, led_id=i)
 		session.add(model)
 	session.commit()
 
 	return scoped_session(session)
-	
+
 class HomeViewTest(unittest.TestCase):
 	def setUp(self):
 		self.session = initTestDb()
@@ -54,13 +54,6 @@ class HomeViewTest(unittest.TestCase):
 		response = home(request)
 		self.assertEqual('Makahiya', response['title'])
 
-	def test_led_view(self):
-		from .views import led_view
-
-		request = testing.DummyRequest()
-		response = led_view(request)
-		self.assertEqual(range(1,6), response['ran'])
-
 class HomeFunctionalTests(unittest.TestCase):
 	def setUp(self):
 		from pyramid.paster import get_app
@@ -72,16 +65,6 @@ class HomeFunctionalTests(unittest.TestCase):
 		from .models import Session
 		from sqlalchemy.orm import (scoped_session)
 		scoped_session(Session).remove()
-
-	def test_it(self):
-		res = self.testapp.get('/led', status=200)
-		self.assertIn(b'Makahiya', res.body)
-		self.assertIn(b'LED HP', res.body)
-		self.assertIn(b'LED M1', res.body)
-		self.assertIn(b'LED M2', res.body)
-		self.assertIn(b'LED M3', res.body)
-		self.assertIn(b'LED M4', res.body)
-		self.assertIn(b'LED M5', res.body)
 
 class SetLedTest(unittest.TestCase):
 

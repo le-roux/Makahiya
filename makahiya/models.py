@@ -1,4 +1,5 @@
-from pyramid.security import Allow, Everyone
+from pyramid.security import Allow, Everyone, Authenticated
+import colander
 
 from sqlalchemy import (
 	Column,
@@ -34,12 +35,14 @@ class Users(Base):
 	uid = Column(Integer, primary_key=True)
 	email = Column(String)
 	level = Column(Integer)
+	plant_id = Column(Integer)
 
 # Table containing the leds status.
 class Leds(Base):
 	__tablename__ = 'leds'
 	uid = Column(Integer, primary_key=True)
-	userid = Column(Integer)
+	plant_id = Column(Integer)
+	led_id = Column(Integer)
 	R = Column(Integer)
 	G = Column(Integer)
 	B = Column(Integer)
@@ -48,7 +51,46 @@ class Leds(Base):
 # Authorization stuff (access control list).
 class Root(object):
 	__acl__ = [(Allow, Everyone, 'view'),
-		 (Allow, 'group:editors', 'edit')]
+		(Allow, Authenticated, 'logged'),
+		(Allow, 'group:sudo', 'sudo'),
+		(Allow, 'group:editors', 'edit'),
+		(Allow, 'group:viewers', 'view')]
 
 	def __init__(self, request):
 		pass
+
+def get_user_level(userid):
+    return Session().query(Users).filter_by(email=userid).first().level
+
+def get_user_plant_id(userid):
+	return Session().query(Users).filter_by(email=userid).first().plant_id
+
+class LedsForm(colander.MappingSchema):
+	ledH_R = colander.SchemaNode(colander.Int())
+	ledH_G = colander.SchemaNode(colander.Int())
+	ledH_B = colander.SchemaNode(colander.Int())
+	ledH_W = colander.SchemaNode(colander.Int())
+
+	led1_R = colander.SchemaNode(colander.Int())
+	led1_G = colander.SchemaNode(colander.Int())
+	led1_B = colander.SchemaNode(colander.Int())
+
+	led2_R = colander.SchemaNode(colander.Int())
+	led2_G = colander.SchemaNode(colander.Int())
+	led2_B = colander.SchemaNode(colander.Int())
+
+	led3_R = colander.SchemaNode(colander.Int())
+	led3_G = colander.SchemaNode(colander.Int())
+	led3_B = colander.SchemaNode(colander.Int())
+
+	led4_R = colander.SchemaNode(colander.Int())
+	led4_G = colander.SchemaNode(colander.Int())
+	led4_B = colander.SchemaNode(colander.Int())
+
+	led5_R = colander.SchemaNode(colander.Int())
+	led5_G = colander.SchemaNode(colander.Int())
+	led5_B = colander.SchemaNode(colander.Int())
+
+	led6_R = colander.SchemaNode(colander.Int())
+	led6_G = colander.SchemaNode(colander.Int())
+	led6_B = colander.SchemaNode(colander.Int())

@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Makahiya</title>
-    <link rel="stylesheet"
-        href="${request.static_url('makahiya:static/app.css')}"/>
-</head>
-<body>
-    <h1 class="center">${title}</h1>
-    <p class="center">A ROSE project made at Telecom ParisTech</p>
-    <p tal:condition="logged">You're logged</p>
-</body>
-</html>
+<metal:macro use-macro="master">
+    <metal:slot fill-slot="title">
+        <title>Makahiya - home</title>
+    </metal:slot>
+
+    <metal:slot fill-slot="body">
+        <p class="center">A ROSE project made at Telecom ParisTech</p>
+        <p class="center"> <a href='/subscribe'>Subscribe</a> </p>
+        <p tal:condition='python:len(email) > 0' class="center">
+            <a tal:define="link string:/$plant_id/board" href=${link}>
+                Plant management page
+            </a>
+        </p>
+    </metal:slot>
+</metal:macro>

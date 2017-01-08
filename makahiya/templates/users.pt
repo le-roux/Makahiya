@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>Makahiya - users</title>
+    <link rel='stylesheet' href="${request.static_url('makahiya:static/app.css')}"/>
+</head>
+<body>
+    <span tal:repeat="id number">
+        Email: ${users[repeat.id.index]['email']} Level: ${users[repeat.id.index]['level']}
+                plant_id: ${users[repeat.id.index]['plant_id']}<br>
+    </span>
+</body>
+</html>

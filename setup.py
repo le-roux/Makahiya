@@ -3,7 +3,8 @@ from setuptools import setup
 requires = [
     'pyramid',
     'sqlalchemy',
-    'zope.sqlalchemy'
+    'zope.sqlalchemy',
+    'deform'
 ]
 
 setup(name='makahiya',

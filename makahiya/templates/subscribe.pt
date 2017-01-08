@@ -1,0 +1,21 @@
+<metal:macro use-macro="master">
+    <metal:slot fill-slot="title">
+        <tal:block tal:repeat="reqt view.reqts['css']">
+            <link rel="stylesheet" type="text/css"
+                  href="${request.static_url('deform:static/' + reqt)}"/>
+        </tal:block>
+        <tal:block tal:repeat="reqt view.reqts['js']">
+            <script src="${request.static_url('deform:static/' + reqt)}"
+                    type="text/javascript"></script>
+        </tal:block>
+    </metal:slot>
+
+    <metal:slot fill-slot="body">
+        <p tal:condition="python:int(status) == 2">This email address is already registered</p>
+        <p tal:condition="python:int(status) == 4">This plant_id already exists</p>
+        <p>${structure: form}</p>
+        <script type="text/javascript">
+            deform.load()
+        </script>
+    </metal:slot>
+</metal:macro>
