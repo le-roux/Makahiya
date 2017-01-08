@@ -53,7 +53,7 @@ extern int8_t volumeDiv;
 #define WORKING_BUFFER_SIZE 4000
 
 #define INPUT_BUFFER_SIZE 1000
-#define INPUT_BUFFERS_NB 4
+#define INPUT_BUFFERS_NB 30
 
 #define I2SDIV 6
 
@@ -68,8 +68,6 @@ extern binary_semaphore_t audio_bsem;
 /*        Functions           */
 /******************************/
 void sound_set_pins(void);
-void sound_init(void);
-void sound_440(void);
 void i2s_cb(I2SDriver* driver, size_t offset, size_t n);
 
 extern THD_FUNCTION(audio_playback, arg);

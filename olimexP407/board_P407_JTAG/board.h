@@ -332,7 +332,7 @@
                              PIN_MODE_ALTERNATE(GPIOC_ETH_RMII_RXD0) |      \
                              PIN_MODE_ALTERNATE(GPIOC_ETH_RMII_RXD1) |      \
                              PIN_MODE_ALTERNATE(GPIOC_DCMI_D0_US6_TX) |     \
-                             PIN_MODE_ALTERNATE(GPIOC_I2S3_MCK) |           \
+                             PIN_MODE_INPUT(GPIOC_I2S3_MCK) |           \
                              PIN_MODE_INPUT(GPIOC_DCMI_D2) |                \
                              PIN_MODE_INPUT(GPIOC_DCMI_D3) |                \
                              PIN_MODE_ALTERNATE(GPIOC_SPI3_SCK) |           \

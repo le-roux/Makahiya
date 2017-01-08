@@ -8,7 +8,7 @@
 
 extern uint8_t serial_tx_buffer[SERIAL_TX_BUFFER_SIZE];
 extern SerialConfig serial_cfg;
-extern SerialDriver* wifi_SD;
+extern SerialDriver* const wifi_SD;
 
 void serial_set_pin(void);
 

@@ -123,7 +123,12 @@ CSRC = $(STARTUPSRC) \
        $(SRC)/pwm_user.c \
 	   $(SRC)/main.c \
 	   $(SRC)/usbcfg.c $(SRC)/shell_user.c \
+<<<<<<< HEAD
 	   $(SRC)/sound.c $(SRC)/serial_user.c $(SRC)/wifi.c
+=======
+	   $(SRC)/sound.c $(SRC)/serial_user.c $(SRC)/wifi.c $(SRC)/utils.c \
+	   $(SRC)/websocket.c
+>>>>>>> 4d18123b
 
 PCMSRC =
 MP3SRC =
@@ -157,7 +162,6 @@ ASMSRC = $(STARTUPASM) $(PORTASM) $(OSALASM)
 
 INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
          $(HALINC) $(PLATFORMINC) $(BOARDINC) $(TESTINC) \
-         $(LWINC) $(FATFSINC) \
          $(CHIBIOS)/os/hal/lib/streams $(CHIBIOS)/os/various \
 		 $(INCLUDES)
 
@@ -236,7 +240,8 @@ $(BUILDDIR)/obj/pic.o: pic.mp3
 #######
 # User targets
 #######
-.PHONY := clean
+.PHONY := clean clean_test
+TEST_DIR := ./test_dir
 
 helix:
 	make -C ../helix
@@ -246,3 +251,17 @@ jlink:
 
 gdb:
 	$(TRGT)gdb $(BUILDDIR)/ch.elf
+
+test: $(TEST_DIR)/test.c $(TEST_DIR)/utils.o $(TEST_DIR)/wifi.o
+	gcc -c $(TEST_DIR)/test.c -o $(TEST_DIR)/test.o -iquote $(INCLUDES)
+	gcc $(TEST_DIR)/test.o $(TEST_DIR)/utils.o $(TEST_DIR)/wifi.o -lcriterion -o $(TEST_DIR)/$@
+
+$(TEST_DIR)/%.o: $(SRC)/%.c
+	gcc -c $^ -o $@ -iquote $(INCLUDES) -std=c99 -DTEST
+
+run_test: test
+	$(TEST_DIR)/test
+
+clean_test:
+	rm -f $(TEST_DIR)/*.o
+	rm -f $(TEST_DIR)/test
