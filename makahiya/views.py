@@ -6,7 +6,7 @@ from pyramid.interfaces import IBeforeRender
 from pyramid.events import subscriber
 from pyramid.security import remember, forget
 import pyramid
-from .models import Session, Leds, Users, get_user_plant_id
+from .models import Session, Leds, Users, get_user_plant_id, get_user_level
 from velruse import login_url
 import logging
 import colander
@@ -27,6 +27,9 @@ def home(request):
 		'email':request.authenticated_userid if not request.authenticated_userid == None else ''}
 	if len(res['email']) > 0:
 		res['plant_id'] = get_user_plant_id(res['email'])
+		res['level'] = get_user_level(res['email'])
+	else:
+		res['level'] = -1
 	return res
 
 # upload mp3 file
@@ -308,3 +311,13 @@ def users(request):
 	res['number'] = range(0, len(users))
 	res['users'] = users
 	return res
+
+@view_config(route_name='delete', permission='sudo')
+def delete(request):
+	email = request.matchdict['email']
+	session = Session()
+	user = session.query(Users).filter_by(email=email).first()
+	if user is not None and user.level > 1:
+		session.delete(user)
+		session.commit()
+	return HTTPFound('/users')

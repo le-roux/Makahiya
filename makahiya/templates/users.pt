@@ -5,9 +5,31 @@
     <link rel='stylesheet' href="${request.static_url('makahiya:static/app.css')}"/>
 </head>
 <body>
-    <span tal:repeat="id number">
-        Email: ${users[repeat.id.index]['email']} Level: ${users[repeat.id.index]['level']}
-                plant_id: ${users[repeat.id.index]['plant_id']}<br>
-    </span>
+    <table>
+        <tr>
+            <th>Email</th>
+            <th>Level</th>
+            <th>Plant id</th>
+            <th>Delete</th>
+        </tr>
+        <tr tal:repeat="id number">
+            <td>${users[repeat.id.index]['email']}</td>
+            <td>${users[repeat.id.index]['level']}</td>
+            <td>${users[repeat.id.index]['plant_id']}</td>
+            <td>
+                <button tal:condition="python:int(users[repeat.id.index]['level']) > 1"
+                    type="button" onclick="delete_confirm('${users[repeat.id.index]['email']}')">
+                    Delete
+                </button>
+                <script>
+                    function delete_confirm(email) {
+                        if (confirm('Are you sure you want to delete ' + email +'?')) {
+                            window.location = '/delete/' + email;
+                        }
+                    }
+                </script>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

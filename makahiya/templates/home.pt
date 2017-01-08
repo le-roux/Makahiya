@@ -11,5 +11,8 @@
                 Plant management page
             </a>
         </p>
+        <p tal:condition='level == 1' class='center'>
+            <a href='/users'>Users</a>
+        </p>
     </metal:slot>
 </metal:macro>

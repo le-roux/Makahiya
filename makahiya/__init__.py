@@ -39,6 +39,7 @@ def main(global_config, **settings):
 	config.add_route('plant_ws', '/ws/plants/{plant_id}')
 	config.add_route('client_ws', '/ws/clients/{client_id}')
 	config.add_route('users', '/users')
+	config.add_route('delete', '/delete/{email}')
 	config.add_static_view(name='static', path='makahiya:static')
 	config.add_static_view('deform_static', 'deform:static/')
 
