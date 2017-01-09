@@ -3,12 +3,25 @@ from .custom_mapper import CustomWebsocketMapper
 from .websocket_register import WebsocketRegister
 
 import asyncio
+import threading
+import time
 import concurrent
 import websockets
 
 # Registering connected plants and clients and managing synchronization between websockets
 plants = WebsocketRegister('Plants')
 clients = WebsocketRegister('Clients')
+
+# Exception to check an unattended websocket deconnection
+class DeadSocketException(Exception):
+	pass
+
+def checkAlive(ws):
+	while(True):
+		time.sleep(1)
+		if (ws.open == False):
+			raise DeadSocketException(Exception)
+			break
 
 # Coroutine to send a message from a websocket
 async def send_to_socket(register, id, msg):
@@ -37,6 +50,8 @@ async def plant(ws):
 		except ValueError:
 			return HTTPBadRequest('id is a number')
 		plants.register(plant_id)
+		keepalive_thread = threading.Thread(target=checkAlive, args=(ws,))
+		keepalive_thread.start()
 		while True:
 
 			# Creates a task that waits for an incoming message
@@ -75,7 +90,14 @@ async def plant(ws):
 
 			plants.get_var(plant_id).release()
 
-	except websockets.exceptions.ConnectionClosed:
+	except (websockets.exceptions.ConnectionClosed, DeadSocketException) as e:
+
+		if e is websockets.exceptions.ConnectionClosed:
+			try:
+				while(True):
+					time.sleep(1)
+			except DeadSocketException:
+				pass
 
 		# Deleting tasks before returning
 
