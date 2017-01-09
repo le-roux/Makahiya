@@ -120,4 +120,6 @@ void read_music(char* path);
  */
 void send_cmd(char* cmd);
 
+void wifi_write(wifi_connection* conn, int length, char* buffer);
+
 #endif

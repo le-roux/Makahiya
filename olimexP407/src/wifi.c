@@ -104,7 +104,7 @@ wifi_response_header get_response(int timeout) {
         #endif
 
         if (res != out.length)
-            DEBUG("timeout");
+            DEBUG("length %i (expected %i)", res, out.length);
     } else {
         if (!end)
             end = 1;
@@ -193,6 +193,17 @@ void send_cmd(char* cmd) {
     chMtxLock(&serial_mutex);
     sdWrite(wifi_SD, serial_tx_buffer, length);
     chMtxUnlock(&serial_mutex);
+}
+
+void wifi_write(wifi_connection* conn, int length, char* buffer) {
+    char cmd[12], channel[5];
+    strcpy(cmd, "write ");
+    strcat(cmd, conn->channel_id);
+    strcat(cmd, " ");
+    int_to_char(channel, length);
+    strcat(cmd, channel);
+    send_cmd(cmd);
+    send_cmd(buffer);
 }
 
 #endif // TEST
