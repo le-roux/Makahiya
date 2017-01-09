@@ -1,18 +1,8 @@
 <metal:macro use-macro="master">
-    <metal:slot fill-slot="title">
-        <title>Makahiya - home</title>
-    </metal:slot>
-
     <metal:slot fill-slot="body">
-        <p class="center">A ROSE project made at Telecom ParisTech</p>
-        <p class="center"> <a href='/subscribe'>Subscribe</a> </p>
-        <p tal:condition='python:len(email) > 0' class="center">
-            <a tal:define="link string:/$plant_id/board" href=${link}>
-                Plant management page
-            </a>
-        </p>
-        <p tal:condition='level == 1' class='center'>
-            <a href='/users'>Users</a>
-        </p>
+        <br/>
+        <div class="container starter-template text-center">
+            <h1>A ROSE project made at Telecom ParisTech</h1>
+        </div>
     </metal:slot>
 </metal:macro>

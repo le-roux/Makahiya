@@ -180,7 +180,8 @@ def board(request):
 		plant_id = user.plant_id
 	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
 		res = {'email': email,
-				'plant_id': plant_id}
+				'plant_id': plant_id,
+				'level': get_user_level(email)}
 
 		if request.method == 'POST':
 			log.debug('POST: ' + str(request.POST))
@@ -254,51 +255,31 @@ def board(request):
 	else:
 		return HTTPFound('/wrong_id')
 
-class SecurityViews(object):
-	def __init__(self, request):
-		self.request = request
+@view_config(route_name='subscribe', renderer='makahiya:templates/subscribe.pt')
+def subscribe(request):
+	if request.method == 'POST': # Access via the form
+		request.session['status'] = 1
+		request.session['plant_id'] = request.POST.getone('plant_id')
+		return HTTPFound(login_url(request, 'google'))
 
-	@property
-	def subscribe_form(self):
-		schema = SubscribePage()
-		return deform.Form(schema, buttons=('Associate with Google account',))
+	# Access to this page via a GET request
+	# session['status']:
+	#		+ 0 -> nothing
+	#		+ 1 -> subscribe
+	#		+ 2 -> already existing user
+	#		+ 3 -> non existing user
+	#		+ 4 -> already existing plant_id
+	if 'status' not in request.session:
+		request.session['status'] = 0
 
-	@property
-	def reqts(self):
-		return self.subscribe_form.get_widget_resources()
+	if request.authenticated_userid is None:
+		email =''
+	else:
+		email = request.authenticated_userid
 
-	@view_config(route_name='subscribe', renderer='makahiya:templates/subscribe.pt')
-	def subscribe(self):
-		form = self.subscribe_form.render()
-
-		if self.request.method == 'POST': # Access via the form
-			values = self.request.POST.items()
-			try:
-				pages = self.subscribe_form.validate(values)
-			except deform.ValidationFailure as e:
-				return dict(form=e.render())
-			self.request.session['status'] = 1
-			self.request.session['plant_id'] = pages['plant_id']
-			return HTTPFound(login_url(self.request, 'google'))
-
-		# Access to this page via a GET request
-		# session['status']:
-		#		+ 0 -> nothing
-		#		+ 1 -> subscribe
-		#		+ 2 -> already existing user
-		#		+ 3 -> non existing user
-		#		+ 4 -> already existing plant_id
-		if 'status' not in self.request.session:
-			self.request.session['status'] = 0
-
-		if self.request.authenticated_userid is None:
-			email =''
-		else:
-			email = self.request.authenticated_userid
-
-		return dict({'status':self.request.session['status'],
-					'title':'Makahiya - subscribe',
-					'email':email}, form=form)
+	return {'status':request.session['status'],
+			'title':'Makahiya - subscribe',
+			'email':email}
 
 @view_config(route_name='users', renderer='makahiya:templates/users.pt', permission='sudo')
 def users(request):
@@ -311,6 +292,9 @@ def users(request):
 		log.debug('user: ' + user.email)
 	res['number'] = range(0, len(users))
 	res['users'] = users
+	res['email'] = request.authenticated_userid
+	res['plant_id'] = get_user_plant_id(res['email'])
+	res['level'] = get_user_level(res['email'])
 	return res
 
 @view_config(route_name='delete', permission='sudo')

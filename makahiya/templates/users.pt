@@ -1,35 +1,35 @@
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <title>Makahiya - users</title>
-    <link rel='stylesheet' href="${request.static_url('makahiya:static/app.css')}"/>
-</head>
-<body>
-    <table>
-        <tr>
-            <th>Email</th>
-            <th>Level</th>
-            <th>Plant id</th>
-            <th>Delete</th>
-        </tr>
-        <tr tal:repeat="id number">
-            <td>${users[repeat.id.index]['email']}</td>
-            <td>${users[repeat.id.index]['level']}</td>
-            <td>${users[repeat.id.index]['plant_id']}</td>
-            <td>
-                <button tal:condition="python:int(users[repeat.id.index]['level']) > 1"
-                    type="button" onclick="delete_confirm('${users[repeat.id.index]['email']}')">
-                    Delete
-                </button>
-                <script>
-                    function delete_confirm(email) {
-                        if (confirm('Are you sure you want to delete ' + email +'?')) {
-                            window.location = '/delete/' + email;
-                        }
-                    }
-                </script>
-            </td>
-        </tr>
-    </table>
-</body>
-</html>
+<metal:macro use-macro="master">
+    <metal:slot fill-slot="body">
+        <br/><br/>
+        <div class="container-fluid">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Email</th>
+                        <th>Level</th>
+                        <th>Plant id</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr tal:repeat="id number">
+                        <td>${users[repeat.id.index]['email']}</td>
+                        <td>${users[repeat.id.index]['level']}</td>
+                        <td>${users[repeat.id.index]['plant_id']}</td>
+                        <td>
+                            <button tal:condition="python:int(users[repeat.id.index]['level']) > 1"
+                                type="button" onclick="delete_confirm('${users[repeat.id.index]['email']}')">
+                                Delete
+                            </button>
+                            <script>
+                                function delete_confirm(email) {
+                                    if (confirm('Are you sure you want to delete ' + email +'?')) {
+                                        window.location = '/delete/' + email;
+                                    }
+                                }
+                            </script>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </metal:slot>
+</metal:macro>

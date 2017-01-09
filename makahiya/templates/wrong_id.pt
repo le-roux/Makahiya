@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <title>Makahiya - wrong id</title>
-    <link rel='stylesheet' href="${makahiya:static/app.css"}/>
-</head>
-
-<body>
-    <p class="center">You tried to access to an unauthorized page !!</p>
-</body>
+<metal:macro use-macro="master">
+    <metal:slot fill-slot="body">
+        <br/><br/>
+        <p class="text-center">You tried to access to an unauthorized page !!</p>
+    </metal:slot>
+</metal:macro>
