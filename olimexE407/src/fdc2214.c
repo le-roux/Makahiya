@@ -18,9 +18,6 @@ msg_t read_register(uint8_t addr, uint8_t reg_addr) {
 
 i2cflags_t init_sensor(void) {
     msg_t status;
-    palSetPad(GPIOF, 5);
-    chThdSleepMilliseconds(100);
-    palClearPad(GPIOF, 5);
 
     // Set the sensor in SLEEP_MODE
     status = write_register(FDC1_ADDR, CONFIG, CONFIG_RESERVED | SLEEP_MODE);
@@ -52,16 +49,16 @@ i2cflags_t init_sensor(void) {
     status = write_register(FDC1_ADDR, RCOUNT_CH3, 0xFFFF);
 
     // Set the offset registers
-    status = write_register(FDC1_ADDR, RCOUNT_CH0, 0x0000);
-    status = write_register(FDC1_ADDR, RCOUNT_CH1, 0x0000);
-    status = write_register(FDC1_ADDR, RCOUNT_CH2, 0x0000);
-    status = write_register(FDC1_ADDR, RCOUNT_CH3, 0x0000);
+    status = write_register(FDC1_ADDR, OFFSET_CH0, 0x0000);
+    status = write_register(FDC1_ADDR, OFFSET_CH1, 0x0000);
+    status = write_register(FDC1_ADDR, OFFSET_CH2, 0x0000);
+    status = write_register(FDC1_ADDR, OFFSET_CH3, 0x0000);
 
-    // Set the status config
+    // Set the status config register
     status = write_register(FDC1_ADDR, STATUS_CONFIG, 0x0001);
 
     // Set the mux_config register
-    status = write_register(FDC1_ADDR, MUX_CONFIG, 0x8209);
+    status = write_register(FDC1_ADDR, MUX_CONFIG, 0xC209);
 
     // Set the config register (and leave sleep mode)
     status = write_register(FDC1_ADDR, CONFIG, 0x1C01);

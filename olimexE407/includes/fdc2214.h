@@ -7,6 +7,8 @@
 /************************/
 /*       Defines        */
 /************************/
+#define FDC1_ADDR 0x2A
+#define FDC2_ADDR 0x2B
 
 #define DATA_MSB_CH0 0x00
 #define DATA_LSB_CH0 0x01

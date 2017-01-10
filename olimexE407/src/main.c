@@ -50,12 +50,23 @@ int main(void) {
             continue;
         }
         status = 0;
-        status &= rx_buffer[0] << 8;
-        status &= rx_buffer[1];
+        status |= rx_buffer[0] << 8;
+        status |= rx_buffer[1];
+        chprintf((BaseSequentialStream*)&SDU1, "status read: %x (%x)\r\n", status, status & DRDY);
         if (status & DRDY) {
             status = read_register(FDC1_ADDR, DATA_MSB_CH0);
             if (status != MSG_OK)
                 break;
+            status = read_register(FDC1_ADDR, DATA_MSB_CH1);
+            if (status != MSG_OK)
+                break;
+            status = read_register(FDC1_ADDR, DATA_MSB_CH2);
+            if (status != MSG_OK)
+                break;
+            status = read_register(FDC1_ADDR, DATA_MSB_CH3);
+            if (status != MSG_OK)
+                break;
+            chprintf((BaseSequentialStream*)&SDU1, "======%x======\r\n", status);
         }
     }
 
