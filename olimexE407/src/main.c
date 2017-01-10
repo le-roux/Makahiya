@@ -9,6 +9,7 @@
 #include "shell_user.h"
 #include "i2c_user.h"
 #include "fdc2214.h"
+#include "ext_user.h"
 
 /*
  * Entry point
@@ -42,33 +43,9 @@ int main(void) {
         status = init_sensor();
     } while (status != I2C_NO_ERROR);
 
-    for (int i = 0; i < 100; i++) {
-        chThdSleepMilliseconds(20);
-        status = read_register(FDC1_ADDR, STATUS);
-        if (status != I2C_NO_ERROR) {
-            chprintf((BaseSequentialStream*)&SDU1, "error %i\r\n", (int)i2cGetErrors(&I2CD2));
-            continue;
-        }
-        status = 0;
-        status |= rx_buffer[0] << 8;
-        status |= rx_buffer[1];
-        chprintf((BaseSequentialStream*)&SDU1, "status read: %x (%x)\r\n", status, status & DRDY);
-        if (status & DRDY) {
-            status = read_register(FDC1_ADDR, DATA_MSB_CH0);
-            if (status != MSG_OK)
-                break;
-            status = read_register(FDC1_ADDR, DATA_MSB_CH1);
-            if (status != MSG_OK)
-                break;
-            status = read_register(FDC1_ADDR, DATA_MSB_CH2);
-            if (status != MSG_OK)
-                break;
-            status = read_register(FDC1_ADDR, DATA_MSB_CH3);
-            if (status != MSG_OK)
-                break;
-            chprintf((BaseSequentialStream*)&SDU1, "======%x======\r\n", status);
-        }
-    }
+    //chThdSleepMilliseconds(1000);
+    chThdCreateStatic(fdc_wa, sizeof(fdc_wa), NORMALPRIO + 2, fdc_int, NULL);
+    extStart(&EXTD1, &ext_config);
 
     // Loop forever.
     while (true) {

@@ -120,7 +120,7 @@ CSRC = $(STARTUPSRC) \
        $(CHIBIOS)/os/various/shell.c \
 	   $(SRC)/main.c $(SRC)/i2c_user.c \
 	   $(SRC)/shell_user.c $(SRC)/usbcfg.c $(SRC)/pwm_user.c \
-	   $(SRC)/fdc2214.c
+	   $(SRC)/fdc2214.c $(SRC)/ext_user.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

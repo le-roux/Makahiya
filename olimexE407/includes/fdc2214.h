@@ -66,6 +66,8 @@
 
 #define DRDY 0x40
 
+#define FDC_WA_SIZE 2048
+
 /*************************/
 /*      Macros        */
 /*************************/
@@ -77,6 +79,8 @@
 /*************************/
 extern uint16_t config;
 extern uint16_t status;
+extern binary_semaphore_t fdc_bsem;
+extern THD_WORKING_AREA(fdc_wa, FDC_WA_SIZE);
 
 /*************************/
 /*      Functions        */
@@ -84,4 +88,5 @@ extern uint16_t status;
 extern msg_t write_register(uint8_t addr, uint8_t reg_addr, uint16_t value);
 extern msg_t read_register(uint8_t addr, uint8_t reg_addr);
 extern i2cflags_t init_sensor(void);
+extern THD_FUNCTION(fdc_int, arg);
 #endif // FDC2214_H

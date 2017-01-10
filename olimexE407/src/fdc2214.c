@@ -1,8 +1,14 @@
 #include "fdc2214.h"
 #include "i2c_user.h"
+#include "chprintf.h"
+#include "usbcfg.h"
+#include "utils.h"
 
 uint16_t config = CONFIG_RESERVED;
 uint16_t status;
+
+THD_WORKING_AREA(fdc_wa, FDC_WA_SIZE);
+BSEMAPHORE_DECL(fdc_bsem, true);
 
 msg_t write_register(uint8_t addr, uint8_t reg_addr, uint16_t value) {
     tx_buffer[0] = reg_addr;
@@ -54,7 +60,7 @@ i2cflags_t init_sensor(void) {
     status = write_register(FDC1_ADDR, OFFSET_CH2, 0x0000);
     status = write_register(FDC1_ADDR, OFFSET_CH3, 0x0000);
 
-    // Set the status config register
+    // Set the status/error config register
     status = write_register(FDC1_ADDR, STATUS_CONFIG, 0x0001);
 
     // Set the mux_config register
@@ -64,4 +70,36 @@ i2cflags_t init_sensor(void) {
     status = write_register(FDC1_ADDR, CONFIG, 0x1C01);
 
     return I2C_NO_ERROR;
+}
+
+THD_FUNCTION(fdc_int, arg) {
+    UNUSED(arg);
+    i2cflags_t status;
+    chprintf((BaseSequentialStream*)&SDU1, "Start fdc thread\r\n");
+    while(TRUE) {
+        chBSemWait(&fdc_bsem);
+        chprintf((BaseSequentialStream*)&SDU1, "======FDC AWAKEN======\r\n");
+        status = read_register(FDC1_ADDR, STATUS);
+        if (status != I2C_NO_ERROR) {
+            chprintf((BaseSequentialStream*)&SDU1, "error %i\r\n", (int)i2cGetErrors(&I2CD2));
+            continue;
+        }
+        status = 0;
+        status |= rx_buffer[0] << 8;
+        status |= rx_buffer[1];
+        if (status & DRDY) {
+            status = read_register(FDC1_ADDR, DATA_MSB_CH0);
+            if (status != MSG_OK)
+                continue;
+            status = read_register(FDC1_ADDR, DATA_MSB_CH1);
+            if (status != MSG_OK)
+                continue;
+            status = read_register(FDC1_ADDR, DATA_MSB_CH2);
+            if (status != MSG_OK)
+                continue;
+            status = read_register(FDC1_ADDR, DATA_MSB_CH3);
+            if (status != MSG_OK)
+                continue;
+        }
+    }
 }
