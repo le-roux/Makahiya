@@ -208,7 +208,7 @@ def board(request):
 					pass
 				SQLsession.commit()
 				msg = "hello world"
-				send_to_socket(plants, plant_id, msg)
+				yield from send_to_socket(plants, plant_id, msg)
 				# TODO send the values to websocket
 
 			# Modification on a medium led
