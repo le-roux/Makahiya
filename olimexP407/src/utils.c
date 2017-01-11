@@ -11,6 +11,11 @@ void int_to_char(char* out, int value) {
     for (int i = 0; i < 5; i++)
         out[i] = '0';
 
+    if (value == 0) {
+        out[1] = '\0';
+        return;
+    }
+
     for (int i = 5; i > 0; i--) {
         if (value >= base) {
             out[index] = (value / base) + '0';

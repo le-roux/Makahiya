@@ -7,6 +7,9 @@
 
 #include "chprintf.h"
 #include "usbcfg.h"
+#include "logic.h"
+#include "serial_user.h"
+#include <stdlib.h>
 #include <string.h>
 
 static const char* const ws_cmd = "websocket_client -g 14 ";
@@ -61,19 +64,41 @@ static THD_WORKING_AREA(wa_websocket_ext, WA_WEBSOCKET_SIZE);
 THD_FUNCTION(websocket_ext, arg) {
     UNUSED(arg);
     wifi_response_header header;
+    char *cmd, *var;
+    char value[5], buffer[20];
     // Start the EXT driver (for interrupt)
     extStart(&EXTD1, &ext_cfg);
     DEBUG("Starting callback thread");
     while(TRUE) {
-        DEBUG("enter while");
-        chBSemWait(&web_bsem);
-        read_buffer((wifi_connection)conn);
-        DEBUG("read");
+        chBSemWait(&web_bsem); // Wait for a trigger from the interrupt
+        read_buffer((wifi_connection)conn); // Ask to read the data
         header = get_response(true);
-        if (header.error)
+        if (header.error) {
             DEBUG("cb error %s", response_code);
-        else
-            DEBUG("%s", response_body);
+            continue;
+        }
+
+        // No error: decode the data received
+        cmd = strtok(response_body, " ");
+        if (cmd == NULL)
+            continue; // TODO improve error management
+        var = strtok(NULL, " ");
+        if (strcmp(cmd, "get") == 0 || strcmp(cmd, "set") == 0) {
+            if (strcmp(cmd, "set") == 0)
+                set_value(var, atoi(strtok(NULL, " ")));
+
+            // Same actions for 'get' and 'set'
+            int_to_char(value, get_value(var));
+            strcpy(buffer, var);
+            strcat(buffer, " ");
+            strcat(buffer, value);
+            DEBUG("response -> %s (%i)", buffer, strlen(buffer));
+            wifi_write((wifi_connection*)&conn, strlen(buffer), (uint8_t*)buffer);
+            (void)get_response(true);
+        } else if (strcmp(cmd, "play") == 0) {
+            // TODO Play music file called $var
+            continue;
+        }
     }
 }
 
@@ -91,13 +116,23 @@ THD_FUNCTION(websocket, arg) {
     strcat(cmd, ws_addr);
     strcat(cmd, (char*)arg);
 
+
+
     while(true) {
         // Open the connection with the websocket (plant-side).
         send_cmd(cmd);
         header = get_response(false);
         if (header.error) {
-            DEBUG("error: %i", header.error_code);
-            chThdSleepMilliseconds(2000);
+            do {
+                send_cmd("reboot");
+                header = get_response(false);
+                chThdSleepMilliseconds(750);
+            } while (header.error);
+            do {
+                send_cmd("ping -g");
+                header = get_response(false);
+                chThdSleepMilliseconds(250);
+            } while(header.error);
         } else
             break; // Connection established
     }
@@ -107,9 +142,9 @@ THD_FUNCTION(websocket, arg) {
     NORMALPRIO, websocket_ext, NULL);
 
     while (true) {
-        chThdSleepMilliseconds(3000);
-        wifi_write((wifi_connection*)&conn, 5, "abcd");
-        get_response(true);
+        chThdSleepMilliseconds(5000);
+        wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"abcd");
+        (void)get_response(true);
         DEBUG("write %s", response_body);
     }
 }

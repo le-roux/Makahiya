@@ -5,6 +5,9 @@
 
 Test(suite_1, test_int_to_char) {
     char tmp[6];
+    int_to_char(tmp, 0);
+    cr_expect(strcmp(tmp, "0") == 0, "tmp = %s", tmp);
+
     int_to_char(tmp, 2);
     cr_expect(strcmp(tmp, "2") == 0, "tmp = %s", tmp);
 

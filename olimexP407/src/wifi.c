@@ -191,11 +191,11 @@ void send_cmd(char* cmd) {
     length += strlen("\n");
 
     chMtxLock(&serial_mutex);
-    sdWrite(wifi_SD, serial_tx_buffer, length);
+    SEND_DATA(serial_tx_buffer, length);
     chMtxUnlock(&serial_mutex);
 }
 
-void wifi_write(wifi_connection* conn, int length, char* buffer) {
+void wifi_write(wifi_connection* conn, int length, uint8_t* buffer) {
     char cmd[12], channel[5];
     strcpy(cmd, "write ");
     strcat(cmd, conn->channel_id);
@@ -203,7 +203,12 @@ void wifi_write(wifi_connection* conn, int length, char* buffer) {
     int_to_char(channel, length);
     strcat(cmd, channel);
     send_cmd(cmd);
-    send_cmd(buffer);
+    SEND_DATA(buffer, length);
+}
+
+void clear_body(void) {
+    for (int i = 0; i < WIFI_BUFFER_SIZE; i++)
+        response_body[i] = '\0';
 }
 
 #endif // TEST

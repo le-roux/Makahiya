@@ -1,6 +1,8 @@
 #ifndef WIFI_H
 #define WIFI_H
 
+#include <stdint.h>
+
 /***********************/
 /*        Defines      */
 /***********************/
@@ -48,6 +50,8 @@ typedef struct wifi_connection {
  * Size (in bytes) of the buffer that contains the payload.
  */
 #define WIFI_BUFFER_SIZE 1462
+
+#define SEND_DATA(data, length) sdWrite(wifi_SD, data, length)
 
 /***********************/
 /*       Variables     */
@@ -120,6 +124,8 @@ void read_music(char* path);
  */
 void send_cmd(char* cmd);
 
-void wifi_write(wifi_connection* conn, int length, char* buffer);
+void wifi_write(wifi_connection* conn, int length, uint8_t* buffer);
+
+void clear_body(void);
 
 #endif
