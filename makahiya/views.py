@@ -6,7 +6,7 @@ from pyramid.interfaces import IBeforeRender
 from pyramid.events import subscriber
 from pyramid.security import remember, forget
 import pyramid
-from .models import Session, Leds, Users, get_user_plant_id
+from .models import Session, Leds, Users, get_user_plant_id, get_user_level
 from velruse import login_url
 import logging
 import colander
@@ -27,6 +27,9 @@ def home(request):
 		'email':request.authenticated_userid if not request.authenticated_userid == None else ''}
 	if len(res['email']) > 0:
 		res['plant_id'] = get_user_plant_id(res['email'])
+		res['level'] = get_user_level(res['email'])
+	else:
+		res['level'] = -1
 	return res
 
 # upload mp3 file
@@ -56,32 +59,34 @@ async def set_led(request):
 	color = request.matchdict['color']
 	value = request.matchdict['value']
 	try:
-		plant_id = int(plant_id)
-		led_id = int(led_id)
-		value = int(value)
+	       plant_id = int(plant_id)
+	       led_id = int(led_id)
+	       value = int(value)
 	except ValueError:
-		return HTTPBadRequest('Some number could not be casted')
+	       return HTTPBadRequest('Some number could not be casted')
 	if(plant_id < 0):
-		return HTTPBadRequest('Id is positive')
+	       return HTTPBadRequest('Id is positive')
 	if(led_id < 0 or led_id > 5):
-		return HTTPBadRequest('Invalid LED ID')
+	       return HTTPBadRequest('Invalid LED ID')
 	if((color != 'R' and color != 'G' and color != 'B' and color != 'W') or (color == 'W' and led_id != 0)):
-		return HTTPBadRequest('Invalid color')
+	       return HTTPBadRequest('Invalid color')
 	if(value < 0 or value > 255):
-		return HTTPBadRequest('Invalid value')
-	led = session.query(Leds).filter_by(uid=led_id).one()
+	       return HTTPBadRequest('Invalid value')
+	SQLsession = Session()
+	led = SQLsession.query(Leds).filter_by(uid=led_id).one()
 	if (color == 'R'):
-		led.R = value
+	       led.R = value
 	if (color == 'G'):
-		led.G = value
+	       led.G = value
 	if (color == 'B'):
-		led.B = value
+	       led.B = value
 	if (color == 'W'):
-		led.W = value
-	session.add(led)
-	session.commit()
+	       led.W = value
+	SQLsession.add(led)
+	SQLsession.commit()
 
 	return Response('<body>Good Request</body>')
+
 
 # Send a command to a servomotor
 @view_config(route_name='set_servo', request_method='POST')
@@ -112,30 +117,30 @@ def login(request):
 @view_config(context='velruse.AuthenticationComplete')
 def login_callback(request):
 	email = request.context.profile['verifiedEmail']
-	session = Session()
+	SQLsession = Session()
 	if 'status' in request.session and request.session['status'] == 1:
 		plant_id = request.session['plant_id']
 
 		# Check that this plant id doesn't already exist
-		if session.query(Leds).filter_by(plant_id=plant_id).first() is not None:
+		if SQLsession.query(Leds).filter_by(plant_id=plant_id).first() is not None:
 			request.session['status'] = 4
 			return HTTPFound('/subscribe')
 		# Check that this user doesn't already exist
-		if session.query(Users).filter_by(email=email).first() is not None:
+		if SQLsession.query(Users).filter_by(email=email).first() is not None:
 			request.session['status'] = 2
 			return HTTPFound('/subscribe')
 
 		# Create this user in the database
-		session.add(Users(email=email, level=2, plant_id=plant_id))
+		SQLsession.add(Users(email=email, level=2, plant_id=plant_id))
 		for i in range(0,6):
-			session.add(Leds(R=0, G=0, B=0, W=0, plant_id=plant_id, led_id=i))
-		session.commit()
+			SQLsession.add(Leds(R=0, G=0, B=0, W=0, plant_id=plant_id, led_id=i))
+		SQLsession.commit()
 		request.session['status'] = 0
 		headers = remember(request, email)
 		return HTTPFound('/' + str(plant_id) + '/board', headers=headers)
 	else:
 		# Check that this user in in the database
-		if session.query(Users).filter_by(email=email).first() is None:
+		if SQLsession.query(Users).filter_by(email=email).first() is None:
 			request.session['status'] = 3
 			return HTTPFound('/subscribe')
 		else: # User exists
@@ -169,13 +174,14 @@ class BoardPage(object):
 def board(request):
 	plant_id = None
 	email = request.authenticated_userid
-	session = Session()
-	user = session.query(Users).filter_by(email=email).first()
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
 	if user is not None:
 		plant_id = user.plant_id
 	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
 		res = {'email': email,
-				'plant_id': plant_id}
+				'plant_id': plant_id,
+				'level': get_user_level(email)}
 
 		if request.method == 'POST':
 			log.debug('POST: ' + str(request.POST))
@@ -183,7 +189,7 @@ def board(request):
 			# Modification on the powerful led
 			if 'ledH_R' in request.POST:
 				# TODO change filter for leds
-				ledHP = session.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
+				ledHP = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
 				try:
 					ledHP.R = int(request.POST.getone('ledH_R'))
 				except ValueError as e:
@@ -200,7 +206,7 @@ def board(request):
 					ledHP.W = int(request.POST.getone('ledH_W'))
 				except ValueError as e:
 					pass
-				session.commit()
+				SQLsession.commit()
 				msg = "hello world"
 				send_to_socket(plants, plant_id, msg)
 				# TODO send the values to websocket
@@ -208,7 +214,7 @@ def board(request):
 			# Modification on a medium led
 			for i in range(1,6):
 				if 'ledM' + str(i) + 'R' in request.POST:
-					led = session.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
+					led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
 					try:
 						led.R = int(request.POST.getone('ledM'+str(i)+'R'))
 					except ValueError as e:
@@ -222,11 +228,11 @@ def board(request):
 						log.debug('led.b: ' + str(led.B))
 					except ValueError as e:
 						pass
-					session.commit()
+					SQLsession.commit()
 					# TODO send values to the websocket
 
 		# Get the leds colors
-		led = session.query(Leds).filter_by(plant_id=int(plant_id), led_id=0).one()
+		led = SQLsession.query(Leds).filter_by(plant_id=int(plant_id), led_id=0).one()
 		res['ledHP_R'] = led.R
 		res['ledHP_G'] = led.G
 		res['ledHP_B'] = led.B
@@ -237,7 +243,7 @@ def board(request):
 		led_range = range(1, 6)
 		for i in led_range:
 			# Query the database for led i from table 'leds'.
-			led = session.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
+			led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
 			values = (led.R, led.G, led.B)
 			ledM.append(values)
 
@@ -249,61 +255,54 @@ def board(request):
 	else:
 		return HTTPFound('/wrong_id')
 
-class SecurityViews(object):
-	def __init__(self, request):
-		self.request = request
+@view_config(route_name='subscribe', renderer='makahiya:templates/subscribe.pt')
+def subscribe(request):
+	if request.method == 'POST': # Access via the form
+		request.session['status'] = 1
+		request.session['plant_id'] = request.POST.getone('plant_id')
+		return HTTPFound(login_url(request, 'google'))
 
-	@property
-	def subscribe_form(self):
-		schema = SubscribePage()
-		return deform.Form(schema, buttons=('Associate with Google account',))
+	# Access to this page via a GET request
+	# session['status']:
+	#		+ 0 -> nothing
+	#		+ 1 -> subscribe
+	#		+ 2 -> already existing user
+	#		+ 3 -> non existing user
+	#		+ 4 -> already existing plant_id
+	if 'status' not in request.session:
+		request.session['status'] = 0
 
-	@property
-	def reqts(self):
-		return self.subscribe_form.get_widget_resources()
+	if request.authenticated_userid is None:
+		email =''
+	else:
+		email = request.authenticated_userid
 
-	@view_config(route_name='subscribe', renderer='makahiya:templates/subscribe.pt')
-	def subscribe(self):
-		form = self.subscribe_form.render()
-
-		if self.request.method == 'POST': # Access via the form
-			values = self.request.POST.items()
-			try:
-				pages = self.subscribe_form.validate(values)
-			except deform.ValidationFailure as e:
-				return dict(form=e.render())
-			self.request.session['status'] = 1
-			self.request.session['plant_id'] = pages['plant_id']
-			return HTTPFound(login_url(self.request, 'google'))
-
-		# Access to this page via a GET request
-		# session['status']:
-		#		+ 0 -> nothing
-		#		+ 1 -> subscribe
-		#		+ 2 -> already existing user
-		#		+ 3 -> non existing user
-		#		+ 4 -> already existing plant_id
-		if 'status' not in self.request.session:
-			self.request.session['status'] = 0
-
-		if self.request.authenticated_userid is None:
-			email =''
-		else:
-			email = self.request.authenticated_userid
-
-		return dict({'status':self.request.session['status'],
-					'title':'Makahiya - subscribe',
-					'email':email}, form=form)
+	return {'status':request.session['status'],
+			'title':'Makahiya - subscribe',
+			'email':email}
 
 @view_config(route_name='users', renderer='makahiya:templates/users.pt', permission='sudo')
 def users(request):
-	session = Session()
+	SQLsession = Session()
 	res = {}
 	users = []
-	for user in session.query(Users).order_by(Users.email):
+	for user in SQLsession.query(Users).order_by(Users.email):
 		us = {'email':user.email, 'level':user.level, 'plant_id':user.plant_id}
 		users.append(us)
 		log.debug('user: ' + user.email)
 	res['number'] = range(0, len(users))
 	res['users'] = users
+	res['email'] = request.authenticated_userid
+	res['plant_id'] = get_user_plant_id(res['email'])
+	res['level'] = get_user_level(res['email'])
 	return res
+
+@view_config(route_name='delete', permission='sudo')
+def delete(request):
+	email = request.matchdict['email']
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
+	if user is not None and user.level > 1:
+		SQLsession.delete(user)
+		SQLsession.commit()
+	return HTTPFound('/users')

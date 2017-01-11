@@ -3,19 +3,63 @@
 <head>
     <title metal:define-slot="title"
         tal:content="context/title | python:None">${title}</title>
+        <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet"
-        href="${request.static_url('makahiya:static/app.css')}"/>
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <a class='ref' href='/'>Home</a>
-        <a class='center'>${title}</a>
-        <a tal:condition='python:len(email) == 0' href='/login' class='ref'>Login with Google</a>
-        <a tal:condition="python:len(email) > 0" href='/logout' class='ref'>Logout (${email})</a>
-    </header>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Makahiya</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li tal:condition="python:plant_id >= 0 | nothing">
+                        <a tal:define="link string:/$plant_id/board" href=${link}>
+                            Plant management
+                        </a>
+                    </li>
+                    <li tal:condition='level == 1 | nothing'>
+                        <a href='/users'>Users</a>
+                    </li>
+                    <metal:slot metal:define-slot="pages"/>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <form class="navbar-form" action="/subscribe">
+                            <button class="btn btn-success" type="submit">Subscribe</button>
+                        </form>
+                    <li>
+                        <form tal:condition='python:len(email) == 0 | 1' class="navbar-form" action="/login">
+                            <button  class="btn btn-success" type="Submit">
+                                Login with Google</button>
+                        </form>
+                        <form tal:condition="python:len(email) > 0 | nothing" class="navbar-form" action="/logout">
+                        <button class='btn btn-danger'>
+                            Logout (${email})</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <section>
-        <metal:slot metal:define-slot="body"/>
-    </section>
+    <br/><br/>
+    <metal:slot metal:define-slot="body"/>
 </body>
 </html>
