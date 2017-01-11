@@ -1,0 +1,39 @@
+Part	Value	Device	Description	Quantity	Distributor code	Option	Part Number
+U1	 	AMW006	Ultra-low power Wi-Fi networking module for battery powered applications , ACKME Networks AMW006 Numbat, 3.3V	1	Fa : 2454198	 	80-0056
+SW1	 	B3U-3000P	Button Switch latéral / 2 pins / SMD / Omron B3U-3000P	1	Fa : 1333655	 	80-0035
+C12,C14,C40	1uF	CAP C0603 1uF X5R 25V	Capacitor Ceramic 1uF / X5R / 25V / ±10% / case 0603	3	Fa : 1828802	 	10-0068
+C32,C35	2.2uF	CAP C0603 2.2uF X5R 6.3V	Capacitor Ceramic X5R / 2.2uF / 6.3V / ±20% / case 0603	2	Fa : 1288257	 	10-0112
+C13,C36,C37	4.7nF	CAP C0603 4.7nF X7R 16V	Capacitor Ceramic X7R / 4.7nF / 16V / ±10% / case 0603	3	Fa : 2496863	 	10-0077
+C17,C18,C20,C21,C33,C34	10uF	CAP C0603 10uF X5R 6.3V	Capacitor Ceramic X5R / 10uF / 6.3V / ±20% / case 0603	6	Fa : 1759393 	 	10-0103
+C22,C31	15pF	CAP C0603 15pF COG 10V	Capacitor Ceramic 15pF / 10V / ±1% / case 0603	2	Fa : 1856081	 	10-0031
+C23,C24,C25,C26,C27,C28,C29,C30	33pF	CAP C0603 33pF NPO 50V	Capacitor Ceramic 33pF / NPO / 50V / ±5% / case 0603	8	Fa : 722029	 	10-0054
+C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C39	100nF	CAP C0603 100nF X7R 16V	Capacitor Ceramic X7R / 100nF / 16V / ±10% / case 0603	12	Fa : 1414027	 	10-0057
+C15,C19	10uF	CAP C0805 10uF X5R 25V	Capacitor Ceramic X5R / 10uF / 25V / ±10% / case 0805, 	2	Fa : 1867958	 	10-0102
+C16	10uF	CAP C1210 10uF X5R 10V	Capacitor Ceramic X5R / 10uF / 10V / ±20% / case 1210	1	Fa : 1759458	 	10-0018
+U3	 	CS4344-CZZ	Audio D/A Converter ICs Stereo DAC 24-Bit 192kHz, Cirrus Logic CS4344-CZZ, case TSSOP10	1	Mouser : 777-CS4344-CZZ	 	40-0303
+J22	 	DC JACK 2.5	Power DC jack / Center pin 2.5	1	RS : 486-678	 	70-0001
+Q1,Q2,Q3,Q4,Q8,Q9,Q10,Q11,Q12,Q13,Q14,Q15,Q16,Q17,Q18,Q19,Q20,Q21,Q22	 	DMN2050L	N-Channel MOSFET, 5.9A, 0.024ohms, Diodes Inc DMN2050L , case SOT23	19	Fa : 2061409 	 	30-0019
+FDC1,FDC2	 	FDC2214RGHT	28-Bitt Capacitance-to-Digital Converter for Proximity and Level Sensing Applications,  Texas Instruments, FDC2214RGHT, case WQFN-E 16	2	Fa : 2499124	 	40-0288
+J25	 	FTSH-105-01-L-DV	Dual row 1.27 CMS 2x5 points connector, Samtec FTSH-105-01-L-DV 	1	Fa : 1667759	 	70-0081
+D1	 	GREEN	Green LED SMD case 0805 Agilent HSMG-C670	1	Fa : 5790852	 	20-0003
+L9	 	ILHB0805ER601V	Ferrite 600 ohms @ 100Mhz, 2.A, 0.1 ohms, VISHAY ILHB0805ER601V, case 0805	1	Fa : 1474424	 	50-0045
+J12,J18,J19,J20,J21	 	JUMPER 3PTS	Jumper 3 points en ligne 2.54mm avec cavalier associe	5	 	 	70-0003
+J13,J14,J15,J16,J17	 	MICROMATCH-4	4pins smd on board connector Micromatch AMP 7-188275-4	5	Fa : 3784710	 	70-0014
+J23	 	MICROMATCH-8	8pins SMD femelle on board connector Micromatch  AMP 7-188275-8	1	Fa : 3784733 	 	70-0053
+U4	 	NCP1117LPST33T3G	3.3 Low dropout regulateur, 18V input, 1.8V dropout, 1A, On Semi NCP1117LPST33T3G, case SOT-223-3	1	Fa : 2534283	 	40-0304
+J3,J4,J5,J6,J7,J8,J9,J10,J24,J26,J27,J28,J29,J30,J31,J32	 	PAD-3x2	Pad pour test, 3x2mm	16	 	 	70-0029
+D2	 	RED	Red LED SMD case 0805 Agilent HSMH-C670	1	Fa : 5790840	 	20-0004
+R26,R27,R28	1.8 	RES_1.8_2512	Resistor 1.8 ohms, 1%, 1W, case 2512	3	Fa : 2324193	 	03-0015
+R8,R9,R10,R11,R12,R13,R14,R15,R16,R17	2.2 	RES_2.2_2512	Resistor 2.2 ohms, 1%, 1W, case 2512	10	Fa : 1265193	 	03-0013
+R4,R29	3K 	RES_3.0k_0603	Resistor 3.0k ohms / 5% / case 0603	2	Fa : 9330976	 	00-0085
+R25	3.6 	RES_3.6_2010W	Resistor 3.6 ohms, 1%, 2W, case 2010W	1	Fa : 2294017	 	03-0016
+R18,R19,R20,R21,R22	6.8 	RES_6.8_0603	Resistor 6.8 ohms / 5% / case 0603	5	Fa : 2059544	 	00-0022
+R5,R6,R7	10K 	RES_10k_0603	Resistor 10k ohms / 5% / case 0603	3	Fa : 9331700	 	00-0098
+R1,R2	160 	RES_160_0603	Resistor 160 ohms / 5% / case 0603	2	Fa : 2447260	 	00-0055
+R23,R24	470 	RES_470_0603	Resistor 470 ohms / 5% / case 0603	2	Fa : 2447374	 	00-0066
+U2	 	RN42-I/RM	Class 2 Bluetooth Module with EDR Support, with PCB antenna, Microchip RN42	1	Fa: 2143310	 	80-0066
+L1,L2,L3,L4,L5,L6,L7,L8	18uH	SELF 18uH 0805	High frequency inductance, SMD, Series MLF, 18 µH, 5 mA, 0805, Multilayers, 0.8 ohm, Q=30, self res freq = 20-38MHz, TDK MLF2012C180K	8	Fa : 1669551	 	50-0040
+STM32	 	STM32F405RGT6	ARM Cortex-M4 32b MCU, FPU, 210DMIPS, up to 1MB Flash/192-4KB RAM, USB OTG HS/FS, 17 TIMs, 3 ADCs, ST STM32F405RGT6, case LQFP64	1	Fa : 2333283	 	40-0208
+J1,J2	 	U.FL-R-SMT01	U.FL SMD receptacle, Hirose U.FL-R-SMT(01)	2	Fa : 3908021	 	70-0087
+QZ1	 	25 MHz	Quartz 25 MHz, +/- 10ppm, 40 ohms, 18pF, case HC49SMD, TXC  9C-25.000MEEJ-T	1	Fa : 1842314	 	81-0006
+J11	 	1503-02	Embase jack, stereo 3.5mm, SMD, Lumberg 1503 02	1	Fa : 1216979	 	70-0040

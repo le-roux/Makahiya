@@ -2,7 +2,7 @@
 ! change it at your own peril
 
 !
-! Created 01/05/17 07:09:15
+! Created 01/10/17 21:43:20
 !
 
 .Global_Constants 121 2
@@ -937,11 +937,11 @@
     ..Contour_Nopaque                    False
     ..Contour_Outline                    True
     ..Contour_Span_Color 0x00ffffff	! RGB(255,255,255)
-    ..Cavity_Color 0x00000648	! RGB( 72,  6,  0)
+    ..Cavity_Color 0x00000000	! RGB(  0,  0,  0)
     ..Cavity_Ptrnidx 0
     ..Cavity_Nopaque                     False
     ..Cavity_Outline                     True
-    ..Milling_Color 0x0000064a	! RGB( 74,  6,  0)
+    ..Milling_Color 0x00000000	! RGB(  0,  0,  0)
     ..Milling_Ptrnidx 0
     ..Milling_Nopaque                    False
     ..Milling_Outline                    True
@@ -1237,12 +1237,12 @@
 	0x0000ff00	! bottom  RGB(  0,255,  0)
     )
     ..Diepinpad_Color (
-	0x00000001	! top     RGB(  1,  0,  0)
-	0x00000a11	! bottom  RGB( 17, 10,  0)
+	0x00000000	! top     RGB(  0,  0,  0)
+	0x00000000	! bottom  RGB(  0,  0,  0)
     )
     ..Bondwire_Color (
-	0x00000001	! top     RGB(  1,  0,  0)
-	0x00000a12	! bottom  RGB( 18, 10,  0)
+	0x00000000	! top     RGB(  0,  0,  0)
+	0x00000000	! bottom  RGB(  0,  0,  0)
     )
     ..Wire_Level0_Color (
 	0x0099ff99	! top     RGB(153,255,153)
@@ -2164,9 +2164,9 @@
                                          False	! bottom
     ..All_Wirebond_Enabled               True 	! top
                                          True 	! bottom
-    ..Diepinpad_On                       False	! top
+    ..Diepinpad_On                       True 	! top
                                          True 	! bottom
-    ..Bondwire_On                        False	! top
+    ..Bondwire_On                        True 	! top
                                          True 	! bottom
     ..Wire_Level0_On                     True 	! top
                                          True 	! bottom

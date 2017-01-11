@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                       06:18 AM Thursday, January 05, 2017
+                       09:21 PM Tuesday, January 10, 2017
                    Job Name: E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb
 
 
@@ -48,8 +48,8 @@ Version:  01.01.00
           Part Numb: 40-0288 -> Vend Part: 40-0288 
           Part Numb: 40-0303 -> Vend Part: 40-0303 
           Part Numb: 40-0304 -> Vend Part: 40-0304 
-          Part Numb: 50-0039 -> Vend Part: 50-0039 
           Part Numb: 50-0040 -> Vend Part: 50-0040 
+          Part Numb: 50-0045 -> Vend Part: 50-0045 
           Part Numb: 70-0001 -> Vend Part: 70-0001 
           Part Numb: 70-0003 -> Vend Part: 70-0003 
           Part Numb: 70-0014 -> Vend Part: 70-0014 
@@ -112,7 +112,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       06:18 AM Thursday, January 05, 2017
+                       09:21 PM Tuesday, January 10, 2017
                    Job Name: E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb
 
 
