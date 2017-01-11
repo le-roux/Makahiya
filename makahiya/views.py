@@ -5,6 +5,7 @@ from pyramid.renderers import get_renderer
 from pyramid.interfaces import IBeforeRender
 from pyramid.events import subscriber
 from pyramid.security import remember, forget
+from aiopyramid.config import CoroutineMapper
 import pyramid
 from .models import Session, Leds, Users, get_user_plant_id, get_user_level
 from velruse import login_url
@@ -170,8 +171,8 @@ class BoardPage(object):
 	def reqts(self):
 		return self.led_form.get_widget_resources()
 
-@view_config(route_name='board', renderer='makahiya:templates/board.pt', permission='view')
-def board(request):
+@view_config(route_name='board', renderer='makahiya:templates/board.pt', permission='view', mapper=CoroutineMapper)
+async def board(request):
 	plant_id = None
 	email = request.authenticated_userid
 	SQLsession = Session()
@@ -208,8 +209,7 @@ def board(request):
 					pass
 				SQLsession.commit()
 				msg = "hello world"
-				yield from send_to_socket(plants, plant_id, msg)
-				# TODO send the values to websocket
+				await send_to_socket(plants, plant_id, msg)
 
 			# Modification on a medium led
 			for i in range(1,6):

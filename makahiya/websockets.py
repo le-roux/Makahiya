@@ -3,7 +3,6 @@ from .custom_mapper import CustomWebsocketMapper
 from .websocket_register import WebsocketRegister
 
 import asyncio
-import concurrent
 import websockets
 
 # Registering connected plants and clients and managing synchronization between websockets
