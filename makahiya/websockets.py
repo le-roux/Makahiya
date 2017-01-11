@@ -58,7 +58,7 @@ async def plant(ws):
 					await send_to_socket(clients, plant_id, msg)
 
 				else:
-					print ('No client listening')
+					await ws.send('No client listening')
 
 				# Finishing the producer_task to avoid problems
 				# with the condition when the task is recreated
