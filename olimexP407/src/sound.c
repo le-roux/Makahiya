@@ -171,58 +171,64 @@ THD_WORKING_AREA(wa_audio_in, 2048);
 
 THD_FUNCTION(audio_in, arg) {
     UNUSED(arg);
-    int bytes_nb;
     void* inbuf;
-    int bytes_consumed, initial_buffering = 0, copy;
+    int bytes_nb, bytes_consumed, copy;
     wifi_response_header out;
 
     // Init the free input buffers mailbox
     for (int i = 0; i < INPUT_BUFFERS_NB; i++)
         chMBPost(&free_input_box, (msg_t)&in_buf[i], TIME_INFINITE);
 
-    bytes_consumed = WIFI_BUFFER_SIZE;
-    out.length = WIFI_BUFFER_SIZE;
-
-    chBSemWait(&audio_bsem);
     while (TRUE) {
-        // Get a free buffer
-        chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
-
-        // Read file from wifi
-        bytes_nb = 0;
         bytes_consumed = WIFI_BUFFER_SIZE;
         out.length = WIFI_BUFFER_SIZE;
 
-        while(bytes_nb < INPUT_BUFFER_SIZE * 2) {
-            while (bytes_consumed >= out.length - 2) { // Need to perform a new read.
-                bytes_consumed = 0;
-                read_buffer(audio_conn);
-                out = get_response(true);
-                if (out.error && out.error_code != NO_DATA)
-                    continue;
-                else
-                    break;
-            }
-            if (out.error && out.error_code == NO_DATA)
-                break;
-            // copy = min(out.length - 2 -bytes_consumed, 2 * INPUT_BUFFER_SIZE - bytes_nb)
-            copy = out.length - 2 - bytes_consumed;
-            if (2 * INPUT_BUFFER_SIZE - bytes_nb < copy)
-                copy = 2 * INPUT_BUFFER_SIZE - bytes_nb;
-            memcpy(&((int8_t*)inbuf)[bytes_nb], &response_body[bytes_consumed], copy);
-            bytes_nb += copy;
-            bytes_consumed += copy;
-            chDbgCheck(bytes_nb <= INPUT_BUFFER_SIZE * 2);
-            chDbgCheck(bytes_consumed <= out.length - 2);
-        }
-        chprintf((BaseSequentialStream*)&SDU1, "post\r\n");
+        chBSemWait(&audio_bsem);
+        DEBUG("start reading audio");
+        while (TRUE) {
+            // Get a free buffer
+            chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
 
-        //DEBUG("post %i", initial_buffering);
-        initial_buffering++;
+            // Read file from wifi
+            bytes_nb = 0;
+            bytes_consumed = WIFI_BUFFER_SIZE;
+            out.length = WIFI_BUFFER_SIZE;
+            out.error = 0;
+            out.error_code = 0;
+
+            while(bytes_nb < INPUT_BUFFER_SIZE * 2) {
+                while (bytes_consumed >= out.length) { // Need to perform a new read.
+                    bytes_consumed = 0;
+                    read_buffer(audio_conn);
+                    out = get_response(true);
+                    if (out.error && out.error_code == NO_DATA)
+                        break;
+                }
+                if (out.error && out.error_code == NO_DATA)
+                    break;
+                // copy = min(out.length - bytes_consumed, 2 * INPUT_BUFFER_SIZE - bytes_nb)
+                copy = out.length - bytes_consumed;
+                if (2 * INPUT_BUFFER_SIZE - bytes_nb < copy)
+                    copy = 2 * INPUT_BUFFER_SIZE - bytes_nb; // Don't copy more than remaining space.
+                memcpy(&((int8_t*)inbuf)[bytes_nb], &response_body[bytes_consumed], copy);
+                bytes_nb += copy;
+                bytes_consumed += copy;
+                chDbgCheck(bytes_nb <= INPUT_BUFFER_SIZE * 2);
+                chDbgCheck(bytes_consumed <= out.length);
+            }
+            if (out.error && out.error_code == NO_DATA) {
+                chMBPost(&free_input_box, (msg_t)inbuf, TIME_INFINITE);
+                break;
+            }
+            DEBUG("post");
+
+            chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
+        }
+        if (out.error && out.error_code == NO_DATA)
+            break;
+        chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
+        inbuf = NULL;
         chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
     }
-    chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
-    inbuf = NULL;
-    chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
 
 }

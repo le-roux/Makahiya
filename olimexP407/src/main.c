@@ -54,7 +54,10 @@ int main(void) {
     chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 2, audio_in, NULL);
 
     // Websocket thread
-    chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "42");
+    //chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "42");
+    chThdSleepMilliseconds(1000);
+    DEBUG("read music");
+    read_music("/file.mp3");
 
     // Init the shell
     shellInit();

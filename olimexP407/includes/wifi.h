@@ -49,7 +49,7 @@ typedef struct wifi_connection {
 /**
  * Size (in bytes) of the buffer that contains the payload.
  */
-#define WIFI_BUFFER_SIZE 1462
+#define WIFI_BUFFER_SIZE 1420
 
 #define SEND_DATA(data, length) sdWrite(wifi_SD, data, length)
 

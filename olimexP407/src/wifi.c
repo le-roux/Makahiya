@@ -20,7 +20,7 @@ char response_code[WIFI_HEADER_SIZE];
 char response_body[WIFI_BUFFER_SIZE];
 wifi_connection audio_conn;
 static const char* const read_cmd = "read ";
-const char* address = "http://makahiya.herokuapp.com";
+const char* address = "http://makahiya.rfc1149.net";
 const char* get = "http_get ";
 static MUTEX_DECL(serial_mutex);
 #define MEASURE_TIME 0
@@ -53,7 +53,7 @@ void get_channel_id(wifi_connection* conn) {
 
 #ifndef TEST
 wifi_response_header get_response(int timeout) {
-    static int end;
+    static int end, timing = 40;
     wifi_response_header out;
 
     #if MEASURE_TIME
@@ -64,7 +64,7 @@ wifi_response_header get_response(int timeout) {
 
     chMtxLock(&serial_mutex);
     if (timeout)
-        res = sdReadTimeout(wifi_SD, (uint8_t*)response_code, WIFI_HEADER_SIZE, MS2ST(400));
+        res = sdReadTimeout(wifi_SD, (uint8_t*)response_code, WIFI_HEADER_SIZE, MS2ST(timing));
     else
         res = sdRead(wifi_SD, (uint8_t*)response_code, WIFI_HEADER_SIZE);
     chMtxUnlock(&serial_mutex);
@@ -77,6 +77,7 @@ wifi_response_header get_response(int timeout) {
         out.error = 1;
         out.error_code = HEADER_TIMEOUT;
         DEBUG("Error in header (res: %i)", res);
+        timing *= 2;
         return out;
     }
 
@@ -94,7 +95,7 @@ wifi_response_header get_response(int timeout) {
 
         chMtxLock(&serial_mutex);
         if (timeout)
-            res = sdReadTimeout(wifi_SD, (uint8_t*)response_body, out.length, MS2ST(80));
+            res = sdReadTimeout(wifi_SD, (uint8_t*)response_body, out.length, MS2ST(5));
         else
             res = sdRead(wifi_SD, (uint8_t*)response_body, out.length);
         chMtxUnlock(&serial_mutex);
@@ -103,8 +104,18 @@ wifi_response_header get_response(int timeout) {
         DEBUG("body laps -> %d", ST2MS(chVTTimeElapsedSinceX(start)));
         #endif
 
-        if (res != out.length)
+        if (res != out.length) {
             DEBUG("length %i (expected %i)", res, out.length);
+            eventflags_t flags = wifi_SD->event.es_next->el_flags;
+            for (int i = 0; i < res; i++)
+                DEBUG("%i -> %i",i, response_body[i]);
+            chThdSleepMilliseconds(100);
+            DEBUG("Flags: %x (error %i)", flags, flags & (SD_FRAMING_ERROR | SD_OVERRUN_ERROR | SD_NOISE_ERROR | SD_PARITY_ERROR));
+            chThdSleepMilliseconds(100);
+            while (1) {
+                out.length = res;
+            }
+        }
     } else {
         if (!end)
             end = 1;
@@ -114,7 +125,8 @@ wifi_response_header get_response(int timeout) {
         }
         chprintf((BaseSequentialStream*)&SDU1, "Nothing to read\r\n");
     }
-    response_body[out.length] = '\0';
+    out.length -= 2; // Remove the 'END OF FRAME' characters
+    response_body[out.length] = '\0'; // Allow this buffer to be used as a string.
     return out;
 }
 
@@ -137,8 +149,8 @@ void read(wifi_connection conn, int size) {
     int_to_char(tmp, size);
     strcat((char*)serial_tx_buffer, tmp);
     length += strlen(tmp);
-    strcat((char*)serial_tx_buffer, "\n\r");
-    length += strlen("\n\r");
+    strcat((char*)serial_tx_buffer, "\r\n");
+    length += strlen("\r\n");
 
     // Actually send the request.
     chMtxLock(&serial_mutex);
@@ -156,8 +168,8 @@ void read_music(char* path) {
     length += strlen(address);
     strcat((char*)serial_tx_buffer, path);
     length += strlen(path);
-    strcat((char*)serial_tx_buffer, "\n");
-    length += strlen("\n");
+    strcat((char*)serial_tx_buffer, "\r\n");
+    length += strlen("\r\n");
 
     // Actually send the request
     chMtxLock(&serial_mutex);
@@ -165,7 +177,7 @@ void read_music(char* path) {
     chMtxUnlock(&serial_mutex);
 
     // Read the response code
-    wifi_response_header out = get_response(true);
+    wifi_response_header out = get_response(false);
     if (out.error == 1) {
         DEBUG("Error (code: %i)\r\n", out.error_code);
         DEBUG("Body: %s", response_body);
@@ -187,8 +199,8 @@ void send_cmd(char* cmd) {
     int length = 0;
     strcpy((char*)serial_tx_buffer, cmd);
     length += strlen(cmd);
-    strcat((char*)serial_tx_buffer, "\n");
-    length += strlen("\n");
+    strcat((char*)serial_tx_buffer, "\r\n");
+    length += strlen("\r\n");
 
     chMtxLock(&serial_mutex);
     SEND_DATA(serial_tx_buffer, length);
