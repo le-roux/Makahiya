@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                       09:21 PM Tuesday, January 10, 2017
+                       04:32 PM Thursday, January 12, 2017
                    Job Name: E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb
 
 
@@ -112,7 +112,7 @@ Version:  01.01.00
                                      NetLoad
                                      -------
 
-                       09:21 PM Tuesday, January 10, 2017
+                       04:32 PM Thursday, January 12, 2017
                    Job Name: E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb
 
 

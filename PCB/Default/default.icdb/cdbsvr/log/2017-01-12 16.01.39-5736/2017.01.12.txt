@@ -1,0 +1,250 @@
+[2017.01.12 16:01:39] [0000m.00s.093ms] [0] WELCOME
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] iCDB Server ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] Base flow version [7.9.4]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] UPDATE Install Info, GBS Install Id [41702], UPDATE Name [Expedition Enterprise Flow - Update 6 for DC7.9.5]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] Machine [WIN10]  User [root]  PID [5736]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] Operating system [Microsoft Business Edition, 64-bit (build 9200)]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] Current working dir [E:\2017\MAKAHIYA\PCB\PCB]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] PATH [C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\xe\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Users\root\AppData\Local\Microsoft\WindowsApps;]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] SDD_HOME [C:\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] SDD_PLATFORM [win32]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] WDIR [C:\Users\root\Documents\WDIR;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] Local iCDB working dir [C:\Users\root\Documents\WDIR\iCDB] on file system [NTFS]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] S: Config file name [ServerWG.cfg]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [2] S: Loading config files
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] Config file [E:\2017\MAKAHIYA\PCB\Default\default.icdb\cdbsvr\ServerWG.cfg] not found
+[2017.01.12 16:01:39] [0000m.00s.109ms] [1] Config: Non-default value [System.SingleUserMode] = [no]
+[2017.01.12 16:01:39] [0000m.00s.109ms] [3] S: Config loaded
+[2017.01.12 16:01:39] [0000m.00s.187ms] [0] S: Project path [E:\2017\MAKAHIYA\PCB\Default\default.icdb] on file system [VBoxSharedFolderFS]
+[2017.01.12 16:01:39] [0000m.00s.187ms] [0] S: Project global path [\\vboxsrv\elecinf344\2017\MAKAHIYA\PCB\Default\default.icdb] on file system [UNKNOWN]
+[2017.01.12 16:01:39] [0000m.00s.187ms] [0] S: Project file (.prj) path [\\vboxsrv\elecinf344\2017\MAKAHIYA\PCB\Makahiya.prj] on file system [UNKNOWN]
+[2017.01.12 16:01:39] [0000m.00s.187ms] [0] S: Project file (.prj) local path [E:\2017\MAKAHIYA\PCB\Makahiya.prj] on file system [VBoxSharedFolderFS]
+[2017.01.12 16:01:39] [0000m.00s.187ms] [1] S: WARNING: Database auto-repair support DISABLED
+[2017.01.12 16:01:39] [0000m.00s.187ms] [0] S: Multi-user mode (config)
+[2017.01.12 16:01:39] [0000m.00s.187ms] [0] S: Event polling mode autodetection
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] S: Started up automatically by iCDB Client: WIN10:root:6060
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] S: Auto close mode
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] S: Database ID [8e30-aab1-335e-61e7-25a9-7787-5a97-7850-fc3c-3bf8-e806-e5f5]
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] PathTranslator: BEGIN dumping
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] PathTranslator: Local -> global path prefix list
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] PathTranslator: [E:\] -> [\\vboxsrv\elecinf344\]
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] PathTranslator: [F:\] -> [\\vboxsrv\mentor\]
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] PathTranslator: [G:\] -> [\\vboxsrv\proj101\]
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] PathTranslator: Global -> local path prefix list
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] PathTranslator: [\\vboxsrv\elecinf344\] -> [E:\]
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] PathTranslator: [\\vboxsrv\proj101\] -> [G:\]
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] PathTranslator: [\\vboxsrv\mentor\] -> [F:\]
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] PathTranslator: END dumping
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] S: START
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] S: Server startup lock file created
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] S: Listening for client connections on port [10000]
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] S: Server network ID [WIN10:10.0.2.15,WIN10:10000]
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] S: Server GUID [bc82-e03d-f16c-ad6b-35a9-7788-5a97-7850-372c-3bf8-e806-e5f5]
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] S: Project GUID [8e30-aab1-335e-61e7-25a9-7787-5a97-7850-fc3c-3bf8-e806-e5f5]
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] S: Wrote data to server address file
+[2017.01.12 16:01:39] [0000m.00s.203ms] [0] S: Server startup lock file removed
+[2017.01.12 16:01:39] [0000m.00s.203ms] [1] ProjectBackupManager: Setting project file (.prj) path: [E:\2017\MAKAHIYA\PCB\Makahiya.prj]
+[2017.01.12 16:01:39] [0000m.00s.344ms] [0] S: Plugins loaded: [PIM] [ENetGen70] 
+[2017.01.12 16:01:39] [0000m.00s.344ms] [0] S: Local disc access time: 24 us
+[2017.01.12 16:01:39] [0000m.00s.344ms] [0] S: File server access time: 433 us
+[2017.01.12 16:01:39] [0000m.00s.344ms] [0] S: Server will not release in-memory storage after read (memory usage overhead) - for better performance
+[2017.01.12 16:01:39] [0000m.00s.344ms] [0] Single file [E:\2017\MAKAHIYA\PCB\Default\default.icdb\icdb.dat] size [162160 (158.4 kB)]
+[2017.01.12 16:01:39] [0000m.00s.344ms] [1] Single file [E:\2017\MAKAHIYA\PCB\Default\default.icdb\icdb.dat] opened in read-write mode
+[2017.01.12 16:01:39] [0000m.00s.344ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2017.01.12 16:01:39] [0000m.00s.344ms] [0] Database GUARD OK: [162160]
+[2017.01.12 16:01:39] [0000m.00s.344ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2017.01.12 16:01:39] [0000m.00s.344ms] [0] Database GUARD OK: [162160]
+[2017.01.12 16:01:39] [0000m.00s.344ms] [0] SingleFile: [9026-5d32-76fb-cf2e] SFI version check [1009] [1009]
+[2017.01.12 16:01:39] [0000m.00s.375ms] [0] SingleFile: [9026-5d32-76fb-cf2e] Database SFI header has been read in [33ms 464us]
+[2017.01.12 16:01:39] [0000m.00s.390ms] [0] iCDB Server PI: Server & plugin session [3458]
+[2017.01.12 16:01:39] [0000m.00s.390ms] [0] iCDB Server PI: Opening database [E:\2017\MAKAHIYA\PCB\Default\default.icdb]
+[2017.01.12 16:01:39] [0000m.00s.390ms] [0] iCDB Server PI: Database [E:\2017\MAKAHIYA\PCB\Default\default.icdb] opened
+[2017.01.12 16:01:39] [0000m.00s.438ms] [0] iCDB Database: Checking existence of constraint definitions
+[2017.01.12 16:01:39] [0000m.00s.438ms] [0] iCDB Database: Checking constraint definitions version
+[2017.01.12 16:01:39] [0000m.00s.469ms] [0] iCDB Database: Creating database content backup before upgrade
+[2017.01.12 16:01:39] [0000m.00s.469ms] [1] iCDB Storage Server: Database backup: ProjectPath[E:\2017\MAKAHIYA\PCB\Default\default.icdb]
+[2017.01.12 16:01:39] [0000m.00s.500ms] [0] iCDB Storage Server Backup Thread: Database backup: BackupPath[E:\2017\MAKAHIYA\PCB\Default\default.icdb\cdbback\2017-01-12 16.01.39-5736.zip]
+[2017.01.12 16:01:39] [0000m.00s.531ms] [0] iCDB Storage Server Backup Thread: Backup database DONE: Result[ Succeeded[TRUE]] BackupPath[E:\2017\MAKAHIYA\PCB\Default\default.icdb\cdbback\2017-01-12 16.01.39-5736.zip]
+[2017.01.12 16:01:39] [0000m.00s.531ms] [0] iCDB Database: Database content backed up to [E:\2017\MAKAHIYA\PCB\Default\default.icdb\cdbback\2017-01-12 16.01.39-5736.zip] of size [262 779 bytes (256.6 kB)]  in [58ms 302us]
+[2017.01.12 16:01:39] [0000m.00s.531ms] [0] iCDB Database: Upgrading constraint definitions from version [ce_ee.cns=7.10.24;user.cns=d492-f1b8-a4a5-c728-c3d8-bc71-4d8b-c750-7d5c-3bf8-e806-e5f5]
+[2017.01.12 16:01:39] [0000m.00s.547ms] [0] iCDB Database: Loading snapshot [1:DCDV] version [2709]
+[2017.01.12 16:01:39] [0000m.00s.563ms] [0] iCDB Database: Snapshot [1:DCDV] loaded in [13ms 492us]
+[2017.01.12 16:01:39] [0000m.00s.563ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [1:DCDV]
+[2017.01.12 16:01:39] [0000m.00s.563ms] [0] iCDB Database: Constraint definitions for snapshot [1:DCDV] upgraded in [2ms 692us]
+[2017.01.12 16:01:39] [0000m.00s.563ms] [0] iCDB Database: Saving snapshot [1:DCDV]
+[2017.01.12 16:01:39] [0000m.00s.563ms] [0] iCDB Database: Snapshot [1:DCDV] saved in [65us]
+[2017.01.12 16:01:39] [0000m.00s.563ms] [1] CORE: Applying a fix no 110 stage [fsAtlasLoaded] to atlas [E:\2017\MAKAHIYA\PCB\Default\default.icdb\s1\cdbcmps\dxdatl]
+[2017.01.12 16:01:39] [0000m.00s.563ms] [1] CORE: Fix: cleared overlapping drawing order!
+[2017.01.12 16:01:39] [0000m.00s.563ms] [1] CORE: Atlas fixed stage [fsAtlasLoaded] successfully [E:\2017\MAKAHIYA\PCB\Default\default.icdb\s1\cdbcmps\dxdatl]
+[2017.01.12 16:01:39] [0000m.00s.593ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [E:\2017\MAKAHIYA\PCB\Default\default.icdb\s1\cdbcatlg\catlgatl.v] - auto-saving it
+[2017.01.12 16:01:39] [0000m.00s.593ms] [0] iCDB Database: Loading snapshot [2:PCB_Layout_Temp] version [2709]
+[2017.01.12 16:01:39] [0000m.00s.609ms] [0] iCDB Database: Snapshot [2:PCB_Layout_Temp] loaded in [7ms 275us]
+[2017.01.12 16:01:39] [0000m.00s.609ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [2:PCB_Layout_Temp]
+[2017.01.12 16:01:39] [0000m.00s.609ms] [0] iCDB Database: Constraint definitions for snapshot [2:PCB_Layout_Temp] upgraded in [2ms 850us]
+[2017.01.12 16:01:39] [0000m.00s.609ms] [0] iCDB Database: Saving snapshot [2:PCB_Layout_Temp]
+[2017.01.12 16:01:39] [0000m.00s.609ms] [0] iCDB Database: Snapshot [2:PCB_Layout_Temp] saved in [53us]
+[2017.01.12 16:01:39] [0000m.00s.624ms] [0] iCDB Database: Loading snapshot [3:PCB] version [2709]
+[2017.01.12 16:01:39] [0000m.00s.640ms] [0] iCDB Database: Snapshot [3:PCB] loaded in [6ms 721us]
+[2017.01.12 16:01:39] [0000m.00s.640ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [3:PCB]
+[2017.01.12 16:01:39] [0000m.00s.640ms] [0] iCDB Database: Constraint definitions for snapshot [3:PCB] upgraded in [2ms 752us]
+[2017.01.12 16:01:39] [0000m.00s.640ms] [0] iCDB Database: Saving snapshot [3:PCB]
+[2017.01.12 16:01:39] [0000m.00s.640ms] [0] iCDB Database: Snapshot [3:PCB] saved in [59us]
+[2017.01.12 16:01:39] [0000m.00s.671ms] [0] iCDB Database: Loading snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE] version [2709]
+[2017.01.12 16:01:39] [0000m.00s.671ms] [0] iCDB Database: Snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE] loaded in [2ms 451us]
+[2017.01.12 16:01:39] [0000m.00s.671ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE]
+[2017.01.12 16:01:39] [0000m.00s.671ms] [0] iCDB Database: Constraint definitions for snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE] upgraded in [198us]
+[2017.01.12 16:01:39] [0000m.00s.671ms] [0] iCDB Database: Saving snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE]
+[2017.01.12 16:01:39] [0000m.00s.671ms] [0] iCDB Database: Snapshot [4:DCDV_INST_PROP_TEMPORARY_STORAGE] saved in [22us]
+[2017.01.12 16:01:39] [0000m.00s.671ms] [0] iCDB Database: Loading snapshot [5:RefSync] version [2709]
+[2017.01.12 16:01:39] [0000m.00s.687ms] [0] iCDB Database: Snapshot [5:RefSync] loaded in [10ms 956us]
+[2017.01.12 16:01:39] [0000m.00s.687ms] [0] iCDB Database: Upgrading constraint definitions for snapshot [5:RefSync]
+[2017.01.12 16:01:39] [0000m.00s.687ms] [0] iCDB Database: Constraint definitions for snapshot [5:RefSync] upgraded in [2ms 688us]
+[2017.01.12 16:01:39] [0000m.00s.687ms] [0] iCDB Database: Saving snapshot [5:RefSync]
+[2017.01.12 16:01:39] [0000m.00s.687ms] [0] iCDB Database: Snapshot [5:RefSync] saved in [53us]
+[2017.01.12 16:01:39] [0000m.00s.687ms] [1] CORE: Applying a fix no 110 stage [fsAtlasLoaded] to atlas [E:\2017\MAKAHIYA\PCB\Default\default.icdb\s5\cdbcmps\dxdatl]
+[2017.01.12 16:01:39] [0000m.00s.687ms] [1] CORE: Fix: cleared overlapping drawing order!
+[2017.01.12 16:01:39] [0000m.00s.687ms] [1] CORE: Atlas fixed stage [fsAtlasLoaded] successfully [E:\2017\MAKAHIYA\PCB\Default\default.icdb\s5\cdbcmps\dxdatl]
+[2017.01.12 16:01:39] [0000m.00s.718ms] [1] iCDB Storage Server: WARNING: Unloading CHANGED file [E:\2017\MAKAHIYA\PCB\Default\default.icdb\s5\cdbcatlg\catlgatl.v] - auto-saving it
+[2017.01.12 16:01:39] [0000m.00s.718ms] [0] iCDB Database: Constraint definitions upgraded to version [ce_ee.cns=7.10.24;user.cns=7573-d5ca-bf3a-0058-16e5-4076-6e54-0750-322c-3bf8-e806-e5f5]
+[2017.01.12 16:01:39] [0000m.00s.749ms] [0] iCDB Server PI: Initializing plugins
+[2017.01.12 16:01:39] [0000m.00s.749ms] [0] iCDB Server PI: Plugins initialized
+[2017.01.12 16:01:39] [0000m.00s.749ms] [0] S: iCDB database loaded
+[2017.01.12 16:01:40] [0000m.01s.171ms] [1] PrjBackupMgr: Successfully created Project Backup [E:\2017\MAKAHIYA\PCB\Default\ProjectBackup\backups\2017-01-12 16.01.39 - consDefUpgr.zip] with GUID [1dbb-a144-604b-f946-35a9-7788-5a97-7850-372c-3bf8-e806-e5f5]
+[2017.01.12 16:01:40] [0000m.01s.171ms] [0] PrjBackupMgr: Removing excessive backup:  BackupGUID[89c2-03b7-fa60-adfc-be96-4480-f964-4850-7feb-3bf8-e806-e5f5] CreationTime[Sunday, December 04, 2016 19:09:31] Type[ConsDefUpgrade] Creator[iCDB Server (2016-12-04 20.09.30-1692)] ApplicationName[iCDB Server (2016-12-04 20.09.30-1692)] UserName[root] MachineName[WIN10] Description[Before constraint definitions upgrade from version:\n    ce_ee.cns=7.10.24;user.cns=b83f-5623-433f-8ba7-b0d3-ff70-1d3f-f750-68fb-38d7-a6d6-f38b\nto version:\n    ce_ee.cns=7.10.24;user.cns=d492-f1b8-a4a5-c728-c3d8-bc71-4d8b-c750-7d5c-3bf8-e806-e5f5\nof the same flow install:\n    Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5\n    Flow Id: EE7.9.5; EE 7.9.5\n    GBS Install Id: 30163; 30120; 45618\n    iCDB GBS Build Id: 689985\n    iCDB Version: 2709] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[Default\default.icdb\cdbsvr\dbupgrade\2016-12-04 20.09.30-1692\2016.12.04.upgrade.txt] BackupFilePath[E:\2017\MAKAHIYA\PCB\Default\ProjectBackup\backups\2016-12-04 20.09.31 - consDefUpgr.zip] BackupFileSize[786672] Persistent[FALSE]
+[2017.01.12 16:01:40] [0000m.01s.171ms] [0] PrjBackupMgr: Project Backup file [E:\2017\MAKAHIYA\PCB\Default\ProjectBackup\backups\2016-12-04 20.09.31 - consDefUpgr.zip] with GUID [89c2-03b7-fa60-adfc-be96-4480-f964-4850-7feb-3bf8-e806-e5f5] removed
+[2017.01.12 16:01:40] [0000m.01s.171ms] [1] PrjBackupMgr: Migrated iCDB content backup file [E:\2017\MAKAHIYA\PCB\Default\default.icdb\cdbback\2017-01-12 16.01.39-5736.zip] removed
+[2017.01.12 16:01:40] [0000m.01s.171ms] [0] S: Starting threads
+[2017.01.12 16:01:40] [0000m.01s.171ms] [0] BT: Listening for broadcast messages on port [10000]
+[2017.01.12 16:01:40] [0000m.01s.171ms] [1] CMT: There are no clients - waiting [10 seconds]
+[2017.01.12 16:01:40] [0000m.01s.171ms] [0] IT: Session [3459] for host [WIN10] user [root] with process ID [6060] created
+[2017.01.12 16:01:40] [0000m.01s.171ms] [1] SC[3459]: Registered sub-client [Expedition PCB_253843] with ID [1] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:01:40] [0000m.01s.249ms] [1] SC[3459]: Registered sub-client [EEVM] with ID [2] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:01:40] [0000m.01s.281ms] [1] CMT: There are [1] clients now: 3459
+[2017.01.12 16:01:40] [0000m.01s.357ms] [1] SC[3459]: UnRegistered sub-client [EEVM] with ID [2] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:01:41] [0000m.02s.920ms] [1] SC[3459]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:02:12] [0000m.33s.575ms] [0] DFAMT: File server access time: 651 us
+[2017.01.12 16:03:59] [0002m.20s.605ms] [0] IT: Session [3460] for host [WIN10] user [root] with process ID [1428] created
+[2017.01.12 16:03:59] [0002m.20s.605ms] [1] SC[3460]: Registered sub-client [DCDV] with ID [1] for session ID [3460] host [WIN10] user [root] process ID [1428]
+[2017.01.12 16:03:59] [0002m.20s.605ms] [1] SC[3460]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3460] host [WIN10] user [root] process ID [1428]
+[2017.01.12 16:03:59] [0002m.20s.684ms] [1] CMT: There are [2] clients now: 3459, 3460
+[2017.01.12 16:03:59] [0002m.20s.684ms] [1] CMT: Removed client [3460]
+[2017.01.12 16:03:59] [0002m.20s.684ms] [1] CMT: There are [1] clients now: 3459
+[2017.01.12 16:04:00] [0002m.21s.168ms] [0] IT: Session [3461] for host [WIN10] user [root] with process ID [1428] created
+[2017.01.12 16:04:00] [0002m.21s.168ms] [1] SC[3461]: Registered sub-client [DCDV] with ID [1] for session ID [3461] host [WIN10] user [root] process ID [1428]
+[2017.01.12 16:04:00] [0002m.21s.183ms] [1] SC[3461]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3461] host [WIN10] user [root] process ID [1428]
+[2017.01.12 16:04:00] [0002m.21s.262ms] [1] CMT: There are [2] clients now: 3459, 3461
+[2017.01.12 16:04:00] [0002m.21s.262ms] [1] CMT: Removed client [3461]
+[2017.01.12 16:04:00] [0002m.21s.262ms] [1] CMT: There are [1] clients now: 3459
+[2017.01.12 16:04:01] [0002m.21s.947ms] [0] IT: Session [3462] for host [WIN10] user [root] with process ID [1428] created
+[2017.01.12 16:04:01] [0002m.21s.947ms] [1] SC[3462]: Registered sub-client [DCDV] with ID [1] for session ID [3462] host [WIN10] user [root] process ID [1428]
+[2017.01.12 16:04:01] [0002m.22s.025ms] [1] CMT: There are [2] clients now: 3459, 3462
+[2017.01.12 16:04:15] [0002m.36s.917ms] [1] PrjBackupMgr: Successfully created Project Backup [E:\2017\MAKAHIYA\PCB\Default\ProjectBackup\backups\2017-01-12 16.04.15 - auto.zip] with GUID [ce52-0b18-0419-d87d-fea9-7784-fa97-7850-79db-3bf8-e806-e5f5]
+[2017.01.12 16:04:15] [0002m.36s.917ms] [0] PrjBackupMgr: Removing excessive backup:  BackupGUID[e564-4c8e-7291-91e1-8127-548d-1275-4850-3ecb-3bf8-e806-e5f5] CreationTime[Monday, December 05, 2016 13:56:40] Type[Autosave] Creator[iCDB Server (2016-12-05 14.54.05-4148)] ApplicationName[iCDB Server (2016-12-05 14.54.05-4148)] UserName[root] MachineName[WIN10] Description[Autosave] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[] BackupFilePath[E:\2017\MAKAHIYA\PCB\Default\ProjectBackup\backups\2016-12-05 14.56.40 - auto.zip] BackupFileSize[1198961] Persistent[FALSE]
+[2017.01.12 16:04:15] [0002m.36s.917ms] [0] PrjBackupMgr: Project Backup file [E:\2017\MAKAHIYA\PCB\Default\ProjectBackup\backups\2016-12-05 14.56.40 - auto.zip] with GUID [e564-4c8e-7291-91e1-8127-548d-1275-4850-3ecb-3bf8-e806-e5f5] removed
+[2017.01.12 16:04:15] [0002m.36s.917ms] [0] PrjBackupEngine: Successfully created backup:  BackupGUID[ce52-0b18-0419-d87d-fea9-7784-fa97-7850-79db-3bf8-e806-e5f5] CreationTime[Thursday, January 12, 2017 15:04:15] Type[Autosave] Creator[iCDB Server (2017-01-12 16.01.39-5736)] ApplicationName[iCDB Server (2017-01-12 16.01.39-5736)] UserName[root] MachineName[WIN10] Description[Autosave] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 6 for DC7.9.5; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 41702; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[] BackupFilePath[E:\2017\MAKAHIYA\PCB\Default\ProjectBackup\backups\2017-01-12 16.04.15 - auto.zip] BackupFileSize[1241461] Persistent[FALSE]
+[2017.01.12 16:31:35] [0029m.56s.092ms] [0] IT: Session [3463] for host [WIN10] user [root] with process ID [2984] created
+[2017.01.12 16:31:35] [0029m.56s.092ms] [1] SC[3463]: Registered sub-client [ICDBC] with ID [1] for session ID [3463] host [WIN10] user [root] process ID [2984]
+[2017.01.12 16:31:35] [0029m.56s.111ms] [1] SC[3463]: Registered sub-client [ConsReuseSubClient] with ID [2] for session ID [3463] host [WIN10] user [root] process ID [2984]
+[2017.01.12 16:31:35] [0029m.56s.186ms] [1] CMT: There are [3] clients now: 3459, 3462, 3463
+[2017.01.12 16:31:42] [0030m.03s.038ms] [1] SC[3463]: UnRegistered sub-client [ICDBC] with ID [1] for session ID [3463] host [WIN10] user [root] process ID [2984]
+[2017.01.12 16:31:42] [0030m.03s.053ms] [1] SC[3463]: UnRegistered sub-client [ConsReuseSubClient] with ID [2] for session ID [3463] host [WIN10] user [root] process ID [2984]
+[2017.01.12 16:31:42] [0030m.03s.148ms] [1] CMT: Removed client [3463]
+[2017.01.12 16:31:42] [0030m.03s.148ms] [1] CMT: There are [2] clients now: 3459, 3462
+[2017.01.12 16:31:42] [0030m.03s.786ms] [0] IT: Session [3464] for host [WIN10] user [root] with process ID [5488] created
+[2017.01.12 16:31:42] [0030m.03s.786ms] [1] SC[3464]: Registered sub-client [Packager_2057750] with ID [1] for session ID [3464] host [WIN10] user [root] process ID [5488]
+[2017.01.12 16:31:42] [0030m.03s.801ms] [1] CMT: There are [3] clients now: 3459, 3462, 3464
+[2017.01.12 16:31:43] [0030m.04s.208ms] [1] SC[3464]: UnRegistered sub-client [Packager_2057750] with ID [1] for session ID [3464] host [WIN10] user [root] process ID [5488]
+[2017.01.12 16:31:43] [0030m.04s.239ms] [1] CMT: Removed client [3464]
+[2017.01.12 16:31:43] [0030m.04s.239ms] [1] CMT: There are [2] clients now: 3459, 3462
+[2017.01.12 16:31:56] [0030m.17s.647ms] [1] SC[3459]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:31:56] [0030m.17s.678ms] [1] SC[3459]: Registered sub-client [EEVM_EEVM_1699880] with ID [4] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:31:56] [0030m.17s.678ms] [1] SC[3459]: UnRegistered sub-client [EEVM_EEVM_1699880] with ID [4] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:31:57] [0030m.18s.130ms] [1] SC[3459]: Registered sub-client [JobPrefsDBPI_2072109] with ID [5] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:31:57] [0030m.18s.146ms] [1] SC[3459]: UnRegistered sub-client [JobPrefsDBPI_2072109] with ID [5] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:31:58] [0030m.19s.783ms] [1] SC[3459]: Registered sub-client [JobPrefsDBPI_2073765] with ID [6] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:31:58] [0030m.19s.807ms] [1] SC[3459]: UnRegistered sub-client [JobPrefsDBPI_2073765] with ID [6] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:31:59] [0030m.20s.072ms] [0] IT: Session [3465] for host [WIN10] user [root] with process ID [5808] created
+[2017.01.12 16:31:59] [0030m.20s.073ms] [1] SC[3465]: Registered sub-client [Packager_2074031] with ID [1] for session ID [3465] host [WIN10] user [root] process ID [5808]
+[2017.01.12 16:31:59] [0030m.20s.112ms] [1] CMT: There are [3] clients now: 3459, 3462, 3465
+[2017.01.12 16:31:59] [0030m.20s.501ms] [1] SC[3465]: UnRegistered sub-client [Packager_2074031] with ID [1] for session ID [3465] host [WIN10] user [root] process ID [5808]
+[2017.01.12 16:31:59] [0030m.20s.548ms] [1] CMT: Removed client [3465]
+[2017.01.12 16:31:59] [0030m.20s.548ms] [1] CMT: There are [2] clients now: 3459, 3462
+[2017.01.12 16:32:00] [0030m.21s.249ms] [0] IT: Session [3466] for host [WIN10] user [root] with process ID [1300] created
+[2017.01.12 16:32:00] [0030m.21s.249ms] [1] SC[3466]: Registered sub-client [Expedition_2075218] with ID [1] for session ID [3466] host [WIN10] user [root] process ID [1300]
+[2017.01.12 16:32:00] [0030m.21s.312ms] [1] CMT: There are [3] clients now: 3459, 3462, 3466
+[2017.01.12 16:32:00] [0030m.21s.312ms] [1] SC[3466]: UnRegistered sub-client [Expedition_2075218] with ID [1] for session ID [3466] host [WIN10] user [root] process ID [1300]
+[2017.01.12 16:32:00] [0030m.21s.421ms] [1] CMT: Removed client [3466]
+[2017.01.12 16:32:00] [0030m.21s.421ms] [1] CMT: There are [2] clients now: 3459, 3462
+[2017.01.12 16:32:01] [0030m.22s.109ms] [0] IT: Session [3467] for host [WIN10] user [root] with process ID [1300] created
+[2017.01.12 16:32:01] [0030m.22s.109ms] [1] SC[3467]: Registered sub-client [JobPrefsDBPI_2076078] with ID [1] for session ID [3467] host [WIN10] user [root] process ID [1300]
+[2017.01.12 16:32:01] [0030m.22s.140ms] [1] SC[3467]: UnRegistered sub-client [JobPrefsDBPI_2076078] with ID [1] for session ID [3467] host [WIN10] user [root] process ID [1300]
+[2017.01.12 16:32:01] [0030m.22s.187ms] [1] CMT: There are [3] clients now: 3459, 3462, 3467
+[2017.01.12 16:32:01] [0030m.22s.187ms] [1] CMT: Removed client [3467]
+[2017.01.12 16:32:01] [0030m.22s.187ms] [1] CMT: There are [2] clients now: 3459, 3462
+[2017.01.12 16:32:01] [0030m.22s.749ms] [0] IT: Session [3468] for host [WIN10] user [root] with process ID [1300] created
+[2017.01.12 16:32:01] [0030m.22s.749ms] [1] SC[3468]: Registered sub-client [JobPrefsDBPI_2076718] with ID [1] for session ID [3468] host [WIN10] user [root] process ID [1300]
+[2017.01.12 16:32:01] [0030m.22s.843ms] [1] CMT: There are [3] clients now: 3459, 3462, 3468
+[2017.01.12 16:32:02] [0030m.23s.013ms] [1] SC[3468]: UnRegistered sub-client [JobPrefsDBPI_2076718] with ID [1] for session ID [3468] host [WIN10] user [root] process ID [1300]
+[2017.01.12 16:32:02] [0030m.23s.060ms] [1] CMT: Removed client [3468]
+[2017.01.12 16:32:02] [0030m.23s.060ms] [1] CMT: There are [2] clients now: 3459, 3462
+[2017.01.12 16:32:02] [0030m.23s.825ms] [0] IT: Session [3469] for host [WIN10] user [root] with process ID [5168] created
+[2017.01.12 16:32:02] [0030m.23s.825ms] [1] SC[3469]: Registered sub-client [JobPrefsDBPI_2077796] with ID [1] for session ID [3469] host [WIN10] user [root] process ID [5168]
+[2017.01.12 16:32:02] [0030m.23s.857ms] [1] CMT: There are [3] clients now: 3459, 3462, 3469
+[2017.01.12 16:32:02] [0030m.23s.888ms] [1] SC[3469]: Registered sub-client [Expedition_2077875] with ID [2] for session ID [3469] host [WIN10] user [root] process ID [5168]
+[2017.01.12 16:32:02] [0030m.23s.935ms] [1] SC[3469]: UnRegistered sub-client [JobPrefsDBPI_2077796] with ID [1] for session ID [3469] host [WIN10] user [root] process ID [5168]
+[2017.01.12 16:32:03] [0030m.23s.997ms] [1] SC[3469]: UnRegistered sub-client [Expedition_2077875] with ID [2] for session ID [3469] host [WIN10] user [root] process ID [5168]
+[2017.01.12 16:32:03] [0030m.24s.076ms] [1] CMT: Removed client [3469]
+[2017.01.12 16:32:03] [0030m.24s.076ms] [1] CMT: There are [2] clients now: 3459, 3462
+[2017.01.12 16:32:03] [0030m.24s.607ms] [1] SC[3459]: Registered sub-client [EEVM_EEVM_147647628] with ID [7] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:32:03] [0030m.24s.622ms] [1] SC[3459]: UnRegistered sub-client [EEVM_EEVM_147647628] with ID [7] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:32:03] [0030m.24s.622ms] [1] SC[3459]: Registered sub-client [EEVM_EEVM_147647628] with ID [8] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:32:03] [0030m.24s.622ms] [1] SC[3459]: UnRegistered sub-client [EEVM_EEVM_147647628] with ID [8] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:32:03] [0030m.24s.622ms] [1] SC[3459]: Registered sub-client [EEVM_EEVM_379849708] with ID [9] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:32:03] [0030m.24s.638ms] [1] SC[3459]: UnRegistered sub-client [EEVM_EEVM_379849708] with ID [9] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:32:03] [0030m.24s.808ms] [1] SC[3459]: UnRegistered sub-client [Expedition PCB_253843] with ID [1] for session ID [3459] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:32:03] [0030m.24s.839ms] [1] CMT: Removed client [3459]
+[2017.01.12 16:32:03] [0030m.24s.839ms] [1] CMT: There are [1] clients now: 3462
+[2017.01.12 16:32:04] [0030m.25s.199ms] [0] IT: Session [3470] for host [WIN10] user [root] with process ID [6060] created
+[2017.01.12 16:32:04] [0030m.25s.214ms] [1] SC[3470]: Registered sub-client [Expedition PCB_2079171] with ID [1] for session ID [3470] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:32:04] [0030m.25s.277ms] [1] CMT: There are [2] clients now: 3462, 3470
+[2017.01.12 16:32:07] [0030m.28s.798ms] [1] SC[3470]: Registered sub-client [JobPrefsDBPI_2082781] with ID [2] for session ID [3470] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:32:07] [0030m.28s.814ms] [1] SC[3470]: UnRegistered sub-client [JobPrefsDBPI_2082781] with ID [2] for session ID [3470] host [WIN10] user [root] process ID [6060]
+[2017.01.12 16:32:07] [0030m.28s.845ms] [1] SC[3470]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3470] host [WIN10] user [root] process ID [6060]
+[2017.01.12 17:01:31] [0059m.52s.660ms] [1] SC[3470]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3470] host [WIN10] user [root] process ID [6060]
+[2017.01.12 17:01:31] [0059m.52s.894ms] [1] SC[3470]: UnRegistered sub-client [Expedition PCB_2079171] with ID [1] for session ID [3470] host [WIN10] user [root] process ID [6060]
+[2017.01.12 17:01:32] [0059m.52s.956ms] [1] CMT: Removed client [3470]
+[2017.01.12 17:01:32] [0059m.52s.956ms] [1] CMT: There are [1] clients now: 3462
+[2017.01.12 17:01:32] [0059m.53s.611ms] [1] SC[3462]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3462] host [WIN10] user [root] process ID [1428]
+[2017.01.12 17:01:32] [0059m.53s.643ms] [1] CMT: Removed client [3462]
+[2017.01.12 17:01:32] [0059m.53s.643ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2017.01.12 17:01:34] [0059m.54s.970ms] [0] CMT: Starting server auto-close
+[2017.01.12 17:01:34] [0059m.55s.080ms] [0] S: Closing server
+[2017.01.12 17:01:34] [0059m.55s.236ms] [0] iCDB Server PI: Closing plugins
+[2017.01.12 17:01:34] [0059m.55s.236ms] [0] iCDB Server PI: Plugins closed
+[2017.01.12 17:01:34] [0059m.55s.236ms] [0] iCDB Server PI: Unloading database
+[2017.01.12 17:01:34] [0059m.55s.236ms] [0] iCDB Server PI: Saving storage
+[2017.01.12 17:01:34] [0059m.55s.236ms] [0] iCDB Server PI: Closing database
+[2017.01.12 17:01:34] [0059m.55s.236ms] [1] iCDB Server PI: Stats: Database defragmentation: max[3] avg[1] holes[18%] data[90%]
+[2017.01.12 17:01:34] [0059m.55s.236ms] [1] iCDB Server PI: Stats: Database file size [229672 (224.3 kB)]
+[2017.01.12 17:01:34] [0059m.55s.252ms] [1] iCDB Server PI: WARNING: Database needs defragmentation!
+[2017.01.12 17:01:34] [0059m.55s.267ms] [0] iCDB Server PI: Database closed
+[2017.01.12 17:01:34] [0059m.55s.267ms] [0] iCDB Server PI: Defragmenting database
+[2017.01.12 17:01:34] [0059m.55s.267ms] [0] iCDB Server PI: Creating database [E:\2017\MAKAHIYA\PCB\Default\default.icdb] backup to file [E:\2017\MAKAHIYA\PCB\Default\default.icdb\cdbback\2017-01-12 17.01.34-5736-d.zip]
+[2017.01.12 17:01:34] [0059m.55s.718ms] [0] iCDB Server PI: Database backup: DONE
+[2017.01.12 17:01:34] [0059m.55s.734ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2017.01.12 17:01:34] [0059m.55s.734ms] [0] Database GUARD OK: [229672]
+[2017.01.12 17:01:34] [0059m.55s.734ms] [0] SingleFile: [9026-5d32-76fb-cf2e] SFI version check [1009] [1009]
+[2017.01.12 17:01:34] [0059m.55s.765ms] [0] SingleFile: [9026-5d32-76fb-cf2e] Database SFI header has been read in [38ms 772us]
+[2017.01.12 17:01:34] [0059m.55s.921ms] [1] iCDB Server PI: Stats: Database file sizes: before[229672 (224.3 kB)], after[162608 (158.8 kB)], gain[67064 (65.5 kB)]
+[2017.01.12 17:01:34] [0059m.55s.937ms] [0] Single file [E:\2017\MAKAHIYA\PCB\Default\default.icdb\icdb.dat] closed with size [162608 (158.8 kB)]
+[2017.01.12 17:01:34] [0059m.55s.937ms] [0] iCDB Server PI: Database defragmentation completed successfully
+[2017.01.12 17:01:34] [0059m.55s.937ms] [1] BackupTransaction: Removing database backup [E:\2017\MAKAHIYA\PCB\Default\default.icdb\cdbback\2017-01-12 17.01.34-5736-d.zip]
+[2017.01.12 17:01:34] [0059m.55s.937ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [308770] ticks
+[2017.01.12 17:01:34] [0059m.55s.937ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [109277] microseconds
+[2017.01.12 17:01:34] [0059m.55s.937ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [490]
+[2017.01.12 17:01:34] [0059m.55s.937ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [4483] commands per second
+[2017.01.12 17:01:35] [0059m.56s.172ms] [0] S: STOP
