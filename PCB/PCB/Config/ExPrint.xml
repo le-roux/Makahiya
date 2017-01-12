@@ -22,7 +22,7 @@
             <Name>Documents.Properties.GenerateSingleFile</Name>
             <ScreenName>Generate single file</ScreenName>
             <ShortDescription>Switch to generate single file output </ShortDescription>
-            <Value DataType="Boolean">false</Value>
+            <Value DataType="Boolean">no</Value>
           </Parameter>
         </Parameters>
       </ParameterGroup>

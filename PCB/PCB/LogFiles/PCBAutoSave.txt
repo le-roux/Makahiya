@@ -2,15 +2,13 @@
                                 Autosave Log File
                                 -----------------
 
-                       04:32 PM Thursday, January 12, 2017
+                       07:28 PM Thursday, January 12, 2017
                    Job Name: E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb
 
-Autosave pending at 16:37:04 Thu  Attempting...
-Autosave completed successfully.  16:37:04 Thu
 
                                Autosave log closed
                                -------------------
 
-                       05:01 PM Thursday, January 12, 2017
+                       07:31 PM Thursday, January 12, 2017
                    Job Name: E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb
 

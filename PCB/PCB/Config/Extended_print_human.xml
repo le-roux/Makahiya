@@ -65,7 +65,7 @@
                 <Name>EzPrint.Output.OutputPaper.UseSourcePageSize</Name>
                 <ScreenName>UseSourcePageSize</ScreenName>
                 <ShortDescription>This is for using the source document page sizes for printing</ShortDescription>
-                <Value DataType="Boolean">no</Value>
+                <Value DataType="Boolean">false</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Output.OutputPaper.GenerateMultipleFiles</Name>
@@ -219,7 +219,7 @@
                 <Name>EzPrint.DocumentManager.Document.CompanyName</Name>
                 <ScreenName>Company name</ScreenName>
                 <ShortDescription>Company name</ShortDescription>
-                <Value DataType="String">Footbar</Value>
+                <Value DataType="String"></Value>
               </Parameter>
             </Parameters>
           </ParameterGroup>
@@ -296,7 +296,7 @@
                 <Name>EzPrint.Graphics.Transformations.MaintainAspectRatio</Name>
                 <ScreenName>MaintainAspectRatio</ScreenName>
                 <ShortDescription>This is for maintaining AspectRatio of the contents in the output file</ShortDescription>
-                <Value DataType="Boolean">true</Value>
+                <Value DataType="Boolean">yes</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Graphics.Transformations.OpacityMode</Name>
@@ -404,7 +404,7 @@
                 <Name>EzPrint.Graphics.FalconStrokeFonts.ReplaceTtfForStroke</Name>
                 <ScreenName>Use true type</ScreenName>
                 <ShortDescription>Use true type replacement for stroke fonts</ShortDescription>
-                <Value DataType="Boolean">no</Value>
+                <Value DataType="Boolean">false</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Graphics.FalconStrokeFonts.StrokeFont</Name>
@@ -448,7 +448,7 @@
                 <Name>EzPrint.ExportToPDF.PDFOutput.EmbedFonts</Name>
                 <ScreenName>Embed fonts</ScreenName>
                 <ShortDescription>Allows embedding of fonts in generated PDF file. If disabled,fonts cannot be embedded in generated PDF file.</ShortDescription>
-                <Value DataType="Boolean">no</Value>
+                <Value DataType="Boolean">false</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.ExportToPDF.PDFOutput.EnableLayers</Name>
@@ -466,25 +466,25 @@
                 <Name>EzPrint.ExportToPDF.PDFOutput.TextSelection</Name>
                 <ScreenName>TextSelection</ScreenName>
                 <ShortDescription>TextSelection</ShortDescription>
-                <Value DataType="Boolean">true</Value>
+                <Value DataType="Boolean">yes</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.ExportToPDF.PDFOutput.DocumentEditing</Name>
                 <ScreenName>DocumentEditing</ScreenName>
                 <ShortDescription>DocumentEditing</ShortDescription>
-                <Value DataType="Boolean">true</Value>
+                <Value DataType="Boolean">yes</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.ExportToPDF.PDFOutput.EnablePrinting</Name>
                 <ScreenName>EnablePrinting</ScreenName>
                 <ShortDescription>EnablePrinting</ShortDescription>
-                <Value DataType="Boolean">yes</Value>
+                <Value DataType="Boolean">true</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.ExportToPDF.PDFOutput.InvokeViewer</Name>
                 <ScreenName>Invoke Viewer </ScreenName>
                 <ShortDescription>On Setting this, PDF output will be viewed in viewer</ShortDescription>
-                <Value DataType="Boolean">true</Value>
+                <Value DataType="Boolean">yes</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.ExportToPDF.PDFOutput.Transparency</Name>
@@ -516,7 +516,7 @@
                 <Name>EzPrint.Print.Options.UseForms</Name>
                 <ScreenName>Generate Postscript with forms</ScreenName>
                 <ShortDescription>Extended Print can generate postscript output with or without forms. When forms are enabled, file size on disk and spooling time will be less but it requires good amount of memory on printer or plotter. When forms are disabled, file size on disk and spooling time will be more but it requires small memory on printer or plotter.</ShortDescription>
-                <Value DataType="Boolean">no</Value>
+                <Value DataType="Boolean">false</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Print.Options.DuplexPrinting</Name>

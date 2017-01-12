@@ -41,7 +41,7 @@
                 <Name>EzPrint.Output.OutputPaper.Autofit</Name>
                 <ScreenName>Autofit</ScreenName>
                 <ShortDescription>This is for Automatic fitting the contents in the output file</ShortDescription>
-                <Value DataType="Boolean">no</Value>
+                <Value DataType="Boolean">false</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Output.OutputPaper.ColorPrinting</Name>
@@ -71,7 +71,7 @@
                 <Name>EzPrint.Output.OutputPaper.UseSourcePageSize</Name>
                 <ScreenName>UseSourcePageSize</ScreenName>
                 <ShortDescription>This is for using the source document page sizes for printing</ShortDescription>
-                <Value DataType="Boolean">false</Value>
+                <Value DataType="Boolean">no</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Output.OutputPaper.GenerateMultipleFiles</Name>
@@ -158,7 +158,7 @@
                 <Name>EzPrint.DocumentManager.Footer.Enable</Name>
                 <ScreenName>Enable footer</ScreenName>
                 <ShortDescription>Enable footer generation in output</ShortDescription>
-                <Value DataType="Boolean">true</Value>
+                <Value DataType="Boolean">yes</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.DocumentManager.Footer.Left</Name>
@@ -219,7 +219,7 @@
                 <Name>EzPrint.DocumentManager.Document.CompanyName</Name>
                 <ScreenName>Company name</ScreenName>
                 <ShortDescription>Company name</ShortDescription>
-                <Value DataType="String">Footbar</Value>
+                <Value DataType="String"></Value>
               </Parameter>
             </Parameters>
           </ParameterGroup>
@@ -416,7 +416,7 @@
                 <Name>EzPrint.Graphics.FalconStrokeFonts.ReplaceTtfForMgcStroke</Name>
                 <ScreenName>Use true type font</ScreenName>
                 <ShortDescription>true type font replacement for mgc v1 stroke fonts</ShortDescription>
-                <Value DataType="Boolean">false</Value>
+                <Value DataType="Boolean">no</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Graphics.FalconStrokeFonts.MgcStrokeFont</Name>
@@ -510,13 +510,13 @@
                 <Name>EzPrint.Print.Options.ManualFeed</Name>
                 <ScreenName>Manual Feed</ScreenName>
                 <ShortDescription>Selecting this option will prompt user to manually feed the paper into printer</ShortDescription>
-                <Value DataType="Boolean">no</Value>
+                <Value DataType="Boolean">false</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Print.Options.UseForms</Name>
                 <ScreenName>Generate Postscript with forms</ScreenName>
                 <ShortDescription>Extended Print can generate postscript output with or without forms. When forms are enabled, file size on disk and spooling time will be less but it requires good amount of memory on printer or plotter. When forms are disabled, file size on disk and spooling time will be more but it requires small memory on printer or plotter.</ShortDescription>
-                <Value DataType="Boolean">no</Value>
+                <Value DataType="Boolean">false</Value>
               </Parameter>
               <Parameter>
                 <Name>EzPrint.Print.Options.DuplexPrinting</Name>

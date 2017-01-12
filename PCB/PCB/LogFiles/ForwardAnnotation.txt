@@ -2,7 +2,7 @@
                                Forward Annotation
                                ------------------
 
-                       04:32 PM Thursday, January 12, 2017
+                       06:47 PM Thursday, January 12, 2017
                    Job Name: E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb
 
 
@@ -70,6 +70,150 @@ Version:  01.01.00
 
      Checking for value differences between symbol properties and PartsDB properties
 
+    WARNING: Block Schematic1, Page 3, Symbol XCMP644:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 10-0077
+      Symbol Property: Value = 4,7nF
+     PartsDB Property: Value = 4.7nF
+
+    WARNING: Block Schematic1, Page 3, Symbol XCMP643:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 10-0077
+      Symbol Property: Value = 4,7nF
+     PartsDB Property: Value = 4.7nF
+
+    WARNING: Block Schematic1, Page 1, Symbol XCMP480:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 10-0077
+      Symbol Property: Value = 4,7nF
+     PartsDB Property: Value = 4.7nF
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP634:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0016
+      Symbol Property: Value = 3,6 
+     PartsDB Property: Value = 3.6 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP637:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0015
+      Symbol Property: Value = 1,8 
+     PartsDB Property: Value = 1.8 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP636:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0015
+      Symbol Property: Value = 1,8 
+     PartsDB Property: Value = 1.8 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP635:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0015
+      Symbol Property: Value = 1,8 
+     PartsDB Property: Value = 1.8 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP559:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2 
+     PartsDB Property: Value = 2.2 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP558:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2 
+     PartsDB Property: Value = 2.2 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP553:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2 
+     PartsDB Property: Value = 2.2 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP552:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2 
+     PartsDB Property: Value = 2.2 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP547:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2 
+     PartsDB Property: Value = 2.2 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP546:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2 
+     PartsDB Property: Value = 2.2 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP541:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2 
+     PartsDB Property: Value = 2.2 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP540:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2 
+     PartsDB Property: Value = 2.2 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP515:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2 
+     PartsDB Property: Value = 2.2 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP514:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2 
+     PartsDB Property: Value = 2.2 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP566:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 00-0022
+      Symbol Property: Value = 6,8 
+     PartsDB Property: Value = 6.8 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP565:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 00-0022
+      Symbol Property: Value = 6,8 
+     PartsDB Property: Value = 6.8 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP564:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 00-0022
+      Symbol Property: Value = 6,8 
+     PartsDB Property: Value = 6.8 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP563:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 00-0022
+      Symbol Property: Value = 6,8 
+     PartsDB Property: Value = 6.8 
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP562:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 00-0022
+      Symbol Property: Value = 6,8 
+     PartsDB Property: Value = 6.8 
+
+    WARNING: Block Schematic1, Page 1, Symbol XCMP687:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 10-0112
+      Symbol Property: Value = 2,2uF
+     PartsDB Property: Value = 2.2uF
+
+    WARNING: Block Schematic1, Page 1, Symbol XCMP686:
+	Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 10-0112
+      Symbol Property: Value = 2,2uF
+     PartsDB Property: Value = 2.2uF
+
      Checking the validity of the packaging of prepackaged schematic
       symbols.  Only the first error in symbols having the same
       Reference Designator will be reported.
@@ -107,12 +251,13 @@ Version:  01.01.00
      The Logic DataBase has been compiled from the Schematic Design.
       Use Netload to bring the Component Design into sync.
 
-     Logic Data has been successfully Compiled with no errors or warnings.
-      Please proceed with your component Design.
+     This Logic Data was Compiled with 24 warnings.
+      Erroneous results may occur if not fixed.
+
                                      NetLoad
                                      -------
 
-                       04:32 PM Thursday, January 12, 2017
+                       06:47 PM Thursday, January 12, 2017
                    Job Name: E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb
 
 
@@ -125,7 +270,15 @@ Version:  02.11.12
 	Schematic reference designator changes will be forward annotated.
 
 
-     Netload completed successfully with 0 warning(s).
+     WARNING:  The "L0805" cell used by "D2" in the Layout is not
+      valid for a "20-0004" Part Number.
+     INFO: Cell "L0805" is being replaced by cell "D0805".
+
+     WARNING:  The "L0805" cell used by "D1" in the Layout is not
+      valid for a "20-0003" Part Number.
+     INFO: Cell "L0805" is being replaced by cell "D0805".
+
+     Netload completed successfully with 2 warning(s).
      
      Back Annotating...
 
