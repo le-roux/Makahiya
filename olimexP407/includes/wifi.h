@@ -16,6 +16,7 @@
  *      - -2:
  *      - -3: header not fully received.
  *      - -4: nothing to read two sequential times -> stop the audio.
+ *      - -5: safemode
  * @var length : number of bytes actually sent by the Wi-Fi module in the
  *      following payload.
  */
@@ -29,6 +30,7 @@ typedef struct wifi_response_header {
 
 #define HEADER_TIMEOUT -3
 #define NO_DATA        -4
+#define SAFEMODE       -5
 
 /**
  * Aggregates all the information about a running connection.
@@ -127,5 +129,7 @@ void send_cmd(char* cmd);
 void wifi_write(wifi_connection* conn, int length, uint8_t* buffer);
 
 void clear_body(void);
+
+int exit_safe_mode(void);
 
 #endif

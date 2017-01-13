@@ -30,14 +30,18 @@ static MUTEX_DECL(serial_mutex);
 /***********************/
 wifi_response_header parse_response_code(void) {
     wifi_response_header out;
-    if (response_code[0] != 'R') {
+    if (response_code[0] == 'R') {
+        out.error = response_code[1] != '0';
+        out.error_code = response_code[1] - '0';
+    } else if (response_code[0] == 'S') {
+        out.error = 1;
+        out.error_code = SAFEMODE;
+    } else {
         out.error = 1;
         out.error_code = HEADER_ERROR;
         out.length = 0;
         return out;
     }
-    out.error = response_code[1] != '0';
-    out.error_code = response_code[1] - '0';
     out.length = atoi(&response_code[2]);
     return out;
 }
@@ -221,6 +225,20 @@ void wifi_write(wifi_connection* conn, int length, uint8_t* buffer) {
 void clear_body(void) {
     for (int i = 0; i < WIFI_BUFFER_SIZE; i++)
         response_body[i] = '\0';
+}
+
+int exit_safe_mode(void) {
+    wifi_response_header header;
+    send_cmd("get system.safemode.status");
+    header = get_response(FALSE);
+    if (header.error && header.error_code == SAFEMODE) {
+        send_cmd("faults_reset");
+        header = get_response(false);
+        send_cmd("reboot");
+        header = get_response(false);
+        return 0;
+    }
+    return 1;
 }
 
 #endif // TEST

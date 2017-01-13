@@ -51,13 +51,22 @@ void read_music_shell(BaseSequentialStream* chp, int argc, char* argv[]) {
     UNUSED(argc);
     UNUSED(argv);
 
-    read_music("/static/music.mp3");
+    read_music("/file.mp3");
+}
+
+void quit_safe(BaseSequentialStream* chp, int argc, char* argv[]) {
+    UNUSED(chp);
+    UNUSED(argc);
+    UNUSED(argv);
+
+    (void)exit_safe_mode();
 }
 
 const ShellCommand commands[] = {
   {"servo", servo},
   {"send", send},
   {"read_music", read_music_shell},
+  {"quit_safe", quit_safe},
   {NULL, NULL}
 };
 

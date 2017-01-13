@@ -200,6 +200,7 @@ THD_FUNCTION(wifi_audio_in, arg) {
             out.error_code = 0;
 
             while(bytes_nb < INPUT_BUFFER_SIZE * 2) {
+                DEBUG("enter while");
                 while (bytes_consumed >= out.length) { // Need to perform a new read.
                     bytes_consumed = 0;
                     read_buffer(audio_conn);
@@ -246,8 +247,26 @@ THD_FUNCTION(wifi_audio_in, arg) {
 THD_FUNCTION(flash_audio_in, arg) {
     UNUSED(arg);
     int16_t* cur_pos = &_binary_music_mp3_start;
+    int8_t* write_pos = (int8_t*)&_binary_music_mp3_start;
     void* inbuf;
 
+    wifi_response_header out = {0, 0, 0};
+    chBSemWait(&audio_bsem);
+    /*while (write_pos + WIFI_BUFFER_SIZE < (int8_t*)&_binary_music_mp3_end) {
+        // Download file
+        out.length = 0;
+        while (out.length == 0) { // Need to perform a new read.
+            read_buffer(audio_conn);
+            out = get_response(true);
+            if (out.error && out.error_code == NO_DATA)
+                break;
+        }
+        DEBUG("memcpy %i %x", out.length, write_pos);
+        memcpy(write_pos, response_body, out.length);
+        write_pos += out.length;
+    }*/
+
+    cur_pos = &_binary_music_mp3_start;
     chBSemSignal(&decode_bsem);
     // Init the free input buffers mailbox
     for (int i = 0; i < INPUT_BUFFERS_NB; i++)
