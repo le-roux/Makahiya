@@ -13,9 +13,17 @@
 
 extern uint32_t* buffer;
 
-extern int16_t _binary_pic_mp3_start;
-extern int16_t _binary_pic_mp3_size;
-extern int16_t _binary_pic_mp3_end;
+/**
+ * Titre:  Daybreak feat Henk
+ * Auteur: Jens East
+ * Source: http://www.jenseast.com
+ * Licence: https://creativecommons.org/licenses/by/3.0/deed.fr
+ * Téléchargement (10MB): http://www.auboutdufil.com/index.php?id=483
+ * Partial extract only
+ */
+extern int16_t _binary_music_mp3_start;
+extern int16_t _binary_music_mp3_size;
+extern int16_t _binary_music_mp3_end;
 
 /**
  * Size of a sample in bytes
@@ -71,6 +79,7 @@ void sound_set_pins(void);
 void i2s_cb(I2SDriver* driver, size_t offset, size_t n);
 
 extern THD_FUNCTION(audio_playback, arg);
-extern THD_FUNCTION(audio_in, arg);
+extern THD_FUNCTION(wifi_audio_in, arg);
+extern THD_FUNCTION(flash_audio_in, arg);
 
 #endif // SOUND_H

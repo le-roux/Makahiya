@@ -27,6 +27,7 @@ MAILBOX_DECL(free_input_box, free_input_buffers, INPUT_BUFFERS_NB);
 
 static SEMAPHORE_DECL(audio_sem, 2);
 BSEMAPHORE_DECL(audio_bsem, true);
+BSEMAPHORE_DECL(decode_bsem, true);
 
 static int8_t working_buffer[WORKING_BUFFER_SIZE];
 
@@ -77,6 +78,8 @@ THD_FUNCTION(audio_playback, arg) {
         (void)chMBPost(&free_box, (msg_t)&buf[i], TIME_INFINITE);
 
     decoder = MP3InitDecoder();
+
+    chBSemWait(&decode_bsem);
 
     while (TRUE) {
         // Get a free buffer (for output)
@@ -169,10 +172,10 @@ THD_FUNCTION(audio_playback, arg) {
 
 THD_WORKING_AREA(wa_audio_in, 2048);
 
-THD_FUNCTION(audio_in, arg) {
+THD_FUNCTION(wifi_audio_in, arg) {
     UNUSED(arg);
     void* inbuf;
-    int bytes_nb, bytes_consumed, copy;
+    int bytes_nb, bytes_consumed, copy, initial_buffering = 0;
     wifi_response_header out;
 
     // Init the free input buffers mailbox
@@ -206,10 +209,14 @@ THD_FUNCTION(audio_in, arg) {
                 }
                 if (out.error && out.error_code == NO_DATA)
                     break;
-                // copy = min(out.length - bytes_consumed, 2 * INPUT_BUFFER_SIZE - bytes_nb)
+                /**
+                 * copy = min(out.length - bytes_consumed,
+                 *            2 * INPUT_BUFFER_SIZE - bytes_nb)
+                 */
                 copy = out.length - bytes_consumed;
                 if (2 * INPUT_BUFFER_SIZE - bytes_nb < copy)
-                    copy = 2 * INPUT_BUFFER_SIZE - bytes_nb; // Don't copy more than remaining space.
+                    copy = 2 * INPUT_BUFFER_SIZE - bytes_nb;
+                // Don't copy more than remaining space.
                 memcpy(&((int8_t*)inbuf)[bytes_nb], &response_body[bytes_consumed], copy);
                 bytes_nb += copy;
                 bytes_consumed += copy;
@@ -223,6 +230,9 @@ THD_FUNCTION(audio_in, arg) {
             DEBUG("post");
 
             chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
+            initial_buffering++;
+            if (initial_buffering == 20)
+                chBSemSignal(&decode_bsem);
         }
         if (out.error && out.error_code == NO_DATA)
             break;
@@ -231,4 +241,27 @@ THD_FUNCTION(audio_in, arg) {
         chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
     }
 
+}
+
+THD_FUNCTION(flash_audio_in, arg) {
+    UNUSED(arg);
+    int16_t* cur_pos = &_binary_music_mp3_start;
+    void* inbuf;
+
+    chBSemSignal(&decode_bsem);
+    // Init the free input buffers mailbox
+    for (int i = 0; i < INPUT_BUFFERS_NB; i++)
+        chMBPost(&free_input_box, (msg_t)&in_buf[i], TIME_INFINITE);
+
+    while (cur_pos + INPUT_BUFFER_SIZE < &_binary_music_mp3_end) {
+        if (chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE) != MSG_OK)
+            break;
+        memcpy(inbuf, cur_pos, 2 * INPUT_BUFFER_SIZE);
+        cur_pos += INPUT_BUFFER_SIZE;
+
+        chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
+    }
+    chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
+    inbuf = NULL;
+    chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
 }
