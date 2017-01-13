@@ -1,7 +1,8 @@
 <metal:macro use-macro="master">
     <metal:slot fill-slot="body">
         <div class="container-fluid">
-            <h1 class="sub-header">LED HP</h1>
+            <h1 class="sub-header" text-align="center">${title}</h1>
+            <h2 class="sub-header">LED HP</h2>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <tr>
@@ -23,7 +24,7 @@
                     </tr>
                 </table>
 
-                <h1 class="sub-header">LED M</h1>
+                <h2 class="sub-header">LED M</h2>
                 <table class="table table-striped">
                     <tr>
                         <th>LED ID</th>

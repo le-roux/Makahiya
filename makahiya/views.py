@@ -238,6 +238,12 @@ async def board(request):
 			else:
 				res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ') is disconnected'
 
+		else:
+			if plants.registered(plant_id):
+				res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ')'
+			else:
+				res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ') is disconnected'
+
 		# Get the leds colors
 		led = SQLsession.query(Leds).filter_by(plant_id=int(plant_id), led_id=0).one()
 		res['ledHP_R'] = led.R
@@ -256,7 +262,6 @@ async def board(request):
 
 		res['ledM'] = ledM
 		res['ran'] = led_range
-		res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ')'
 
 		return res
 	else:
