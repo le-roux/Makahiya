@@ -272,6 +272,10 @@ def subscribe(request):
 	if request.method == 'POST': # Access via the form
 		request.session['status'] = 1
 		request.session['plant_id'] = request.POST.getone('plant_id')
+		try:
+			plant_id = int(request.session['plant_id'])
+		except ValueError:
+			return HTTPBadRequest('The plant id must be a number')
 		return HTTPFound(login_url(request, 'google'))
 
 	# Access to this page via a GET request
