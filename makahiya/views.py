@@ -186,51 +186,57 @@ async def board(request):
 
 		if request.method == 'POST':
 			log.debug('POST: ' + str(request.POST))
+			
+			if (plants.registered(plant_id)):
 
-			# Modification on the powerful led
-			if 'ledH_R' in request.POST:
-				# TODO change filter for leds
-				ledHP = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
-				try:
-					ledHP.R = int(request.POST.getone('ledH_R'))
-				except ValueError as e:
-					pass
-				try:
-					ledHP.G = int(request.POST.getone('ledH_G'))
-				except ValueError as e:
-					pass
-				try:
-					ledHP.B = int(request.POST.getone('ledH_B'))
-				except ValueError as e:
-					pass
-				try:
-					ledHP.W = int(request.POST.getone('ledH_W'))
-				except ValueError as e:
-					pass
-				SQLsession.commit()
-				msg = 'led 0 ' + str(ledHP.R) + ' ' + str(ledHP.G) + ' ' + str(ledHP.B) + ' ' + str(ledHP.W)
-				await send_to_socket(plants, plant_id, msg)
-
-			# Modification on a medium led
-			for i in range(1,6):
-				if 'ledM' + str(i) + 'R' in request.POST:
-					led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
+				# Modification on the powerful led
+				if 'ledH_R' in request.POST:
+					# TODO change filter for leds
+					ledHP = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
 					try:
-						led.R = int(request.POST.getone('ledM'+str(i)+'R'))
+						ledHP.R = int(request.POST.getone('ledH_R'))
 					except ValueError as e:
 						pass
 					try:
-						led.G = int(request.POST.getone('ledM'+str(i)+'G'))
+						ledHP.G = int(request.POST.getone('ledH_G'))
 					except ValueError as e:
 						pass
 					try:
-						led.B = int(request.POST.getone('ledM'+str(i)+'B'))
-						log.debug('led.b: ' + str(led.B))
+						ledHP.B = int(request.POST.getone('ledH_B'))
+					except ValueError as e:
+						pass
+					try:
+						ledHP.W = int(request.POST.getone('ledH_W'))
 					except ValueError as e:
 						pass
 					SQLsession.commit()
-					msg = 'led ' + str(i) + ' ' + str(led.R) + ' ' + str(led.G) + ' ' + str(led.B)
+					msg = 'led 0 ' + str(ledHP.R) + ' ' + str(ledHP.G) + ' ' + str(ledHP.B) + ' ' + str(ledHP.W)
 					await send_to_socket(plants, plant_id, msg)
+
+				# Modification on a medium led
+				for i in range(1,6):
+					if 'ledM' + str(i) + 'R' in request.POST:
+						led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
+						try:
+							led.R = int(request.POST.getone('ledM'+str(i)+'R'))
+						except ValueError as e:
+							pass
+						try:
+							led.G = int(request.POST.getone('ledM'+str(i)+'G'))
+						except ValueError as e:
+							pass
+						try:
+							led.B = int(request.POST.getone('ledM'+str(i)+'B'))
+							log.debug('led.b: ' + str(led.B))
+						except ValueError as e:
+							pass
+						SQLsession.commit()
+						msg = 'led ' + str(i) + ' ' + str(led.R) + ' ' + str(led.G) + ' ' + str(led.B)
+						await send_to_socket(plants, plant_id, msg)
+				res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ')'
+		
+			else:
+				res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ') is disconnected'
 
 		# Get the leds colors
 		led = SQLsession.query(Leds).filter_by(plant_id=int(plant_id), led_id=0).one()
