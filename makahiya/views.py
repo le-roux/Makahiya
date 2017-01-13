@@ -208,7 +208,7 @@ async def board(request):
 				except ValueError as e:
 					pass
 				SQLsession.commit()
-				msg = "hello world"
+				msg = 'led 0 ' + str(ledHP.R) + ' ' + str(ledHP.G) + ' ' + str(ledHP.B) + ' ' + str(ledHP.W)
 				await send_to_socket(plants, plant_id, msg)
 
 			# Modification on a medium led
@@ -229,7 +229,8 @@ async def board(request):
 					except ValueError as e:
 						pass
 					SQLsession.commit()
-					# TODO send values to the websocket
+					msg = 'led ' + str(i) + ' ' + str(led.R) + ' ' + str(led.G) + ' ' + str(led.B)
+					await send_to_socket(plants, plant_id, msg)
 
 		# Get the leds colors
 		led = SQLsession.query(Leds).filter_by(plant_id=int(plant_id), led_id=0).one()
