@@ -84,7 +84,7 @@ endif
 
 # Define project specific directories
 INCLUDES := ./includes
-RTT := ./RTT
+RTT := ./SEGGER_RTT
 SRC := ./src
 
 # Define project name here
