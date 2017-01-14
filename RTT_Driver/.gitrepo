@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/le-roux/RTT_ChibiOS.git
+	branch = master
+	commit = 9a7466bae465e03d9ea072ded1f958e97b24e569
+	parent = dba165b8d9dccaab78e08c3891f9cf9681514b22
+	cmdver = 0.3.0
