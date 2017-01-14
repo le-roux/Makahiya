@@ -16,6 +16,9 @@
 #include "wifi.h"
 #include "websocket.h"
 
+// Includes for RTT
+#include "SEGGER_RTT.h"
+
 /*
  * Entry point
  */
@@ -53,12 +56,8 @@ int main(void) {
     chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO + 1, audio_playback, NULL);
     chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 2, audio_in, NULL);
 
-    // Websocket thread
-    chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "42");
-
-    // Init the shell
-    shellInit();
-
+    // RTT related code
+    RTTObjectInit(&rtt_str, 0);
 
     // Init the shell
     shellInit();
@@ -69,7 +68,7 @@ int main(void) {
 
     // Loop forever.
     while (true) {
-        if (!shelltp & (SDU1.config->usbp->state == USB_ACTIVE))
+        if (!shelltp)
             shelltp = shellCreate(&shell_cfg1, SHELL_WA_SIZE, NORMALPRIO);
         else if (chThdTerminatedX(shelltp)) {
             chThdRelease(shelltp);

@@ -4,8 +4,10 @@
 #include "ch.h"
 #include "hal.h"
 #include "shell.h"
+#include "RTT_streams.h"
 
 extern thread_t* shelltp;
+extern RTTStream rtt_str;
 extern const ShellCommand commands[];
 extern const ShellConfig shell_cfg1;
 

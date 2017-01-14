@@ -84,6 +84,7 @@ endif
 
 # Define project specific directories
 INCLUDES := ./includes
+RTT := ./RTT
 SRC := ./src
 
 # Define project name here
@@ -124,7 +125,8 @@ CSRC = $(STARTUPSRC) \
 	   $(SRC)/main.c \
 	   $(SRC)/usbcfg.c $(SRC)/shell_user.c \
 	   $(SRC)/sound.c $(SRC)/serial_user.c $(SRC)/wifi.c $(SRC)/utils.c \
-	   $(SRC)/websocket.c
+	   $(SRC)/websocket.c $(RTT)/SEGGER_RTT.c $(RTT)/SEGGER_RTT_printf.c \
+	   $(RTT)/RTT_streams.c
 
 PCMSRC =
 MP3SRC =
@@ -159,7 +161,7 @@ ASMSRC = $(STARTUPASM) $(PORTASM) $(OSALASM)
 INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
          $(HALINC) $(PLATFORMINC) $(BOARDINC) $(TESTINC) \
          $(CHIBIOS)/os/hal/lib/streams $(CHIBIOS)/os/various \
-		 $(INCLUDES)
+		 $(INCLUDES) $(RTT)
 
 #
 # Project, sources and paths
