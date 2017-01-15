@@ -1,15 +1,12 @@
 SRC_DIR := ./src
 INC_DIR := ./includes
 OUTPUT_DIR := ./out
-HEADERS := $(INC_DIR)/capacitive_sensor.h $(INC_DIR)/utils.h
+HEADERS := $(INC_DIR)/capacitive_sensor.h $(INC_DIR)/fdc_utils.h
 
 CC := $(CCACHE) gcc
 CFLAGS := -Wall -Wextra -Werror -std=gnu99 -iquote $(INC_DIR)
 
-all: OUT main
-
-main: $(OUTPUT_DIR)/main.o $(OUTPUT_DIR)/capacitive_sensor.o
-	$(CC) $(CFLAGS) $^ -o $(OUTPUT_DIR)/$@
+all: OUT $(OUTPUT_DIR)/capacitive_sensor.o
 
 OUT:
 	-mkdir -p $(OUTPUT_DIR)

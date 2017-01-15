@@ -3,6 +3,7 @@
 #include "chprintf.h"
 #include "usbcfg.h"
 #include "utils.h"
+#include "capacitive_sensor.h"
 
 uint16_t config = CONFIG_RESERVED;
 uint16_t status;
@@ -75,10 +76,12 @@ i2cflags_t init_sensor(void) {
 THD_FUNCTION(fdc_int, arg) {
     UNUSED(arg);
     i2cflags_t status;
+    uint32_t value;
+    int count = 0;
     chprintf((BaseSequentialStream*)&SDU1, "Start fdc thread\r\n");
+    init(0);
     while(TRUE) {
         chBSemWait(&fdc_bsem);
-        chprintf((BaseSequentialStream*)&SDU1, "======FDC AWAKEN======\r\n");
         status = read_register(FDC1_ADDR, STATUS);
         if (status != I2C_NO_ERROR) {
             chprintf((BaseSequentialStream*)&SDU1, "error %i\r\n", (int)i2cGetErrors(&I2CD2));
@@ -88,9 +91,28 @@ THD_FUNCTION(fdc_int, arg) {
         status |= rx_buffer[0] << 8;
         status |= rx_buffer[1];
         if (status & DRDY) {
+            value = 0;
             status = read_register(FDC1_ADDR, DATA_MSB_CH0);
             if (status != MSG_OK)
                 continue;
+            else {
+                value |= rx_buffer[0] << 24;
+                value |= rx_buffer[1] << 16;
+            }
+            status = read_register(FDC1_ADDR, DATA_LSB_CH0);
+            if (status != MSG_OK)
+                continue;
+            else {
+                status |= rx_buffer[0] << 8;
+                status |= rx_buffer[1];
+                add_value(0, value);
+                count++;
+                if (count == BUFFER_SIZE)
+                    update_default_value(0);
+                if (count > BUFFER_SIZE)
+                    chprintf((BaseSequentialStream*)&SDU1, "sensor0: %i\r\n", detect_action(0));
+
+            }
             status = read_register(FDC1_ADDR, DATA_MSB_CH1);
             if (status != MSG_OK)
                 continue;

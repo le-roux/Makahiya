@@ -1,6 +1,9 @@
 #include "capacitive_sensor.h"
-#include "utils.h"
+#include "fdc_utils.h"
+
+#ifdef TEST
 #include "pthread.h"
+#endif // TEST
 
 /**
  * Array of the write indexes for the buffer.
@@ -32,15 +35,16 @@ static int status[SENSORS_NB];
  */
 static volatile uint32_t buffer[BUFFER_SIZE * SENSORS_NB];
 
-/**
- * __WARNING:__ This value is not normalized (by BUFFER_SIZE).
- */
+uint32_t average[SENSORS_NB];
+
 uint32_t default_value[SENSORS_NB];
 
 #if INT_DER_VERSION
 static int32_t integral[SENSORS_NB];
 static int32_t derivative[SENSORS_NB];
 #endif
+
+#ifdef TEST
 
 /**
  * The mutex used to protect the access to the buffer.
@@ -52,6 +56,7 @@ static pthread_mutex_t buffer_lock;
  */
 static pthread_mutex_t index_lock[SENSORS_NB];
 
+#endif // TEST
 /** @brief Returns 1 if a touch is being detected, 0 otherwise.
  *
  * @return
@@ -69,21 +74,31 @@ void init(int sensor_id) {
     status[sensor_id] = DEFAULT_STATE;
     #if INT_DER_VERSION
     integral[sensor_id] = 0;
-    #endif
+    #endif // INT_DER_VERSION
+    #ifdef TEST
     pthread_mutex_init(&buffer_lock, NULL);
     pthread_mutex_init(&(index_lock[sensor_id]), NULL);
+    #endif // TEST
 }
 
 void update_default_value(int sensor_id) {
+    #ifdef TEST
     pthread_mutex_lock(&(index_lock[sensor_id]));
+    #endif // TEST
     write_index[sensor_id] = 0;
+    #ifdef TEST
     pthread_mutex_unlock(&(index_lock[sensor_id]));
+    #endif // TEST
     default_value[sensor_id] = 0;
     int offset = sensor_id * BUFFER_SIZE;
+    #ifdef TEST
     pthread_mutex_lock(&buffer_lock);
+    #endif // TEST
     for (int i = 0; i < BUFFER_SIZE; i++)
         default_value[sensor_id] += buffer[offset + i];
+    #ifdef TEST
     pthread_mutex_unlock(&buffer_lock);
+    #endif // TEST
     average[sensor_id] = default_value[sensor_id];
 }
 
@@ -104,8 +119,10 @@ static uint8_t touch_left(int sensor_id) {
 void add_value(int sensor_id, uint32_t value) {
     int offset = sensor_id * BUFFER_SIZE;
 
+    #ifdef TEST
     pthread_mutex_lock(&(index_lock[sensor_id]));
     pthread_mutex_lock(&buffer_lock);
+    #endif // TEST
 
     // Update the average.
     average[sensor_id] -= buffer[offset + write_index[sensor_id]];
@@ -114,13 +131,18 @@ void add_value(int sensor_id, uint32_t value) {
     // Actually write the value in the buffer.
     buffer[offset + write_index[sensor_id]] = value;
 
+    #ifdef TEST
     pthread_mutex_unlock(&buffer_lock);
+    #endif // TEST
 
     // Update the write_index value.
     write_index[sensor_id]++;
     if (write_index[sensor_id] >= BUFFER_SIZE)
         write_index[sensor_id] = 0;
+
+    #ifdef TEST
     pthread_mutex_unlock(&(index_lock[sensor_id]));
+    #endif // TEST
 }
 
 reg_t linear_regression(int sensor_id) {
@@ -129,17 +151,23 @@ reg_t linear_regression(int sensor_id) {
     double var_x = 0, cov_xy = 0;
     reg_t ret;
     int offset = sensor_id * BUFFER_SIZE;
+    #ifdef TEST
     pthread_mutex_lock(&(index_lock[sensor_id]));
+    #endif // TEST
     int index = PREVIOUS_INDEX(write_index[sensor_id]);
+    #ifdef TEST
     pthread_mutex_unlock(&(index_lock[sensor_id]));
     pthread_mutex_lock(&buffer_lock);
+    #endif // TEST
     for (int i = REGRESSION_SIZE - 1; i >= 0; i--) {
         average_y += buffer[offset + index];
         var_x += i*i;
         cov_xy += i * buffer[offset + index];
         index = PREVIOUS_INDEX(index);
     }
+    #ifdef TEST
     pthread_mutex_unlock(&buffer_lock);
+    #endif // TEST
     average_y /= REGRESSION_SIZE;
     var_x /= REGRESSION_SIZE;
     var_x -= average_x*average_x;
@@ -204,9 +232,13 @@ int detect_action(int sensor_id) {
     // Default return value
     return 0;
 #else
+    #ifdef TEST
     pthread_mutex_lock(&(index_lock[sensor_id]));
+    #endif // TEST
     derivative[sensor_id] = buffer[write_index[sensor_id]] - buffer[PREVIOUS_INDEX(write_index[sensor_id])];
+    #ifdef TEST
     pthread_mutex_unlock(&(index_lock[sensor_id]));
+    #endif // TEST
     if (ABS(derivative[sensor_id]) > DERIVATIVE_THRESHOLD)
         integral[sensor_id] += derivative[sensor_id];
     if (integral[sensor_id] > INTEGRAL_THRESHOLD) {
@@ -224,11 +256,15 @@ int detect_action(int sensor_id) {
 }
 
 int32_t current_distance(int sensor_id) {
+    #ifdef TEST
     pthread_mutex_lock(&(index_lock[sensor_id]));
     pthread_mutex_lock(&buffer_lock);
+    #endif // TEST
     uint32_t value = buffer[sensor_id * BUFFER_SIZE
                             + PREVIOUS_INDEX(write_index[sensor_id])];
+    #ifdef TEST
     pthread_mutex_unlock(&buffer_lock);
     pthread_mutex_unlock(&(index_lock[sensor_id]));
+    #endif // TEST
     return (default_value[sensor_id]/BUFFER_SIZE - value);
 }

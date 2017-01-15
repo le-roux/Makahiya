@@ -52,8 +52,11 @@ typedef struct reg_t {
 /**
  * __WARNING__ This value is not normalized (by BUFFER_SIZE) !!
  */
-uint32_t average[SENSORS_NB];
+extern uint32_t average[SENSORS_NB];
 
+/**
+ * __WARNING__ This value is not normalized (by BUFFER_SIZE) !!
+ */
 extern uint32_t default_value[SENSORS_NB];
 
 /** @brief Init all the variables used in the touch detection algorithm.

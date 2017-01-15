@@ -103,7 +103,8 @@ LDSCRIPT= $(STARTUPLD)/STM32F407xG.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
-SRC = ./src
+SRC := ./src
+ALG := ../code
 CSRC = $(STARTUPSRC) \
        $(KERNSRC) \
        $(PORTSRC) \
@@ -120,7 +121,7 @@ CSRC = $(STARTUPSRC) \
        $(CHIBIOS)/os/various/shell.c \
 	   $(SRC)/main.c $(SRC)/i2c_user.c \
 	   $(SRC)/shell_user.c $(SRC)/usbcfg.c $(SRC)/pwm_user.c \
-	   $(SRC)/fdc2214.c $(SRC)/ext_user.c
+	   $(SRC)/fdc2214.c $(SRC)/ext_user.c $(ALG)/src/capacitive_sensor.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -153,7 +154,7 @@ INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
          $(HALINC) $(PLATFORMINC) $(BOARDINC) $(TESTINC) \
          $(LWINC) $(FATFSINC) \
          $(CHIBIOS)/os/hal/lib/streams $(CHIBIOS)/os/various \
-		 $(CHIBIOS)/../olimexE407/includes
+		 $(CHIBIOS)/../olimexE407/includes $(ALG)/includes
 
 #
 # Project, sources and paths
