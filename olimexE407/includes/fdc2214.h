@@ -80,6 +80,9 @@
 extern uint16_t config;
 extern uint16_t status;
 extern binary_semaphore_t fdc_bsem;
+extern int FDC_ADDR[2];
+extern int DATA_MSB[4];
+extern int DATA_LSB[4];
 extern THD_WORKING_AREA(fdc_wa, FDC_WA_SIZE);
 
 /*************************/

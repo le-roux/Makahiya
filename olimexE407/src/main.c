@@ -38,12 +38,12 @@ int main(void) {
     i2c_set_pins();
     i2cStart(&I2CD2, &i2c2_cfg);
     i2cflags_t status;
+    chThdSleepMilliseconds(1000);
     do {
         chThdSleepMilliseconds(100);
         status = init_sensor();
     } while (status != I2C_NO_ERROR);
 
-    //chThdSleepMilliseconds(1000);
     chThdCreateStatic(fdc_wa, sizeof(fdc_wa), NORMALPRIO + 2, fdc_int, NULL);
     extStart(&EXTD1, &ext_config);
 

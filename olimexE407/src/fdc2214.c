@@ -7,6 +7,9 @@
 
 uint16_t config = CONFIG_RESERVED;
 uint16_t status;
+int FDC_ADDR[2] = {FDC1_ADDR, FDC2_ADDR};
+int DATA_MSB[4] = {DATA_MSB_CH0, DATA_MSB_CH1, DATA_MSB_CH2, DATA_MSB_CH3};
+int DATA_LSB[4] = {DATA_LSB_CH0, DATA_LSB_CH1, DATA_LSB_CH2, DATA_LSB_CH3};
 
 THD_WORKING_AREA(fdc_wa, FDC_WA_SIZE);
 BSEMAPHORE_DECL(fdc_bsem, true);
@@ -73,11 +76,37 @@ i2cflags_t init_sensor(void) {
     return I2C_NO_ERROR;
 }
 
+static msg_t get_value(int slave_id, int sensor_id) {
+    static int count[2][4] = {{0, 0, 0, 0}, {0, 0, 0, 0}};
+    int value = 0;
+    if (read_register(FDC_ADDR[slave_id - 1], DATA_MSB[sensor_id]) != MSG_OK)
+        return MSG_RESET;
+    else
+        value = rx_buffer[0] << 24 | rx_buffer[1] << 16;
+    if (read_register(FDC_ADDR[slave_id - 1], DATA_LSB[sensor_id]) != MSG_OK)
+        return MSG_RESET;
+    else {
+        value |= rx_buffer[0] << 8 | rx_buffer[1];
+        add_value(0, value);
+        if (count[slave_id - 1][sensor_id] < BUFFER_SIZE)
+            count[slave_id - 1][sensor_id]++;
+        else if (count[slave_id - 1][sensor_id] == BUFFER_SIZE) {
+            update_default_value(0);
+            count[slave_id - 1][sensor_id]++;
+        }
+        else // count[slave_id][sensor_id] > BUFFER_SIZE
+            chprintf((BaseSequentialStream*)&SDU1,
+                "Slave %i Sensor %i: %i\r\n",
+                slave_id,
+                sensor_id,
+                detect_action(0));
+    }
+    return MSG_OK;
+}
+
 THD_FUNCTION(fdc_int, arg) {
     UNUSED(arg);
     i2cflags_t status;
-    uint32_t value;
-    int count = 0;
     chprintf((BaseSequentialStream*)&SDU1, "Start fdc thread\r\n");
     init(0);
     while(TRUE) {
@@ -87,40 +116,15 @@ THD_FUNCTION(fdc_int, arg) {
             chprintf((BaseSequentialStream*)&SDU1, "error %i\r\n", (int)i2cGetErrors(&I2CD2));
             continue;
         }
-        status = 0;
-        status |= rx_buffer[0] << 8;
-        status |= rx_buffer[1];
+        status = rx_buffer[0] << 8 | rx_buffer[1];
         if (status & DRDY) {
-            value = 0;
-            status = read_register(FDC1_ADDR, DATA_MSB_CH0);
-            if (status != MSG_OK)
+            if (get_value(1, 0) != MSG_OK)
                 continue;
-            else {
-                value |= rx_buffer[0] << 24;
-                value |= rx_buffer[1] << 16;
-            }
-            status = read_register(FDC1_ADDR, DATA_LSB_CH0);
-            if (status != MSG_OK)
+            if (get_value(1, 1) != MSG_OK)
                 continue;
-            else {
-                status |= rx_buffer[0] << 8;
-                status |= rx_buffer[1];
-                add_value(0, value);
-                count++;
-                if (count == BUFFER_SIZE)
-                    update_default_value(0);
-                if (count > BUFFER_SIZE)
-                    chprintf((BaseSequentialStream*)&SDU1, "sensor0: %i\r\n", detect_action(0));
-
-            }
-            status = read_register(FDC1_ADDR, DATA_MSB_CH1);
-            if (status != MSG_OK)
+            if (get_value(1, 2) != MSG_OK)
                 continue;
-            status = read_register(FDC1_ADDR, DATA_MSB_CH2);
-            if (status != MSG_OK)
-                continue;
-            status = read_register(FDC1_ADDR, DATA_MSB_CH3);
-            if (status != MSG_OK)
+            if (get_value(1, 3) != MSG_OK)
                 continue;
         }
     }
