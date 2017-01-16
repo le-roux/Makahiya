@@ -1,0 +1,56 @@
+<metal:macro use-macro='master'>
+    <metal:slot fill-slot='body'>
+        <div class='container-fluid'>
+            <h1 class='text-center'>Timer
+                <div tal:condition='activated' style='color:green'> (Activated)</div>
+                <div tal:condition='activated == False' style='color:red'> (Deactivated)</div>
+            </h1>
+
+            <form method='post' action='/${plant_id}/board/timer' class='table-responsive'>
+                <h2>Configuration</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <th tal:repeat="name ('Type', 'Hours', 'Minutes', 'Seconds')">
+                            ${name}
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type='radio' name='type' value='Absolute' checked>
+                                Absolute
+                            </input><br/>
+                            <input type='radio' name='type' value='Relative'>
+                                Relative
+                            </input>
+                        </td>
+                        <td>
+                            <input name='Hours' placeholder='Hours'
+                                type='number' min='0', max='24' value=${hours} required/>
+                        </td>
+                        <td>
+                            <input name='Minutes' placeholder='Minutes'
+                                type='number' min='0', max='60' value=${minutes} required/>
+                        </td>
+                        <td>
+                            <input name='Seconds' placeholder='Seconds'
+                                type='number' min='0', max='60' value=${seconds} required/>
+                        </td>
+                    </tr>
+                </table>
+                <h2>Actions</h2>
+                <input tal:condition='light == 1' type='checkbox' name='light' checked>Light</input>
+                <input tal:condition='light == 0' type='checkbox' name='light'>Light</input>
+                <br/>
+                <input tal:condition='sound == 1' type='checkbox' name='sound' checked>Sound</input>
+                <input tal:condition='sound == 0' type='checkbox' name='sound'>Sound</input>
+                <br/>
+
+                <input class='text-center btn btn-success' type='submit' value='Start'/>
+                <a tal:condition='activated' class='btn btn-danger'
+                        href='/${plant_id}/board/timer/deactivate'>
+                    Stop
+                </a>
+            </form>
+        </div>
+    </metal:slot>
+</metal:macro>

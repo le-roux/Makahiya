@@ -17,6 +17,7 @@ from .models import (
 	Session,
 	Leds,
 	Users,
+	Timers,
 	Base,
 	)
 
@@ -72,6 +73,9 @@ def main(argv=sys.argv):
 	# Fill the 'users' table with initial values.
 	user = Users(email='sylvain.leroux3@gmail.com', level=1, plant_id=0)
 	session.add(user)
+
+	timer = Timers(plant_id=0, activated=False, sound=0, light=0)
+	session.add(timer)
 
 	# Fill the 'leds' table with initial values.
 	for i in range(0, 6):

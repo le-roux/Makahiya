@@ -7,12 +7,15 @@ from pyramid.events import subscriber
 from pyramid.security import remember, forget
 from aiopyramid.config import CoroutineMapper
 import pyramid
-from .models import Session, Leds, Users, get_user_plant_id, get_user_level
+from .models import Session, Leds, Users, Timers, get_user_plant_id, get_user_level
 from velruse import login_url
 import logging
 import colander
 import deform.widget
 from .websockets import plants, send_to_socket
+import asyncio
+import datetime
+from .timer import clock
 log = logging.getLogger(__name__)
 
 @subscriber(IBeforeRender)
@@ -133,6 +136,7 @@ def login_callback(request):
 
 		# Create this user in the database
 		SQLsession.add(Users(email=email, level=2, plant_id=plant_id))
+		SQLSession.add(Timers(plant_id=plant_id, activated=False, sound=0, light=0))
 		for i in range(0,6):
 			SQLsession.add(Leds(R=0, G=0, B=0, W=0, plant_id=plant_id, led_id=i))
 		SQLsession.commit()
@@ -171,8 +175,8 @@ class BoardPage(object):
 	def reqts(self):
 		return self.led_form.get_widget_resources()
 
-@view_config(route_name='board', renderer='makahiya:templates/board.pt', permission='view', mapper=CoroutineMapper)
-async def board(request):
+@view_config(route_name='board_leds', renderer='makahiya:templates/board.pt', permission='view', mapper=CoroutineMapper)
+async def board_leds(request):
 	plant_id = None
 	email = request.authenticated_userid
 	SQLsession = Session()
@@ -186,12 +190,10 @@ async def board(request):
 
 		if request.method == 'POST':
 			log.debug('POST: ' + str(request.POST))
-			
-			if (plants.registered(plant_id)):
 
+			if (plants.registered(plant_id) or 1):
 				# Modification on the powerful led
 				if 'ledH_R' in request.POST:
-					# TODO change filter for leds
 					ledHP = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
 					try:
 						ledHP.R = int(request.POST.getone('ledH_R'))
@@ -232,9 +234,14 @@ async def board(request):
 							pass
 						SQLsession.commit()
 						msg = 'led ' + str(i) + ' ' + str(led.R) + ' ' + str(led.G) + ' ' + str(led.B)
-						await send_to_socket(plants, plant_id, msg)
+						try:
+							await send_to_socket(plants, plant_id, msg)
+						except KeyError as e:
+							pass
+
+				# Timer creation
+
 				res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ')'
-		
 			else:
 				res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ') is disconnected'
 
@@ -266,6 +273,74 @@ async def board(request):
 		return res
 	else:
 		return HTTPFound('/wrong_id')
+
+@view_config(route_name='board_timer', renderer='makahiya:templates/timer.pt', permission='view', mapper=CoroutineMapper)
+async def board_timer(request):
+	plant_id = None
+	email = request.authenticated_userid
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
+	if user is not None:
+		plant_id = user.plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		res = {'email': email,
+				'plant_id': plant_id,
+				'level': get_user_level(email)}
+		timer = SQLsession.query(Timers).filter_by(plant_id=plant_id).first()
+		if request.method == 'POST':
+			log.debug('POST: ' + str(request.POST))
+			if 'type' in request.POST:
+				try:
+					absolute = request.POST.getone('type') == 'Absolute'
+					hours = int(request.POST.getone('Hours'))
+					minutes = int(request.POST.getone('Minutes'))
+					seconds = int(request.POST.getone('Seconds'))
+					timer.sound = int('sound' in request.POST)
+					timer.light = int('light' in request.POST)
+					date = await clock(plant_id, absolute,
+						hour=hours, minute=minutes, second=seconds,
+						sound=timer.sound, light=timer.light)
+					timer.activated = True
+					timer.date = date
+					SQLsession.commit()
+				except ValueError as e:
+					pass
+
+
+		res['activated'] = timer.activated
+		if timer.activated:
+			cur = datetime.datetime.now()
+			delta = timer.date - cur
+			res['hours'] = int(delta.seconds / 3600)
+			res['minutes'] = int((delta.seconds % 3600) / 60)
+			res['seconds'] = delta.seconds % 60
+		else:
+			res['hours'] = 0
+			res['minutes'] = 0
+			res['seconds'] = 0
+		res['sound'] = timer.sound
+		res['light'] = timer.light
+		return res
+	else:
+		return HTTPFound('/wrong_id')
+
+
+@view_config(route_name='timer_deactivate', permission='view')
+def timer_deactivate(request):
+	plant_id = None
+	email = request.authenticated_userid
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
+	if user is not None:
+		plant_id = user.plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		timer = SQLsession.query(Timers).filter_by(plant_id=plant_id).first()
+		timer.activated = False
+		SQLsession.commit()
+		return HTTPFound('/' + str(plant_id) + '/board/timer')
+	else:
+		return HTTPFound('/wrong_id')
+
 
 @view_config(route_name='subscribe', renderer='makahiya:templates/subscribe.pt')
 def subscribe(request):

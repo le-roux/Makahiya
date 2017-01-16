@@ -7,6 +7,8 @@ from sqlalchemy import (
 	Text,
 	String,
 	ForeignKey,
+	Boolean,
+	DateTime,
 	)
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -28,8 +30,8 @@ class Users(Base):
 	"""
 		Database table storing the users and their rights.
 		Level:
-			0 : simple user
-			1 : editor
+			2 : simple user
+			1 : editor/master
 	"""
 	__tablename__ = 'users'
 	uid = Column(Integer, primary_key=True)
@@ -47,6 +49,16 @@ class Leds(Base):
 	G = Column(Integer)
 	B = Column(Integer)
 	W = Column(Integer)
+
+# Timers
+class Timers(Base):
+	__tablename__ = 'timers'
+	uid = Column(Integer, primary_key=True)
+	plant_id = Column(Integer)
+	activated = Column(Boolean)
+	date = Column(DateTime)
+	sound = Column(Integer)
+	light = Column(Integer)
 
 # Authorization stuff (access control list).
 class Root(object):
