@@ -124,7 +124,7 @@ CSRC = $(STARTUPSRC) \
 	   $(SRC)/main.c \
 	   $(SRC)/usbcfg.c $(SRC)/shell_user.c \
 	   $(SRC)/sound.c $(SRC)/serial_user.c $(SRC)/wifi.c $(SRC)/utils.c \
-	   $(SRC)/websocket.c $(SRC)/logic.c
+	   $(SRC)/websocket.c $(SRC)/logic.c $(SRC)/alarm.c
 
 PCMSRC =
 MP3SRC = music.mp3

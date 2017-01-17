@@ -16,6 +16,8 @@
 #include "wifi.h"
 #include "websocket.h"
 
+#include "alarm.h"
+
 /*
  * Entry point
  */
@@ -45,17 +47,19 @@ int main(void) {
     palSetPadMode(GPIOF, 6, PAL_MODE_OUTPUT_PUSHPULL);
     palSetPad(GPIOF, 6);
 
+    alarm_init();
+
     // Living led thread
     chThdCreateStatic(wa_led, sizeof(wa_led), NORMALPRIO - 1, living_led, NULL);
 
     // Audio threads
     sound_set_pins();
     chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO + 1, audio_playback, NULL);
-    chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 2, wifi_audio_in, NULL);
+    //chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 2, wifi_audio_in, NULL);
     //chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 2, flash_audio_in, NULL);
 
     // Websocket thread
-    //chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "42");
+    chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "0");
     chThdSleepMilliseconds(1000);
     DEBUG("read music");
 

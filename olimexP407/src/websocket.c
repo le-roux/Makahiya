@@ -11,10 +11,10 @@
 #include "serial_user.h"
 #include <stdlib.h>
 #include <string.h>
+#include "alarm.h"
 
 static const char* const ws_cmd = "websocket_client -g 14 ";
 static const char* const ws_addr = "ws://makahiya.rfc1149.net:9000/ws/plants/";
-static const char* const poll_cmd = "poll ";
 static char cmd[100];
 
 static volatile wifi_connection conn;
@@ -82,8 +82,8 @@ THD_FUNCTION(websocket_ext, arg) {
         cmd = strtok(response_body, " ");
         if (cmd == NULL)
             continue; // TODO improve error management
-        var = strtok(NULL, " ");
         if (strcmp(cmd, "get") == 0 || strcmp(cmd, "set") == 0) {
+            var = strtok(NULL, " ");
             if (strcmp(cmd, "set") == 0)
                 set_value(var, atoi(strtok(NULL, " ")));
 
@@ -98,6 +98,13 @@ THD_FUNCTION(websocket_ext, arg) {
         } else if (strcmp(cmd, "play") == 0) {
             // TODO Play music file called $var
             continue;
+        } else if (strcmp(cmd, "alarm") == 0) {
+            int timeout;
+            var = strtok(NULL, " ");
+            if (var == NULL)
+                continue;
+            timeout = atoi(var);
+            set_alarm(timeout, strtok(NULL, " "));
         }
     }
 }
