@@ -1,14 +1,14 @@
 #include "ch.h"
 #include "hal.h"
 
-#include "leds.h"
+#include "pwmdriver.h"
 
 int main(void) {
 
 	halInit();
 	chSysInit();
 	
-	initLeds();
+	initPwm();
 	setLed(LED1_R, 32);
 	setLed(LED4_R, 32);
 

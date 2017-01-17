@@ -1,9 +1,58 @@
 #include "ch.h"
 #include "hal.h"
-#include "leds.h"
+#include "pwmdriver.h"
 #include "utils.h"
 
-static char softPwmEnabled[6];
+static volatile int softPwmEnabled[11];
+static PWMDriver * pwmd[8] = {&PWMD1, &PWMD2, &PWMD3, &PWMD4, NULL, NULL, NULL, &PWMD8};
+static virtual_timer_t servo[7];
+
+static void setServos(void * arg);
+
+static void clearServo1(void * arg){
+	UNUSED(arg);
+	palClearPad(GPIOA, 4);
+}
+
+static void clearServo2(void * arg){
+	UNUSED(arg);
+	palClearPad(GPIOC, 4);
+}
+
+static void clearServo3(void * arg){
+	UNUSED(arg);
+	palClearPad(GPIOC, 5);
+}
+
+static void clearServo4(void * arg){
+	UNUSED(arg);
+	palClearPad(GPIOC, 6);
+}
+
+static void clearServo5(void * arg){
+	UNUSED(arg);
+	palClearPad(GPIOC, 7);
+}
+
+static void setServos(void * arg){
+	UNUSED(arg);
+	if (softPwmEnabled[6])
+		palSetPad(GPIOA, 4);
+	if (softPwmEnabled[7])
+		palSetPad(GPIOC, 4);
+	if (softPwmEnabled[8])
+		palSetPad(GPIOC, 5);
+	if (softPwmEnabled[9])
+		palSetPad(GPIOC, 6);
+	if (softPwmEnabled[10])
+		palSetPad(GPIOC, 7);
+	chVTSet(&(servo[0]), MS2ST(20), setServos, NULL);
+	chVTSet(&(servo[1]), softPwmEnabled[6], clearServo1, NULL);
+	chVTSet(&(servo[2]), softPwmEnabled[7], clearServo2, NULL);
+	chVTSet(&(servo[3]), softPwmEnabled[8], clearServo3, NULL);
+	chVTSet(&(servo[4]), softPwmEnabled[9], clearServo4, NULL);
+	chVTSet(&(servo[5]), softPwmEnabled[10], clearServo5, NULL);
+}
 
 static void tim1cb (PWMDriver *pwmd){
 	UNUSED(pwmd);
@@ -59,20 +108,6 @@ static void softpwm5(PWMDriver * pwmd){
 	palClearPad(GPIOD, 2);
 }
 
-static const PWMConfig pwmconfig = {
-	100000,
-	256,
-	NULL,
-	{
-		{PWM_OUTPUT_ACTIVE_HIGH, NULL},
-		{PWM_OUTPUT_ACTIVE_HIGH, NULL},
-		{PWM_OUTPUT_ACTIVE_HIGH, NULL},
-		{PWM_OUTPUT_ACTIVE_HIGH, NULL},
-	},
-	0,
-	0,
-};
-
 static const PWMConfig pwmconfig1 = {
 	100000,
 	256,
@@ -101,6 +136,20 @@ static const PWMConfig pwmconfig2 = {
 	0,
 };
 
+static const PWMConfig pwmconfig = {
+	100000,
+	256,
+	NULL,
+	{
+		{PWM_OUTPUT_ACTIVE_HIGH, NULL},
+		{PWM_OUTPUT_ACTIVE_HIGH, NULL},
+		{PWM_OUTPUT_ACTIVE_HIGH, NULL},
+		{PWM_OUTPUT_ACTIVE_HIGH, NULL},
+	},
+	0,
+	0,
+};
+
 static const PWMConfig pwmconfig4 = {
 	100000,
 	256,
@@ -115,7 +164,7 @@ static const PWMConfig pwmconfig4 = {
 	0,
 };
 
-void initLeds(void){
+void initPwm(void){
 
 	// LED 1
 
@@ -154,6 +203,14 @@ void initLeds(void){
 	palSetPadMode(GPIOC, 1,  PAL_MODE_ALTERNATE(2));
 	palSetPadMode(GPIOC, 2,  PAL_MODE_ALTERNATE(2));
 
+	// Servos
+
+	palSetPadMode(GPIOC, 4, PAL_MODE_OUTPUT_PUSHPULL);
+	palSetPadMode(GPIOA, 4, PAL_MODE_OUTPUT_PUSHPULL);
+	palSetPadMode(GPIOA, 5, PAL_MODE_OUTPUT_PUSHPULL);
+	palSetPadMode(GPIOA, 6, PAL_MODE_OUTPUT_PUSHPULL);
+	palSetPadMode(GPIOA, 7, PAL_MODE_OUTPUT_PUSHPULL);
+
 	// Timers
 
 	pwmStart(&PWMD1, &pwmconfig1);
@@ -161,6 +218,8 @@ void initLeds(void){
 	pwmStart(&PWMD3, &pwmconfig);
 	pwmStart(&PWMD4, &pwmconfig4);
 	pwmStart(&PWMD8, &pwmconfig);
+
+	setServos(NULL);
 }
 
 void setLed(int led, int power){
@@ -176,26 +235,7 @@ void setLed(int led, int power){
 
 	}
 
-	PWMDriver * pwmd;
-	switch(led / 4){
-		case 0:
-			pwmd = &PWMD1;
-			break;
-		case 1:
-			pwmd = &PWMD2;
-			break;
-		case 2:
-			pwmd = &PWMD3;
-			break;
-		case 3:
-			pwmd = &PWMD4;
-			break;
-		case 7:
-			pwmd = &PWMD8;
-			break;
-	}
-
-	pwmEnableChannel(pwmd, led % 4, power);
+	pwmEnableChannel(pwmd[led/4], led % 4, power);
 
 }
 
@@ -206,32 +246,36 @@ void setLedHp(int R, int G, int B, int W){
 	setLed(LED_HP_W, W);
 }
 
-void setLed1(int R, int G, int B){
-	setLed(LED1_R, R);
-	setLed(LED1_G, G);
-	setLed(LED1_B, B);
+void setLedRGB(int id, int R, int G, int B){
+	switch(id){
+		case 1:
+			setLed(LED1_R, R);
+			setLed(LED1_G, G);
+			setLed(LED1_B, B);
+			break;
+		case 2:
+			setLed(LED2_R, R);
+			setLed(LED2_G, G);
+			setLed(LED2_B, B);
+			break;
+		case 3:
+			setLed(LED3_R, R);
+			setLed(LED3_G, G);
+			setLed(LED3_B, B);
+			break;
+		case 4:
+			setLed(LED4_R, R);
+			setLed(LED4_G, G);
+			setLed(LED4_B, B);
+			break;
+		case 5:
+			setLed(LED5_R, R);
+			setLed(LED5_G, G);
+			setLed(LED5_B, B);
+			break;
+	}
 }
 
-void setLed2(int R, int G, int B){
-	setLed(LED2_R, R);
-	setLed(LED2_G, G);
-	setLed(LED2_B, B);
-}
-
-void setLed3(int R, int G, int B){
-	setLed(LED3_R, R);
-	setLed(LED3_G, G);
-	setLed(LED3_B, B);
-}
-
-void setLed4(int R, int G, int B){
-	setLed(LED4_R, R);
-	setLed(LED4_G, G);
-	setLed(LED4_B, B);
-}
-
-void setLed5(int R, int G, int B){
-	setLed(LED5_R, R);
-	setLed(LED5_G, G);
-	setLed(LED5_B, B);
+void setServo(int id, int value){
+	softPwmEnabled[5+id] = value;
 }

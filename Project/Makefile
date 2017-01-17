@@ -119,7 +119,7 @@ CSRC = $(STARTUPSRC) \
        $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
        $(CHIBIOS)/os/various/shell.c \
        $(SRC)/main.c \
-       $(SRC)/leds.c
+       $(SRC)/pwmdriver.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

@@ -1,5 +1,5 @@
-#ifndef LEDS_H
-#define LEDS_H
+#ifndef PWM_H
+#define PWM_H
 
 #define LED1_R 33U
 #define LED1_G 10U
@@ -26,14 +26,11 @@
 #define LED_HP_B 12U
 #define LED_HP_W 13U
 
-void initLeds(void);
+void initPwm(void);
 void setLed(int led, int power);
 
 void setLedHP(int R, int G, int B, int W);
-void setLed1(int R, int G, int B);
-void setLed2(int R, int G, int B);
-void setLed3(int R, int G, int B);
-void setLed4(int R, int G, int B);
-void setLed5(int R, int G, int B);
+void setLedRGB(int id, int R, int G, int B);
+void setServo(int id, int value);
 
 #endif
