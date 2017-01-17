@@ -6,6 +6,7 @@ from sqlalchemy import (
 	Integer,
 	Text,
 	String,
+	Boolean,
 	ForeignKey,
 	)
 
@@ -47,6 +48,7 @@ class Leds(Base):
 	G = Column(Integer)
 	B = Column(Integer)
 	W = Column(Integer)
+	on = Column(Boolean)
 
 # Authorization stuff (access control list).
 class Root(object):

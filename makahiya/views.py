@@ -12,6 +12,7 @@ from velruse import login_url
 import logging
 import colander
 import deform.widget
+from colour import Color
 from .websockets import plants, send_to_socket
 log = logging.getLogger(__name__)
 
@@ -186,8 +187,8 @@ async def board(request):
 
 		if request.method == 'POST':
 			log.debug('POST: ' + str(request.POST))
-			
-			if (plants.registered(plant_id)):
+
+			if (plants.registered(plant_id) or 1):
 
 				# Modification on the powerful led
 				if 'ledH_R' in request.POST:
@@ -209,40 +210,33 @@ async def board(request):
 						ledHP.W = int(request.POST.getone('ledH_W'))
 					except ValueError as e:
 						pass
+					ledHP.on = 'ledH_state' in request.POST
 					SQLsession.commit()
 					msg = 'led 0 ' + str(ledHP.R) + ' ' + str(ledHP.G) + ' ' + str(ledHP.B) + ' ' + str(ledHP.W)
-					await send_to_socket(plants, plant_id, msg)
+					try:
+						await send_to_socket(plants, plant_id, msg)
+					except KeyError:
+						pass
 
 				# Modification on a medium led
 				for i in range(1,6):
-					if 'ledM' + str(i) + 'R' in request.POST:
+					if 'color_ledM' + str(i) in request.POST:
 						led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
-						try:
-							led.R = int(request.POST.getone('ledM'+str(i)+'R'))
-						except ValueError as e:
-							pass
-						try:
-							led.G = int(request.POST.getone('ledM'+str(i)+'G'))
-						except ValueError as e:
-							pass
-						try:
-							led.B = int(request.POST.getone('ledM'+str(i)+'B'))
-							log.debug('led.b: ' + str(led.B))
-						except ValueError as e:
-							pass
+						c = Color(request.POST.getone('color_ledM'+str(i)))
+						led.R = int(c.red*100)
+						led.G = int(c.green*100)
+						led.B = int(c.blue*100)
+						led.on = 'state_ledM' + str(i) in request.POST
 						SQLsession.commit()
 						msg = 'led ' + str(i) + ' ' + str(led.R) + ' ' + str(led.G) + ' ' + str(led.B)
-						await send_to_socket(plants, plant_id, msg)
-				res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ')'
-		
-			else:
-				res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ') is disconnected'
-
+						try:
+							await send_to_socket(plants, plant_id, msg)
+						except KeyError as e:
+							pass
+		if plants.registered(plant_id):
+			res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ')'
 		else:
-			if plants.registered(plant_id):
-				res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ')'
-			else:
-				res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ') is disconnected'
+			res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ') is disconnected'
 
 		# Get the leds colors
 		led = SQLsession.query(Leds).filter_by(plant_id=int(plant_id), led_id=0).one()
@@ -250,19 +244,25 @@ async def board(request):
 		res['ledHP_G'] = led.G
 		res['ledHP_B'] = led.B
 		res['ledHP_W'] = led.W
+		res['ledH_state'] = led.on
 
 		# Fill an array with the values of the normal leds.
 		ledM = []
+		ledM_state = []
 		led_range = range(1, 6)
 		for i in led_range:
 			# Query the database for led i from table 'leds'.
 			led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
-			values = (led.R, led.G, led.B)
-			ledM.append(values)
+			try:
+				values = Color(rgb=(led.R/100, led.G/100, led.B/100))
+			except ValueError:
+				values = Color('#000')
+			ledM.append(values.hex)
+			ledM_state.append(led.on)
 
+		res['ledM_state'] = ledM_state
 		res['ledM'] = ledM
 		res['ran'] = led_range
-
 		return res
 	else:
 		return HTTPFound('/wrong_id')

@@ -56,6 +56,6 @@ def main(argv=sys.argv):
 
 	# Fill the 'leds' table with initial values.
 	for i in range(0, 6):
-		model = Leds(R=0, G=0, B=0, W=0, plant_id=0, led_id=i)
+		model = Leds(R=0, G=0, B=0, W=0, plant_id=0, led_id=i, on=False)
 		session.add(model)
 	session.commit()

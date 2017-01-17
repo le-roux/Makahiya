@@ -7,6 +7,7 @@
                 <table class="table table-striped">
                     <tr>
                         <th>LED ID</th>
+                        <th>Activated</th>
                         <th tal:repeat="color ('R', 'G', 'B', 'W')">
                             ${color}
                         </th>
@@ -15,6 +16,12 @@
                     <tr>
                         <form method="post" action='/${plant_id}/board'>
                             <td>Led 1</td>
+                            <td>
+                                <input tal:condition='ledH_state'
+                                    type='checkbox' name='ledH_state' checked/>
+                                <input tal:condition='ledH_state == False'
+                                    type='checkbox' name='ledH_state'/>
+                            </td>
                             <td><input type='text' value=${ledHP_R} name='ledH_R'/></td>
                             <td><input type='text' value=${ledHP_G} name='ledH_G'/></td>
                             <td><input type='text' value=${ledHP_B} name='ledH_B'/></td>
@@ -28,9 +35,8 @@
                 <table class="table table-striped">
                     <tr>
                         <th>LED ID</th>
-                        <div tal:repeat="color ('R', 'G', 'B')">
-                            <th>${color}</th>
-                        </div>
+                        <th>Activated</th>
+                        <th>Color</th>
                         <th>Send</th>
                     <tr>
                     <form tal:repeat="id ran" method='post' action='/${plant_id}/board'>
@@ -38,10 +44,16 @@
                             <td>
                                 LED ${id}
                             </td>
-                            <td tal:repeat="color ('R', 'G', 'B')">
-                                <input tal:define="name string:ledM$id$color"
-                                    type='text'
-                                    value=${ledM[repeat.id.index][repeat.color.index]}
+                            <td tal:define="name string:state_ledM$id">
+                                <input tal:condition='ledM_state[repeat.id.index]'
+                                    type='checkbox' name=${name} placeholder='' checked/>
+                                <input tal:condition='ledM_state[repeat.id.index] == False'
+                                    type='checkbox' name=${name} placeholder=''/>
+                            </td>
+                            <td>
+                                <input tal:define="name string:color_ledM$id"
+                                    type='color'
+                                    value=${ledM[repeat.id.index]}
                                     name=${name}
                                     placeholder=''/>
                             </td>
