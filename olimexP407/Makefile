@@ -5,7 +5,7 @@
 
 # Compiler options here.
 ifeq ($(USE_OPT),)
-  USE_OPT = -O2 -ggdb -fomit-frame-pointer -falign-functions=16
+  USE_OPT = -std=c99 -O2 -ggdb -fomit-frame-pointer -falign-functions=16
 endif
 
 # C specific options here (added to USE_OPT).
@@ -30,7 +30,7 @@ endif
 
 # Enable this if you want link time optimizations (LTO)
 ifeq ($(USE_LTO),)
-  USE_LTO = yes
+  USE_LTO = no
 endif
 
 # If enabled, this option allows to compile the application in THUMB mode.
@@ -82,6 +82,12 @@ endif
 # Project, sources and paths
 #
 
+# Define project specific directories
+INCLUDES := ./includes
+RTT := ./SEGGER_RTT
+RTT_DRIVER := ../RTT_Driver/RTT
+SRC := ./src
+
 # Define project name here
 PROJECT = ch
 
@@ -92,7 +98,7 @@ include $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC/mk/startup_stm32f4xx.mk
 # HAL-OSAL files (optional).
 include $(CHIBIOS)/os/hal/hal.mk
 include $(CHIBIOS)/os/hal/ports/STM32/STM32F4xx/platform.mk
-include board/board.mk
+include $(CHIBIOS)/../olimexP407/board_P407_JTAG/board.mk
 include $(CHIBIOS)/os/hal/osal/rt/osal.mk
 # RTOS files (optional).
 include $(CHIBIOS)/os/rt/rt.mk
@@ -103,7 +109,6 @@ LDSCRIPT= $(STARTUPLD)/STM32F407xG.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
-SRC = ./src
 CSRC = $(STARTUPSRC) \
        $(KERNSRC) \
        $(PORTSRC) \
@@ -112,18 +117,20 @@ CSRC = $(STARTUPSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
        $(TESTSRC) \
-       $(LWSRC) \
-       $(FATFSSRC) \
+	   $(LWSRC) \
        $(CHIBIOS)/os/various/evtimer.c \
        $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
        $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
        $(CHIBIOS)/os/various/shell.c \
-       $(SRC)/main.c \
-       $(SRC)/pwmdriver.c \
-       $(SRC)/bluetooth.c \
-       $(SRC)/RTT_streams.c \
-       $(SRC)/../SEGGER_RTT/SEGGER_RTT.c \
-       $(SRC)/../SEGGER_RTT/SEGGER_RTT_printf.c
+       $(SRC)/pwm_user.c \
+	   $(SRC)/main.c \
+	   $(SRC)/usbcfg.c $(SRC)/shell_user.c \
+	   $(SRC)/sound.c $(SRC)/serial_user.c $(SRC)/wifi.c $(SRC)/utils.c \
+	   $(SRC)/websocket.c $(RTT)/SEGGER_RTT.c $(RTT)/SEGGER_RTT_printf.c \
+	   $(RTT_DRIVER)/RTT_streams.c
+
+PCMSRC =
+MP3SRC =
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -154,10 +161,8 @@ ASMSRC = $(STARTUPASM) $(PORTASM) $(OSALASM)
 
 INCDIR = $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
          $(HALINC) $(PLATFORMINC) $(BOARDINC) $(TESTINC) \
-         $(LWINC) $(FATFSINC) \
          $(CHIBIOS)/os/hal/lib/streams $(CHIBIOS)/os/various \
-	 $(CHIBIOS)/../Project/includes \
-	 $(CHIBIOS)/../Project/SEGGER_RTT
+		 $(INCLUDES) $(RTT) $(RTT_DRIVER)
 
 #
 # Project, sources and paths
@@ -171,8 +176,8 @@ MCU  = cortex-m4
 
 #TRGT = arm-elf-
 TRGT = arm-none-eabi-
-CC   = $(TRGT)gcc
-CPPC = $(TRGT)g++
+CC   = $(CCACHE) $(TRGT)gcc
+CPPC = $(CCACHE) $(TRGT)g++
 # Enable loading with g++ only if you need C++ runtime support.
 # NOTE: You can use C++ even without C++ support if you are careful. C++
 #       runtime support makes code size explode.
@@ -193,7 +198,7 @@ AOPT =
 TOPT = -mthumb -DTHUMB
 
 # Define C warning options here
-CWARN = -Wall -Wextra -Wundef -Wstrict-prototypes -Wno-strict-aliasing
+CWARN = -Wall -Wextra -Wundef -Wstrict-prototypes -Wno-address
 
 # Define C++ warning options here
 CPPWARN = -Wall -Wextra -Wundef
@@ -219,7 +224,7 @@ UINCDIR =
 ULIBDIR =
 
 # List all user libraries here
-ULIBS =
+ULIBS = -lm -lhelix -L../helix
 
 #
 # End of user defines
@@ -228,8 +233,34 @@ ULIBS =
 RULESPATH = $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC
 include $(RULESPATH)/rules.mk
 
-jlink:
-	JLinkGDBServer -if swd -device "STM32F405VG" -LocalHostOnly
+$(BUILDDIR)/obj/pic.o: pic.mp3
+	$(TRGT)objcopy --rename-section .data=.rodata,alloc,load,readonly,data,contents -I binary -O elf32-littlearm -B arm $^ $@
 
-gdb: $(BUILDDIR)/ch.elf
+#######
+# User targets
+#######
+.PHONY := clean clean_test
+TEST_DIR := ./test_dir
+
+helix:
+	make -C ../helix
+
+jlink:
+	JLinkGDBServer -if swd -device "STM32F407ZG" -LocalHostOnly
+
+gdb:
 	$(TRGT)gdb $(BUILDDIR)/ch.elf
+
+test: $(TEST_DIR)/test.c $(TEST_DIR)/utils.o $(TEST_DIR)/wifi.o
+	gcc -c $(TEST_DIR)/test.c -o $(TEST_DIR)/test.o -iquote $(INCLUDES)
+	gcc $(TEST_DIR)/test.o $(TEST_DIR)/utils.o $(TEST_DIR)/wifi.o -lcriterion -o $(TEST_DIR)/$@
+
+$(TEST_DIR)/%.o: $(SRC)/%.c
+	gcc -c $^ -o $@ -iquote $(INCLUDES) -std=c99 -DTEST
+
+run_test: test
+	$(TEST_DIR)/test
+
+clean_test:
+	rm -f $(TEST_DIR)/*.o
+	rm -f $(TEST_DIR)/test

@@ -1,14 +1,12 @@
-#include "bluetooth.h"
-#include "utils.h"
 #include "ch.h"
 #include "hal.h"
+#include "bluetooth.h"
+#include "utils.h"
 #include "chprintf.h"
 #include <string.h>
 
 static SerialDriver* bluetooth_SD = &SD2;
-// TODO RTT not yet integrated
-static BaseSequentialStream* RTTD = (BaseSequentialStream *)&SD2;
-
+RTTStream RTTD;
 
 static THD_WORKING_AREA(waThread1, 128);
 static THD_FUNCTION(Thread1, arg) {
@@ -25,7 +23,7 @@ static THD_FUNCTION(Thread2, arg) {
 	UNUSED(arg);
 	uint8_t c[1];
 	while(1){
-		c[0] = chSequentialStreamGet((BaseSequentialStream *)&RTTD);
+		c[0] = chSequentialStreamGet((BaseSequentialStream *) &RTTD);
 		chprintf((BaseSequentialStream *)&RTTD, "%c", c[0]);
 		sdWrite(bluetooth_SD, c, 1);
 	}	

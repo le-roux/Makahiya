@@ -13,6 +13,7 @@ int main(void) {
 	setLed(LED1_R, 32);
 	setLed(LED4_R, 32);
 
+	RTTObjectInit(&RTTD, 0);
 	initBluetooth();
 
 	while(true){

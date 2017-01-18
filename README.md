@@ -7,4 +7,4 @@ Structure:
 - Project/: directory containing the code specific to the project and that
     runs on the development board.
 
-For now this branch contains the PWM driver and the bluetooth
+For now this branch contains the RTT driver, the PWM driver and the bluetooth
