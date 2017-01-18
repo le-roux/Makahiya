@@ -32,6 +32,7 @@ extern const int16_t* const _binary_size[ALARM_SOUND_NB];
 extern const int16_t* const _binary_end[ALARM_SOUND_NB];
 
 extern volatile int music_id;
+extern volatile int repeat;
 /**
  * Size of a sample in bytes
  */

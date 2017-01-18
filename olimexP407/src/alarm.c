@@ -64,6 +64,7 @@ static void alarm_cb(void* arg) {
         switch (var_id) {
             case(1): {
                 music_id = value;
+                repeat = 1;
                 chSysLockFromISR();
                 chBSemSignalI(&audio_bsem);
                 chSysUnlockFromISR();

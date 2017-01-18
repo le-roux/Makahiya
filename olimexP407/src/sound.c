@@ -21,6 +21,7 @@ const int16_t* const _binary_end[ALARM_SOUND_NB] = {&_binary_alarm1_mp3_end,
                        &_binary_alarm2_mp3_end,
                        &_binary_alarm3_mp3_end};
 volatile int music_id;
+volatile int repeat;
 
 int16_t i2s_tx_buf[I2S_BUF_SIZE * 2];
 thread_reference_t audio_thread_ref = NULL;
@@ -273,16 +274,20 @@ THD_FUNCTION(flash_audio_in, arg) {
     while (TRUE) {
         chBSemWait(&audio_bsem);
         id = music_id;
-        cur_pos = _binary_start[id];
         chBSemSignal(&decode_bsem);
 
-        while (cur_pos + INPUT_BUFFER_SIZE < _binary_end[id]) {
-            if (chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE) != MSG_OK)
-                break;
-            memcpy(inbuf, cur_pos, 2 * INPUT_BUFFER_SIZE);
-            cur_pos += INPUT_BUFFER_SIZE;
+        while (repeat) {
+            cur_pos = _binary_start[id];
+            while (cur_pos + INPUT_BUFFER_SIZE < _binary_end[id]) {
+                if (chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE) != MSG_OK)
+                    break;
+                memcpy(inbuf, cur_pos, 2 * INPUT_BUFFER_SIZE);
+                cur_pos += INPUT_BUFFER_SIZE;
 
-            chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
+                chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
+                if (!repeat)
+                    break;
+            }
         }
         chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
         inbuf = NULL;

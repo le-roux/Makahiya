@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "alarm.h"
+#include "sound.h"
 
 static const char* const ws_cmd = "websocket_client -g 14 ";
 static const char* const ws_addr = "ws://makahiya.rfc1149.net:9000/ws/plants/";
@@ -105,6 +106,8 @@ THD_FUNCTION(websocket_ext, arg) {
                 continue;
             timeout = atoi(var);
             set_alarm(timeout, strtok(NULL, " "));
+        } else if (strcmp(cmd, "stop") == 0) {
+            repeat = 0;
         }
     }
 }
