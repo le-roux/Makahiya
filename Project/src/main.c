@@ -2,6 +2,7 @@
 #include "hal.h"
 
 #include "pwmdriver.h"
+#include "bluetooth.h"
 
 int main(void) {
 
@@ -11,6 +12,8 @@ int main(void) {
 	initPwm();
 	setLed(LED1_R, 32);
 	setLed(LED4_R, 32);
+
+	initBluetooth();
 
 	while(true){
 		chThdSleepMilliseconds(1000);
