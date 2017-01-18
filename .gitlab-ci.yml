@@ -7,20 +7,7 @@ variables:
 olimex-build:
     stage: build
     script:
-        - make -C olimexP407 helix
-        - make -C olimexP407
-
-native-build:
-    stage: build
-    script: make -C code
-
-olimex-test:
-    stage: test
-    script: make -C olimexP407 run_test
-
-native-tests:
-    stage: test
-    script: make -C test check
+        - make -C Project
 
 cache:
     key: all
