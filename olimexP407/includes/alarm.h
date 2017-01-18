@@ -28,6 +28,13 @@ void alarm_init(void);
  * @brief Set the alarm_clock duration and the commands to run at expiration.
  * @param timeout Duration (in seconds) of the alarm.
  * @param commands_list
+ *      command_id:
+ *          - 1: start music
+ *          - (n + 1) * 4 + 0: led n, RED
+ *          - (n + 1) * 4 + 1: led n, GREEN
+ *          - (n + 1) * 4 + 2: led n, BLUE
+ *          - (n + 1) * 4 + 3: led n, WHITE
+ *          - 50 + i: motor i
  */
 void set_alarm(int timeout, char* commands_list);
 

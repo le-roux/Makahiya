@@ -127,7 +127,7 @@ CSRC = $(STARTUPSRC) \
 	   $(SRC)/websocket.c $(SRC)/logic.c $(SRC)/alarm.c
 
 PCMSRC =
-MP3SRC = music.mp3
+MP3SRC = alarm1.mp3 alarm2.mp3 alarm3.mp3
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -230,7 +230,7 @@ ULIBS = -lm -lhelix -L../helix
 RULESPATH = $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC
 include $(RULESPATH)/rules.mk
 
-$(BUILDDIR)/obj/music.o: music.mp3
+$(BUILDDIR)/obj/%.o: %.mp3
 	$(TRGT)objcopy --rename-section .data=.rodata,alloc,load,readonly,data,contents -I binary -O elf32-littlearm -B arm $^ $@
 
 #######

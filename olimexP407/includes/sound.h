@@ -13,18 +13,25 @@
 
 extern uint32_t* buffer;
 
-/**
- * Titre:  Daybreak feat Henk
- * Auteur: Jens East
- * Source: http://www.jenseast.com
- * Licence: https://creativecommons.org/licenses/by/3.0/deed.fr
- * Téléchargement (10MB): http://www.auboutdufil.com/index.php?id=483
- * Partial extract only
- */
-extern int16_t _binary_music_mp3_start;
-extern int16_t _binary_music_mp3_size;
-extern int16_t _binary_music_mp3_end;
+#define ALARM_SOUND_NB 3
 
+extern int16_t _binary_alarm1_mp3_start;
+extern int16_t _binary_alarm1_mp3_size;
+extern int16_t _binary_alarm1_mp3_end;
+
+extern int16_t _binary_alarm2_mp3_start;
+extern int16_t _binary_alarm2_mp3_size;
+extern int16_t _binary_alarm2_mp3_end;
+
+extern int16_t _binary_alarm3_mp3_start;
+extern int16_t _binary_alarm3_mp3_size;
+extern int16_t _binary_alarm3_mp3_end;
+
+extern const int16_t* const _binary_start[ALARM_SOUND_NB];
+extern const int16_t* const _binary_size[ALARM_SOUND_NB];
+extern const int16_t* const _binary_end[ALARM_SOUND_NB];
+
+extern volatile int music_id;
 /**
  * Size of a sample in bytes
  */

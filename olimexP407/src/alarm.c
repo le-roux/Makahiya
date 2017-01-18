@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "usbcfg.h"
 #include "chprintf.h"
+#include "sound.h"
 
 /**
  * @brief Virtual timer to set when creating an alarm clock.
@@ -45,6 +46,7 @@ void set_alarm(int timeout, char* commands_list) {
     chMtxLock(&lock);
     alarm_activated = true;
     chMtxUnlock(&lock);
+    DEBUG("timeout %i", timeout);
     chVTSet(&alarm_clock, S2ST(timeout), alarm_cb, NULL);
 }
 
@@ -57,12 +59,14 @@ static void alarm_cb(void* arg) {
         chSysLockFromISR();
         (void)chMBFetchI(&commands_box, &command);
         chSysUnlockFromISR();
-        var_id = (uint16_t)(command & 0xFFFF0000 >> 16);
+        var_id = (uint16_t)((command & 0xFFFF0000) >> 16);
         value = (uint16_t)(command & 0xFFFF);
         switch (var_id) {
             case(1): {
-                // Do something
-                (void)var_id;
+                music_id = value;
+                chSysLockFromISR();
+                chBSemSignalI(&audio_bsem);
+                chSysUnlockFromISR();
             }
             default: {
                 // Do something
