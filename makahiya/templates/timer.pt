@@ -38,11 +38,33 @@
                     </tr>
                 </table>
                 <h2>Actions</h2>
-                <input tal:condition='light == 1' type='checkbox' name='light' checked>Light</input>
+                <input tal:condition='light == 1' type='checkbox' name='light'
+                    checked>Light</input>
                 <input tal:condition='light == 0' type='checkbox' name='light'>Light</input>
                 <br/>
+
+                <div tal:repeat="id ('1', '2')">
+                    <div tal:define='value string:light$id'>
+                        <input type='radio' name='light_id' value=${id} required>
+                            ${value}
+                        </input>
+                    </div>
+                </div>
+                <br/>
+                
                 <input tal:condition='sound == 1' type='checkbox' name='sound' checked>Sound</input>
                 <input tal:condition='sound == 0' type='checkbox' name='sound'>Sound</input>
+                <br/>
+
+                <div tal:repeat="id ('1', '2', '3')">
+                    <div tal:define='value string:alarm$id'>
+                        <audio id='${value}' src='/static/${value}.mp3'></audio>
+                        <input type='radio' name='alarm_id' value=${id} required
+                            oninput="document.getElementById('${value}').play()">
+                            ${value}
+                        </input>
+                    </div>
+                </div>
                 <br/>
 
                 <input class='text-center btn btn-success' type='submit' value='Start'/>

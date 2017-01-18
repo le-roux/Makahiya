@@ -295,8 +295,16 @@ async def board_timer(request):
 					hours = int(request.POST.getone('Hours'))
 					minutes = int(request.POST.getone('Minutes'))
 					seconds = int(request.POST.getone('Seconds'))
-					timer.sound = int('sound' in request.POST)
-					timer.light = int('light' in request.POST)
+					if 'sound' in request.POST:
+						timer.sound = int(request.POST.getone('alarm_id'))
+					else:
+						timer.sound = 0
+						
+					if 'light' in request.POST:
+						timer.light = int(request.POST.getone('light_id'))
+					else:
+						timer.light = 0
+
 					date = await clock(plant_id, absolute,
 						hour=hours, minute=minutes, second=seconds,
 						sound=timer.sound, light=timer.light)
