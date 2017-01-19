@@ -200,15 +200,15 @@ void read_music(char* path) {
 void send_cmd(char* cmd) {
     chDbgCheck(strlen(cmd) < SERIAL_TX_BUFFER_SIZE - 1);
 
-    int length = 0;
+    int length = 0, sent;
     strcpy((char*)serial_tx_buffer, cmd);
     length += strlen(cmd);
     strcat((char*)serial_tx_buffer, "\r\n");
     length += strlen("\r\n");
 
-    chMtxLock(&serial_mutex);
-    SEND_DATA(serial_tx_buffer, length);
-    chMtxUnlock(&serial_mutex);
+    do {
+        sent = SEND_DATA_TIMEOUT(serial_tx_buffer, length, MS2ST(100));
+    } while (sent != length);
 }
 
 void wifi_write(wifi_connection* conn, int length, uint8_t* buffer) {

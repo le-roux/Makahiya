@@ -8,6 +8,14 @@
 /***********************/
 
 /**
+ * Commands to send to the Wi-Fi module.
+ */
+#define REBOOT "reboot"
+#define PING_CONN "ping -g"
+#define NETWORK_FLUSH "network_flush"
+#define NETWORK_RESTART "network_restart"
+
+/**
  * Aggregates all the information available in the command return codes.
  *
  * @var error : boolean value indicating if an error occured
@@ -26,6 +34,7 @@ typedef struct wifi_response_header {
     int length;
 } wifi_response_header;
 
+#define NO_ERROR        0
 #define HEADER_ERROR   -1
 
 #define HEADER_TIMEOUT -3
@@ -54,6 +63,8 @@ typedef struct wifi_connection {
 #define WIFI_BUFFER_SIZE 1420
 
 #define SEND_DATA(data, length) sdWrite(wifi_SD, data, length)
+#define SEND_DATA_TIMEOUT(data, length, timeout) sdWriteTimeout(wifi_SD, data, \
+                                                            length, timeout)
 
 /***********************/
 /*       Variables     */

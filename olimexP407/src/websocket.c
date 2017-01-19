@@ -14,9 +14,9 @@
 #include "alarm.h"
 #include "sound.h"
 
+// 14 is the number of the pin used for the interrupts.
 static const char* const ws_cmd = "websocket_client -g 14 ";
 static const char* const ws_addr = "ws://makahiya.rfc1149.net:9000/ws/plants/";
-static char cmd[100];
 
 static volatile wifi_connection conn;
 
@@ -119,29 +119,42 @@ THD_WORKING_AREA(wa_websocket, WA_WEBSOCKET_SIZE);
 
 THD_FUNCTION(websocket, arg) {
 
+    char cmd[100];
     wifi_response_header header;
 
-    chThdSleepMilliseconds(2000);
+    chThdSleepMilliseconds(1000);
     strcpy(cmd, ws_cmd);
     strcat(cmd, ws_addr);
     strcat(cmd, (char*)arg);
 
-
-
     while(true) {
         // Open the connection with the websocket (plant-side).
         send_cmd(cmd);
+        /* No timeout because this first connection can be long to establish.
+           However it's not fully blocking as the wifi module will respond
+           with a "command failed" message after a certain amount of time in
+           case of error. */
         header = get_response(false);
         if (header.error) {
             do {
-                send_cmd("reboot");
-                header = get_response(false);
-                chThdSleepMilliseconds(750);
+                if (header.error_code == SAFEMODE) {
+                    exit_safe_mode();
+                    header.error = NO_ERROR;
+                    header.error_code = NO_ERROR;
+                } else {
+                    send_cmd(REBOOT);
+                    header = get_response(false);
+                    if (header.error)
+                        continue;
+                    send_cmd(NETWORK_FLUSH);
+                    header = get_response(false);
+                    if (header.error)
+                        continue;
+                }
             } while (header.error);
             do {
-                send_cmd("ping -g");
+                send_cmd(PING_CONN);
                 header = get_response(false);
-                chThdSleepMilliseconds(250);
             } while(header.error);
         } else
             break; // Connection established
@@ -149,8 +162,9 @@ THD_FUNCTION(websocket, arg) {
 
     get_channel_id((wifi_connection*)&conn);
     chThdCreateStatic(wa_websocket_ext, sizeof(wa_websocket_ext), \
-    NORMALPRIO, websocket_ext, NULL);
+                        NORMALPRIO, websocket_ext, NULL);
 
+    // For test only
     while (true) {
         chThdSleepMilliseconds(5000);
         wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"abcd");
