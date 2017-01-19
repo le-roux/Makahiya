@@ -299,7 +299,7 @@ async def board_timer(request):
 						timer.sound = int(request.POST.getone('alarm_id'))
 					else:
 						timer.sound = 0
-						
+
 					if 'light' in request.POST:
 						timer.light = int(request.POST.getone('light_id'))
 					else:
