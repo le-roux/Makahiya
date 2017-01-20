@@ -7,13 +7,17 @@ from pyramid.events import subscriber
 from pyramid.security import remember, forget
 from aiopyramid.config import CoroutineMapper
 import pyramid
-from .models import Session, Leds, Users, get_user_plant_id, get_user_level
+from .models import Session, Leds, Users, Timers, get_user_plant_id, get_user_level
 from velruse import login_url
 import logging
 import colander
 import deform.widget
 from colour import Color
 from .websockets import plants, send_to_socket
+import asyncio
+import datetime
+from .constants import constants
+from .timer import clock
 log = logging.getLogger(__name__)
 
 @subscriber(IBeforeRender)
@@ -134,6 +138,7 @@ def login_callback(request):
 
 		# Create this user in the database
 		SQLsession.add(Users(email=email, level=2, plant_id=plant_id))
+		SQLSession.add(Timers(plant_id=plant_id, activated=False, sound=0, light=0))
 		for i in range(0,6):
 			SQLsession.add(Leds(R=0, G=0, B=0, W=0, plant_id=plant_id, led_id=i))
 		SQLsession.commit()
@@ -172,8 +177,8 @@ class BoardPage(object):
 	def reqts(self):
 		return self.led_form.get_widget_resources()
 
-@view_config(route_name='board', renderer='makahiya:templates/board.pt', permission='view', mapper=CoroutineMapper)
-async def board(request):
+@view_config(route_name='board_leds', renderer='makahiya:templates/board.pt', permission='view', mapper=CoroutineMapper)
+async def board_leds(request):
 	plant_id = None
 	email = request.authenticated_userid
 	SQLsession = Session()
@@ -189,50 +194,91 @@ async def board(request):
 			log.debug('POST: ' + str(request.POST))
 
 			if (plants.registered(plant_id) or 1):
-
 				# Modification on the powerful led
 				if 'ledH_R' in request.POST:
-					# TODO change filter for leds
 					ledHP = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
 					try:
-						ledHP.R = int(request.POST.getone('ledH_R'))
-					except ValueError as e:
+						R = int(request.POST.getone('ledH_R'))
+						if ledHP_R != R:
+							msg = constants.SET + str(constants.LED_R[0]) \
+									+ ' ' + str(R)
+							await send_to_socket(plants, plant_id, msg)
+							ledHP.R = R
+					except KeyError:
+						res['KeyError'] = 1
+					except ValueError:
 						pass
 					try:
-						ledHP.G = int(request.POST.getone('ledH_G'))
-					except ValueError as e:
+						G = int(request.POST.getone('ledH_G'))
+						if ledHP.G != G:
+							msg = constants.SET + str(constants.LED_G[0]) \
+									+ ' ' + str(G)
+							await send_to_socket(plants, plant_id, msg)
+							ledHP.G = G
+					except KeyError:
+						res['KeyError'] = 1
+					except ValueError:
 						pass
 					try:
-						ledHP.B = int(request.POST.getone('ledH_B'))
-					except ValueError as e:
+						B = int(request.POST.getone('ledH_B'))
+						if ledHP.B != B:
+							msg = constants.SET + str(constants.LED_B[0]) \
+									+ ' ' + str(B)
+							await send_to_socket(plants, plant_id, msg)
+							ledHP.B = B
+					except KeyError:
+						res['KeyError'] = 1
+					except ValueError:
 						pass
 					try:
-						ledHP.W = int(request.POST.getone('ledH_W'))
-					except ValueError as e:
+						W = int(request.POST.getone('ledH_W'))
+						if ledHP.W != W:
+							msg = constants.SET + str(ledHP_W) + ' ' + str(W)
+							await send_to_socket(plants, plant_id, msg)
+							ledHP.W = W
+					except KeyError:
+						res['KeyError'] = 1
+					except ValueError:
 						pass
 					ledHP.on = 'ledH_state' in request.POST
 					SQLsession.commit()
-					msg = 'led 0 ' + str(ledHP.R) + ' ' + str(ledHP.G) + ' ' + str(ledHP.B) + ' ' + str(ledHP.W)
-					try:
-						await send_to_socket(plants, plant_id, msg)
-					except KeyError:
-						pass
 
 				# Modification on a medium led
 				for i in range(1,6):
 					if 'color_ledM' + str(i) in request.POST:
 						led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
 						c = Color(request.POST.getone('color_ledM'+str(i)))
-						led.R = int(c.red*100)
-						led.G = int(c.green*100)
-						led.B = int(c.blue*100)
+						R = int(c.red*100)
+						G = int(c.green*100)
+						B = int(c.blue*100)
 						led.on = 'state_ledM' + str(i) in request.POST
-						SQLsession.commit()
-						msg = 'led ' + str(i) + ' ' + str(led.R) + ' ' + str(led.G) + ' ' + str(led.B)
 						try:
-							await send_to_socket(plants, plant_id, msg)
-						except KeyError as e:
-							pass
+							if (led.R != R):
+								msg = constants.SET + str(constants.LED_R[i]) \
+										+ ' ' + str(R)
+								await send_to_socket(plants, plant_id, msg)
+								led.R = R
+						except KeyError:
+							res['KeyError'] = 1
+						try:
+							if (led.G != G):
+								msg = constants.SET + str(constants.LED_G[i]) \
+										+ ' ' + str(G)
+								await send_to_socket(plants, plant_id, msg)
+								led.G = G
+						except KeyError:
+							res['KeyError'] = 1
+						try:
+							if (led.B != B):
+								msg = constants.SET + str(constants.LED_B[i]) \
+										+ ' ' + str(B)
+								await send_to_socket(plants, plant_id, msg)
+								led.B = B
+						except KeyError:
+							res['KeyError'] = 1
+							SQLsession.commit()
+
+				# Timer creation
 		if plants.registered(plant_id):
 			res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ')'
 		else:
@@ -266,6 +312,82 @@ async def board(request):
 		return res
 	else:
 		return HTTPFound('/wrong_id')
+
+@view_config(route_name='board_timer', renderer='makahiya:templates/timer.pt', permission='view', mapper=CoroutineMapper)
+async def board_timer(request):
+	plant_id = None
+	email = request.authenticated_userid
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
+	if user is not None:
+		plant_id = user.plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		res = {'email': email,
+				'plant_id': plant_id,
+				'level': get_user_level(email)}
+		timer = SQLsession.query(Timers).filter_by(plant_id=plant_id).first()
+		if request.method == 'POST':
+			log.debug('POST: ' + str(request.POST))
+			if 'type' in request.POST:
+				try:
+					absolute = request.POST.getone('type') == 'Absolute'
+					hours = int(request.POST.getone('Hours'))
+					minutes = int(request.POST.getone('Minutes'))
+					seconds = int(request.POST.getone('Seconds'))
+					if 'sound' in request.POST:
+						timer.sound = int(request.POST.getone('alarm_id'))
+					else:
+						timer.sound = 0
+
+					if 'light' in request.POST:
+						timer.light = int(request.POST.getone('light_id'))
+					else:
+						timer.light = 0
+
+					date = await clock(plant_id, absolute,
+						hour=hours, minute=minutes, second=seconds,
+						sound=timer.sound, light=timer.light)
+					timer.activated = True
+					timer.date = date
+					SQLsession.commit()
+				except ValueError as e:
+					pass
+
+
+		res['activated'] = timer.activated
+		if timer.activated:
+			cur = datetime.datetime.now()
+			delta = timer.date - cur
+			res['hours'] = int(delta.seconds / 3600)
+			res['minutes'] = int((delta.seconds % 3600) / 60)
+			res['seconds'] = delta.seconds % 60
+		else:
+			res['hours'] = 0
+			res['minutes'] = 0
+			res['seconds'] = 0
+		res['sound'] = timer.sound
+		res['light'] = timer.light
+		return res
+	else:
+		return HTTPFound('/wrong_id')
+
+
+@view_config(route_name='timer_deactivate', permission='view')
+def timer_deactivate(request):
+	plant_id = None
+	email = request.authenticated_userid
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
+	if user is not None:
+		plant_id = user.plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		timer = SQLsession.query(Timers).filter_by(plant_id=plant_id).first()
+		timer.activated = False
+		SQLsession.commit()
+		return HTTPFound('/' + str(plant_id) + '/board/timer')
+	else:
+		return HTTPFound('/wrong_id')
+
 
 @view_config(route_name='subscribe', renderer='makahiya:templates/subscribe.pt')
 def subscribe(request):

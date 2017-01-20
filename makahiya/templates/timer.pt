@@ -1,0 +1,94 @@
+<metal:macro use-macro='master'>
+    <metal:slot fill-slot='body'>
+        <div class='container-fluid'>
+            <h1 class='text-center'>Timer
+                <div tal:condition='activated' style='color:green'> (Activated)</div>
+                <div tal:condition='activated == False' style='color:red'> (Deactivated)</div>
+            </h1>
+
+            <form method='post' action='/${plant_id}/board/timer' class='table-responsive'>
+                <h2>Configuration</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <th tal:repeat="name ('Type', 'Hours', 'Minutes', 'Seconds')">
+                            ${name}
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type='radio' name='type' value='Absolute' checked tal:attributes="disabled python:activated == 1">
+                                Absolute
+                            </input><br/>
+                            <input type='radio' name='type' value='Relative' tal:attributes="disabled python:activated == 1">
+                                Relative
+                            </input>
+                        </td>
+                        <td>
+                            <input name='Hours' placeholder='Hours'
+                                type='number' min='0', max='24' value=${hours} required/>
+                        </td>
+                        <td>
+                            <input name='Minutes' placeholder='Minutes'
+                                type='number' min='0', max='60' value=${minutes} required/>
+                        </td>
+                        <td>
+                            <input name='Seconds' placeholder='Seconds'
+                                type='number' min='0', max='60' value=${seconds} required/>
+                        </td>
+                    </tr>
+                </table>
+                <h2>Actions</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            <input type='checkbox' name='light'
+                                tal:attributes="checked python:light >= 1; disabled python:activated == 1">
+                                    Light
+                            </input>
+                        </th>
+                        <th>
+                            <input type='checkbox' name='sound'
+                                tal:attributes="checked python:sound >= 1; disabled python:activated == 1">
+                                    Sound
+                            </input>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div tal:repeat="id ('1', '2')">
+                                <div tal:define='value string:light$id'>
+                                    <input type='radio' name='light_id'
+                                        value=${id} required
+                                        tal:attributes="checked python:light == int(repeat.id.number); disabled python:activated == 1">
+                                        ${value}
+                                    </input>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div tal:repeat="id ('1', '2', '3')">
+                                <div tal:define='value string:alarm$id'>
+                                    <audio id='${value}' src='/static/${value}.mp3'></audio>
+                                    <input type='radio' name='alarm_id' value=${id} required
+                                        tal:attributes="checked python:sound == int(repeat.id.number); disabled python:activated == 1"
+                                        oninput="document.getElementById('${value}').play()">
+                                        ${value}
+                                    </input>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <input tal:condition='activated == 0'
+                    class='btn btn-success btn-lg btn-block' type='submit'
+                    value='Start'/>
+
+                <a tal:condition='activated' class='btn btn-danger btn-lg btn-block'
+                        href='/${plant_id}/board/timer/deactivate'>
+                    Stop
+                </a>
+            </form>
+        </div>
+    </metal:slot>
+</metal:macro>

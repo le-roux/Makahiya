@@ -30,8 +30,13 @@
                         <a href="/">Home</a>
                     </li>
                     <li tal:condition="python:plant_id >= 0 | nothing">
-                        <a tal:define="link string:/$plant_id/board" href=${link}>
-                            Plant management
+                        <a tal:define="link string:/$plant_id/board/leds" href=${link}>
+                            Plant management - Leds
+                        </a>
+                    </li>
+                    <li tal:condition="python:plant_id >= 0 | nothing">
+                        <a tal:define="link string:/$plant_id/board/timer" href=${link}>
+                            Plant management - Timer
                         </a>
                     </li>
                     <li tal:condition='level == 1 | nothing'>
