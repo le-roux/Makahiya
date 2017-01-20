@@ -7,3 +7,4 @@ makahiya/__pycache__
 .coverage
 *.pyc
 file.mp3
+*.swp

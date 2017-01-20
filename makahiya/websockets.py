@@ -1,9 +1,11 @@
 from pyramid.view import view_config
 from .custom_mapper import CustomWebsocketMapper
 from .websocket_register import WebsocketRegister
+from .models import Session, Leds
 
 import asyncio
 import websockets
+import re
 
 # Registering connected plants and clients and managing synchronization between websockets
 plants = WebsocketRegister('Plants')
@@ -54,6 +56,95 @@ async def plant(ws):
 			if listener_task in done:
 				msg = listener_task.result()
 				print (msg)
+				command = re.split(' ', msg)
+				SQLSession = Session()
+				try:
+					register = int(command[0])
+					if register < 50:
+						value = int(command[1])
+					else:
+						if command[1] == 'True':
+							value = True
+						else:
+							value = False
+					if register == 33:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=1).one()
+						led.R = value
+					elif register == 10:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=1).one()
+						led.G = value
+					elif register == 11:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=1).one()
+						led.B = value
+					elif register == 50:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=1).one()
+						led.on = value
+					elif register == 34:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=2).one()
+						led.R = value
+					elif register == 6:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=2).one()
+						led.G = value
+					elif register == 7:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=2).one()
+						led.B = value
+					elif register == 51:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=2).one()
+						led.on = value
+					elif register == 35:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=3).one()
+						led.R = value
+					elif register == 29:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=3).one()
+						led.G = value
+					elif register == 30:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=3).one()
+						led.B = value
+					elif register == 52:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=3).one()
+						led.on = value
+					elif register == 31:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=4).one()
+						led.R = value
+					elif register == 0:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=4).one()
+						led.G = value
+					elif register == 36:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=4).one()
+						led.B = value
+					elif register == 53:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=4).one()
+						led.on = value
+					elif register == 37:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=5).one()
+						led.R = value
+					elif register == 38:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=5).one()
+						led.G = value
+					elif register == 5:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=5).one()
+						led.B = value
+					elif register == 54:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=5).one()
+						led.on = value
+					elif register == 8:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
+						led.R = value
+					elif register == 9:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
+						led.G = value
+					elif register == 12:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
+						led.B = value
+					elif register == 13:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
+						led.W = value
+					elif register == 55:
+						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
+						led.on = value
+					SQLSession.commit()
+				except ValueError:
+					pass
 				if (clients.registered(plant_id)):
 					await send_to_socket(clients, plant_id, msg)
 
