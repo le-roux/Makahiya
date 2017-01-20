@@ -34,7 +34,8 @@ extern const int16_t* const _binary_end[ALARM_SOUND_NB];
 extern volatile int music_id;
 extern volatile int repeat;
 
-#define MUSIC_BUFFER_SIZE 900000
+#define FLASH_SECTOR_SIZE 131072 // 128k
+#define FLASH_SECTOR_NB 7
 /**
  * Size of a sample in bytes
  */
@@ -71,7 +72,7 @@ extern int8_t volumeDiv;
 #define WORKING_BUFFER_SIZE 4000
 
 #define INPUT_BUFFER_SIZE 1000
-#define INPUT_BUFFERS_NB 10
+#define INPUT_BUFFERS_NB 5
 
 #define I2SDIV 6
 
