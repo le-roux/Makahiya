@@ -252,9 +252,9 @@ async def board_leds(request):
 				if 'color_ledM' + str(i) in request.POST:
 					led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
 					c = Color(request.POST.getone('color_ledM'+str(i)))
-					R = int(c.red*100)
-					G = int(c.green*100)
-					B = int(c.blue*100)
+					R = round(c.red*255)
+					G = round(c.green*255)
+					B = round(c.blue*255)
 					on = 'state_ledM' + str(i) in request.POST
 					try:
 						if led.R != R and R >= 0 and R < 256:
@@ -312,7 +312,7 @@ async def board_leds(request):
 			# Query the database for led i from table 'leds'.
 			led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
 			try:
-				values = Color(rgb=(led.R/100, led.G/100, led.B/100))
+				values = Color(rgb=(led.R/255, led.G/255, led.B/255))
 			except ValueError:
 				values = Color('#000')
 			ledM.append(values.hex)

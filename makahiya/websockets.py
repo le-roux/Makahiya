@@ -12,16 +12,20 @@ plants = WebsocketRegister('Plants')
 clients = WebsocketRegister('Clients')
 
 # Coroutine to send a message from a websocket
-async def send_to_socket(register, id, msg):
-	await register.get_var(id).acquire()
-	register.set_message(id, msg)
-	register.set_new(id, 1)
-	register.get_var(id).notify()
-	register.get_var(id).release()
+async def send_to_socket(register, identifier, msg):
+	await register.get_var(identifier).acquire()
+	register.get_var(identifier).release()
+	await register.get_var(identifier).acquire()
+	register.set_message(identifier, msg)
+	register.set_new(identifier, 1)
+	register.get_var(identifier).notify()
+	await register.get_var(identifier).wait()
+	register.get_var(identifier).release()
 
 # Coroutine that waits until send_to_socket is called
 async def wait_producer(register, identifier):
 	await register.get_var(identifier).acquire()
+	register.get_var(identifier).notify()
 	await register.get_var(identifier).wait()
 	register.get_var(identifier).release()
 
