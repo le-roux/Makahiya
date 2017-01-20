@@ -144,7 +144,7 @@ def login_callback(request):
 		SQLsession.commit()
 		request.session['status'] = 0
 		headers = remember(request, email)
-		return HTTPFound('/' + str(plant_id) + '/board', headers=headers)
+		return HTTPFound('/' + str(plant_id) + '/board/leds', headers=headers)
 	else:
 		# Check that this user in in the database
 		if SQLsession.query(Users).filter_by(email=email).first() is None:
@@ -190,10 +190,7 @@ async def board_leds(request):
 				'plant_id': plant_id,
 				'level': get_user_level(email)}
 
-		if request.method == 'POST':
-			log.debug('POST: ' + str(request.POST))
-
-			if (plants.registered(plant_id) or 1):
+			if plants.registered(plant_id):
 				# Modification on the powerful led
 				if 'ledH_R' in request.POST:
 					ledHP = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
@@ -233,14 +230,21 @@ async def board_leds(request):
 					try:
 						W = int(request.POST.getone('ledH_W'))
 						if ledHP.W != W:
-							msg = constants.SET + str(ledHP_W) + ' ' + str(W)
+							msg = constants.SET + str(led_HP_W) + ' ' + str(W)
 							await send_to_socket(plants, plant_id, msg)
 							ledHP.W = W
 					except KeyError:
 						res['KeyError'] = 1
 					except ValueError:
 						pass
-					ledHP.on = 'ledH_state' in request.POST
+					try:
+						on = 'ledH_state' in request.POST
+						if ledHP.on != on:
+							msg = constants.SET + str(led_HP_ON) + ' ' + str(on)
+							await send_to_socket(plants, plant_id, msg)
+							ledHP.on = on
+					except KeyError:
+						res['KeyError'] = 1
 					SQLsession.commit()
 
 				# Modification on a medium led
@@ -251,9 +255,9 @@ async def board_leds(request):
 						R = int(c.red*100)
 						G = int(c.green*100)
 						B = int(c.blue*100)
-						led.on = 'state_ledM' + str(i) in request.POST
+						on = 'state_ledM' + str(i) in request.POST
 						try:
-							if (led.R != R):
+							if led.R != R:
 								msg = constants.SET + str(constants.LED_R[i]) \
 										+ ' ' + str(R)
 								await send_to_socket(plants, plant_id, msg)
@@ -261,7 +265,7 @@ async def board_leds(request):
 						except KeyError:
 							res['KeyError'] = 1
 						try:
-							if (led.G != G):
+							if led.G != G:
 								msg = constants.SET + str(constants.LED_G[i]) \
 										+ ' ' + str(G)
 								await send_to_socket(plants, plant_id, msg)
@@ -269,7 +273,7 @@ async def board_leds(request):
 						except KeyError:
 							res['KeyError'] = 1
 						try:
-							if (led.B != B):
+							if led.B != B:
 								msg = constants.SET + str(constants.LED_B[i]) \
 										+ ' ' + str(B)
 								await send_to_socket(plants, plant_id, msg)
@@ -277,6 +281,14 @@ async def board_leds(request):
 						except KeyError:
 							res['KeyError'] = 1
 							SQLsession.commit()
+						try:
+							if led.on != on:
+								msg = constants.SET + str(constants.LED_ON[i]) \
+										+ ' ' + str(on)
+								await send_to_socket(plants, plant_id, msg)
+								led.on = on
+						except KeyError:
+							res['KeyError'] = 1
 
 				# Timer creation
 		if plants.registered(plant_id):
