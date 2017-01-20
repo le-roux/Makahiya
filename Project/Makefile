@@ -127,7 +127,7 @@ CSRC = $(STARTUPSRC) \
        $(SRC)/i2c_user.c \
        $(SRC)/fdc2214.c \
        $(SRC)/ext_user.c \
-       $(SRC)/capacitive_sensor.c 
+       $(SRC)/capacitive_sensor.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -197,7 +197,7 @@ AOPT =
 TOPT = -mthumb -DTHUMB
 
 # Define C warning options here
-CWARN = -Wall -Wextra -Wundef -Wstrict-prototypes -Wno-strict-aliasing
+CWARN = -Wall -Wextra -Wundef -Wstrict-prototypes -Wno-strict-aliasing -std=gnu99
 
 # Define C++ warning options here
 CPPWARN = -Wall -Wextra -Wundef
