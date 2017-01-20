@@ -33,6 +33,8 @@ extern const int16_t* const _binary_end[ALARM_SOUND_NB];
 
 extern volatile int music_id;
 extern volatile int repeat;
+
+#define MUSIC_BUFFER_SIZE 900000
 /**
  * Size of a sample in bytes
  */
@@ -69,7 +71,7 @@ extern int8_t volumeDiv;
 #define WORKING_BUFFER_SIZE 4000
 
 #define INPUT_BUFFER_SIZE 1000
-#define INPUT_BUFFERS_NB 30
+#define INPUT_BUFFERS_NB 10
 
 #define I2SDIV 6
 
@@ -78,7 +80,9 @@ extern I2SConfig i2s3_cfg;
 extern THD_WORKING_AREA(wa_audio, 1024);
 
 extern THD_WORKING_AREA(wa_audio_in, 2048);
+extern THD_WORKING_AREA(wa_flash, 2048);
 extern binary_semaphore_t audio_bsem;
+extern binary_semaphore_t download_bsem;
 
 /******************************/
 /*        Functions           */

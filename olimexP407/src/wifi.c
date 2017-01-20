@@ -121,8 +121,8 @@ wifi_response_header get_response(int timeout) {
             }
         }
     } else {
-        if (!end)
-            end = 0;
+        if (end < 20)
+            end++;
         else {
             out.error = 1;
             out.error_code = NO_DATA;
@@ -194,7 +194,7 @@ void read_music(char* path) {
     /**
      * Start the reading of the mp3 file.
      */
-    chBSemSignal(&audio_bsem);
+    chBSemSignal(&download_bsem);
 }
 
 void send_cmd(char* cmd) {

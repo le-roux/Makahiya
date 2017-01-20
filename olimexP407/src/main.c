@@ -55,8 +55,8 @@ int main(void) {
     // Audio threads
     sound_set_pins();
     chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO + 1, audio_playback, NULL);
-    //chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 2, wifi_audio_in, NULL);
-    chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 2, flash_audio_in, NULL);
+    chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 2, wifi_audio_in, NULL);
+    chThdCreateStatic(wa_flash, sizeof(wa_flash), NORMALPRIO + 2, flash_audio_in, NULL);
 
     // Websocket thread
     //chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "0");
