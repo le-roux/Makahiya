@@ -1,7 +1,12 @@
 <metal:macro use-macro="master">
     <metal:slot fill-slot="body">
         <div class="container-fluid">
-            <h1 class="sub-header" text-align="center">${title}</h1>
+            <h1 class="sub-header text-center">
+                ${title}
+                <div tal:condition="python:KeyError == 1 | nothing" style='color:red'>
+                    Error when sending data to plant
+                </div>
+            </h1>
             <div class="table-responsive">
                 <h2 class="sub-header">LED HP</h2>
                 <table class="table table-striped">
@@ -13,7 +18,7 @@
                         <th>Send</th>
                     </tr>
                     <tr>
-                        <form method="post" action='/${plant_id}/board'>
+                        <form method="post" action='/${plant_id}/board/leds'>
                             <td>Led 1</td>
                             <td><input type='text' value=${ledHP_R} name='ledH_R'/></td>
                             <td><input type='text' value=${ledHP_G} name='ledH_G'/></td>
@@ -33,7 +38,7 @@
                         </div>
                         <th>Send</th>
                     <tr>
-                    <form tal:repeat="id ran" method='post' action='/${plant_id}/board'>
+                    <form tal:repeat="id ran" method='post' action='/${plant_id}/board/leds'>
                         <tr>
                             <td>
                                 LED ${id}

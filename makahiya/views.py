@@ -15,6 +15,7 @@ import deform.widget
 from .websockets import plants, send_to_socket
 import asyncio
 import datetime
+from .constants import constants
 from .timer import clock
 log = logging.getLogger(__name__)
 
@@ -196,48 +197,89 @@ async def board_leds(request):
 				if 'ledH_R' in request.POST:
 					ledHP = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
 					try:
-						ledHP.R = int(request.POST.getone('ledH_R'))
-					except ValueError as e:
+						R = int(request.POST.getone('ledH_R'))
+						if ledHP_R != R:
+							msg = constants.SET + str(constants.LED_R[0]) \
+									+ ' ' + str(R)
+							await send_to_socket(plants, plant_id, msg)
+							ledHP.R = R
+					except KeyError:
+						res['KeyError'] = 1
+					except ValueError:
 						pass
 					try:
-						ledHP.G = int(request.POST.getone('ledH_G'))
-					except ValueError as e:
+						G = int(request.POST.getone('ledH_G'))
+						if ledHP.G != G:
+							msg = constants.SET + str(constants.LED_G[0]) \
+									+ ' ' + str(G)
+							await send_to_socket(plants, plant_id, msg)
+							ledHP.G = G
+					except KeyError:
+						res['KeyError'] = 1
+					except ValueError:
 						pass
 					try:
-						ledHP.B = int(request.POST.getone('ledH_B'))
-					except ValueError as e:
+						B = int(request.POST.getone('ledH_B'))
+						if ledHP.B != B:
+							msg = constants.SET + str(constants.LED_B[0]) \
+									+ ' ' + str(B)
+							await send_to_socket(plants, plant_id, msg)
+							ledHP.B = B
+					except KeyError:
+						res['KeyError'] = 1
+					except ValueError:
 						pass
 					try:
-						ledHP.W = int(request.POST.getone('ledH_W'))
-					except ValueError as e:
+						W = int(request.POST.getone('ledH_W'))
+						if ledHP.W != W:
+							msg = constants.SET + str(ledHP_W) + ' ' + str(W)
+							await send_to_socket(plants, plant_id, msg)
+							ledHP.W = W
+					except KeyError:
+						res['KeyError'] = 1
+					except ValueError:
 						pass
 					SQLsession.commit()
-					msg = 'led 0 ' + str(ledHP.R) + ' ' + str(ledHP.G) + ' ' + str(ledHP.B) + ' ' + str(ledHP.W)
-					await send_to_socket(plants, plant_id, msg)
 
 				# Modification on a medium led
 				for i in range(1,6):
 					if 'ledM' + str(i) + 'R' in request.POST:
 						led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
 						try:
-							led.R = int(request.POST.getone('ledM'+str(i)+'R'))
-						except ValueError as e:
+							R = int(request.POST.getone('ledM'+str(i)+'R'))
+							if (led.R != R):
+								msg = constants.SET + str(constants.LED_R[i]) \
+										+ ' ' + str(R)
+								await send_to_socket(plants, plant_id, msg)
+								led.R = R
+						except KeyError:
+							res['KeyError'] = 1
+						except ValueError:
+							if 'valErr' in res:
+								res['valErr'].append(i)
+						try:
+							G = int(request.POST.getone('ledM'+str(i)+'G'))
+							if (led.G != G):
+								msg = constants.SET + str(constants.LED_G[i]) \
+										+ ' ' + str(G)
+								await send_to_socket(plants, plant_id, msg)
+								led.G = G
+						except KeyError:
+							res['KeyError'] = 1
+						except ValueError:
 							pass
 						try:
-							led.G = int(request.POST.getone('ledM'+str(i)+'G'))
-						except ValueError as e:
-							pass
-						try:
-							led.B = int(request.POST.getone('ledM'+str(i)+'B'))
-							log.debug('led.b: ' + str(led.B))
-						except ValueError as e:
+							B = int(request.POST.getone('ledM'+str(i)+'B'))
+							if (led.B != B):
+								msg = constants.SET + str(constants.LED_B[i]) \
+										+ ' ' + str(B)
+								await send_to_socket(plants, plant_id, msg)
+								led.B = B
+						except KeyError:
+							res['KeyError'] = 1
+						except ValueError:
 							pass
 						SQLsession.commit()
-						msg = 'led ' + str(i) + ' ' + str(led.R) + ' ' + str(led.G) + ' ' + str(led.B)
-						try:
-							await send_to_socket(plants, plant_id, msg)
-						except KeyError as e:
-							pass
 
 				# Timer creation
 
