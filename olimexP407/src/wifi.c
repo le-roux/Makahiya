@@ -122,7 +122,7 @@ wifi_response_header get_response(int timeout) {
         }
     } else {
         if (!end)
-            end = 1;
+            end = 0;
         else {
             out.error = 1;
             out.error_code = NO_DATA;

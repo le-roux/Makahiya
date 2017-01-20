@@ -9,6 +9,8 @@
 #include "sound.h"
 #include "wifi.h"
 
+#include "flash.h"
+
 const int16_t* const _binary_start[ALARM_SOUND_NB] = {&_binary_alarm1_mp3_start,
                          &_binary_alarm2_mp3_start,
                          &_binary_alarm3_mp3_start};
@@ -47,6 +49,8 @@ static int8_t working_buffer[WORKING_BUFFER_SIZE];
 
 volatile int count = 0;
 volatile bool started = false;
+
+static flashaddr_t music_addr = 0x08080000;
 
 int8_t volumeMult = 1;
 int8_t volumeDiv = 1;
@@ -266,28 +270,79 @@ THD_FUNCTION(flash_audio_in, arg) {
     UNUSED(arg);
     const int16_t* cur_pos;
     void* inbuf;
-    int id;
     // Init the free input buffers mailbox
     for (int i = 0; i < INPUT_BUFFERS_NB; i++)
         chMBPost(&free_input_box, (msg_t)&in_buf[i], TIME_INFINITE);
+        /****/
+
+    chSysLock();
+    for (int i = (int)flashSectorAt(music_addr); i < 12; i++)
+        flashSectorErase((flashsector_t)i);
+    chSysUnlock();
+
+    int bytes_nb, bytes_consumed, copy;
+    wifi_response_header out;
+
+    bytes_consumed = WIFI_BUFFER_SIZE;
+    out.length = WIFI_BUFFER_SIZE;
+
+    chBSemWait(&audio_bsem);
+    DEBUG("start reading audio");
+    // Read file from wifi
+    bytes_nb = 0;
+    bytes_consumed = WIFI_BUFFER_SIZE;
+    out.length = WIFI_BUFFER_SIZE;
+    out.error = 0;
+    out.error_code = 0;
+
+    while(bytes_nb < 510*1024) {
+        while (bytes_consumed >= out.length) { // Need to perform a new read.
+            bytes_consumed = 0;
+            read_buffer(audio_conn);
+            out = get_response(true);
+            if (out.error && out.error_code == NO_DATA)
+                break;
+        }
+        if (out.error && out.error_code == NO_DATA)
+            break;
+
+        /**
+         * copy = min(out.length - bytes_consumed,
+         *            2 * INPUT_BUFFER_SIZE - bytes_nb)
+         */
+         DEBUG("length: %i (consumed: %i)", out.length, bytes_consumed);
+        copy = out.length - bytes_consumed;
+        if (512*1024 - bytes_nb < copy)
+            copy = 512*1024 - bytes_nb;
+        // Don't copy more than remaining space.
+        chSysLock();
+        flashWrite((flashaddr_t)(music_addr + bytes_nb), &response_body[bytes_consumed], copy);
+        chSysUnlock();
+        bytes_nb += copy;
+        bytes_consumed += copy;
+    }
+    if (out.error && out.error_code == NO_DATA) {
+        DEBUG("return");
+        return;
+    }
+    DEBUG("post");
+
+        /****/
 
     while (TRUE) {
-        chBSemWait(&audio_bsem);
-        id = music_id;
         chBSemSignal(&decode_bsem);
+        DEBUG("launch play");
 
-        while (repeat) {
-            cur_pos = _binary_start[id];
-            while (cur_pos + INPUT_BUFFER_SIZE < _binary_end[id]) {
-                if (chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE) != MSG_OK)
-                    break;
-                memcpy(inbuf, cur_pos, 2 * INPUT_BUFFER_SIZE);
-                cur_pos += INPUT_BUFFER_SIZE;
+        cur_pos = (int16_t*)music_addr;
+        while (cur_pos + INPUT_BUFFER_SIZE < (int16_t*)music_addr + 510*1024) {
+            if (chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE) != MSG_OK)
+                continue;
+            memcpy(inbuf, cur_pos, 2 * INPUT_BUFFER_SIZE);
+            cur_pos += INPUT_BUFFER_SIZE;
 
-                chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
-                if (!repeat)
-                    break;
-            }
+            chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
+            if (!repeat)
+                continue;
         }
         chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
         inbuf = NULL;

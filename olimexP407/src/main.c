@@ -59,7 +59,7 @@ int main(void) {
     chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 2, flash_audio_in, NULL);
 
     // Websocket thread
-    chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "0");
+    //chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "0");
     chThdSleepMilliseconds(1000);
     DEBUG("read music");
 

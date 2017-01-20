@@ -103,7 +103,7 @@ include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
 
 # Define linker script file here
-LDSCRIPT= $(STARTUPLD)/STM32F407xG.ld
+LDSCRIPT= ./STM32F407xG.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -124,7 +124,7 @@ CSRC = $(STARTUPSRC) \
 	   $(SRC)/main.c \
 	   $(SRC)/usbcfg.c $(SRC)/shell_user.c \
 	   $(SRC)/sound.c $(SRC)/serial_user.c $(SRC)/wifi.c $(SRC)/utils.c \
-	   $(SRC)/websocket.c $(SRC)/logic.c $(SRC)/alarm.c
+	   $(SRC)/websocket.c $(SRC)/logic.c $(SRC)/alarm.c $(SRC)/flash.c
 
 PCMSRC =
 MP3SRC = alarm1.mp3 alarm2.mp3 alarm3.mp3
