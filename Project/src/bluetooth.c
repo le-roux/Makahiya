@@ -1,12 +1,12 @@
 #include "ch.h"
 #include "hal.h"
 #include "bluetooth.h"
+#include "RTT_streams.h"
 #include "utils.h"
 #include "chprintf.h"
 #include <string.h>
 
 static SerialDriver* bluetooth_SD = &SD2;
-RTTStream RTTD;
 
 static THD_WORKING_AREA(waThread1, 128);
 static THD_FUNCTION(Thread1, arg) {

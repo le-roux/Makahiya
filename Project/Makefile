@@ -103,7 +103,7 @@ LDSCRIPT= $(STARTUPLD)/STM32F407xG.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
-SRC = ./src
+SRC := ./src
 CSRC = $(STARTUPSRC) \
        $(KERNSRC) \
        $(PORTSRC) \
@@ -123,7 +123,11 @@ CSRC = $(STARTUPSRC) \
        $(SRC)/bluetooth.c \
        $(SRC)/RTT_streams.c \
        $(SRC)/../SEGGER_RTT/SEGGER_RTT.c \
-       $(SRC)/../SEGGER_RTT/SEGGER_RTT_printf.c
+       $(SRC)/../SEGGER_RTT/SEGGER_RTT_printf.c \
+       $(SRC)/i2c_user.c \
+       $(SRC)/fdc2214.c \
+       $(SRC)/ext_user.c \
+       $(SRC)/capacitive_sensor.c 
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

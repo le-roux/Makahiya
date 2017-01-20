@@ -48,6 +48,8 @@
 /* Driver local functions.                                                   */
 /*===========================================================================*/
 
+RTTStream RTTD;
+
 static size_t writes(void *ip, const uint8_t *bp, size_t n) {
   RTTStream* rtt_str = ip;
   return SEGGER_RTT_Write(rtt_str->BufferIndex, bp, n);
