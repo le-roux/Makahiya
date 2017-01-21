@@ -26,8 +26,6 @@ volatile int music_id;
 static volatile int music_source;
 #define DOWNLOAD 0
 #define INNER 1
-volatile int16_t* music_start;
-volatile int16_t* music_end;
 volatile int repeat;
 
 int16_t i2s_tx_buf[I2S_BUF_SIZE * 2];
@@ -154,6 +152,7 @@ THD_FUNCTION(audio_playback, arg) {
             } else { // Music source is download.
                 if (bytes_consumed == FLASH_SECTOR_SIZE) { // Need to get a new flash sector.
                     chMBFetch(&flash_box, (msg_t*)&inbuf, TIME_INFINITE);
+                    DEBUG("decode sector %i", flashSectorAt((flashaddr_t)inbuf));
                     bytes_consumed = 0;
                     if (inbuf == NULL) { // End of music
                         chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
@@ -175,8 +174,10 @@ THD_FUNCTION(audio_playback, arg) {
                     memcpy(&working_buffer[bytes_left], inbuf + bytes_consumed, copy);
                     bytes_left += copy;
                     bytes_consumed += copy;
-                    if (bytes_consumed == FLASH_SECTOR_SIZE)
+                    if (bytes_consumed == FLASH_SECTOR_SIZE) {
                         chMBPost(&free_flash_box, (msg_t)inbuf, TIME_INFINITE);
+                        DEBUG("release sector");
+                    }
                 }
             }
 
@@ -289,8 +290,12 @@ THD_FUNCTION(wifi_audio_in, arg) {
     initial_flash_sector = flashSectorAt((flashaddr_t)&flash_sec[0]);
 
     // Init the free input buffers mailbox
-    for (int i = initial_flash_sector; i < initial_flash_sector + FLASH_SECTOR_NB; i++)
-        chMBPost(&free_flash_box, (msg_t)&flash_sec[i - initial_flash_sector], TIME_INFINITE);
+    chSysLock();
+    for (int i = initial_flash_sector; i < initial_flash_sector + FLASH_SECTOR_NB; i++) {
+        chMBPostI(&free_flash_box, (msg_t)&flash_sec[i - initial_flash_sector]);
+        flashSectorErase(i);
+    }
+    chSysUnlock();
 
     while (TRUE) {
         end = 0;
@@ -298,13 +303,16 @@ THD_FUNCTION(wifi_audio_in, arg) {
         music_source = DOWNLOAD;
         initial_buffering = 0;
         while (end != 2) {
+            DEBUG("start while");
             chMBFetch(&free_flash_box, (msg_t*)&inbuf, TIME_INFINITE);
             buffer_id = flashSectorAt((flashaddr_t)inbuf);
             DEBUG("buffer_id: %i, addr %x", buffer_id, inbuf);
             // Clear the flashdata section.
-            chSysLock();
-            flashSectorErase(buffer_id);
-            chSysUnlock();
+            if (initial_buffering >= FLASH_SECTOR_NB) {
+                chSysLock();
+                flashSectorErase(buffer_id);
+                chSysUnlock();
+            }
 
             // Read file from wifi
             DEBUG("start downloading audio");
@@ -351,7 +359,7 @@ THD_FUNCTION(wifi_audio_in, arg) {
             }
             chMBPost(&flash_box, (msg_t)inbuf, TIME_INFINITE);
             initial_buffering++;
-            if (initial_buffering > 4)
+            if (initial_buffering > 2)
                 chBSemSignal(&decode_bsem);
         }
         chMBFetch(&free_flash_box, (msg_t*)&inbuf, TIME_INFINITE);
@@ -375,6 +383,11 @@ THD_FUNCTION(flash_audio_in, arg) {
      */
     static void* inbuf;
 
+    /**
+     * Id of the 'inner' music currently played.
+     */
+    static int cur_id;
+
     // Init the free input buffers mailbox
     for (int i = 0; i < INPUT_BUFFERS_NB; i++)
         chMBPost(&free_input_box, (msg_t)&in_buf[i], TIME_INFINITE);
@@ -383,18 +396,19 @@ THD_FUNCTION(flash_audio_in, arg) {
         chBSemWait(&audio_bsem);
         // Start to play music.
         music_source = INNER;
+        cur_id = music_id;
         chBSemSignal(&decode_bsem);
         DEBUG("Start playing audio");
-        cur_pos = (int16_t*)music_start;
-        while (cur_pos + INPUT_BUFFER_SIZE < music_end) {
-            if (chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE) != MSG_OK)
-                continue;
-            memcpy(inbuf, cur_pos, 2 * INPUT_BUFFER_SIZE);
-            cur_pos += INPUT_BUFFER_SIZE;
-
-            chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
-            if (!repeat)
-                continue;
+        while (repeat) {
+            cur_pos = _binary_start[cur_id];
+            while (cur_pos + INPUT_BUFFER_SIZE < _binary_end[cur_id]) {
+                chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
+                memcpy(inbuf, cur_pos, 2 * INPUT_BUFFER_SIZE);
+                cur_pos += INPUT_BUFFER_SIZE;
+                chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
+                if (!repeat)
+                    break;
+            }
         }
         chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
         inbuf = NULL;

@@ -35,7 +35,7 @@ extern volatile int music_id;
 extern volatile int repeat;
 
 #define FLASH_SECTOR_SIZE 131072 // 128k
-#define FLASH_SECTOR_NB 7
+#define FLASH_SECTOR_NB 6
 /**
  * Size of a sample in bytes
  */
