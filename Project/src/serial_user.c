@@ -7,14 +7,14 @@ SerialConfig serial_cfg = {
     0
 };
 
-SerialDriver* const wifi_SD = &SD4;
+SerialDriver* const wifi_SD = &SD1;
 
 uint8_t serial_tx_buffer[SERIAL_TX_BUFFER_SIZE];
 
 void serial_set_pin(void) {
-    palSetPadMode(GPIOC, 10, PAL_MODE_ALTERNATE(8));
-    palSetPadMode(GPIOC, 11, PAL_MODE_ALTERNATE(8));
+    palSetPadMode(GPIOA, 9, PAL_MODE_ALTERNATE(8));
+    palSetPadMode(GPIOA, 10, PAL_MODE_ALTERNATE(8));
 
     // Interrupt for websockets
-    palSetPadMode(GPIOE, 7, PAL_MODE_INPUT_PULLDOWN);
+    palSetPadMode(GPIOA, 11, PAL_MODE_INPUT_PULLDOWN);
 }

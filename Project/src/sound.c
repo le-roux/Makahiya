@@ -4,7 +4,6 @@
 #include "utils.h"
 #include <string.h>
 #include "chprintf.h"
-#include "usbcfg.h"
 
 #include "sound.h"
 #include "wifi.h"
@@ -73,7 +72,7 @@ volatile bool started = false;
 int8_t volumeMult = 1;
 int8_t volumeDiv = 1;
 
-I2SConfig i2s3_cfg = {
+I2SConfig audio_i2s_cfg = {
     i2s_tx_buf,
     NULL,
     I2S_BUF_SIZE * 2,
@@ -132,9 +131,9 @@ THD_FUNCTION(audio_playback, arg) {
                     if (inbuf == NULL) { // End of music
                         chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
                         chMBPost(&free_input_box, (msg_t)inbuf, TIME_INFINITE);
-                        if (I2SD3.state != I2S_STOP) {
-                            i2sStopExchange(&I2SD3);
-                            i2sStop(&I2SD3);
+                        if (I2SD2.state != I2S_STOP) {
+                            i2sStopExchange(&I2SD2);
+                            i2sStop(&I2SD2);
                         }
                         chSemReset(&audio_sem, 2);
                         started = false;
@@ -156,9 +155,9 @@ THD_FUNCTION(audio_playback, arg) {
                     if (inbuf == NULL) { // End of music
                         chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
                         chMBPost(&free_input_box, (msg_t)inbuf, TIME_INFINITE);
-                        if (I2SD3.state != I2S_STOP) {
-                            i2sStopExchange(&I2SD3);
-                            i2sStop(&I2SD3);
+                        if (I2SD2.state != I2S_STOP) {
+                            i2sStopExchange(&I2SD2);
+                            i2sStop(&I2SD2);
                         }
                         chSemReset(&audio_sem, 2);
                         started = false;
@@ -193,10 +192,10 @@ THD_FUNCTION(audio_playback, arg) {
 
             if (err == -6) { // TODO: take care of other errors
                 chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
-                if (I2SD3.state != I2S_STOP) {
+                if (I2SD2.state != I2S_STOP) {
                     chThdSleepMilliseconds(100);
-                    i2sStopExchange(&I2SD3);
-                    i2sStop(&I2SD3);
+                    i2sStopExchange(&I2SD2);
+                    i2sStop(&I2SD2);
                     started = false;
                 }
                 // Clear working buffer
@@ -230,8 +229,8 @@ THD_FUNCTION(audio_playback, arg) {
             chSysLock();
             if (!started && chSemGetCounterI(&audio_sem) == 0) {
                 chSysUnlock();
-                i2sStart(&I2SD3, &i2s3_cfg);
-                i2sStartExchange(&I2SD3);
+                i2sStart(&I2SD2, &audio_i2s_cfg);
+                i2sStartExchange(&I2SD2);
                 started = true;
             } else {
                 chSysUnlock();

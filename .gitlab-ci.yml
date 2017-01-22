@@ -7,7 +7,13 @@ variables:
 olimex-build:
     stage: build
     script:
+        - make -C helix
         - make -C Project
+
+olimex-test:
+    stage: test
+    script:
+        - make -C Project run_test
 
 cache:
     key: all

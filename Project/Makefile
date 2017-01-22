@@ -255,6 +255,7 @@ gdb: $(BUILDDIR)/ch.elf
 	$(TRGT)gdb $(BUILDDIR)/ch.elf
 
 TEST_DIR := ./test_dir
+INCLUDES := ./includes/
 test: $(TEST_DIR)/test.c $(TEST_DIR)/utils.o $(TEST_DIR)/wifi.o
 	gcc -c $(TEST_DIR)/test.c -o $(TEST_DIR)/test.o -iquote $(INCLUDES)
 	gcc $(TEST_DIR)/test.o $(TEST_DIR)/utils.o $(TEST_DIR)/wifi.o -lcriterion -o $(TEST_DIR)/$@

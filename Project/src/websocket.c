@@ -6,8 +6,6 @@
 #include "wifi.h"
 
 #include "chprintf.h"
-#include "usbcfg.h"
-#include "logic.h"
 #include "serial_user.h"
 #include <stdlib.h>
 #include <string.h>
@@ -22,6 +20,8 @@ static volatile wifi_connection conn;
 
 static BSEMAPHORE_DECL(web_bsem, true);
 void ext_cb(EXTDriver* driver, expchannel_t channel);
+void set_value(int var_id, int value);
+int get_value(int var_id);
 
 static const EXTConfig ext_cfg = {
     {
@@ -84,10 +84,10 @@ THD_FUNCTION(websocket_ext, arg) {
         if (strcmp(cmd, "get") == 0 || strcmp(cmd, "set") == 0) {
             var = strtok(NULL, " ");
             if (strcmp(cmd, "set") == 0)
-                set_value(var, atoi(strtok(NULL, " ")));
+                set_value(atoi(var), atoi(strtok(NULL, " ")));
 
             // Same actions for 'get' and 'set'
-            int_to_char(value, get_value(var));
+            int_to_char(value, get_value(atoi(var)));
             strcpy(buffer, var);
             strcat(buffer, " ");
             strcat(buffer, value);
@@ -167,4 +167,13 @@ THD_FUNCTION(websocket, arg) {
         wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"abcd");
         (void)get_response(true);
     }
+}
+
+void set_value(int var_id, int value) {
+     UNUSED(var_id);
+     UNUSED(value);
+}
+int get_value(int var_id) {
+    UNUSED(var_id);
+    return 1;
 }

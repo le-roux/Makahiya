@@ -6,7 +6,6 @@
 #ifndef TEST
 #include "ch.h"
 #include "hal.h"
-#include "usbcfg.h"
 #include "chprintf.h"
 #include "serial_user.h"
 #include "utils.h"

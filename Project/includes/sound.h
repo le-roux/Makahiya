@@ -76,7 +76,7 @@ extern int8_t volumeDiv;
 
 #define I2SDIV 6
 
-extern I2SConfig i2s3_cfg;
+extern I2SConfig audio_i2s_cfg;
 
 extern THD_WORKING_AREA(wa_audio, 1024);
 
