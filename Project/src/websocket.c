@@ -5,12 +5,12 @@
 #include "utils.h"
 #include "wifi.h"
 
-#include "chprintf.h"
 #include "serial_user.h"
 #include <stdlib.h>
 #include <string.h>
 #include "alarm.h"
 #include "sound.h"
+#include "ext_user.h"
 
 // 14 is the number of the pin used for the interrupts.
 static const char* const ws_cmd = "websocket_client -g 14 ";
@@ -19,42 +19,13 @@ static const char* const ws_addr = "ws://makahiya.rfc1149.net:9000/ws/plants/";
 static volatile wifi_connection conn;
 
 static BSEMAPHORE_DECL(web_bsem, true);
-void ext_cb(EXTDriver* driver, expchannel_t channel);
 void set_value(int var_id, int value);
 int get_value(int var_id);
 
-static const EXTConfig ext_cfg = {
-    {
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_RISING_EDGE | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOE, ext_cb},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL},
-        {EXT_CH_MODE_DISABLED, NULL}
-    }
-};
-
-void ext_cb(EXTDriver* driver, expchannel_t channel) {
+void web_cb(EXTDriver* driver, expchannel_t channel) {
     UNUSED(driver);
     UNUSED(channel);
-    if (palReadPad(GPIOE, 7) == PAL_LOW)
+    if (palReadPad(GPIOA, GPIOA_WIFI_RTS) == PAL_LOW)
         return; // It was just noise.
     chSysLockFromISR();
     chBSemSignalI(&web_bsem);
@@ -68,10 +39,10 @@ THD_FUNCTION(websocket_ext, arg) {
     char *cmd, *var;
     char value[5], buffer[20];
     // Start the EXT driver (for interrupt)
-    extStart(&EXTD1, &ext_cfg);
+    extStart(EXTD, &ext_config);
     while(TRUE) {
         chBSemWait(&web_bsem); // Wait for a trigger from the interrupt
-        read_buffer((wifi_connection)conn); // Ask to read the data
+        read_buffer(conn); // Ask to read the data
         header = get_response(true);
         if (header.error) {
             continue;

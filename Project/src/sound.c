@@ -169,7 +169,7 @@ THD_FUNCTION(audio_playback, arg) {
                 if (copy > 1000) {
                     if (copy > FLASH_SECTOR_SIZE - bytes_consumed)
                         copy = FLASH_SECTOR_SIZE - bytes_consumed;
-                    memcpy(&working_buffer[bytes_left], inbuf + bytes_consumed, copy);
+                    memcpy(&working_buffer[bytes_left], (int8_t*)inbuf + bytes_consumed, copy);
                     bytes_left += copy;
                     bytes_consumed += copy;
                     if (bytes_consumed == FLASH_SECTOR_SIZE) {

@@ -19,21 +19,32 @@ static msg_t commands[MAX_COMMANDS];
  * @brief The mailbox storing the commands to execute when alarm_clock expires.
  */
 static MAILBOX_DECL(commands_box, commands, MAX_COMMANDS);
-MUTEX_DECL(lock);
 
+/**
+ * @brief The number of commands to execute when alarm_clock expires.
+ */
 static int commands_nb;
-int alarm_activated;
 
+/**
+ * @brief Callback called when alarm_clock expires.
+ */
 static void alarm_cb(void* arg);
 
 void alarm_init(void) {
-    chMtxObjectInit(&lock);
-    alarm_activated = false;
     chVTObjectInit(&alarm_clock);
 }
 
 void set_alarm(int timeout, char* commands_list) {
-    uint16_t var_id, value;
+    /**
+     * The id of the variable the command affects.
+     */
+    uint16_t var_id;
+
+    /**
+     * The value that must be set to the variable specified in @p var_id.
+     */
+    uint16_t value;
+
     chVTReset(&alarm_clock);
     commands_nb = atoi(commands_list);
     for (int i = 0; i < commands_nb; i++) {
@@ -42,17 +53,27 @@ void set_alarm(int timeout, char* commands_list) {
         commands[i] = ((var_id & 0xFFFF) << 16) | (value & 0xFFFF);
         (void)chMBPost(&commands_box, commands[i], TIME_INFINITE);
     }
-    chMtxLock(&lock);
-    alarm_activated = true;
-    chMtxUnlock(&lock);
     chVTSet(&alarm_clock, S2ST(timeout), alarm_cb, NULL);
 }
 
 static void alarm_cb(void* arg) {
     UNUSED(arg);
+
+    /**
+     * The command to perform. It contains both @p var_id and @p value.
+     */
     msg_t command;
-    uint16_t var_id, value;
-    alarm_activated = false;
+
+    /**
+     * The id of the variable the command affects.
+     */
+    uint16_t var_id;
+
+    /**
+     * The value that must be set to the variable specified in @p var_id.
+     */
+    uint16_t value;
+
     for (int i = 0; i < commands_nb; i++) {
         chSysLockFromISR();
         (void)chMBFetchI(&commands_box, &command);
@@ -60,7 +81,7 @@ static void alarm_cb(void* arg) {
         var_id = (uint16_t)((command & 0xFFFF0000) >> 16);
         value = (uint16_t)(command & 0xFFFF);
         switch (var_id) {
-            case(1): {
+            case(MUSIC): {
                 music_id = value;
                 repeat = 1;
                 chSysLockFromISR();

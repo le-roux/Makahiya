@@ -39,6 +39,11 @@ extern THD_WORKING_AREA(wa_websocket, WA_WEBSOCKET_SIZE);
 /*       Functions     */
 /***********************/
 
+/**
+ * @brief Callback called when the Wi-Fi module raises an interrupt.
+ */
+void web_cb(EXTDriver* driver, expchannel_t channel);
+
 /** @brief Main function of the websocket thread.
  *
  * @param arg A string indicating the plant id (unique for each plant).

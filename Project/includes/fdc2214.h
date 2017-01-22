@@ -69,26 +69,26 @@
 #define FDC_WA_SIZE 2048
 
 /*************************/
-/*      Macros        */
-/*************************/
-#define ENTER_SLEEP_MODE config &= SLEEP_MODE
-#define RESET_CONFIG config = CONFIG_RESERVED
-
-/*************************/
 /*      Variables        */
 /*************************/
-extern uint16_t config;
-extern uint16_t status;
+
+/**
+ * @brief Semaphore used by the FDC thread to wait for an interrupt.
+ */
 extern binary_semaphore_t fdc_bsem;
-extern int FDC_ADDR[2];
-extern int DATA_MSB[4];
-extern int DATA_LSB[4];
+
+/**
+ * @brief Id of the calling sensor.
+ */
 extern volatile uint8_t calling;
 
 /*************************/
 /*      Functions        */
 /*************************/
 
+/**
+ * Initialize the FDC2214 sensors.
+ */
 void fdc_init(void);
 
 #endif // FDC2214_H

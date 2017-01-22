@@ -1,6 +1,6 @@
 /*
     File written by Sylvain LE ROUX, based on a template by Giovanni Di Sirio.
-    
+
     ChibiOS - Copyright (C) 2006..2015 Giovanni Di Sirio
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,6 +40,8 @@
 /* Driver exported variables.                                                */
 /*===========================================================================*/
 
+RTTStream RTTD;
+
 /*===========================================================================*/
 /* Driver local variables.                                                   */
 /*===========================================================================*/
@@ -47,8 +49,6 @@
 /*===========================================================================*/
 /* Driver local functions.                                                   */
 /*===========================================================================*/
-
-RTTStream RTTD;
 
 static size_t writes(void *ip, const uint8_t *bp, size_t n) {
   RTTStream* rtt_str = ip;

@@ -10,7 +10,7 @@ int main(void) {
 
 	halInit();
 	chSysInit();
-	
+
 	initPwm();
 	setLed(LED1_R, 32);
 	setLed(LED4_R, 32);
@@ -19,7 +19,7 @@ int main(void) {
 	fdc_init();
 	initBluetooth();
 
-	while(true){
+	while(true) {
 		chThdSleepMilliseconds(1000);
 	}
 }

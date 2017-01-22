@@ -1,19 +1,17 @@
 #include "fdc2214.h"
-#include "RTT_streams.h"
 #include "i2c_user.h"
 #include "ext_user.h"
-#include "chprintf.h"
 #include "utils.h"
 #include "capacitive_sensor.h"
 
-uint16_t config = CONFIG_RESERVED;
-uint16_t status;
-volatile uint8_t calling;
-int FDC_ADDR[2] = {FDC1_ADDR, FDC2_ADDR};
-int DATA_MSB[4] = {DATA_MSB_CH0, DATA_MSB_CH1, DATA_MSB_CH2, DATA_MSB_CH3};
-int DATA_LSB[4] = {DATA_LSB_CH0, DATA_LSB_CH1, DATA_LSB_CH2, DATA_LSB_CH3};
+#include "chprintf.h"
+#include "RTT_streams.h"
 
-THD_WORKING_AREA(fdc_wa, FDC_WA_SIZE);
+volatile uint8_t calling;
+static int FDC_ADDR[2] = {FDC1_ADDR, FDC2_ADDR};
+static int DATA_MSB[4] = {DATA_MSB_CH0, DATA_MSB_CH1, DATA_MSB_CH2, DATA_MSB_CH3};
+static int DATA_LSB[4] = {DATA_LSB_CH0, DATA_LSB_CH1, DATA_LSB_CH2, DATA_LSB_CH3};
+
 BSEMAPHORE_DECL(fdc_bsem, true);
 
 static msg_t write_register(uint8_t addr, uint8_t reg_addr, uint16_t value) {
@@ -28,7 +26,7 @@ static msg_t read_register(uint8_t addr, uint8_t reg_addr) {
 	return i2cMasterTransmitTimeout(&I2CD1, addr, tx_buffer, 1, rx_buffer, 2, TIMEOUT);
 }
 
-static i2cflags_t init_sensor(void) {
+static i2cflags_t init_sensors(void) {
 	msg_t status;
 
 	// Set the sensor in SLEEP_MODE
@@ -139,8 +137,7 @@ static msg_t get_value(int slave_id, int sensor_id) {
 		else if (count[slave_id - 1][sensor_id] == BUFFER_SIZE) {
 			update_default_value(0);
 			count[slave_id - 1][sensor_id]++;
-		}
-		else // count[slave_id][sensor_id] > BUFFER_SIZE
+		} else // count[slave_id][sensor_id] > BUFFER_SIZE
 			chprintf((BaseSequentialStream*)&RTTD,
 					"Slave %i Sensor %i: %i\r\n",
 					slave_id,
@@ -150,14 +147,25 @@ static msg_t get_value(int slave_id, int sensor_id) {
 	return MSG_OK;
 }
 
+static THD_WORKING_AREA(fdc_wa, FDC_WA_SIZE);
 static THD_FUNCTION(fdc_int, arg) {
 	UNUSED(arg);
+
+	/**
+	 * Return code of the I2C commands.
+	 */
 	i2cflags_t status;
+
+	/**
+	 * Address of the sensor that has awaken the thread.
+	 */
+	int addr;
+
 	chprintf((BaseSequentialStream*)&RTTD, "Start fdc thread\r\n");
-	init(0);
+	init_touch_detection(0);
 	while(TRUE) {
 		chBSemWait(&fdc_bsem);
-		int addr = FDC1_ADDR;
+		addr = FDC1_ADDR;
 		if (calling == 2)
 			addr = FDC2_ADDR;
 		status = read_register(addr, STATUS);
@@ -180,15 +188,18 @@ static THD_FUNCTION(fdc_int, arg) {
 }
 
 void fdc_init(void){
+	/**
+	 * Return code of the I2C commands.
+	 */
+	i2cflags_t status;
+
 	i2c_set_pins();
 	i2cStart(&I2CD1, &i2c1_cfg);
-	i2cflags_t status;
 	chThdSleepMilliseconds(1000);
 	do {
 		chThdSleepMilliseconds(100);
-		status = init_sensor();
+		status = init_sensors();
 	} while (status != I2C_NO_ERROR);
 	chThdCreateStatic(fdc_wa, sizeof(fdc_wa), NORMALPRIO + 2, fdc_int, NULL);
-	extStart(&EXTD1, &ext_config);
+	extStart(EXTD, &ext_config);
 }
-

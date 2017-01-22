@@ -50,7 +50,7 @@ static int32_t derivative[SENSORS_NB];
 static uint8_t touch_detected(int sensor_id);
 #endif
 
-void init(int sensor_id) {
+void init_touch_detection(int sensor_id) {
     write_index[sensor_id] = 0;
     average[sensor_id] = 0;
     default_value[sensor_id] = 0;

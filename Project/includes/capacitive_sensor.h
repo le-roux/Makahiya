@@ -65,7 +65,7 @@ extern uint32_t default_value[SENSORS_NB];
  * related to touch detection.
  * @param sensor_id The index of the sensor to initialize.
  */
-void init(int sensor_id);
+void init_touch_detection(int sensor_id);
 
 /** @brief Set a new value as default_value.
  *

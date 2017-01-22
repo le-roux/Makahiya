@@ -1,6 +1,6 @@
 /*
     File written by Sylvain LE ROUX, based on a template by Giovanni Di Sirio.
-    
+
     ChibiOS - Copyright (C) 2006..2015 Giovanni Di Sirio
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -76,7 +76,6 @@ typedef struct {
   _RTT_stream_data
 } RTTStream;
 
-extern RTTStream RTTD;
 /*===========================================================================*/
 /* Driver macros.                                                            */
 /*===========================================================================*/
@@ -88,6 +87,17 @@ extern RTTStream RTTD;
 #ifdef __cplusplus
 extern "C" {
 #endif
+  /**
+   * @brief RTT driver identifier (needs to be initialized).
+   */
+  extern RTTStream RTTD;
+
+  /**
+   * @brief Initialize a RTT driver structure.
+   * @param rtt_str The structure to initialize.
+   * @param BufferIndex The index of the RTT buffer to use. Use 0 unless you
+   *        specifically need another value.
+   */
   void RTTObjectInit(RTTStream *rtt_str, unsigned BufferIndex);
 #ifdef __cplusplus
 }
