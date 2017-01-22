@@ -3,4 +3,6 @@
 
 #define UNUSED(x) (void)(x)
 
+void int_to_char(char* out, int i);
+
 #endif

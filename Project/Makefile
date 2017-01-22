@@ -99,7 +99,7 @@ include $(CHIBIOS)/os/rt/rt.mk
 include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC/mk/port_v7m.mk
 
 # Define linker script file here
-LDSCRIPT= $(STARTUPLD)/STM32F407xG.ld
+LDSCRIPT= ./STM32F405xG.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -127,7 +127,17 @@ CSRC = $(STARTUPSRC) \
        $(SRC)/i2c_user.c \
        $(SRC)/fdc2214.c \
        $(SRC)/ext_user.c \
-       $(SRC)/capacitive_sensor.c
+       $(SRC)/capacitive_sensor.c \
+	   $(SRC)/alarm.c \
+	   $(SRC)/flash.c \
+	   $(SRC)/serial_user.c \
+	   $(SRC)/sound.c \
+	   $(SRC)/utils.c \
+	   $(SRC)/websocket.c \
+	   $(SRC)/wifi.c
+
+# MP3 files to include in the executable.
+MP3SRC = alarm1.mp3 alarm2.mp3 alarm3.mp3
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -232,8 +242,29 @@ ULIBS =
 RULESPATH = $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC
 include $(RULESPATH)/rules.mk
 
+$(BUILDDIR)/obj/%.o: %.mp3
+	$(TRGT)objcopy --rename-section .data=.rodata,alloc,load,readonly,data,contents -I binary -O elf32-littlearm -B arm $^ $@
+
+helix:
+	make -C ../helix
+
 jlink:
 	JLinkGDBServer -if swd -device "STM32F405VG" -LocalHostOnly
 
 gdb: $(BUILDDIR)/ch.elf
 	$(TRGT)gdb $(BUILDDIR)/ch.elf
+
+TEST_DIR := ./test_dir
+test: $(TEST_DIR)/test.c $(TEST_DIR)/utils.o $(TEST_DIR)/wifi.o
+	gcc -c $(TEST_DIR)/test.c -o $(TEST_DIR)/test.o -iquote $(INCLUDES)
+	gcc $(TEST_DIR)/test.o $(TEST_DIR)/utils.o $(TEST_DIR)/wifi.o -lcriterion -o $(TEST_DIR)/$@
+
+$(TEST_DIR)/%.o: $(SRC)/%.c
+	gcc -c $^ -o $@ -iquote $(INCLUDES) -std=c99 -DTEST
+
+run_test: test
+	$(TEST_DIR)/test
+
+clean_test:
+	rm -f $(TEST_DIR)/*.o
+	rm -f $(TEST_DIR)/test
