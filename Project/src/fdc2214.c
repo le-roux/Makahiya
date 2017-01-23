@@ -12,7 +12,15 @@ static int FDC_ADDR[2] = {FDC1_ADDR, FDC2_ADDR};
 static int DATA_MSB[4] = {DATA_MSB_CH0, DATA_MSB_CH1, DATA_MSB_CH2, DATA_MSB_CH3};
 static int DATA_LSB[4] = {DATA_LSB_CH0, DATA_LSB_CH1, DATA_LSB_CH2, DATA_LSB_CH3};
 static int CHANNELS_NB[2] = {4, 4};
+
+/**
+ * @brief Buffer for the @p sensors_box mailbox.
+ */
 static msg_t sensors[2];
+
+/**
+ * @brief Mailbox used by the fdc thread to know which sensor has new data.
+ */
 static MAILBOX_DECL(sensors_box, sensors, 2);
 
 BSEMAPHORE_DECL(fdc_bsem, true);
@@ -30,6 +38,9 @@ static msg_t read_register(uint8_t addr, uint8_t reg_addr) {
 }
 
 static i2cflags_t init_sensors(void) {
+	/**
+	 * @brief Return code of the I2C commands.
+	 */
 	msg_t status;
 
 	// Set the sensor in SLEEP_MODE
@@ -127,11 +138,11 @@ static i2cflags_t init_sensors(void) {
  * @brief Acquire data from one channel of one sensor and check if an event has
  *			occurred, performing the proper reaction if yes.
  *
- * @param slave_id Value in interval [1,2] identifying the sensor chip.
- * @param channel_id Value in interval [1,4] identifying the channel to read
+ * @param slave_id Value in interval [0,1] identifying the sensor chip.
+ * @param channel_id Value in interval [0,3] identifying the channel to read
  *						data from.
  */
-static msg_t get_value(int slave_id, int channel_id) {
+static int get_value(int slave_id, int channel_id) {
 	/**
 	 * Array storing for each channel the number of data already acquire until
 	 * the default_value has been updated.
@@ -143,29 +154,24 @@ static msg_t get_value(int slave_id, int channel_id) {
 	 */
 	int value = 0;
 
-	if (read_register(FDC_ADDR[slave_id - 1], DATA_MSB[channel_id]) != MSG_OK)
-		return MSG_RESET;
+	if (read_register(FDC_ADDR[slave_id], DATA_MSB[channel_id]) != MSG_OK)
+		return -1;
 	value = i2c_rx_buffer[0] << 24 | i2c_rx_buffer[1] << 16;
 
-	if (read_register(FDC_ADDR[slave_id - 1], DATA_LSB[channel_id]) != MSG_OK)
-		return MSG_RESET;
+	if (read_register(FDC_ADDR[slave_id], DATA_LSB[channel_id]) != MSG_OK)
+		return -1;
 	value |= i2c_rx_buffer[0] << 8 | i2c_rx_buffer[1];
 
-	add_value(0, value);
-	if (count[slave_id - 1][channel_id] < BUFFER_SIZE)
-		count[slave_id - 1][channel_id]++;
-	else if (count[slave_id - 1][channel_id] == BUFFER_SIZE) {
-		update_default_value(0);
-		count[slave_id - 1][channel_id]++;
+	add_value(slave_id, channel_id, value);
+	if (count[slave_id][channel_id] < BUFFER_SIZE)
+		count[slave_id][channel_id]++;
+	else if (count[slave_id][channel_id] == BUFFER_SIZE) {
+		update_default_value(slave_id, channel_id);
+		count[slave_id][channel_id]++;
 	} else // count[slave_id][sensor_id] > BUFFER_SIZE
-		chprintf((BaseSequentialStream*)&RTTD,
-				"Slave %i Sensor %i: %i\r\n",
-				slave_id,
-				channel_id,
-				detect_action(0));
-		// TODO react to touch detection.
+		return detect_action(slave_id, channel_id);
 
-	return MSG_OK;
+	return 0;
 }
 
 static THD_WORKING_AREA(fdc_wa, FDC_WA_SIZE);
@@ -178,32 +184,56 @@ static THD_FUNCTION(fdc_int, arg) {
 	i2cflags_t status;
 
 	/**
+	 * Content of the STATUS register of the sensor.
+	 */
+	uint16_t sensor_status;
+
+	/**
 	 * Address of the sensor that has awaken the thread.
 	 */
 	int addr;
 
 	/**
-	 * The channel that raised the interrupt.
+	 * The sensor that raised the interrupt.
 	 */
 	static msg_t sensor;
 
+	/**
+	 * The action detected by the touch-detection algorithm.
+	 */
+	int action;
+
 	chprintf((BaseSequentialStream*)&RTTD, "Start fdc thread\r\n");
-	init_touch_detection(0);
+
+	for (int i = 0; i < 4; i++) {
+		init_touch_detection(0, i);
+		init_touch_detection(1, i);
+	}
+
 	while(TRUE) {
 		(void)chMBFetch(&sensors_box, &sensor, TIME_INFINITE);
+		if (sensor <= 0 || sensor > 2) // Invalid value
+			continue;
 		addr = FDC1_ADDR;
-		if (sensor == 2)
+		if (sensor == 1)
 			addr = FDC2_ADDR;
 		status = read_register(addr, STATUS);
 		if (status != I2C_NO_ERROR) {
 			chprintf((BaseSequentialStream*)&RTTD, "error %i\r\n", (int)i2cGetErrors(&I2CD1));
 			continue;
 		}
-		status = i2c_rx_buffer[0] << 8 | i2c_rx_buffer[1];
-		if (status & DRDY && sensor > 0 && sensor < 3) {
-			for (int i = 0; i < CHANNELS_NB[sensor - 1]; i++) {
-				if (get_value(sensor, i) != MSG_OK)
+		sensor_status = i2c_rx_buffer[0] << 8 | i2c_rx_buffer[1];
+		if (sensor_status & DRDY) {
+			for (int i = 0; i < CHANNELS_NB[sensor]; i++) {
+				action = get_value(sensor, i);
+				if (action == -1)
 					break;
+
+				chprintf((BaseSequentialStream*)&RTTD,
+						"Slave %i Channel %i: %i\r\n",
+						sensor,
+						i,
+						detect_action(sensor, i));
 			}
 		}
 	}
@@ -230,8 +260,8 @@ void fdc_cb (EXTDriver* driver, expchannel_t channel) {
 	UNUSED(driver);
 	chSysLockFromISR();
 	if (channel == 10)
-		chMBPostI(&sensors_box, (msg_t)1);
+		chMBPostI(&sensors_box, (msg_t)0);
 	else
-		chMBPostI(&sensors_box, (msg_t)2);
+		chMBPostI(&sensors_box, (msg_t)1);
 	chSysUnlockFromISR();
 }

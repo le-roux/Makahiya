@@ -25,7 +25,12 @@
 /**
  * Number of sensors used.
  */
-#define SENSORS_NB 1
+#define SENSORS_NB 2
+
+/**
+ * Maximum number of channels per sensor.
+ */
+#define MAX_CHANNELS_NB 4
 
 /**
  * Number of values used to perform the linear regression.
@@ -43,6 +48,9 @@
  */
 #define PREVIOUS_INDEX(index) ((index-1 >= 0)?index-1:BUFFER_SIZE-1)
 
+/**
+ * Structure containing all the values used by the linear regression.
+ */
 typedef struct reg_t {
     int slope;
     double corr;
@@ -52,20 +60,22 @@ typedef struct reg_t {
 /**
  * __WARNING__ This value is not normalized (by BUFFER_SIZE) !!
  */
-extern uint32_t average[SENSORS_NB];
+extern uint32_t average[SENSORS_NB][MAX_CHANNELS_NB];
 
 /**
  * __WARNING__ This value is not normalized (by BUFFER_SIZE) !!
  */
-extern uint32_t default_value[SENSORS_NB];
+extern uint32_t default_value[SENSORS_NB][MAX_CHANNELS_NB];
 
 /** @brief Init all the variables used in the touch detection algorithm.
  *
  * It's __MANDATORY__ to call this function before using any other function
  * related to touch detection.
- * @param sensor_id The index of the sensor to initialize.
+ *
+ * @param sensor_id The index of the sensor to initialize (value in interval [0, 1]).
+ * @paramm channel_id Value in interval [0, 3] identifying the channel.
  */
-void init_touch_detection(int sensor_id);
+void init_touch_detection(int sensor_id, int channel_id);
 
 /** @brief Set a new value as default_value.
  *
@@ -73,24 +83,30 @@ void init_touch_detection(int sensor_id);
  * as the new default_value.
  * __WARNING:__ The buffer must have been previously filled with meaningful
  * data.
+ *
  * @param sensor_id The index of the sensor to update.
+ * @param channel_id Value in interval [0, 3] identifying the channel.
  */
-void update_default_value(int sensor_id);
+void update_default_value(int sensor_id, int channel_id);
 
 /** @brief Add a value into the buffer.
  *
  * This function allows the user to safely add a new value in the buffer.
  * @param sensor_id The index of the sensor that produced that value.
+ * @param channel_id Value in interval [0,3] identifying the channel that
+ *                      produced this data.
  * @param value The value to write in the buffer.
  */
-void add_value(int sensor_id, uint32_t value);
+void add_value(int sensor_id, int channel_id, uint32_t value);
 
 /** @brief Read a value from the buffer.
  *
- * @param sensor_id The index of the buffer to read data from.
+ * @param sensor_id The index of the buffer to read data from (in interval [0,1]).
+ * @param channel_id Value in interval [0, 3] identifying the channel.
+ *
  * @return The value read.
  */
-uint32_t get_next_value(int sensor_id);
+uint32_t get_next_value(int sensor_id, int channel_id);
 
 /** @brief Run the detection algorithm.
  *
@@ -114,12 +130,13 @@ uint32_t get_next_value(int sensor_id);
  * is returned.
  *
  * @param sensor_id The index of the sensor to analyze.
+ * @param channel_id Value in interval [0, 3] identifying the channel to analyze.
  * @return
  *  - 2 if a slide beginning is detected.
  *  - 1 if a touch is detected.
  *  - 0 otherwise (nothing detected).
  */
-int detect_action(int sensor_id);
+int detect_action(int sensor_id, int channel_id);
 
 /** @brief Performs a linear regression.
  *
@@ -127,15 +144,17 @@ int detect_action(int sensor_id);
  * The least squares method is used.
  *
  * @param sensor_id The index of the sensor to analyze.
+ * @param channel_id Value in interval [0, 3] identifying the channel to analyze.
  * @return The slope of the linear regression (a if we have y = a*x+b).
  */
-reg_t linear_regression(int sensor_id);
+reg_t linear_regression(int sensor_id, int channel_id);
 
 /** @brief Gives the diffence between the default value and the last written one.
  *
  * @param sensor_id The index of the sensor to analyze.
- * @ return The difference between the default value and the last written one.
+ * @param channel_id Value in interval [0, 3] identifying the channel to analyze.
+ * @return The difference between the default value and the last written one.
  */
-int32_t current_distance(int sensor_id);
+int32_t current_distance(int sensor_id, int channel_id);
 
 #endif // CAPACITIVE_SENSOR_H
