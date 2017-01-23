@@ -229,11 +229,11 @@ static THD_FUNCTION(fdc_int, arg) {
 				if (action == -1)
 					break;
 
-				chprintf((BaseSequentialStream*)&RTTD,
+				/*chprintf((BaseSequentialStream*)&RTTD,
 						"Slave %i Channel %i: %i\r\n",
 						sensor,
 						i,
-						detect_action(sensor, i));
+						detect_action(sensor, i));*/
 			}
 		}
 	}
