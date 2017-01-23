@@ -34,24 +34,56 @@ static void clearServo5(void * arg){
 	palClearPad(GPIOC, 7);
 }
 
+static void setServosI(void * arg){
+	UNUSED(arg);
+	chSysLockFromISR();
+	if (softPwmEnabled[6]){
+		palSetPad(GPIOA, 4);
+		chVTSetI(&(servo[1]), softPwmEnabled[6], clearServo1, NULL);
+	}
+	if (softPwmEnabled[7]){
+		palSetPad(GPIOC, 4);
+		chVTSetI(&(servo[2]), softPwmEnabled[7], clearServo2, NULL);
+	}
+	if (softPwmEnabled[8]){
+		palSetPad(GPIOC, 5);
+		chVTSetI(&(servo[3]), softPwmEnabled[8], clearServo3, NULL);
+	}
+	if (softPwmEnabled[9]){
+		palSetPad(GPIOC, 6);
+		chVTSetI(&(servo[4]), softPwmEnabled[9], clearServo4, NULL);
+	}
+	if (softPwmEnabled[10]){
+		palSetPad(GPIOC, 7);
+		chVTSetI(&(servo[5]), softPwmEnabled[10], clearServo5, NULL);
+	}
+	chVTSetI(&(servo[0]), MS2ST(20), setServosI, NULL);
+	chSysUnlockFromISR();
+}
+
 static void setServos(void * arg){
 	UNUSED(arg);
-	if (softPwmEnabled[6])
+	if (softPwmEnabled[6]){
 		palSetPad(GPIOA, 4);
-	if (softPwmEnabled[7])
+		chVTSet(&(servo[1]), softPwmEnabled[6], clearServo1, NULL);
+	}
+	if (softPwmEnabled[7]){
 		palSetPad(GPIOC, 4);
-	if (softPwmEnabled[8])
+		chVTSet(&(servo[2]), softPwmEnabled[7], clearServo2, NULL);
+	}
+	if (softPwmEnabled[8]){
 		palSetPad(GPIOC, 5);
-	if (softPwmEnabled[9])
+		chVTSet(&(servo[3]), softPwmEnabled[8], clearServo3, NULL);
+	}
+	if (softPwmEnabled[9]){
 		palSetPad(GPIOC, 6);
-	if (softPwmEnabled[10])
+		chVTSet(&(servo[4]), softPwmEnabled[9], clearServo4, NULL);
+	}
+	if (softPwmEnabled[10]){
 		palSetPad(GPIOC, 7);
-	chVTSet(&(servo[0]), MS2ST(20), setServos, NULL);
-	chVTSet(&(servo[1]), softPwmEnabled[6], clearServo1, NULL);
-	chVTSet(&(servo[2]), softPwmEnabled[7], clearServo2, NULL);
-	chVTSet(&(servo[3]), softPwmEnabled[8], clearServo3, NULL);
-	chVTSet(&(servo[4]), softPwmEnabled[9], clearServo4, NULL);
-	chVTSet(&(servo[5]), softPwmEnabled[10], clearServo5, NULL);
+		chVTSet(&(servo[5]), softPwmEnabled[10], clearServo5, NULL);
+	}
+	chVTSet(&(servo[0]), MS2ST(20), setServosI, NULL);
 }
 
 static void tim1cb (PWMDriver *pwmd){
@@ -165,6 +197,12 @@ static const PWMConfig pwmconfig4 = {
 };
 
 void initPwm(void){
+
+	for(int i = 0 ; i < 11 ; i ++)
+		softPwmEnabled[i] = 0;
+
+	for(int i = 0 ; i < 6 ; i ++)
+		chVTObjectInit(&servo[i]);
 
 	// LED 1
 
