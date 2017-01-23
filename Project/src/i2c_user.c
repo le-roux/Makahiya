@@ -8,8 +8,8 @@ I2CConfig i2c1_cfg = {
 	FAST_DUTY_CYCLE_2
 };
 
-uint8_t rx_buffer[RX_BUFFER_SIZE];
-uint8_t tx_buffer[TX_BUFFER_SIZE];
+uint8_t i2c_rx_buffer[I2C_RX_BUFFER_SIZE];
+uint8_t i2c_tx_buffer[I2C_TX_BUFFER_SIZE];
 
 void i2c_set_pins(void) {
 
@@ -22,7 +22,7 @@ void i2c_set_pins(void) {
 
 	palSetPadMode(GPIOC, 10, PAL_MODE_INPUT);
 	palSetPadMode(GPIOC, 13, PAL_MODE_INPUT);
-	
+
 	// Shutdown
 
 	palSetPadMode(GPIOC, 14, PAL_MODE_OUTPUT_PUSHPULL);

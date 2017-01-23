@@ -77,11 +77,6 @@
  */
 extern binary_semaphore_t fdc_bsem;
 
-/**
- * @brief Id of the calling sensor.
- */
-extern volatile uint8_t calling;
-
 /*************************/
 /*      Functions        */
 /*************************/
@@ -90,5 +85,11 @@ extern volatile uint8_t calling;
  * Initialize the FDC2214 sensors.
  */
 void fdc_init(void);
+
+/**
+ * The callback called by the EXT driver when an interrupt is raised on one of
+ * the 2 lines concerning the capacitive sensors.
+ */
+void fdc_cb(EXTDriver* driver, expchannel_t channel);
 
 #endif // FDC2214_H
