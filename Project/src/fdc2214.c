@@ -157,12 +157,12 @@ static msg_t get_value(int slave_id, int channel_id) {
 	else if (count[slave_id - 1][channel_id] == BUFFER_SIZE) {
 		update_default_value(0);
 		count[slave_id - 1][channel_id]++;
-	} else // count[slave_id][sensor_id] > BUFFER_SIZE
-		chprintf((BaseSequentialStream*)&RTTD,
-				"Slave %i Sensor %i: %i\r\n",
-				slave_id,
-				channel_id,
-				detect_action(0));
+	} //else  count[slave_id][sensor_id] > BUFFER_SIZE
+		//chprintf((BaseSequentialStream*)&RTTD,
+		//		"Slave %i Sensor %i: %i\r\n",
+		//		slave_id,
+		//		channel_id,
+		//		detect_action(0));
 		// TODO react to touch detection.
 
 	return MSG_OK;

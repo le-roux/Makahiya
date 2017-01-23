@@ -59,7 +59,7 @@ void initBluetooth(void){
 	// Starting the UART
 
 	sdStart(bluetooth_SD, &serial_cfg);
-	chThdSleepMilliseconds(10000);
+	chThdSleepMilliseconds(1000);
 	startSerialShell();
 	chThdSleepMilliseconds(1000);
 	
@@ -77,8 +77,8 @@ void initBluetooth(void){
 	chprintf((BaseSequentialStream *)&RTTD, "SA,0\n");
 	sdWrite(bluetooth_SD, buf, 5);
 	chThdSleepMilliseconds(100);
-	strncpy((char *) buf, "SN,Makahiya\r", 16);
-	chprintf((BaseSequentialStream *)&RTTD, "SN,Makahiya\n");
+	strncpy((char *) buf, "S-,Makahiya\r", 16);
+	chprintf((BaseSequentialStream *)&RTTD, "S-,Makahiya\n");
 	sdWrite(bluetooth_SD, buf, 12);
 	chThdSleepMilliseconds(100);
 	strncpy((char *) buf, "Q,0\r", 16);
