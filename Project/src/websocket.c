@@ -11,9 +11,11 @@
 #include "alarm.h"
 #include "sound.h"
 #include "ext_user.h"
+#include "RTT_streams.h"
+#include "chprintf.h"
 
 // 14 is the number of the pin used for the interrupts.
-static const char* const ws_cmd = "websocket_client -g 14 ";
+static const char* const ws_cmd = "websocket_client -g 9 ";
 static const char* const ws_addr = "ws://makahiya.rfc1149.net:9000/ws/plants/";
 
 static volatile wifi_connection conn;
@@ -104,6 +106,7 @@ THD_FUNCTION(websocket, arg) {
            case of error. */
         header = get_response(false);
         if (header.error) {
+            DEBUG("error %s (%s)", response_body, response_code);
             do {
                 if (header.error_code == SAFEMODE) {
                     exit_safe_mode();
@@ -133,11 +136,17 @@ THD_FUNCTION(websocket, arg) {
                         NORMALPRIO, websocket_ext, NULL);
 
     // For test only
-    while (true) {
+    for (int i = 0; i < 5; i++) {
         chThdSleepMilliseconds(5000);
         wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"abcd");
         (void)get_response(true);
+        DEBUG("%s", response_body);
     }
+    strcpy(cmd, "close ");
+    strcat(cmd, ((wifi_connection)conn).channel_id);
+    send_cmd(cmd);
+    header = get_response(false);
+    DEBUG("close %s", response_body);
 }
 
 void set_value(int var_id, int value) {

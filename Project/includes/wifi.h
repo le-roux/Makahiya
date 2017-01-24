@@ -143,4 +143,6 @@ void clear_body(void);
 
 int exit_safe_mode(void);
 
+void wifi_init(void);
+
 #endif

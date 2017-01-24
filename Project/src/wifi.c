@@ -10,6 +10,7 @@
 #include "serial_user.h"
 #include "utils.h"
 #include "sound.h"
+#include "RTT_streams.h"
 #endif // TEST
 
 /***********************/
@@ -202,6 +203,31 @@ int exit_safe_mode(void) {
         return 0;
     }
     return 1;
+}
+
+static void wifi_set_pins(void) {
+    // Interrupt for websockets
+    palSetPadMode(GPIOA, 11, PAL_MODE_INPUT_PULLDOWN);
+
+    // ResetN
+    palSetPadMode(GPIOA, 15, PAL_MODE_OUTPUT_PUSHPULL);
+    palSetPad(GPIOA, 15);
+}
+
+void wifi_init(void) {
+    /**
+     * Header of the response sent by the Wi-Fi module.
+     */
+    wifi_response_header out;
+
+    serial_set_pin();
+    wifi_set_pins();
+    sdStart(wifi_SD, &serial_config);
+    do {
+        send_cmd("ping -g");
+        out = get_response(false);
+    } while(out.error);
+    DEBUG("wifi OK");
 }
 
 #endif // TEST
