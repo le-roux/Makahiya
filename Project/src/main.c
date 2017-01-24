@@ -11,13 +11,14 @@ int main(void) {
 	halInit();
 	chSysInit();
 
-	initPwm();
-	setLed(LED1_R, 32);
-	setLed(LED4_R, 32);
-
 	RTTObjectInit(&RTTD, 0);
 	fdc_init();
 	initBluetooth();
+
+	initPwm();
+	setLed(LED1_G, 12);
+	setLed(LED2_R, 12);
+	setLed(LED4_B, 12);
 
 	while(true) {
 		chThdSleepMilliseconds(1000);

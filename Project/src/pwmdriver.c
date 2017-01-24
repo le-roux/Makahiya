@@ -3,7 +3,7 @@
 #include "pwmdriver.h"
 #include "utils.h"
 
-static volatile int softPwmEnabled[11];
+static volatile char softPwmEnabled[11] = {0};
 static PWMDriver * pwmd[8] = {&PWMD1, &PWMD2, &PWMD3, &PWMD4, NULL, NULL, NULL, &PWMD8};
 static virtual_timer_t servo[7];
 
@@ -198,56 +198,74 @@ static const PWMConfig pwmconfig4 = {
 
 void initPwm(void){
 
-	for(int i = 0 ; i < 11 ; i ++)
-		softPwmEnabled[i] = 0;
-
-	for(int i = 0 ; i < 6 ; i ++)
-		chVTObjectInit(&servo[i]);
-
 	// LED 1
 
 	palSetPadMode(GPIOC, 5,  PAL_MODE_OUTPUT_PUSHPULL);
+	palClearPad(GPIOC, 5);
 	palSetPadMode(GPIOB, 0,  PAL_MODE_ALTERNATE(2));
+	palClearPad(GPIOB, 0);
 	palSetPadMode(GPIOB, 1,  PAL_MODE_ALTERNATE(2));
+	palClearPad(GPIOB, 1);
 
 	// LED 2
 
 	palSetPadMode(GPIOB, 2,  PAL_MODE_OUTPUT_PUSHPULL);
+	palClearPad(GPIOB, 2);
 	palSetPadMode(GPIOB, 10, PAL_MODE_ALTERNATE(1));
+	palClearPad(GPIOB, 10);
 	palSetPadMode(GPIOB, 11, PAL_MODE_ALTERNATE(1));
+	palClearPad(GPIOB, 11);
 
 	// LED 3
 
 	palSetPadMode(GPIOB, 14, PAL_MODE_OUTPUT_PUSHPULL);
+	palClearPad(GPIOB, 14);
 	palSetPadMode(GPIOC, 7,  PAL_MODE_ALTERNATE(3));
+	palClearPad(GPIOC, 7);
 	palSetPadMode(GPIOC, 8,  PAL_MODE_ALTERNATE(3));
+	palClearPad(GPIOC, 8);
 
 	// LED 4
 
 	palSetPadMode(GPIOC, 9,  PAL_MODE_ALTERNATE(3));
+	palClearPad(GPIOC, 9);
 	palSetPadMode(GPIOA, 8,  PAL_MODE_ALTERNATE(1));
+	palClearPad(GPIOA, 8);
 	palSetPadMode(GPIOC, 11, PAL_MODE_OUTPUT_PUSHPULL);
+	palClearPad(GPIOC, 11);
 
 	// LED 5
 
 	palSetPadMode(GPIOC, 12, PAL_MODE_OUTPUT_PUSHPULL);
+	palClearPad(GPIOC, 12);
 	palSetPadMode(GPIOD, 2,  PAL_MODE_OUTPUT_PUSHPULL);
-	palSetPadMode(GPIOC, 2,  PAL_MODE_ALTERNATE(1));
+	palClearPad(GPIOD, 2);
+	palSetPadMode(GPIOB, 3,  PAL_MODE_ALTERNATE(1));
+	palClearPad(GPIOB, 3);
 
 	// LED_HP
 
 	palSetPadMode(GPIOB, 4,  PAL_MODE_ALTERNATE(2));
+	palClearPad(GPIOB, 4);
 	palSetPadMode(GPIOB, 5,  PAL_MODE_ALTERNATE(2));
+	palClearPad(GPIOB, 5);
 	palSetPadMode(GPIOC, 1,  PAL_MODE_ALTERNATE(2));
+	palClearPad(GPIOC, 1);
 	palSetPadMode(GPIOC, 2,  PAL_MODE_ALTERNATE(2));
+	palClearPad(GPIOC, 2);
 
 	// Servos
 
 	palSetPadMode(GPIOC, 4, PAL_MODE_OUTPUT_PUSHPULL);
+	palClearPad(GPIOC, 4);
 	palSetPadMode(GPIOA, 4, PAL_MODE_OUTPUT_PUSHPULL);
+	palClearPad(GPIOA, 4);
 	palSetPadMode(GPIOA, 5, PAL_MODE_OUTPUT_PUSHPULL);
+	palClearPad(GPIOA, 5);
 	palSetPadMode(GPIOA, 6, PAL_MODE_OUTPUT_PUSHPULL);
+	palClearPad(GPIOA, 6);
 	palSetPadMode(GPIOA, 7, PAL_MODE_OUTPUT_PUSHPULL);
+	palClearPad(GPIOA, 7);
 
 	// Timers
 
@@ -257,10 +275,16 @@ void initPwm(void){
 	pwmStart(&PWMD4, &pwmconfig4);
 	pwmStart(&PWMD8, &pwmconfig);
 
+	pwmEnablePeriodicNotification(&PWMD1);
+	pwmEnablePeriodicNotification(&PWMD2);
+	pwmEnablePeriodicNotification(&PWMD4);
+
 	setServos(NULL);
 }
 
 void setLed(int led, int power){
+
+	int soft = 0;
 
 	if (led > 32) {
 
@@ -270,10 +294,13 @@ void setLed(int led, int power){
 		if(led < 37)
 			led -= 9;
 		led -= 23;
+		soft = 1;
 
 	}
 
 	pwmEnableChannel(pwmd[led/4], led % 4, power);
+	if (soft)
+		pwmEnableChannelNotification(pwmd[led/4], led % 4);
 
 }
 

@@ -24,7 +24,6 @@ static THD_FUNCTION(Thread2, arg) {
 	uint8_t c[1];
 	while(1){
 		c[0] = chSequentialStreamGet((BaseSequentialStream *) &RTTD);
-		chprintf((BaseSequentialStream *)&RTTD, "%c", c[0]);
 		sdWrite(bluetooth_SD, c, 1);
 	}	
 }
