@@ -3,11 +3,9 @@
 #include "pwmdriver.h"
 #include "utils.h"
 
-static volatile char softPwmEnabled[11] = {0};
+static volatile int softPwmEnabled[11] = {0};
 static PWMDriver * pwmd[8] = {&PWMD1, &PWMD2, &PWMD3, &PWMD4, NULL, NULL, NULL, &PWMD8};
 static virtual_timer_t servo[7];
-
-static void setServos(void * arg);
 
 static void clearServo1(void * arg){
 	UNUSED(arg);
@@ -16,22 +14,22 @@ static void clearServo1(void * arg){
 
 static void clearServo2(void * arg){
 	UNUSED(arg);
-	palClearPad(GPIOC, 4);
+	palClearPad(GPIOA, 5);
 }
 
 static void clearServo3(void * arg){
 	UNUSED(arg);
-	palClearPad(GPIOC, 5);
+	palClearPad(GPIOA, 6);
 }
 
 static void clearServo4(void * arg){
 	UNUSED(arg);
-	palClearPad(GPIOC, 6);
+	palClearPad(GPIOA, 7);
 }
 
 static void clearServo5(void * arg){
 	UNUSED(arg);
-	palClearPad(GPIOC, 7);
+	palClearPad(GPIOC, 4);
 }
 
 static void setServosI(void * arg){
@@ -39,52 +37,28 @@ static void setServosI(void * arg){
 	chSysLockFromISR();
 	if (softPwmEnabled[6]){
 		palSetPad(GPIOA, 4);
-		chVTSetI(&(servo[1]), softPwmEnabled[6], clearServo1, NULL);
+		chVTSetI(&(servo[1]), US2ST(softPwmEnabled[6]), clearServo1, NULL);
 	}
 	if (softPwmEnabled[7]){
-		palSetPad(GPIOC, 4);
-		chVTSetI(&(servo[2]), softPwmEnabled[7], clearServo2, NULL);
+		palSetPad(GPIOA, 5);
+		chVTSetI(&(servo[2]), US2ST(softPwmEnabled[7]), clearServo2, NULL);
 	}
 	if (softPwmEnabled[8]){
-		palSetPad(GPIOC, 5);
-		chVTSetI(&(servo[3]), softPwmEnabled[8], clearServo3, NULL);
+		palSetPad(GPIOA, 6);
+		chVTSetI(&(servo[3]), US2ST(softPwmEnabled[8]), clearServo3, NULL);
 	}
 	if (softPwmEnabled[9]){
-		palSetPad(GPIOC, 6);
-		chVTSetI(&(servo[4]), softPwmEnabled[9], clearServo4, NULL);
+		palSetPad(GPIOA, 7);
+		chVTSetI(&(servo[4]), US2ST(softPwmEnabled[9]), clearServo4, NULL);
 	}
 	if (softPwmEnabled[10]){
-		palSetPad(GPIOC, 7);
-		chVTSetI(&(servo[5]), softPwmEnabled[10], clearServo5, NULL);
+		palSetPad(GPIOC, 4);
+		chVTSetI(&(servo[5]), US2ST(softPwmEnabled[10]), clearServo5, NULL);
 	}
 	chVTSetI(&(servo[0]), MS2ST(20), setServosI, NULL);
 	chSysUnlockFromISR();
 }
 
-static void setServos(void * arg){
-	UNUSED(arg);
-	if (softPwmEnabled[6]){
-		palSetPad(GPIOA, 4);
-		chVTSet(&(servo[1]), softPwmEnabled[6], clearServo1, NULL);
-	}
-	if (softPwmEnabled[7]){
-		palSetPad(GPIOC, 4);
-		chVTSet(&(servo[2]), softPwmEnabled[7], clearServo2, NULL);
-	}
-	if (softPwmEnabled[8]){
-		palSetPad(GPIOC, 5);
-		chVTSet(&(servo[3]), softPwmEnabled[8], clearServo3, NULL);
-	}
-	if (softPwmEnabled[9]){
-		palSetPad(GPIOC, 6);
-		chVTSet(&(servo[4]), softPwmEnabled[9], clearServo4, NULL);
-	}
-	if (softPwmEnabled[10]){
-		palSetPad(GPIOC, 7);
-		chVTSet(&(servo[5]), softPwmEnabled[10], clearServo5, NULL);
-	}
-	chVTSet(&(servo[0]), MS2ST(20), setServosI, NULL);
-}
 
 static void tim1cb (PWMDriver *pwmd){
 	UNUSED(pwmd);
@@ -278,8 +252,11 @@ void initPwm(void){
 	pwmEnablePeriodicNotification(&PWMD1);
 	pwmEnablePeriodicNotification(&PWMD2);
 	pwmEnablePeriodicNotification(&PWMD4);
+	
+	for(int i = 0 ; i < 6 ; i ++)
+		chVTObjectInit(&servo[i]);
 
-	setServos(NULL);
+	chVTSet(&(servo[0]), MS2ST(20), setServosI, NULL);
 }
 
 void setLed(int led, int power){
