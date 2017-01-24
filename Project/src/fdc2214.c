@@ -49,14 +49,14 @@ static i2cflags_t init_sensors(void) {
 		return i2cGetErrors(&I2CD1);
 
 	// Set the clock divider registers
-	status = write_register(FDC1_ADDR, CLOCK_DIVIDERS_0, 0x1001);
-	status = write_register(FDC1_ADDR, CLOCK_DIVIDERS_1, 0x1001);
-	status = write_register(FDC1_ADDR, CLOCK_DIVIDERS_2, 0x1001);
-	status = write_register(FDC1_ADDR, CLOCK_DIVIDERS_3, 0x1001);
+	status = write_register(FDC1_ADDR, CLOCK_DIVIDERS_0, 0x2001);
+	status = write_register(FDC1_ADDR, CLOCK_DIVIDERS_1, 0x2001);
+	status = write_register(FDC1_ADDR, CLOCK_DIVIDERS_2, 0x2001);
+	status = write_register(FDC1_ADDR, CLOCK_DIVIDERS_3, 0x2001);
 
 	// Set the drive current registers
-	status = write_register(FDC1_ADDR, DRIVE_CURRENT_CH0, 0x8C40);
-	status = write_register(FDC1_ADDR, DRIVE_CURRENT_CH1, 0x8C40);
+	status = write_register(FDC1_ADDR, DRIVE_CURRENT_CH0, 0x8800);
+	status = write_register(FDC1_ADDR, DRIVE_CURRENT_CH1, 0x8800);
 	status = write_register(FDC1_ADDR, DRIVE_CURRENT_CH2, 0x8800);
 	status = write_register(FDC1_ADDR, DRIVE_CURRENT_CH3, 0x8800);
 
@@ -135,14 +135,14 @@ static i2cflags_t init_sensors(void) {
 }
 
 /**
- * @brief Acquire data from one channel of one sensor and check if an event has
- *			occurred, performing the proper reaction if yes.
+ * @brief Acquire data from one channel of one sensor and update it in the
+ *		algorithm.
  *
  * @param slave_id Value in interval [0,1] identifying the sensor chip.
  * @param channel_id Value in interval [0,3] identifying the channel to read
  *						data from.
  */
-static int get_value(int slave_id, int channel_id) {
+static int acquire_value(int slave_id, int channel_id) {
 	/**
 	 * Array storing for each channel the number of data already acquire until
 	 * the default_value has been updated.
@@ -163,13 +163,14 @@ static int get_value(int slave_id, int channel_id) {
 	value |= i2c_rx_buffer[0] << 8 | i2c_rx_buffer[1];
 
 	add_value(slave_id, channel_id, value);
+
+	// Initialization of the touch detection algorithm (with the 10 first values).
 	if (count[slave_id][channel_id] < BUFFER_SIZE)
 		count[slave_id][channel_id]++;
 	else if (count[slave_id][channel_id] == BUFFER_SIZE) {
 		update_default_value(slave_id, channel_id);
 		count[slave_id][channel_id]++;
-	} else // count[slave_id][sensor_id] > BUFFER_SIZE
-		return detect_action(slave_id, channel_id);
+	}
 
 	return 0;
 }
@@ -199,9 +200,9 @@ static THD_FUNCTION(fdc_int, arg) {
 	static msg_t sensor;
 
 	/**
-	 * The action detected by the touch-detection algorithm.
+	 * The action detected.
 	 */
-	int action;
+	 int action;
 
 	chprintf((BaseSequentialStream*)&RTTD, "Start fdc thread\r\n");
 
@@ -212,28 +213,24 @@ static THD_FUNCTION(fdc_int, arg) {
 
 	while(TRUE) {
 		(void)chMBFetch(&sensors_box, &sensor, TIME_INFINITE);
-		if (sensor <= 0 || sensor > 2) // Invalid value
+		if (sensor < 0 || sensor > 1) // Invalid value
 			continue;
 		addr = FDC1_ADDR;
 		if (sensor == 1)
 			addr = FDC2_ADDR;
 		status = read_register(addr, STATUS);
-		if (status != I2C_NO_ERROR) {
-			chprintf((BaseSequentialStream*)&RTTD, "error %i\r\n", (int)i2cGetErrors(&I2CD1));
+		if (status != I2C_NO_ERROR) { // Error in the communication.
+			DEBUG("error %i\r\n", (int)i2cGetErrors(&I2CD1));
 			continue;
 		}
 		sensor_status = i2c_rx_buffer[0] << 8 | i2c_rx_buffer[1];
-		if (sensor_status & DRDY) {
-			for (int i = 0; i < CHANNELS_NB[sensor]; i++) {
-				action = get_value(sensor, i);
-				if (action == -1)
-					break;
-
-				chprintf((BaseSequentialStream*)&RTTD,
-						"Slave %i Channel %i: %i\r\n",
-						sensor,
-						i,
-						detect_action(sensor, i));
+		if (sensor_status & DRDY) { // Data ready to be read.
+			for (int channel_id = 0; channel_id < CHANNELS_NB[sensor]; channel_id++) {
+				acquire_value(sensor, channel_id);
+				action = detect_action(sensor, channel_id);
+				if (sensor == 0 && channel_id == 3)
+					DEBUG("Action %i", action);
+				UNUSED(action);
 			}
 		}
 	}
@@ -247,7 +244,6 @@ void fdc_init(void){
 
 	i2c_set_pins();
 	i2cStart(&I2CD1, &i2c1_cfg);
-	chThdSleepMilliseconds(1000);
 	do {
 		chThdSleepMilliseconds(100);
 		status = init_sensors();
