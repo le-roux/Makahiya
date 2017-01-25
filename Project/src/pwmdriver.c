@@ -321,3 +321,12 @@ void setLedRGB(int id, int R, int G, int B){
 void setServo(int id, int value){
 	softPwmEnabled[5+id] = value;
 }
+
+void shakeServo(int id, int n){
+	for(int i = 0 ; i < n ; i ++){
+		setServo(id, 2900);
+		chThdSleepMilliseconds(1000);
+		setServo(id, 800);
+		chThdSleepMilliseconds(1000);
+	}
+}
