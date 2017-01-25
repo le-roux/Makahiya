@@ -32,5 +32,6 @@ void setLed(int led, int power);
 void setLedHP(int R, int G, int B, int W);
 void setLedRGB(int id, int R, int G, int B);
 void setServo(int id, int value);
+void shakeServo(int id, int n);
 
 #endif

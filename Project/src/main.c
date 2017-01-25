@@ -23,9 +23,10 @@ int main(void) {
 	setLed(LED1_G, 12);
 	setLed(LED2_R, 12);
 	setLed(LED4_B, 12);
-	setServo(3, 1000);
+
+	shakeServo(3, 5);
 
 	while(true) {
-		chThdSleepMilliseconds(2000);
+		chThdSleepMilliseconds(1000);
 	}
 }
