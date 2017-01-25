@@ -1,5 +1,9 @@
 #include "capacitive_sensor.h"
-#include "fdc_utils.h"
+#include "hal.h"
+#include "RTT_streams.h"
+#include "chprintf.h"
+#include "utils.h"
+
 
 /**
  * Array of the write indexes for the buffer.
@@ -41,6 +45,8 @@ uint32_t average[SENSORS_NB][MAX_CHANNELS_NB];
  */
 uint32_t default_value[SENSORS_NB][MAX_CHANNELS_NB];
 
+static int DETECT_SLIDE = 0;
+
 #if INT_DER_VERSION
 /**
  * Array storing for each channel the integral value.
@@ -73,7 +79,7 @@ void init_touch_detection(int sensor_id, int channel_id) {
 void update_default_value(int sensor_id, int channel_id) {
     write_index[sensor_id][channel_id] = 0;
     default_value[sensor_id][channel_id] = 0;
-    int offset = ((sensor_id) * MAX_CHANNELS_NB + channel_id) * BUFFER_SIZE;
+    int offset = (sensor_id * MAX_CHANNELS_NB + channel_id) * BUFFER_SIZE;
     for (int i = 0; i < BUFFER_SIZE; i++)
         default_value[sensor_id][channel_id] += buffer[offset + i];
     average[sensor_id][channel_id] = default_value[sensor_id][channel_id];
@@ -82,14 +88,19 @@ void update_default_value(int sensor_id, int channel_id) {
 #if !INT_DER_VERSION
 static uint8_t touch_detected(int sensor_id, int channel_id) {
     int offset = (sensor_id * MAX_CHANNELS_NB + channel_id) * BUFFER_SIZE;
+    /**
+     * Un - Un-k with k = BUFFER_SIZE
+     */
     int32_t dist = buffer[offset + PREVIOUS_INDEX(write_index[sensor_id][channel_id])] - buffer[offset + write_index[sensor_id][channel_id]];
-    return (dist < -MARGIN_USER);
+    /*if (sensor_id == 0 && channel_id == 3)
+        DEBUG("Dist %i", dist);*/
+    return (dist > MARGIN_USER);
 }
 
 static uint8_t touch_left(int sensor_id, int channel_id) {
     int offset = (sensor_id * MAX_CHANNELS_NB + channel_id) * BUFFER_SIZE;
     int32_t dist = buffer[offset + PREVIOUS_INDEX(write_index[sensor_id][channel_id])] - buffer[offset + write_index[sensor_id][channel_id]];
-    return (dist > MARGIN_USER);
+    return (dist < -MARGIN_USER);
 }
 #endif
 
@@ -110,7 +121,6 @@ void add_value(int sensor_id, int channel_id, uint32_t value) {
     write_index[sensor_id][channel_id]++;
     if (write_index[sensor_id][channel_id] >= BUFFER_SIZE)
         write_index[sensor_id][channel_id] = 0;
-
 }
 
 reg_t linear_regression(int sensor_id, int channel_id) {
@@ -145,31 +155,33 @@ reg_t linear_regression(int sensor_id, int channel_id) {
 
 int detect_action(int sensor_id, int channel_id) {
     // Detect slide
-    if (status[sensor_id][channel_id] != IN_TOUCH) {
-        reg_t ret = linear_regression(sensor_id, channel_id);
-        int coeff = ABS(ret.slope);
-        if (coeff > 200 && coeff < 300) {
-            if (status[sensor_id][channel_id] != IN_SLIDE &&
-                current_distance(sensor_id, channel_id) > SLIDE_MARGIN && ret.corr > 0.75) {
-                if (status[sensor_id][channel_id] == POTENTIAL_SLIDE) {
-                    status[sensor_id][channel_id] = IN_SLIDE;
-                    return 2;
-                } else {
-                    status[sensor_id][channel_id] = POTENTIAL_SLIDE;
+    if (DETECT_SLIDE) {
+        if (status[sensor_id][channel_id] != IN_TOUCH) {
+            reg_t ret = linear_regression(sensor_id, channel_id);
+            int coeff = ABS(ret.slope);
+            if (coeff > 200 && coeff < 300) {
+                if (status[sensor_id][channel_id] != IN_SLIDE &&
+                    current_distance(sensor_id, channel_id) > SLIDE_MARGIN && ret.corr > 0.75) {
+                    if (status[sensor_id][channel_id] == POTENTIAL_SLIDE) {
+                        status[sensor_id][channel_id] = IN_SLIDE;
+                        return 2;
+                    } else {
+                        status[sensor_id][channel_id] = POTENTIAL_SLIDE;
+                        return 0;
+                    }
+                } else
                     return 0;
-                }
-            } else
-                return 0;
+            }
         }
-    }
 
-    // Leave slide state
-    if ((status[sensor_id][channel_id] == IN_SLIDE &&
-                average[sensor_id][channel_id] > default_value[sensor_id][channel_id] - 500)
-        || status[sensor_id][channel_id] == POTENTIAL_SLIDE)
-        status[sensor_id][channel_id] = DEFAULT_STATE;
-    else if (status[sensor_id][channel_id] == IN_SLIDE)
-        return 0;
+        // Leave slide state
+        if ((status[sensor_id][channel_id] == IN_SLIDE &&
+                    average[sensor_id][channel_id] > default_value[sensor_id][channel_id] - 500)
+            || status[sensor_id][channel_id] == POTENTIAL_SLIDE)
+            status[sensor_id][channel_id] = DEFAULT_STATE;
+        else if (status[sensor_id][channel_id] == IN_SLIDE)
+            return 0;
+    }
 
     // Detect touch
 #if !INT_DER_VERSION

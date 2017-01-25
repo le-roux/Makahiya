@@ -17,7 +17,7 @@ int main(void) {
 	initBluetooth();
 	wifi_init();
 	chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "0");
-	//fdc_init();
+	fdc_init();
 
 	initPwm();
 	setLed(LED1_G, 12);
