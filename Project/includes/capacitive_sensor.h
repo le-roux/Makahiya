@@ -11,7 +11,9 @@
 /**
  * Margin to detect a touch (per value).
  */
-#define MARGIN_USER 5000000
+#define MARGIN_USER 10000000
+
+#define AVERAGE_LIMIT_LOW 5000000
 
 #define INT_DER_VERSION 0
 #define DERIVATIVE_THRESHOLD 1000
