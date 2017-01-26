@@ -3,6 +3,7 @@
 #include "ext_user.h"
 #include "utils.h"
 #include "capacitive_sensor.h"
+#include "pwmdriver.h"
 
 #include "chprintf.h"
 #include "RTT_streams.h"
@@ -227,9 +228,13 @@ static THD_FUNCTION(fdc_int, arg) {
 			for (int channel_id = 0; channel_id < CHANNELS_NB[sensor]; channel_id++) {
 				acquire_value(sensor, channel_id);
 				action = detect_action(sensor, channel_id);
-				if (sensor == 0 && channel_id == 3)
-					DEBUG("Action %i", action);
-				UNUSED(action);
+				if (sensor == 0 && channel_id == 3) {
+					DEBUG("action %i", action);
+					if (action == 1)
+						setLed(LED1_G, 100);
+					else if (action == -1)
+						setLed(LED1_G, 0);
+				}
 			}
 		}
 	}

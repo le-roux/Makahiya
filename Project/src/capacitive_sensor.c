@@ -176,8 +176,10 @@ int detect_action(int sensor_id, int channel_id) {
     if (status[sensor_id][channel_id] == DEFAULT_STATE && touch_detected(sensor_id, channel_id)) {
         status[sensor_id][channel_id] = IN_TOUCH;
         return IN_TOUCH;
-    } else if (status[sensor_id][channel_id] == IN_TOUCH && !touch_detected(sensor_id, channel_id))
+    } else if (status[sensor_id][channel_id] == IN_TOUCH && !touch_detected(sensor_id, channel_id)) {
         status[sensor_id][channel_id] = DEFAULT_STATE;
+        return -1;
+    }
 
     // Default return value
     return DEFAULT_STATE;

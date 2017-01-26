@@ -136,6 +136,7 @@ uint32_t get_next_value(int sensor_id, int channel_id);
  * @return
  *  - 2 if a slide beginning is detected.
  *  - 1 if a touch is detected.
+ *  - -1 when leaving the IN_TOUCH state
  *  - 0 otherwise (nothing detected).
  */
 int detect_action(int sensor_id, int channel_id);

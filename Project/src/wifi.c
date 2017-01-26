@@ -224,8 +224,12 @@ void wifi_init(void) {
     wifi_set_pins();
     sdStart(wifi_SD, &serial_config);
     do {
+        DEBUG("Trying to connect to WiFi network");
         send_cmd("ping -g");
         out = get_response(false);
+        if (out.error && out.error_code == SAFEMODE)
+            exit_safe_mode();
+        chThdSleepMilliseconds(100);
     } while(out.error);
     DEBUG("wifi OK");
 }
