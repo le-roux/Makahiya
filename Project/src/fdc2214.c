@@ -163,6 +163,8 @@ static int acquire_value(int slave_id, int channel_id) {
 	value |= i2c_rx_buffer[0] << 8 | i2c_rx_buffer[1];
 
 	add_value(slave_id, channel_id, value);
+	/*if (slave_id == 0 && channel_id == 3)
+		DEBUG("%i,", value);*/
 
 	// Initialization of the touch detection algorithm (with the 10 first values).
 	if (count[slave_id][channel_id] < BUFFER_SIZE)

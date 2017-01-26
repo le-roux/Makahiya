@@ -87,21 +87,9 @@ void update_default_value(int sensor_id, int channel_id) {
 
 #if !INT_DER_VERSION
 static uint8_t touch_detected(int sensor_id, int channel_id) {
-    int offset = (sensor_id * MAX_CHANNELS_NB + channel_id) * BUFFER_SIZE;
-    /**
-     * Un - Un-k with k = BUFFER_SIZE
-     */
-    int32_t dist = buffer[offset + PREVIOUS_INDEX(write_index[sensor_id][channel_id])] - buffer[offset + write_index[sensor_id][channel_id]];
-    /*if (sensor_id == 0 && channel_id == 3)
-        DEBUG("Dist %i", dist);*/
-    return (dist > MARGIN_USER);
+    return average[sensor_id][channel_id] < AVERAGE_LIMIT_LOW;
 }
 
-static uint8_t touch_left(int sensor_id, int channel_id) {
-    int offset = (sensor_id * MAX_CHANNELS_NB + channel_id) * BUFFER_SIZE;
-    int32_t dist = buffer[offset + PREVIOUS_INDEX(write_index[sensor_id][channel_id])] - buffer[offset + write_index[sensor_id][channel_id]];
-    return (dist < -MARGIN_USER);
-}
 #endif
 
 void add_value(int sensor_id, int channel_id, uint32_t value) {
@@ -185,22 +173,14 @@ int detect_action(int sensor_id, int channel_id) {
 
     // Detect touch
 #if !INT_DER_VERSION
-    if (status[sensor_id][channel_id] != IN_SLIDE && touch_detected(sensor_id, channel_id)) {
-        if (status[sensor_id][channel_id] == IN_TOUCH)
-            return 0;
-        else {
-            status[sensor_id][channel_id] = IN_TOUCH;
-            return 1;
-        }
-    }
-
-    // Leave touch state
-    if (status[sensor_id][channel_id] == IN_TOUCH && touch_left(sensor_id, channel_id)) {
+    if (status[sensor_id][channel_id] == DEFAULT_STATE && touch_detected(sensor_id, channel_id)) {
+        status[sensor_id][channel_id] = IN_TOUCH;
+        return IN_TOUCH;
+    } else if (status[sensor_id][channel_id] == IN_TOUCH && !touch_detected(sensor_id, channel_id))
         status[sensor_id][channel_id] = DEFAULT_STATE;
-    }
 
     // Default return value
-    return 0;
+    return DEFAULT_STATE;
 #else
     derivative[sensor_id][channel_id] = buffer[write_index[sensor_id][channel_id]] - buffer[PREVIOUS_INDEX(write_index[sensor_id][channel_id])];
     if (ABS(derivative[sensor_id][channel_id]) > DERIVATIVE_THRESHOLD)
