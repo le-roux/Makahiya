@@ -64,14 +64,13 @@ async def plant(ws):
 				SQLSession = Session()
 				try:
 					register = int(command[0])
-					if register < 50:
-						value = int(command[1])
-					else:
-						if command[1] == 'True':
+					value = int(command[1])
+					if register >= 50:
+						if (command[1]):
 							value = True
 						else:
 							value = False
-					if register == 33:
+					elif register == 33:
 						led = SQLSession.query(Leds).filter_by(plant_id=plant_id, led_id=1).one()
 						led.R = value
 					elif register == 10:
