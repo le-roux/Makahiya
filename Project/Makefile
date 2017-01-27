@@ -233,7 +233,7 @@ UINCDIR =
 ULIBDIR =
 
 # List all user libraries here
-ULIBS =
+ULIBS = -lm -lhelix -L ../helix
 
 #
 # End of user defines
