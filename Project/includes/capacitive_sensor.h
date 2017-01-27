@@ -6,7 +6,7 @@
 /**
  * Size of the buffer used to store the values from the sensor.
  */
-#define BUFFER_SIZE 10
+#define BUFFER_SIZE 15
 
 /**
  * Margin to detect a touch (per value).
@@ -62,12 +62,12 @@ typedef struct reg_t {
 /**
  * __WARNING__ This value is not normalized (by BUFFER_SIZE) !!
  */
-extern uint32_t average[SENSORS_NB][MAX_CHANNELS_NB];
+extern float average[SENSORS_NB][MAX_CHANNELS_NB];
 
 /**
  * __WARNING__ This value is not normalized (by BUFFER_SIZE) !!
  */
-extern uint32_t default_value[SENSORS_NB][MAX_CHANNELS_NB];
+extern float default_value[SENSORS_NB][MAX_CHANNELS_NB];
 
 /** @brief Init all the variables used in the touch detection algorithm.
  *
