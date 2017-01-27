@@ -240,7 +240,10 @@ async def board_leds(request):
 				try:
 					on = 'ledH_state' in request.POST
 					if ledHP.on != on:
-						msg = constants.SET + str(constants.LED_ON[0]) + ' ' + str(on)
+						if (on):
+							msg = constants.SET + str(constants.LED_ON[0]) + ' 1'
+						else:
+							msg = constants.SET + str(constants.LED_ON[0]) + ' 0'
 						await send_to_socket(plants, plant_id, msg)
 						ledHP.on = on
 				except KeyError:
@@ -282,8 +285,10 @@ async def board_leds(request):
 						res['KeyError'] = 1
 					try:
 						if led.on != on:
-							msg = constants.SET + str(constants.LED_ON[i]) \
-									+ ' ' + str(on)
+							if (on):
+								msg = constants.SET + str(constants.LED_ON[i]) + ' 1'
+							else:
+								msg = constants.SET + str(constants.LED_ON[i]) + ' 0'
 							await send_to_socket(plants, plant_id, msg)
 							led.on = on
 					except KeyError:
