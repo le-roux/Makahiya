@@ -163,7 +163,7 @@ static int acquire_value(int slave_id, int channel_id) {
 		return -1;
 	value |= i2c_rx_buffer[0] << 8 | i2c_rx_buffer[1];
 	if(slave_id == 0 && channel_id == 3)
-		DEBUG("%i,", value);
+		//DEBUG("%i,", value);
 
 	add_value(slave_id, channel_id, value);
 	// Initialization of the touch detection algorithm (with the 10 first values).
@@ -231,7 +231,7 @@ static THD_FUNCTION(fdc_int, arg) {
 				acquire_value(sensor, channel_id);
 				action = detect_action(sensor, channel_id);
 				if (sensor == 0 && channel_id == 3) {
-					DEBUG("action %i", action);
+					//DEBUG("action %i", action);
 					if (action)
 						setLed(LED2_G, 12);
 					else

@@ -88,7 +88,7 @@ extern binary_semaphore_t download_bsem;
 /******************************/
 /*        Functions           */
 /******************************/
-void sound_set_pins(void);
+void init_audio(void);
 void i2s_cb(I2SDriver* driver, size_t offset, size_t n);
 
 extern THD_FUNCTION(audio_playback, arg);
