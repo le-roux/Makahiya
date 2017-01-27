@@ -229,7 +229,6 @@ static THD_FUNCTION(fdc_int, arg) {
 				acquire_value(sensor, channel_id);
 				action = detect_action(sensor, channel_id);
 				if (sensor == 0 && channel_id == 3) {
-					DEBUG("action %i", action);
 					if (action == 1)
 						setLed(LED1_G, 100);
 					else if (action == -1)

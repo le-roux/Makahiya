@@ -13,6 +13,7 @@
 #include "ext_user.h"
 #include "RTT_streams.h"
 #include "chprintf.h"
+#include "pwmdriver.h"
 
 // 14 is the number of the pin used for the interrupts.
 static const char* const ws_cmd = "websocket_client -g 9 ";
@@ -51,6 +52,7 @@ THD_FUNCTION(websocket_ext, arg) {
         }
 
         // No error: decode the data received
+        DEBUG("Received %s", response_body);
         cmd = strtok(response_body, " ");
         if (cmd == NULL)
             continue; // TODO improve error management
@@ -135,9 +137,13 @@ THD_FUNCTION(websocket, arg) {
     chThdCreateStatic(wa_websocket_ext, sizeof(wa_websocket_ext), \
                         NORMALPRIO, websocket_ext, NULL);
 
+    wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"sync");
+    header = get_response(false);
+    DEBUG("sync %s", response_body);
+
     // For test only
-    for (int i = 0; i < 5; i++) {
-        chThdSleepMilliseconds(5000);
+    while (TRUE) {
+        chThdSleepMilliseconds(10000);
         wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"abcd");
         (void)get_response(true);
         DEBUG("%s", response_body);
@@ -150,10 +156,71 @@ THD_FUNCTION(websocket, arg) {
 }
 
 void set_value(int var_id, int value) {
-     UNUSED(var_id);
-     UNUSED(value);
+    VALUES[var_id] = value;
+    switch(var_id) {
+        case(LED1_ON): {
+            if (value)
+                setLedRGB(1, VALUES[LED1_R], VALUES[LED1_G], VALUES[LED1_B]);
+            else
+                setLedRGB(1, 0, 0, 0);
+            break;
+        }
+        case(LED2_ON): {
+            if (value)
+                setLedRGB(2, VALUES[LED2_R], VALUES[LED2_G], VALUES[LED2_B]);
+            else
+                setLedRGB(2, 0, 0, 0);
+            break;
+        }
+        case(LED3_ON): {
+            if (value)
+                setLedRGB(3, VALUES[LED3_R], VALUES[LED3_G], VALUES[LED3_B]);
+            else
+                setLedRGB(3, 0, 0, 0);
+            break;
+        }
+        case(LED4_ON): {
+            if (value)
+                setLedRGB(4, VALUES[LED4_R], VALUES[LED4_G], VALUES[LED4_B]);
+            else
+                setLedRGB(4, 0, 0, 0);
+            break;
+        }
+        case(LED5_ON): {
+            if (value)
+                setLedRGB(5, VALUES[LED5_R], VALUES[LED5_G], VALUES[LED5_B]);
+            else
+                setLedRGB(5, 0, 0, 0);
+            break;
+        }
+        case(LED_HP_ON): {
+            if (value)
+                setLedHP(VALUES[LED_HP_R], VALUES[LED_HP_G], VALUES[LED_HP_B], VALUES[LED_HP_W]);
+            else
+                setLedHP(0, 0, 0, 0);
+            break;
+        }
+        default: {
+            if (IS_LED_1(var_id) && VALUES[LED1_ON])
+                setLed(var_id, value);
+            else if (IS_LED_2(var_id) && VALUES[LED2_ON])
+                setLed(var_id, value);
+            else if (IS_LED_2(var_id) && VALUES[LED2_ON])
+                setLed(var_id, value);
+            else if (IS_LED_3(var_id) && VALUES[LED3_ON])
+                setLed(var_id, value);
+            else if (IS_LED_4(var_id) && VALUES[LED4_ON])
+                setLed(var_id, value);
+            else if (IS_LED_5(var_id) && VALUES[LED5_ON])
+                setLed(var_id, value);
+            else if (IS_LED_HP(var_id) && VALUES[LED_HP_ON])
+                setLed(var_id, value);
+            else if (IS_SERVO(var_id))
+                setServo(var_id - SERVO_BASE, value);
+        }
+    }
 }
+
 int get_value(int var_id) {
-    UNUSED(var_id);
-    return 1;
+    return VALUES[var_id];
 }

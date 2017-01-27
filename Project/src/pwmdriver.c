@@ -3,6 +3,7 @@
 #include "pwmdriver.h"
 #include "utils.h"
 
+int VALUES[100];
 static volatile int softPwmEnabled[11] = {0};
 static PWMDriver * pwmd[8] = {&PWMD1, &PWMD2, &PWMD3, &PWMD4, NULL, NULL, NULL, &PWMD8};
 static virtual_timer_t servo[7];
@@ -252,11 +253,14 @@ void initPwm(void){
 	pwmEnablePeriodicNotification(&PWMD1);
 	pwmEnablePeriodicNotification(&PWMD2);
 	pwmEnablePeriodicNotification(&PWMD4);
-	
+
 	for(int i = 0 ; i < 6 ; i ++)
 		chVTObjectInit(&servo[i]);
 
 	chVTSet(&(servo[0]), MS2ST(20), setServosI, NULL);
+
+	for (int i = 0; i < 100; i++)
+		VALUES[i] = 0;
 }
 
 void setLed(int led, int power){
@@ -281,7 +285,7 @@ void setLed(int led, int power){
 
 }
 
-void setLedHp(int R, int G, int B, int W){
+void setLedHP(int R, int G, int B, int W){
 	setLed(LED_HP_R, R);
 	setLed(LED_HP_G, G);
 	setLed(LED_HP_B, B);
