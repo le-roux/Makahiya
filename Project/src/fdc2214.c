@@ -162,6 +162,8 @@ static int acquire_value(int slave_id, int channel_id) {
 	if (read_register(FDC_ADDR[slave_id], DATA_LSB[channel_id]) != MSG_OK)
 		return -1;
 	value |= i2c_rx_buffer[0] << 8 | i2c_rx_buffer[1];
+	if(slave_id == 0 && channel_id == 3)
+		DEBUG("%i,", value);
 
 	add_value(slave_id, channel_id, value);
 	// Initialization of the touch detection algorithm (with the 10 first values).
@@ -202,9 +204,9 @@ static THD_FUNCTION(fdc_int, arg) {
 	/**
 	 * The action detected by the touch-detection algorithm.
 	 */
-	 int action;
+	int action;
 
-	chprintf((BaseSequentialStream*)&RTTD, "Start fdc thread\r\n");
+	//chprintf((BaseSequentialStream*)&RTTD, "Start fdc thread\r\n");
 
 	for (int i = 0; i < 4; i++) {
 		init_touch_detection(0, i);
@@ -220,7 +222,7 @@ static THD_FUNCTION(fdc_int, arg) {
 			addr = FDC2_ADDR;
 		status = read_register(addr, STATUS);
 		if (status != I2C_NO_ERROR) { // Error in the communication.
-			DEBUG("error %i\r\n", (int)i2cGetErrors(&I2CD1));
+			//DEBUG("error %i\r\n", (int)i2cGetErrors(&I2CD1));
 			continue;
 		}
 		sensor_status = i2c_rx_buffer[0] << 8 | i2c_rx_buffer[1];
@@ -229,10 +231,10 @@ static THD_FUNCTION(fdc_int, arg) {
 				acquire_value(sensor, channel_id);
 				action = detect_action(sensor, channel_id);
 				if (sensor == 0 && channel_id == 3) {
-					if (action == 1)
-						setLed(LED1_G, 100);
-					else if (action == -1)
-						setLed(LED1_G, 0);
+					if (action)
+						setLed(LED2_G, 12);
+					else
+						setLed(LED2_G, 0);
 				}
 			}
 		}
