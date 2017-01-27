@@ -147,7 +147,19 @@ async def plant(ws):
 						led.on = value
 					SQLSession.commit()
 				except ValueError:
-					pass
+					if (command[0] == 'sync'):
+						ledHP = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=0).one()
+						await ws.send(constants.SET + str(constants.LED_R[0]) + ' ' + str(ledHP.R))
+						await ws.send(constants.SET + str(constants.LED_G[0]) + ' ' + str(ledHP.G))
+						await ws.send(constants.SET + str(constants.LED_B[0]) + ' ' + str(ledHP.B))
+						await ws.send(constants.SET + str(constants.LED_HP_W) + ' ' + str(ledHP.W))
+						await ws.send(constants.SET + str(constants.LED_ON[0]) + ' ' + str(ledHP.on))
+						for i in range(1, 6):
+						led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
+							await ws.send(constants.SET + str(constants.LED_R[i]) + ' ' + str(led.R))
+							await ws.send(constants.SET + str(constants.LED_G[i]) + ' ' + str(led.G))
+							await ws.send(constants.SET + str(constants.LED_B[i]) + ' ' + str(led.B))
+							await ws.send(constants.SET + str(constants.LED_ON[i]) + ' ' + str(led.on))
 				if (clients.registered(plant_id)):
 					await send_to_socket(clients, plant_id, msg)
 
