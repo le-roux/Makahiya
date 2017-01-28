@@ -18,19 +18,25 @@
 /***********************/
 char response_code[WIFI_HEADER_SIZE];
 char response_body[WIFI_BUFFER_SIZE];
-wifi_connection audio_conn;
-static const char* const read_cmd = "read ";
-const char* address = "http://makahiya.rfc1149.net";
-const char* get = "http_get ";
-static MUTEX_DECL(serial_mutex);
+
+const char* const address = "http://makahiya.rfc1149.net";
+const char* const REBOOT = "reboot";
+const char* const NETWORK_FLUSH = "network_flush";
+const char* const PING_CONN = "ping -g";
+
+#define SEND_DATA(data, length) sdWrite(wifi_SD, data, length)
+#define SEND_DATA_TIMEOUT(data, length, timeout) sdWriteTimeout(wifi_SD, data, \
+                                                            length, timeout)
 
 /***********************/
 /*       Functions     */
 /***********************/
+
+
 wifi_response_header parse_response_code(void) {
     wifi_response_header out;
     if (response_code[0] == 'R') {
-        out.error = response_code[1] != '0';
+        out.error = (response_code[1] != '0');
         out.error_code = response_code[1] - '0';
     } else if (response_code[0] == 'S') {
         out.error = 1;
@@ -55,18 +61,25 @@ void get_channel_id(wifi_connection* conn) {
 }
 
 #ifndef TEST
-wifi_response_header get_response(int timeout) {
+
+/** @brief Retrieve and decode the return code of a command.
+ *
+ * @param timeout Boolean value that indicates whether or not timeouts are
+ *      required for blocking function calls.
+ *
+ * @return A structure containing all the information available in the
+ *      code returned by the command previously sent to the Wi-Fi module.
+ */
+static wifi_response_header get_response(int timeout) {
     static int end, timing = 40;
     wifi_response_header out;
 
     int res;
 
-    chMtxLock(&serial_mutex);
     if (timeout)
         res = sdReadTimeout(wifi_SD, (uint8_t*)response_code, WIFI_HEADER_SIZE, MS2ST(timing));
     else
         res = sdRead(wifi_SD, (uint8_t*)response_code, WIFI_HEADER_SIZE);
-    chMtxUnlock(&serial_mutex);
 
     if (res != WIFI_HEADER_SIZE) {
         out.error = 1;
@@ -83,12 +96,10 @@ wifi_response_header get_response(int timeout) {
     if (out.length > 0) {
         end = 0;
 
-        chMtxLock(&serial_mutex);
         if (timeout)
             res = sdReadTimeout(wifi_SD, (uint8_t*)response_body, out.length, MS2ST(5));
         else
             res = sdRead(wifi_SD, (uint8_t*)response_body, out.length);
-        chMtxUnlock(&serial_mutex);
     } else {
         if (end < 20)
             end++;
@@ -102,17 +113,45 @@ wifi_response_header get_response(int timeout) {
     return out;
 }
 
-void read_buffer(wifi_connection conn) {
-    read(conn, WIFI_BUFFER_SIZE - 2);
+static void wifi_set_pins(void) {
+    // Interrupt for websockets
+    palSetPadMode(GPIOA, 11, PAL_MODE_INPUT_PULLDOWN);
+
+    // ResetN
+    palSetPadMode(GPIOA, 15, PAL_MODE_OUTPUT_PUSHPULL);
+    palSetPad(GPIOA, 15);
 }
 
-void read(wifi_connection conn, int size) {
+void wifiInit(void) {
+    /**
+    * Header of the response sent by the Wi-Fi module.
+    */
+    wifi_response_header out;
+
+    serial_set_pin();
+    wifi_set_pins();
+    sdStart(wifi_SD, &serial_config);
+    do {
+        DEBUG("Trying to connect to WiFi network");
+        out = send_cmd(PING_CONN, false);
+        if (out.error && out.error_code == SAFEMODE)
+        exit_safe_mode();
+        chThdSleepMilliseconds(100);
+    } while(out.error);
+    DEBUG("wifi OK");
+}
+
+wifi_response_header read_buffer(wifi_connection conn, int timeout) {
+    return read(conn, WIFI_BUFFER_SIZE - 2, timeout);
+}
+
+wifi_response_header read(wifi_connection conn, int size, int timeout) {
     chDbgCheck(size <= WIFI_BUFFER_SIZE - 2);
 
     int length = 0;
     // Prepare the read request.
-    strcpy((char*)serial_tx_buffer, read_cmd);
-    length += strlen(read_cmd);
+    strcpy((char*)serial_tx_buffer, "read ");
+    length += strlen("read ");
     strcat((char*)serial_tx_buffer, conn.channel_id);
     length += strlen(conn.channel_id);
     strcat((char*)serial_tx_buffer, " ");
@@ -125,17 +164,16 @@ void read(wifi_connection conn, int size) {
     length += strlen("\r\n");
 
     // Actually send the request.
-    chMtxLock(&serial_mutex);
-    sdWrite(wifi_SD, serial_tx_buffer, length);
-    chMtxUnlock(&serial_mutex);
+    SEND_DATA(serial_tx_buffer, length);
+    return get_response(timeout);
 }
 
 void read_music(char* path) {
     int length = 0;
 
     // Prepare the request to send
-    strcpy((char*)serial_tx_buffer, get);
-    length += strlen(get);
+    strcpy((char*)serial_tx_buffer, "http_get ");
+    length += strlen("http_get ");
     strcat((char*)serial_tx_buffer, address);
     length += strlen(address);
     strcat((char*)serial_tx_buffer, path);
@@ -144,16 +182,14 @@ void read_music(char* path) {
     length += strlen("\r\n");
 
     // Actually send the request
-    chMtxLock(&serial_mutex);
-    sdWrite(wifi_SD, serial_tx_buffer, length);
-    chMtxUnlock(&serial_mutex);
+    SEND_DATA(serial_tx_buffer, length);
 
     // Read the response code
     wifi_response_header out = get_response(false);
     if (out.error == 1)
         return;
 
-    get_channel_id(&audio_conn);
+    get_channel_id((wifi_connection*)&audio_conn);
 
     /**
      * Start the reading of the mp3 file.
@@ -161,7 +197,7 @@ void read_music(char* path) {
     chBSemSignal(&download_bsem);
 }
 
-void send_cmd(char* cmd) {
+wifi_response_header send_cmd(const char* cmd, int timeout) {
     chDbgCheck(strlen(cmd) < SERIAL_TX_BUFFER_SIZE - 1);
 
     int length = 0, sent;
@@ -173,65 +209,31 @@ void send_cmd(char* cmd) {
     do {
         sent = SEND_DATA_TIMEOUT(serial_tx_buffer, length, MS2ST(100));
     } while (sent != length);
+    return get_response(timeout);
 }
 
-void wifi_write(wifi_connection* conn, int length, uint8_t* buffer) {
-    char cmd[12], channel[5];
+wifi_response_header wifi_write(wifi_connection* conn, int length, uint8_t* buffer, int timeout) {
+    char cmd[15], channel[5];
     strcpy(cmd, "write ");
     strcat(cmd, conn->channel_id);
     strcat(cmd, " ");
     int_to_char(channel, length);
     strcat(cmd, channel);
-    send_cmd(cmd);
+    strcat(cmd, "\r\n");
+    SEND_DATA((uint8_t*)cmd, strlen(cmd));
     SEND_DATA(buffer, length);
-}
-
-void clear_body(void) {
-    for (int i = 0; i < WIFI_BUFFER_SIZE; i++)
-        response_body[i] = '\0';
+    return get_response(timeout);
 }
 
 int exit_safe_mode(void) {
     wifi_response_header header;
-    send_cmd("get system.safemode.status");
-    header = get_response(FALSE);
+    header = send_cmd("get system.safemode.status", false);
     if (header.error && header.error_code == SAFEMODE) {
-        send_cmd("faults_reset");
-        header = get_response(false);
-        send_cmd("reboot");
-        header = get_response(false);
+        header = send_cmd("faults_reset", false);
+        header = send_cmd(REBOOT, false);
         return 0;
     }
     return 1;
-}
-
-static void wifi_set_pins(void) {
-    // Interrupt for websockets
-    palSetPadMode(GPIOA, 11, PAL_MODE_INPUT_PULLDOWN);
-
-    // ResetN
-    palSetPadMode(GPIOA, 15, PAL_MODE_OUTPUT_PUSHPULL);
-    palSetPad(GPIOA, 15);
-}
-
-void wifi_init(void) {
-    /**
-     * Header of the response sent by the Wi-Fi module.
-     */
-    wifi_response_header out;
-
-    serial_set_pin();
-    wifi_set_pins();
-    sdStart(wifi_SD, &serial_config);
-    do {
-        DEBUG("Trying to connect to WiFi network");
-        send_cmd("ping -g");
-        out = get_response(false);
-        if (out.error && out.error_code == SAFEMODE)
-            exit_safe_mode();
-        chThdSleepMilliseconds(100);
-    } while(out.error);
-    DEBUG("wifi OK");
 }
 
 #endif // TEST

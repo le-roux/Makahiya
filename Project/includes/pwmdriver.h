@@ -49,7 +49,7 @@
 
 extern int VALUES[100];
 
-void initPwm(void);
+void pwmUserInit(void);
 void setLed(int led, int power);
 
 void setLedHP(int R, int G, int B, int W);

@@ -7,11 +7,11 @@
 // Includes for Helix code
 #include "../helix/pub/mp3dec.h"
 
+#include "wifi.h"
+
 /******************************/
 /*       Variables            */
 /******************************/
-
-extern uint32_t* buffer;
 
 #define ALARM_SOUND_NB 3
 
@@ -31,65 +31,44 @@ extern const int16_t* const _binary_start[ALARM_SOUND_NB];
 extern const int16_t* const _binary_size[ALARM_SOUND_NB];
 extern const int16_t* const _binary_end[ALARM_SOUND_NB];
 
+/**
+ * Id of the music stored in flash to play.
+ * This variable must be set before signaling the @p audio_bsem binary semaphore.
+ */
 extern volatile int music_id;
+
+/**
+ * Value indicating when the alarm music must be stopped. Set it to 1 before
+ * starting the music.
+ */
 extern volatile int repeat;
 
-#define FLASH_SECTOR_SIZE 131072 // 128k
-#define FLASH_SECTOR_NB 6
 /**
- * Size of a sample in bytes
+ * Variable to store the channel id of the audio download connection.
  */
-#define SAMPLE_SIZE 2
+extern volatile wifi_connection audio_conn;
 
-/**
- * Size of buffers that hold mp3 decoded frames (in number of samples)
- */
-#define I2S_BUF_SIZE MAX_NSAMP * MAX_NGRAN * MAX_NCHAN
-
-/**
- * The buffer used for DMA transfer.
- * Each half of this buffer holds a complete mp3 decoded frame.
- */
-extern int16_t i2s_tx_buf[I2S_BUF_SIZE * 2];
-
-/**
- * Number of intermediate buffers available for the mailbox
- */
-#define AUDIO_BUFFERS_NB 2
-
-/**
- * Multiplier for the volume
- * Formula: sample * volumeMult / volumeDiv
- */
-extern int8_t volumeMult;
-
-/**
- * Divider for the volume
- * Formula: sample * volumeMult / volumeDiv
- */
-extern int8_t volumeDiv;
-
-#define WORKING_BUFFER_SIZE 4000
-
-#define INPUT_BUFFER_SIZE 1000
-#define INPUT_BUFFERS_NB 5
-
-#define I2SDIV 6
-
-extern I2SConfig audio_i2s_cfg;
+extern binary_semaphore_t audio_bsem;
+extern binary_semaphore_t download_bsem;
 
 extern THD_WORKING_AREA(wa_audio, 1024);
 
 extern THD_WORKING_AREA(wa_audio_in, 2048);
 extern THD_WORKING_AREA(wa_flash, 2048);
-extern binary_semaphore_t audio_bsem;
-extern binary_semaphore_t download_bsem;
 
 /******************************/
 /*        Functions           */
 /******************************/
-void init_audio(void);
-void i2s_cb(I2SDriver* driver, size_t offset, size_t n);
+
+/**
+ * @brief Initialize all the elements related to the audio.
+ */
+void audioInit(void);
+
+/**
+ * @brief Function called by the I2S driver when a transfer is finished.
+ */
+void audioI2Scb(I2SDriver* driver, size_t offset, size_t n);
 
 extern THD_FUNCTION(audio_playback, arg);
 extern THD_FUNCTION(wifi_audio_in, arg);

@@ -5,6 +5,7 @@
 #include <string.h>
 #include "chprintf.h"
 #include "RTT_streams.h"
+#include "i2s_user.h"
 
 #include "sound.h"
 #include "wifi.h"
@@ -22,14 +23,21 @@ const int16_t* const _binary_size[ALARM_SOUND_NB] = {&_binary_alarm1_mp3_size,
 const int16_t* const _binary_end[ALARM_SOUND_NB] = {&_binary_alarm1_mp3_end,
 	&_binary_alarm2_mp3_end,
 	&_binary_alarm3_mp3_end};
-volatile int music_id;
-static volatile int music_source;
-#define DOWNLOAD 0
-#define INNER 1
-volatile int repeat;
 
-int16_t i2s_tx_buf[I2S_BUF_SIZE * 2];
-thread_reference_t audio_thread_ref = NULL;
+
+volatile int music_id;
+volatile int repeat;
+volatile wifi_connection audio_conn;
+
+/**
+ * Value indicating the origin of the music (from flash or downloaded).
+ */
+static enum {DOWNLOAD, INNER} music_source;
+
+/**
+ * Number of buffers handled by the @p audio_box and @p free_box mailboxes.
+ */
+#define AUDIO_BUFFERS_NB 2
 
 /**
  * Buffers used to store decoded data before sending them through I2S.
@@ -41,6 +49,16 @@ MAILBOX_DECL(audio_box, audio_buffers, AUDIO_BUFFERS_NB);
 MAILBOX_DECL(free_box, free_audio_buffers, AUDIO_BUFFERS_NB);
 
 /**
+ * Number of buffers handled by the @p input_box and @p free_input_box mailboxes.
+ */
+#define INPUT_BUFFERS_NB 5
+
+/**
+ * Size of the buffers handled by @p input_box and àp free_input_box.
+ */
+#define INPUT_BUFFER_SIZE 1000
+
+/**
  * Buffers used to store mp3 data when copied from flash and sent to decoder.
  */
 static int16_t in_buf[INPUT_BUFFERS_NB][INPUT_BUFFER_SIZE];
@@ -48,6 +66,9 @@ static msg_t input_buffers[INPUT_BUFFERS_NB];
 static msg_t free_input_buffers[INPUT_BUFFERS_NB];
 MAILBOX_DECL(input_box, input_buffers, INPUT_BUFFERS_NB);
 MAILBOX_DECL(free_input_box, free_input_buffers, INPUT_BUFFERS_NB);
+
+#define FLASH_SECTOR_SIZE 131072 // 128k
+#define FLASH_SECTOR_NB 6
 
 /**
  * Buffers used when downloading music (flash memory).
@@ -63,24 +84,21 @@ BSEMAPHORE_DECL(audio_bsem, true);
 BSEMAPHORE_DECL(decode_bsem, true);
 BSEMAPHORE_DECL(download_bsem, true);
 
+#define WORKING_BUFFER_SIZE 4000
+
 static int8_t working_buffer[WORKING_BUFFER_SIZE];
 
 volatile int count = 0;
 volatile bool started = false;
 
-int8_t volumeMult = 1;
-int8_t volumeDiv = 1;
+void audioInit(void){
+	palSetPadMode(GPIOB, 12,  PAL_MODE_ALTERNATE(5));
+	palSetPadMode(GPIOB, 13,  PAL_MODE_ALTERNATE(5));
+	palSetPadMode(GPIOB, 15,  PAL_MODE_ALTERNATE(5));
+	palSetPadMode(GPIOC, 6,  PAL_MODE_ALTERNATE(5));
+}
 
-I2SConfig audio_i2s_cfg = {
-	i2s_tx_buf,
-	NULL,
-	I2S_BUF_SIZE * 2,
-	i2s_cb,
-	0,
-	SPI_I2SPR_MCKOE | I2SDIV
-};
-
-void i2s_cb(I2SDriver* driver, size_t offset, size_t n) {
+void audioI2Scb(I2SDriver* driver, size_t offset, size_t n) {
 	UNUSED(driver);
 	UNUSED(offset);
 	UNUSED(n);
@@ -212,7 +230,7 @@ THD_FUNCTION(audio_playback, arg) {
 			chSemWait(&audio_sem);
 			// Copy the data in the i2s buffer.
 			for (int i = 0; i < I2S_BUF_SIZE; i++)
-				i2s_tx_buf[offset + i] = ((int16_t*)pbuf)[i] * volumeMult / volumeDiv;
+				i2s_tx_buf[offset + i] = ((int16_t*)pbuf)[i];
 
 			// Release the intermediate buffer.
 			chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
@@ -305,13 +323,12 @@ THD_FUNCTION(wifi_audio_in, arg) {
 			bytes_consumed = WIFI_BUFFER_SIZE;
 			out.length = WIFI_BUFFER_SIZE;
 			out.error = 0;
-			out.error_code = 0;
+			out.error_code = NO_ERROR;
 
 			while(bytes_nb < FLASH_SECTOR_SIZE) {
 				while (bytes_consumed >= out.length) { // Need to perform a new read.
 					bytes_consumed = 0;
-					read_buffer(audio_conn);
-					out = get_response(true);
+					out = read_buffer(audio_conn, true);
 					if (out.error && out.error_code == NO_DATA) {
 						if (end) {
 							end = 2;
@@ -398,11 +415,4 @@ THD_FUNCTION(flash_audio_in, arg) {
 		inbuf = NULL;
 		chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
 	}
-}
-
-void init_audio(void){
-	palSetPadMode(GPIOB, 12,  PAL_MODE_ALTERNATE(5));
-	palSetPadMode(GPIOB, 13,  PAL_MODE_ALTERNATE(5));
-	palSetPadMode(GPIOB, 15,  PAL_MODE_ALTERNATE(5));
-	palSetPadMode(GPIOC, 6,  PAL_MODE_ALTERNATE(5));
 }

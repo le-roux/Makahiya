@@ -45,8 +45,7 @@ THD_FUNCTION(websocket_ext, arg) {
     extStart(EXTD, &ext_config);
     while(TRUE) {
         chBSemWait(&web_bsem); // Wait for a trigger from the interrupt
-        read_buffer(conn); // Ask to read the data
-        header = get_response(true);
+        header = read_buffer(conn, true); // Ask to read the data
         if (header.error) {
             continue;
         }
@@ -66,8 +65,7 @@ THD_FUNCTION(websocket_ext, arg) {
             strcpy(buffer, var);
             strcat(buffer, " ");
             strcat(buffer, value);
-            wifi_write((wifi_connection*)&conn, strlen(buffer), (uint8_t*)buffer);
-            (void)get_response(true);
+            (void)wifi_write((wifi_connection*)&conn, strlen(buffer), (uint8_t*)buffer, true);
         } else if (strcmp(cmd, "play") == 0) {
             // TODO Play music file called $var
             continue;
@@ -100,13 +98,12 @@ THD_FUNCTION(websocket, arg) {
     strcat(cmd, (char*)arg);
 
     while(true) {
-        // Open the connection with the websocket (plant-side).
-        send_cmd(cmd);
-        /* No timeout because this first connection can be long to establish.
-           However it's not fully blocking as the wifi module will respond
-           with a "command failed" message after a certain amount of time in
-           case of error. */
-        header = get_response(false);
+        /* Open the connection with the websocket (plant-side).
+         No timeout because this first connection can be long to establish.
+        However it's not fully blocking as the wifi module will respond
+        with a "command failed" message after a certain amount of time in
+        case of error. */
+        header = send_cmd(cmd, false);
         if (header.error) {
             DEBUG("error %s (%s)", response_body, response_code);
             do {
@@ -115,19 +112,16 @@ THD_FUNCTION(websocket, arg) {
                     header.error = NO_ERROR;
                     header.error_code = NO_ERROR;
                 } else {
-                    send_cmd(REBOOT);
-                    header = get_response(false);
+                    header = send_cmd(REBOOT, false);
                     if (header.error)
                         continue;
-                    send_cmd(NETWORK_FLUSH);
-                    header = get_response(false);
+                    header = send_cmd(NETWORK_FLUSH, false);
                     if (header.error)
                         continue;
                 }
             } while (header.error);
             do {
-                send_cmd(PING_CONN);
-                header = get_response(false);
+                header = send_cmd(PING_CONN, false);
             } while(header.error);
         } else
             break; // Connection established
@@ -137,21 +131,18 @@ THD_FUNCTION(websocket, arg) {
     chThdCreateStatic(wa_websocket_ext, sizeof(wa_websocket_ext), \
                         NORMALPRIO, websocket_ext, NULL);
 
-    wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"sync");
-    header = get_response(false);
+    header = wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"sync", false);
     DEBUG("sync %s", response_body);
 
     // For test only
     while (TRUE) {
         chThdSleepMilliseconds(10000);
-        wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"abcd");
-        (void)get_response(true);
+        (void)wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"abcd", true);
         DEBUG("%s", response_body);
     }
     strcpy(cmd, "close ");
     strcat(cmd, ((wifi_connection)conn).channel_id);
-    send_cmd(cmd);
-    header = get_response(false);
+    header = send_cmd(cmd, false);
     DEBUG("close %s", response_body);
 }
 

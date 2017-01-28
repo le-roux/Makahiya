@@ -171,7 +171,7 @@ static const PWMConfig pwmconfig4 = {
 	0,
 };
 
-void initPwm(void){
+void pwmUserInit(void){
 
 	// LED 1
 
