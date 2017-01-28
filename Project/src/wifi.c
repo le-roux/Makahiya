@@ -24,6 +24,9 @@ const char* const REBOOT = "reboot";
 const char* const NETWORK_FLUSH = "network_flush";
 const char* const PING_CONN = "ping -g";
 
+#ifndef TEST
+MUTEX_DECL(wifi_mutex);
+#endif // TEST
 #define SEND_DATA(data, length) sdWrite(wifi_SD, data, length)
 #define SEND_DATA_TIMEOUT(data, length, timeout) sdWriteTimeout(wifi_SD, data, \
                                                             length, timeout)
@@ -135,7 +138,7 @@ void wifiInit(void) {
         DEBUG("Trying to connect to WiFi network");
         out = send_cmd(PING_CONN, false);
         if (out.error && out.error_code == SAFEMODE)
-        exit_safe_mode();
+            exit_safe_mode();
         chThdSleepMilliseconds(100);
     } while(out.error);
     DEBUG("wifi OK");
@@ -148,7 +151,9 @@ wifi_response_header read_buffer(wifi_connection conn, int timeout) {
 wifi_response_header read(wifi_connection conn, int size, int timeout) {
     chDbgCheck(size <= WIFI_BUFFER_SIZE - 2);
 
+    wifi_response_header header;
     int length = 0;
+    chMtxLock(&wifi_mutex);
     // Prepare the read request.
     strcpy((char*)serial_tx_buffer, "read ");
     length += strlen("read ");
@@ -165,12 +170,15 @@ wifi_response_header read(wifi_connection conn, int size, int timeout) {
 
     // Actually send the request.
     SEND_DATA(serial_tx_buffer, length);
-    return get_response(timeout);
+    header = get_response(timeout);
+    chMtxUnlock(&wifi_mutex);
+    return header;
 }
 
 void read_music(char* path) {
     int length = 0;
 
+    chMtxLock(&wifi_mutex);
     // Prepare the request to send
     strcpy((char*)serial_tx_buffer, "http_get ");
     length += strlen("http_get ");
@@ -190,6 +198,7 @@ void read_music(char* path) {
         return;
 
     get_channel_id((wifi_connection*)&audio_conn);
+    chMtxUnlock(&wifi_mutex);
 
     /**
      * Start the reading of the mp3 file.
@@ -201,6 +210,8 @@ wifi_response_header send_cmd(const char* cmd, int timeout) {
     chDbgCheck(strlen(cmd) < SERIAL_TX_BUFFER_SIZE - 1);
 
     int length = 0, sent;
+    wifi_response_header header;
+    chMtxLock(&wifi_mutex);
     strcpy((char*)serial_tx_buffer, cmd);
     length += strlen(cmd);
     strcat((char*)serial_tx_buffer, "\r\n");
@@ -209,20 +220,26 @@ wifi_response_header send_cmd(const char* cmd, int timeout) {
     do {
         sent = SEND_DATA_TIMEOUT(serial_tx_buffer, length, MS2ST(100));
     } while (sent != length);
-    return get_response(timeout);
+    header = get_response(timeout);
+    chMtxUnlock(&wifi_mutex);
+    return header;
 }
 
 wifi_response_header wifi_write(wifi_connection* conn, int length, uint8_t* buffer, int timeout) {
-    char cmd[15], channel[5];
-    strcpy(cmd, "write ");
-    strcat(cmd, conn->channel_id);
-    strcat(cmd, " ");
+    char channel[5];
+    wifi_response_header header;
+    chMtxLock(&wifi_mutex);
+    strcpy((char*)serial_tx_buffer, "write ");
+    strcat((char*)serial_tx_buffer, conn->channel_id);
+    strcat((char*)serial_tx_buffer, " ");
     int_to_char(channel, length);
-    strcat(cmd, channel);
-    strcat(cmd, "\r\n");
-    SEND_DATA((uint8_t*)cmd, strlen(cmd));
+    strcat((char*)serial_tx_buffer, channel);
+    strcat((char*)serial_tx_buffer, "\r\n");
+    SEND_DATA(serial_tx_buffer, strlen((char*)serial_tx_buffer));
     SEND_DATA(buffer, length);
-    return get_response(timeout);
+    header = get_response(timeout);
+    chMtxUnlock(&wifi_mutex);
+    return header;
 }
 
 int exit_safe_mode(void) {
