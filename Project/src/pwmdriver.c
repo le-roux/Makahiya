@@ -334,3 +334,73 @@ void shakeServo(int id, int n){
 		chThdSleepMilliseconds(1000);
 	}
 }
+
+void setValue(int varId, int value) {
+    VALUES[varId] = value;
+    switch(varId) {
+        case(LED1_ON): {
+            if (value)
+                setLedRGB(1, VALUES[LED1_R], VALUES[LED1_G], VALUES[LED1_B]);
+            else
+                setLedRGB(1, 0, 0, 0);
+            break;
+        }
+        case(LED2_ON): {
+            if (value)
+                setLedRGB(2, VALUES[LED2_R], VALUES[LED2_G], VALUES[LED2_B]);
+            else
+                setLedRGB(2, 0, 0, 0);
+            break;
+        }
+        case(LED3_ON): {
+            if (value)
+                setLedRGB(3, VALUES[LED3_R], VALUES[LED3_G], VALUES[LED3_B]);
+            else
+                setLedRGB(3, 0, 0, 0);
+            break;
+        }
+        case(LED4_ON): {
+            if (value)
+                setLedRGB(4, VALUES[LED4_R], VALUES[LED4_G], VALUES[LED4_B]);
+            else
+                setLedRGB(4, 0, 0, 0);
+            break;
+        }
+        case(LED5_ON): {
+            if (value)
+                setLedRGB(5, VALUES[LED5_R], VALUES[LED5_G], VALUES[LED5_B]);
+            else
+                setLedRGB(5, 0, 0, 0);
+            break;
+        }
+        case(LED_HP_ON): {
+            if (value)
+                setLedHP(VALUES[LED_HP_R], VALUES[LED_HP_G], VALUES[LED_HP_B], VALUES[LED_HP_W]);
+            else
+                setLedHP(0, 0, 0, 0);
+            break;
+        }
+        default: {
+            if (IS_LED_1(varId) && VALUES[LED1_ON])
+                setLed(varId, value);
+            else if (IS_LED_2(varId) && VALUES[LED2_ON])
+                setLed(varId, value);
+            else if (IS_LED_2(varId) && VALUES[LED2_ON])
+                setLed(varId, value);
+            else if (IS_LED_3(varId) && VALUES[LED3_ON])
+                setLed(varId, value);
+            else if (IS_LED_4(varId) && VALUES[LED4_ON])
+                setLed(varId, value);
+            else if (IS_LED_5(varId) && VALUES[LED5_ON])
+                setLed(varId, value);
+            else if (IS_LED_HP(varId) && VALUES[LED_HP_ON])
+                setLed(varId, value);
+            else if (IS_SERVO(varId))
+                setServo(varId - SERVO_BASE, value);
+        }
+    }
+}
+
+int getValue(int varId) {
+    return VALUES[varId];
+}

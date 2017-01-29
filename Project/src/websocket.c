@@ -58,10 +58,10 @@ THD_FUNCTION(websocket_ext, arg) {
         if (strcmp(cmd, "get") == 0 || strcmp(cmd, "set") == 0) {
             var = strtok(NULL, " ");
             if (strcmp(cmd, "set") == 0)
-                set_value(atoi(var), atoi(strtok(NULL, " ")));
+                setValue(atoi(var), atoi(strtok(NULL, " ")));
 
             // Same actions for 'get' and 'set'
-            int_to_char(value, get_value(atoi(var)));
+            int_to_char(value, getValue(atoi(var)));
             strcpy(buffer, var);
             strcat(buffer, " ");
             strcat(buffer, value);
@@ -144,74 +144,4 @@ THD_FUNCTION(websocket, arg) {
     strcat(cmd, ((wifi_connection)conn).channel_id);
     header = send_cmd(cmd, false);
     DEBUG("close %s", response_body);
-}
-
-void set_value(int var_id, int value) {
-    VALUES[var_id] = value;
-    switch(var_id) {
-        case(LED1_ON): {
-            if (value)
-                setLedRGB(1, VALUES[LED1_R], VALUES[LED1_G], VALUES[LED1_B]);
-            else
-                setLedRGB(1, 0, 0, 0);
-            break;
-        }
-        case(LED2_ON): {
-            if (value)
-                setLedRGB(2, VALUES[LED2_R], VALUES[LED2_G], VALUES[LED2_B]);
-            else
-                setLedRGB(2, 0, 0, 0);
-            break;
-        }
-        case(LED3_ON): {
-            if (value)
-                setLedRGB(3, VALUES[LED3_R], VALUES[LED3_G], VALUES[LED3_B]);
-            else
-                setLedRGB(3, 0, 0, 0);
-            break;
-        }
-        case(LED4_ON): {
-            if (value)
-                setLedRGB(4, VALUES[LED4_R], VALUES[LED4_G], VALUES[LED4_B]);
-            else
-                setLedRGB(4, 0, 0, 0);
-            break;
-        }
-        case(LED5_ON): {
-            if (value)
-                setLedRGB(5, VALUES[LED5_R], VALUES[LED5_G], VALUES[LED5_B]);
-            else
-                setLedRGB(5, 0, 0, 0);
-            break;
-        }
-        case(LED_HP_ON): {
-            if (value)
-                setLedHP(VALUES[LED_HP_R], VALUES[LED_HP_G], VALUES[LED_HP_B], VALUES[LED_HP_W]);
-            else
-                setLedHP(0, 0, 0, 0);
-            break;
-        }
-        default: {
-            if (IS_LED_1(var_id) && VALUES[LED1_ON])
-                setLed(var_id, value);
-            else if (IS_LED_2(var_id) && VALUES[LED2_ON])
-                setLed(var_id, value);
-            else if (IS_LED_2(var_id) && VALUES[LED2_ON])
-                setLed(var_id, value);
-            else if (IS_LED_3(var_id) && VALUES[LED3_ON])
-                setLed(var_id, value);
-            else if (IS_LED_4(var_id) && VALUES[LED4_ON])
-                setLed(var_id, value);
-            else if (IS_LED_5(var_id) && VALUES[LED5_ON])
-                setLed(var_id, value);
-            else if (IS_LED_HP(var_id) && VALUES[LED_HP_ON])
-                setLed(var_id, value);
-            else if (IS_SERVO(var_id))
-                setServo(var_id - SERVO_BASE, value);
-        }
-    }
-}
-
-int get_value(int var_id) {
-    return VALUES[var_id];
 }

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "sound.h"
+#include "pwmdriver.h"
 
 /**
  * @brief Virtual timer to set when creating an alarm clock.
@@ -10,7 +11,7 @@
 static virtual_timer_t alarm_clock;
 
 /**
- * @brief Maximum number of commands that can be executed on alarm_clock expiration.
+ * @brief Maximum number of commands that can be executed on alarm_clock expiry.
  */
 #define MAX_COMMANDS 16
 
@@ -35,6 +36,7 @@ static int commands_nb;
 static void alarm_cb(void* arg);
 
 #define MUSIC 1
+#define SLEEP 70
 
 void alarm_init(void) {
     chVTObjectInit(&alarm_clock);
@@ -93,10 +95,14 @@ static void alarm_cb(void* arg) {
                 chSysLockFromISR();
                 chBSemSignalI(&audio_bsem);
                 chSysUnlockFromISR();
+                break;
+            }
+            case (SLEEP): {
+                chThdSleepMilliseconds(value);
+                break;
             }
             default: {
-                // Do something
-                (void)var_id;
+                setValue(var_id, value);
             }
         }
     }

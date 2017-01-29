@@ -19,7 +19,7 @@ int main(void) {
 	wifiInit();
 	fdcInit();
 	audioInit();
-	pwmInit();
+	pwmUserInit();
 
 	/**
 	 * Websocket thread

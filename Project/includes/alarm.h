@@ -16,6 +16,7 @@ void alarm_init(void);
  *      command_id:
  *          - 1: start music
  *          - 60 + i: motor i
+ *          - 70: sleep
  *          - for LEDs, see pwmdriver.h
  */
 void set_alarm(int timeout, char* commands_list);

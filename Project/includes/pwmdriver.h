@@ -57,4 +57,7 @@ void setLedRGB(int id, int R, int G, int B);
 void setServo(int id, int value);
 void shakeServo(int id, int n);
 
+void setValue(int varId, int value);
+int getValue(int varId);
+
 #endif
