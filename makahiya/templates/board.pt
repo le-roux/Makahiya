@@ -2,7 +2,8 @@
     <metal:slot fill-slot="body">
         <div class="container-fluid">
             <h1 class="sub-header text-center">
-                ${title}
+                Makahiya - board (plant #${plant_id})
+                <span tal:condition='connected == 0'> is disconnected</span>
                 <div tal:condition="python:KeyError == 1 | nothing" style='color:red'>
                     Error when sending data to plant
                 </div>

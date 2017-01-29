@@ -1,7 +1,8 @@
 <metal:macro use-macro='master'>
     <metal:slot fill-slot='body'>
         <div class='container-fluid'>
-            <h1 class='text-center'>Timer
+            <h1 class='text-center'>Makahiya - Timer (board #${plant_id})
+                <span tal:condition='connected == 0'> is disconnected</span>
                 <div tal:condition='activated' style='color:green'> (Activated)</div>
                 <div tal:condition='activated == False' style='color:red'> (Deactivated)</div>
             </h1>
@@ -24,11 +25,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type='radio' name='type' value='Absolute' checked tal:attributes="disabled python:activated == 1">
-                                Absolute
-                            </input><br/>
-                            <input type='radio' name='type' value='Relative' tal:attributes="disabled python:activated == 1">
+                            <input type='radio' name='type' value='Relative' checked tal:attributes="disabled python:activated == 1">
                                 Relative
+                            </input><br/>
+                            <input type='radio' name='type' value='Absolute' tal:attributes="disabled python:activated == 1">
+                                Absolute
                             </input>
                         </td>
                         <td>

@@ -311,10 +311,7 @@ async def board_leds(request):
 						res['KeyError'] = 1
 					SQLsession.commit()
 
-		if plants.registered(plant_id):
-			res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ')'
-		else:
-			res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ') is disconnected'
+		res['connected'] = plants.registered(plant_id)
 
 		# Get the leds colors
 		led = SQLsession.query(Leds).filter_by(plant_id=int(plant_id), led_id=0).one()
@@ -366,7 +363,7 @@ async def board_timer(request):
 				'plant_id': plant_id,
 				'level': get_user_level(email)}
 		timer = SQLsession.query(Timers).filter_by(plant_id=plant_id).first()
-		if request.method == 'POST':
+		if request.method == 'POST' and plants.registered(plant_id):
 			log.debug('POST: ' + str(request.POST))
 			if 'type' in request.POST:
 				try:
@@ -394,19 +391,24 @@ async def board_timer(request):
 					pass
 
 
-		res['activated'] = timer.activated
 		if timer.activated:
 			cur = datetime.datetime.now()
 			delta = timer.date - cur
 			res['hours'] = int(delta.seconds / 3600)
 			res['minutes'] = int((delta.seconds % 3600) / 60)
 			res['seconds'] = delta.seconds % 60
+			if res['hours'] == 0 and res['minutes'] == 0 and res['seconds'] == 0:
+				timer.activated = False
+				SQLsession.commit()
 		else:
 			res['hours'] = 0
 			res['minutes'] = 0
 			res['seconds'] = 0
+
+		res['activated'] = timer.activated
 		res['sound'] = timer.sound
 		res['light'] = timer.light
+		res['connected'] = plants.registered(plant_id)
 		return res
 	else:
 		return HTTPFound('/wrong_id')
@@ -437,13 +439,14 @@ async def quick_timer(request):
 	if user is not None:
 		plant_id = user.plant_id
 	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
-		timer = SQLsession.query(Timers).filter_by(plant_id=plant_id).first()
-		timer.activated = True
-		date = await clock(plant_id, minute=int(request.matchdict['time']), sound=2, light=1)
-		timer.sound = 2
-		timer.light = 1
-		timer.date = date
-		SQLsession.commit()
+		if plants.registered(plant_id):
+			timer = SQLsession.query(Timers).filter_by(plant_id=plant_id).first()
+			timer.activated = True
+			date = await clock(plant_id, minute=int(request.matchdict['time']), sound=2, light=1)
+			timer.sound = 2
+			timer.light = 1
+			timer.date = date
+			SQLsession.commit()
 		return HTTPFound('/' + str(plant_id) + '/board/timer')
 	else:
 		return HTTPFound('/wrong_id')
