@@ -44,16 +44,14 @@
                         <th>Color</th>
                         <th>Send</th>
                     <tr>
-                    <form tal:repeat="id ran" method='post' action='/${plant_id}/board/leds'>
+                    <form tal:repeat="id leds_range" method='post' action='/${plant_id}/board/leds'>
                         <tr>
                             <td>
                                 LED ${id}
                             </td>
                             <td tal:define="name string:state_ledM$id">
-                                <input tal:condition='ledM_state[repeat.id.index]'
-                                    type='checkbox' name=${name} placeholder='' checked/>
-                                <input tal:condition='ledM_state[repeat.id.index] == False'
-                                    type='checkbox' name=${name} placeholder=''/>
+                                <input type='checkbox' name=${name} placeholder=''
+                                    tal:attributes="checked python:ledM_state[repeat.id.index] == 1"/>
                             </td>
                             <td>
                                 <input tal:define="name string:color_ledM$id"
@@ -61,6 +59,32 @@
                                     value=${ledM[repeat.id.index]}
                                     name=${name}
                                     placeholder=''/>
+                            </td>
+                            <td>
+                                <input type='submit' value='Send'/>
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+
+                <h2 class="sub-header">SERVOS</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <th>SERVO ID</th>
+                        <th>Position</th>
+                        <th>Send</th>
+                    <tr>
+                    <form tal:repeat="id servos_range" method='post' action='/${plant_id}/board/leds'>
+                        <tr>
+                            <td>
+                                SERVO ${id}
+                            </td>
+                            <td>
+                                <input tal:define="name string:pos_servo$id"
+                                    type='number'
+                                    value=${pos[repeat.id.index]}
+                                    name=${name}
+                                    placeholder='' min='0' max='255'/>
                             </td>
                             <td>
                                 <input type='submit' value='Send'/>

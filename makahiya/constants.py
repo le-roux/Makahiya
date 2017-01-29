@@ -39,5 +39,13 @@ class constants:
     LED_B = [LED_HP_B, LED1_B, LED2_B, LED3_B, LED4_B, LED5_B]
     LED_ON = [LED_HP_ON, LED1_ON, LED2_ON, LED3_ON, LED4_ON, LED5_ON]
 
+    SERVO1 = 61
+    SERVO2 = 62
+    SERVO3 = 63
+    SERVO4 = 64
+    SERVO5 = 65
+
+    SERVOS = [SERVO1, SERVO2, SERVO3, SERVO4, SERVO5]
+
     GET = 'get '
     SET = 'set '

@@ -13,6 +13,7 @@ from pyramid.paster import (
 from .models import (
 	Session,
 	Leds,
+	Servos,
 	Users,
 	Timers,
 	Base,
@@ -61,5 +62,8 @@ def main(argv=sys.argv):
 	# Fill the 'leds' table with initial values.
 	for i in range(0, 6):
 		model = Leds(R=0, G=0, B=0, W=0, plant_id=0, led_id=i, on=False)
+		session.add(model)
+	for i in range(0,5):
+		model = Servos(servo_id=i, pos=0, plant_id=0)
 		session.add(model)
 	session.commit()

@@ -52,6 +52,14 @@ class Leds(Base):
 	W = Column(Integer)
 	on = Column(Boolean)
 
+# Table containing the servos status
+class Servos(Base):
+	__tablename__ = 'Servos'
+	uid = Column(Integer, primary_key=True)
+	plant_id = Column(Integer)
+	servo_id = Column(Integer)
+	pos = Column(Integer)
+
 # Timers
 class Timers(Base):
 	__tablename__ = 'timers'

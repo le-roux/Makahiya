@@ -7,7 +7,7 @@ from pyramid.events import subscriber
 from pyramid.security import remember, forget
 from aiopyramid.config import CoroutineMapper
 import pyramid
-from .models import Session, Leds, Users, Timers, get_user_plant_id, get_user_level
+from .models import Session, Leds, Servos, Users, Timers, get_user_plant_id, get_user_level
 from velruse import login_url
 import logging
 import colander
@@ -141,6 +141,8 @@ def login_callback(request):
 		SQLsession.add(Timers(plant_id=plant_id, activated=False, sound=0, light=0))
 		for i in range(0,6):
 			SQLsession.add(Leds(R=0, G=0, B=0, W=0, on=False, plant_id=plant_id, led_id=i))
+		for i in range(0,5):
+			SQLsession.add(Servos(servo_id=i, pos=0, plant_id=plant_id))
 		SQLsession.commit()
 		request.session['status'] = 0
 		headers = remember(request, email)
@@ -294,7 +296,21 @@ async def board_leds(request):
 					except KeyError:
 						res['KeyError'] = 1
 					SQLsession.commit()
-				# Timer creation
+
+			# Modification on a servo position
+			for i in range(0, 5):
+				if 'pos_servo' + str(i) in request.POST:
+					new_pos = request.POST.getone('pos_servo' + str(i))
+					servo = SQLsession.query(Servos).filter_by(plant_id=plant_id, servo_id=i).one()
+					try:
+						msg = constants.SET + str(constants.SERVOS[i]) + \
+						' ' + str(new_pos)
+						await send_to_socket(plants, plant_id, msg)
+						servo.pos = new_pos
+					except KeyError:
+						res['KeyError'] = 1
+					SQLsession.commit()
+
 		if plants.registered(plant_id):
 			res['title'] = 'Makahiya - board (plant #' + str(plant_id) + ')'
 		else:
@@ -311,8 +327,8 @@ async def board_leds(request):
 		# Fill an array with the values of the normal leds.
 		ledM = []
 		ledM_state = []
-		led_range = range(1, 6)
-		for i in led_range:
+		leds_range = range(1, 6)
+		for i in leds_range:
 			# Query the database for led i from table 'leds'.
 			led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).one()
 			try:
@@ -322,9 +338,17 @@ async def board_leds(request):
 			ledM.append(values.hex)
 			ledM_state.append(led.on)
 
+		pos = []
+		servos_range = range(0, 5)
+		for i in servos_range:
+			servo = SQLsession.query(Servos).filter_by(plant_id=plant_id, servo_id=i).one()
+			pos.append(servo.pos)
+
 		res['ledM_state'] = ledM_state
 		res['ledM'] = ledM
-		res['ran'] = led_range
+		res['pos'] = pos
+		res['leds_range'] = leds_range
+		res['servos_range'] = servos_range
 		return res
 	else:
 		return HTTPFound('/wrong_id')
