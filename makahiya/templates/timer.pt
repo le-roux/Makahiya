@@ -5,7 +5,15 @@
                 <div tal:condition='activated' style='color:green'> (Activated)</div>
                 <div tal:condition='activated == False' style='color:red'> (Deactivated)</div>
             </h1>
-
+            <h2>Quick settings</h2>
+            <table class="table table-stripped">
+                <tr>
+                    <th><a href='/${plant_id}/board/timer/1' class='btn btn-danger'>1 min</a></th>
+                    <th><a href='/${plant_id}/board/timer/2' class='btn btn-warning'>2 min</a></th>
+                    <th><a href='/${plant_id}/board/timer/5' class='btn btn-primary'>5 min</a></th>
+                    <th><a href='/${plant_id}/board/timer/10' class='btn btn-info'>10 min</a></th>
+                </tr>
+            </table>
             <form method='post' action='/${plant_id}/board/timer' class='table-responsive'>
                 <h2>Configuration</h2>
                 <table class="table table-striped">

@@ -49,3 +49,17 @@ class constants:
 
     GET = 'get '
     SET = 'set '
+    MUSIC = '1 '
+
+    ledHP_R_and_sound_1 = ' ' + str(11) + \
+        ' ' + MUSIC + str(1) + \
+        ' ' + str(LED_HP_R) + ' ' + str(255) + \
+        ' ' + str(LED_HP_G) + ' ' + str(0) + \
+        ' ' + str(LED_HP_B) + ' ' + str(0) + \
+        ' ' + str(LED_HP_W) + ' ' + str(0) + \
+        ' ' + str(LED_HP_ON) + ' ' + str(1) + \
+        ' ' + str(LED_ON[1]) + ' ' + str(0) + \
+        ' ' + str(LED_ON[2]) + ' ' + str(0) + \
+        ' ' + str(LED_ON[3]) + ' ' + str(0) + \
+        ' ' + str(LED_ON[4]) + ' ' + str(0) + \
+        ' ' + str(LED_ON[5]) + ' ' + str(0)

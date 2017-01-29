@@ -428,6 +428,26 @@ def timer_deactivate(request):
 	else:
 		return HTTPFound('/wrong_id')
 
+@view_config(route_name='quick_timer', permission='view', mapper=CoroutineMapper)
+async def quick_timer(request):
+	plant_id = None
+	email = request.authenticated_userid
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
+	if user is not None:
+		plant_id = user.plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		timer = SQLsession.query(Timers).filter_by(plant_id=plant_id).first()
+		timer.activated = True
+		date = await clock(plant_id, minute=int(request.matchdict['time']), sound=2, light=1)
+		timer.sound = 2
+		timer.light = 1
+		timer.date = date
+		SQLsession.commit()
+		return HTTPFound('/' + str(plant_id) + '/board/timer')
+	else:
+		return HTTPFound('/wrong_id')
+
 
 @view_config(route_name='subscribe', renderer='makahiya:templates/subscribe.pt')
 def subscribe(request):

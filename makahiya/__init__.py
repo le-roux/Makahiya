@@ -29,6 +29,7 @@ def main(global_config, **settings):
 	config.add_route('board_leds', '/{plant_id}/board/leds')
 	config.add_route('board_timer', '/{plant_id}/board/timer')
 	config.add_route('timer_deactivate', '/{plant_id}/board/timer/deactivate')
+	config.add_route('quick_timer', '/{plant_id}/board/timer/{time}')
 	config.add_route('wrong_id', '/wrong_id')
 	config.add_route('led', '/led')
 	config.add_route('upload', '/upload')

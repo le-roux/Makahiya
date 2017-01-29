@@ -3,6 +3,7 @@ import asyncio
 import logging
 from .websockets import plants, send_to_socket
 import datetime
+from .constants import constants
 log = logging.getLogger(__name__)
 
 async def clock(plant_id, absolute=0, hour=0, minute=0, second=0, sound=0, light=0):
@@ -19,8 +20,8 @@ async def clock(plant_id, absolute=0, hour=0, minute=0, second=0, sound=0, light
     else:
         delta = datetime.timedelta(hours=hour, minutes=minute, seconds=second)
     try:
-        msg = 'clock ' + str(delta.total_seconds()) + ' ' + str(sound) + ' ' \
-            + str(1) + ' ' + str(light)
+        msg = 'alarm ' + str(delta.total_seconds()) + \
+            constants.ledHP_R_and_sound_1
         await send_to_socket(plants, plant_id, msg)
         log.debug("Request sent")
     except KeyError as e:
