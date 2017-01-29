@@ -2,13 +2,17 @@
 #include "utils.h"
 #include <string.h>
 #include <stdlib.h>
-#include "chprintf.h"
 #include "sound.h"
 
 /**
  * @brief Virtual timer to set when creating an alarm clock.
  */
 static virtual_timer_t alarm_clock;
+
+/**
+ * @brief Maximum number of commands that can be executed on alarm_clock expiration.
+ */
+#define MAX_COMMANDS 16
 
 /**
  * @brief Buffer used by the commands_box mailbox.
@@ -29,6 +33,8 @@ static int commands_nb;
  * @brief Callback called when alarm_clock expires.
  */
 static void alarm_cb(void* arg);
+
+#define MUSIC 1
 
 void alarm_init(void) {
     chVTObjectInit(&alarm_clock);

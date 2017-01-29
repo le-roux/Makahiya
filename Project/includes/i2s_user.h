@@ -8,8 +8,6 @@
 /*        Defines       */
 /************************/
 
-#define I2SDIV 6
-
 /**
  * Size of buffers that hold mp3 decoded frames (in number of samples)
  */

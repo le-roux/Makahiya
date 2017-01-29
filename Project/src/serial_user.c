@@ -1,7 +1,7 @@
 #include "serial_user.h"
 
 SerialConfig serial_config = {
-    115200,
+    256000,
     0,
     0,
     0

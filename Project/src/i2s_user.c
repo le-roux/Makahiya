@@ -3,6 +3,8 @@
 
 int16_t i2s_tx_buf[I2S_BUF_SIZE * 2];
 
+#define I2SDIV 6
+
 I2SConfig audio_i2s_cfg = {
 	i2s_tx_buf,
 	NULL,

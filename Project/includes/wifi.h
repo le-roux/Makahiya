@@ -2,6 +2,7 @@
 #define WIFI_H
 
 #include <stdint.h>
+#include <stdbool.h>
 
 /***********************/
 /*        Defines      */
@@ -31,7 +32,7 @@ typedef enum error_code_t {NO_ERROR,
  *      following payload.
  */
 typedef struct wifi_response_header {
-    int error;
+    bool error;
     error_code_t error_code;
     int length;
 } wifi_response_header;
@@ -108,32 +109,40 @@ void get_channel_id(wifi_connection* conn);
  *      buffer, but less data can be actually read.
  *
  * @param conn The connection to read data from.
+ * @param timeout Boolean value that indicates whether or not timeouts are
+ *      required for blocking function calls.
  */
-wifi_response_header read_buffer(wifi_connection conn, int timeout);
+wifi_response_header read_buffer(wifi_connection conn, bool timeout);
 
 /** @brief Issue a read request to the Wi-Fi module.
  *
  * @param conn The connection to read data from.
  * @param size The number of bytes to read (the actual number of bytes read can
  *  be lower). **WARNING**: This value must be lower than WIFI_BUFFER_SIZE - 2.
+ * @param timeout Boolean value that indicates whether or not timeouts are
+ *      required for blocking function calls.
  */
-wifi_response_header read(wifi_connection conn, int size, int timeout);
+wifi_response_header read(wifi_connection conn, int size, bool timeout);
 
 void read_music(char* path);
 
 /** @brief Send a command to the Wi-Fi module.
  *
  * @param cmd The command to send.
+ * @param timeout Boolean value that indicates whether or not timeouts are
+ *      required for blocking function calls.
  */
-wifi_response_header send_cmd(const char* cmd, int timeout);
+wifi_response_header send_cmd(const char* cmd, bool timeout);
 
 /** @brief Send data to the wifi module.
  *
  * @param conn The wifi connection to send data to.
  * @param length The number of bytes to send.
  * @param buffer The buffer to send data from.
+ * @param timeout Boolean value that indicates whether or not timeouts are
+ *      required for blocking function calls.
  */
-wifi_response_header wifi_write(wifi_connection* conn, int length, uint8_t* buffer, int timeout);
+wifi_response_header wifi_write(wifi_connection* conn, int length, uint8_t* buffer, bool timeout);
 
 /**
  * @brief Reset the WiFi module in normal mode (from safe mode).
