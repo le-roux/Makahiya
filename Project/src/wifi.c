@@ -211,6 +211,7 @@ void read_music(char* path) {
 
     // Read the response code
     header = get_response(false);
+    DEBUG("res %s %s", response_code, response_body);
     if (header.error == 1)
         return;
 

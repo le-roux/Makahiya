@@ -111,12 +111,64 @@ void audioI2Scb(I2SDriver* driver, size_t offset, size_t n) {
 THD_WORKING_AREA(wa_audio, 1024);
 
 THD_FUNCTION(audio_playback, arg) {
-	int bytes_left = 0, count = 0, bytes_consumed = FLASH_SECTOR_SIZE, copy;
+	/**
+	 * Number of bytes not yet consumed by the decoder in the working buffer.
+	 */
+	int bytes_left = 0;
+
+	/**
+	 * Number of buffer posted to the i2s driver.
+	 */
+	int count = 0;
+
+	/**
+	 * Number of bytes already read from the current input buffer.
+	 */
+	int bytes_consumed = FLASH_SECTOR_SIZE;
+
+	/**
+	 * Number of bytes to copy from input buffer to working buffer.
+	 */
+	int copy_size;
+
+	/**
+	 * Boolean value indicating if the current decoding session is finished.
+	 */
 	bool ended;
+
+	/**
+	 * Object used to perform the decoding.
+	 */
 	HMP3Decoder decoder;
+
+	/**
+	 * Pointer to the next interesting byte in the working buffer.
+	 */
 	unsigned char* read_ptr;
-	volatile int offset, err;
+
+	/**
+	 * Number of bytes in the working buffer before the next start of frame.
+	 */
+	int offset;
+
+	/**
+	 * Offset in the i2s buffer indicating where to write the next decoded data.
+	 */
+	int i2s_offset;
+
+	/**
+	 * Return value of the MP3Decode function.
+	 */
+	int err;
+
+	/**
+	 * Pointers to the input and output buffers.
+	 */
 	void* pbuf, *inbuf;
+
+	// For debug only
+	int buffer_id, buf_nb;
+
 	UNUSED(arg);
 
 	// Init the free buffers mailbox
@@ -131,10 +183,10 @@ THD_FUNCTION(audio_playback, arg) {
 		while (TRUE) {
 			// Get a free buffer (for output)
 			if (chMBFetch(&free_box, (msg_t*)&pbuf, TIME_INFINITE) != MSG_OK)
-				break; // Error that can be corrected.
+				break; // Error that can't be corrected.
 
 			// Acquire new data if possible
-			if (music_source == INNER) {
+			if (music_source == INNER) { // Play a music that was stored in flash.
 				while (WORKING_BUFFER_SIZE - bytes_left >= 2 * INPUT_BUFFER_SIZE) { // Space available for new data
 					// Get an input buffer
 					chMBFetch(&input_box, (msg_t*)&inbuf, TIME_INFINITE);
@@ -158,13 +210,19 @@ THD_FUNCTION(audio_playback, arg) {
 					// Release the input buffer
 					chMBPost(&free_input_box, (msg_t)inbuf, TIME_INFINITE);
 				}
-			} else { // Music source is download.
+			} else { // Music comes from WiFi (through a buffer in flash).
 				if (bytes_consumed == FLASH_SECTOR_SIZE) { // Need to get a new flash sector.
+					chSysLock();
+					buf_nb = chMBGetUsedCountI(&flash_box);
+					chSysUnlock();
+					DEBUG("buffer available %i", buf_nb);
 					chMBFetch(&flash_box, (msg_t*)&inbuf, TIME_INFINITE);
+					buffer_id = flashSectorAt((flashaddr_t)inbuf);
+					DEBUG("fetch decode %i", buffer_id);
 					bytes_consumed = 0;
 					if (inbuf == NULL) { // End of music
 						chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
-						chMBPost(&free_input_box, (msg_t)inbuf, TIME_INFINITE);
+						chMBPost(&free_flash_box, (msg_t)inbuf, TIME_INFINITE);
 						if (I2SD2.state != I2S_STOP) {
 							i2sStopExchange(&I2SD2);
 							i2sStop(&I2SD2);
@@ -175,15 +233,16 @@ THD_FUNCTION(audio_playback, arg) {
 						break;
 					}
 				}
-				copy = WORKING_BUFFER_SIZE - bytes_left;
-				if (copy > 1000) {
-					if (copy > FLASH_SECTOR_SIZE - bytes_consumed)
-						copy = FLASH_SECTOR_SIZE - bytes_consumed;
-					memcpy(&working_buffer[bytes_left], (int8_t*)inbuf + bytes_consumed, copy);
-					bytes_left += copy;
-					bytes_consumed += copy;
+				copy_size = WORKING_BUFFER_SIZE - bytes_left;
+				if (copy_size > 1000) {
+					if (copy_size > FLASH_SECTOR_SIZE - bytes_consumed)
+						copy_size = FLASH_SECTOR_SIZE - bytes_consumed;
+					memcpy(&working_buffer[bytes_left], (int8_t*)inbuf + bytes_consumed, copy_size);
+					bytes_left += copy_size;
+					bytes_consumed += copy_size;
 					if (bytes_consumed == FLASH_SECTOR_SIZE) {
 						chMBPost(&free_flash_box, (msg_t)inbuf, TIME_INFINITE);
+						DEBUG("post  decode %i", buffer_id);
 					}
 				}
 			}
@@ -192,14 +251,17 @@ THD_FUNCTION(audio_playback, arg) {
 
 			read_ptr = (unsigned char*)working_buffer;
 			offset = MP3FindSyncWord(read_ptr, bytes_left);
-			bytes_left -=  offset;
+			if (offset < 0) {
+				offset = 0;
+				bytes_left = 0;
+			} else {
+				bytes_left -=  offset;
+			}
 			memmove(working_buffer, working_buffer + offset, bytes_left);
-
 			// Decode the mp3 block
 			err = MP3Decode(decoder, &read_ptr, &bytes_left, (int16_t*)pbuf, 0);
 			memmove(working_buffer, read_ptr, bytes_left);
-
-			if (err == -6) { // TODO: take care of other errors
+			if (err == -6) {
 				DEBUG("err %i", err);
 				chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
 				if (I2SD2.state != I2S_STOP) {
@@ -217,20 +279,19 @@ THD_FUNCTION(audio_playback, arg) {
 				chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
 				continue;
 			}
-
 			// Post the filled buffer
 			count++;
 
 			if (count % 2 == 0)
-				offset = 0;
+				i2s_offset = 0;
 			else
-				offset = I2S_BUF_SIZE;
+				i2s_offset = I2S_BUF_SIZE;
 
 			// Wait for free space in the i2s buffer.
 			chSemWait(&audio_sem);
 			// Copy the data in the i2s buffer.
 			for (int i = 0; i < I2S_BUF_SIZE; i++)
-				i2s_tx_buf[offset + i] = ((int16_t*)pbuf)[i];
+				i2s_tx_buf[i2s_offset + i] = ((int16_t*)pbuf)[i];
 
 			// Release the intermediate buffer.
 			chMBPost(&free_box, (msg_t)pbuf, TIME_INFINITE);
@@ -280,19 +341,22 @@ THD_FUNCTION(wifi_audio_in, arg) {
 	static flashsector_t buffer_id;
 
 	/**
-	 * Boolean value indicating that the WiFi module can't provide more data
-	 * for the moment.
-	 */
-	static int end;
-
-	/**
 	 * Pointer to buffers used in the mailbox.
 	 */
 	static void* inbuf;
 
+	/**
+	 * Id of the first free flash sector (reserved for buffering downloaded data).
+	 */
 	static int initial_flash_sector;
 
+	/**
+	 * Number of buffers to fill before starting the decoding thread.
+	 */
 	static int initial_buffering;
+
+	int count_nodata;
+
 	initial_flash_sector = flashSectorAt((flashaddr_t)&flash_sec[0]);
 
 	// Init the free input buffers mailbox
@@ -304,19 +368,20 @@ THD_FUNCTION(wifi_audio_in, arg) {
 	chSysUnlock();
 
 	while (TRUE) {
-		end = 0;
 		chBSemWait(&download_bsem);
+		count_nodata = 0;
+		initial_buffering = 3;
 		music_source = DOWNLOAD;
-		initial_buffering = 0;
-		while (end != 2) {
+		while (count_nodata < 6) {
 			chMBFetch(&free_flash_box, (msg_t*)&inbuf, TIME_INFINITE);
 			buffer_id = flashSectorAt((flashaddr_t)inbuf);
+			DEBUG("fetch read %i", buffer_id);
 			// Clear the flashdata section.
-			if (initial_buffering >= FLASH_SECTOR_NB) {
-				chSysLock();
-				flashSectorErase(buffer_id);
-				chSysUnlock();
+			if (initial_buffering < 0) {
+				if (flashSectorErase(buffer_id) != FLASH_RETURN_SUCCESS)
+					DEBUG("flash erase error");
 			}
+			DEBUG("sector erased");
 
 			// Read file from wifi
 			bytes_nb = 0;
@@ -330,21 +395,15 @@ THD_FUNCTION(wifi_audio_in, arg) {
 					bytes_consumed = 0;
 					out = read_buffer(audio_conn, true);
 					if (out.error && out.error_code == NO_DATA) {
-						if (end) {
-							end = 2;
-							break;
-						} else {
-							end = 1;
-							chThdSleepMilliseconds(1000);
-						}
-					} else
-						end = 0;
+						count_nodata++;
+						chThdSleepMilliseconds(1000);
+					} else {
+						count_nodata = 0;
+					}
 				}
-				if (end == 2)
-					break;
 
 				/**
-				 * copy = min(out.length - bytes_consumed,
+				 * copy_size = min(out.length - bytes_consumed,
 				 *            MUSIC_BUFFER_SIZE - bytes_nb)
 				 */
 				copy_size = out.length - bytes_consumed;
@@ -360,8 +419,9 @@ THD_FUNCTION(wifi_audio_in, arg) {
 				bytes_consumed += copy_size;
 			}
 			chMBPost(&flash_box, (msg_t)inbuf, TIME_INFINITE);
-			initial_buffering++;
-			if (initial_buffering > 2)
+			DEBUG("post  read");
+			initial_buffering--;
+			if (initial_buffering == 0)
 				chBSemSignal(&decode_bsem);
 		}
 		chMBFetch(&free_flash_box, (msg_t*)&inbuf, TIME_INFINITE);
