@@ -88,9 +88,11 @@ void update_default_value(int sensor_id, int channel_id) {
 
 #if !INT_DER_VERSION
 static uint8_t touch_detected(int sensor_id, int channel_id) {
-	int offset = (sensor_id * MAX_CHANNELS_NB + channel_id) * BUFFER_SIZE;
-	float last_val = buffer[offset + PREVIOUS_INDEX(write_index[sensor_id][channel_id])];
-	float mean = average[sensor_id][channel_id] / BUFFER_SIZE;
+	/*int offset = (sensor_id * MAX_CHANNELS_NB + channel_id) * BUFFER_SIZE;
+	float last_val = buffer[offset + PREVIOUS_INDEX(write_index[sensor_id][channel_id])] * BUFFER_SIZE;
+	float mean = average[sensor_id][channel_id];
+	if (sensor_id == 0 && channel_id == 3)
+		DEBUG("%f %f\n", last_val, mean);
 	if (last_val > mean) {
 		if (last_val - mean > last_val / 5) 
 			return 1;
@@ -101,7 +103,18 @@ static uint8_t touch_detected(int sensor_id, int channel_id) {
 			return 1;
 		else 
 			return 0;
-	}
+	}*/
+	
+	int offset = (sensor_id * MAX_CHANNELS_NB + channel_id) * BUFFER_SIZE;
+	int last_val = buffer[offset + PREVIOUS_INDEX(write_index[sensor_id][channel_id])];
+
+	DEBUG("%d", last_val);
+
+	if (last_val < 268435455)
+		return 1;
+	else
+		return 0;
+	
 }
 
 #endif
@@ -112,16 +125,12 @@ void add_value(int sensor_id, int channel_id, uint32_t value) {
 	 */
 	int offset = (sensor_id * MAX_CHANNELS_NB + channel_id) * BUFFER_SIZE;
 
-	// Convert the value
-
-	float fvalue = 1/((float)value * (float) value);
-
 	// Update the average.
 	average[sensor_id][channel_id] -= buffer[offset + write_index[sensor_id][channel_id]];
-	average[sensor_id][channel_id] += fvalue;
+	average[sensor_id][channel_id] += value;
 
 	// Actually write the fvalue in the buffer.
-	buffer[offset + write_index[sensor_id][channel_id]] = fvalue;
+	buffer[offset + write_index[sensor_id][channel_id]] = value;
 
 	// Update the write_index fvalue.
 	write_index[sensor_id][channel_id]++;
@@ -192,16 +201,19 @@ int detect_action(int sensor_id, int channel_id) {
 
 	// Detect touch
 #if !INT_DER_VERSION
-	if (status[sensor_id][channel_id] == DEFAULT_STATE && touch_detected(sensor_id, channel_id)) {
-		status[sensor_id][channel_id] = BUFFER_SIZE;
-		return IN_TOUCH;
-	} else if (status[sensor_id][channel_id]) {
-		status[sensor_id][channel_id] -= 1;
-		return DEFAULT_STATE;
+	
+	if (status[sensor_id][channel_id] == 0 && touch_detected(sensor_id, channel_id)) {
+		DEBUG("On");
+		status[sensor_id][channel_id] = 1;
+		return 1;
+	} else if (status[sensor_id][channel_id] && touch_detected(sensor_id, channel_id) == 0) {
+		DEBUG("Off");
+		status[sensor_id][channel_id] = 0;
+		return -1;
 	}
 
 	// Default return value
-	return DEFAULT_STATE;
+	return 0;
 #else
 	derivative[sensor_id][channel_id] = buffer[write_index[sensor_id][channel_id]] - buffer[PREVIOUS_INDEX(write_index[sensor_id][channel_id])];
 	if (ABS(derivative[sensor_id][channel_id]) > DERIVATIVE_THRESHOLD)
