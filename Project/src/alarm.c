@@ -102,7 +102,9 @@ static void alarm_cb(void* arg) {
                 break;
             }
             default: {
-                setValue(var_id, value);
+                chSysLockFromISR();
+                setValueI(var_id, value);
+                chSysUnlockFromISR();
             }
         }
     }

@@ -51,13 +51,17 @@ extern int VALUES[100];
 
 void pwmUserInit(void);
 void setLed(int led, int power);
+void setLedI(int led, int power);
 
 void setLedHP(int R, int G, int B, int W);
+void setLedHPI(int R, int G, int B, int W);
 void setLedRGB(int id, int R, int G, int B);
+void setLedRGBI(int id, int R, int G, int B);
 void setServo(int id, int value);
 void shakeServo(int id, int n);
 
 void setValue(int varId, int value);
+void setValueI(int varId, int value);
 int getValue(int varId);
 
 #endif
