@@ -20,7 +20,7 @@ async def clock(plant_id, absolute=0, hour=0, minute=0, second=0, sound=0, light
     else:
         delta = datetime.timedelta(hours=hour, minutes=minute, seconds=second)
     try:
-        msg = 'alarm ' + str(delta.total_seconds()) + \
+        msg = 'alarm ' + str(int(delta.total_seconds())) + \
             constants.ledHP_R_and_sound_1
         await send_to_socket(plants, plant_id, msg)
         log.debug("Request sent")
