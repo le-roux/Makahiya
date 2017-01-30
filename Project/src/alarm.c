@@ -36,7 +36,7 @@ static int commands_nb;
 static void alarm_cb(void* arg);
 
 #define MUSIC 1
-#define SLEEP 70
+static const int STOP_MUSIC = 255;
 
 void alarm_init(void) {
     chVTObjectInit(&alarm_clock);
@@ -90,15 +90,15 @@ static void alarm_cb(void* arg) {
         value = (uint16_t)(command & 0xFFFF);
         switch (var_id) {
             case(MUSIC): {
-                music_id = value;
-                repeat = 1;
-                chSysLockFromISR();
-                chBSemSignalI(&audio_bsem);
-                chSysUnlockFromISR();
-                break;
-            }
-            case (SLEEP): {
-                chThdSleepMilliseconds(value);
+                if (value == STOP_MUSIC) {
+                    repeat = 0;
+                } else {
+                    music_id = value;
+                    repeat = 1;
+                    chSysLockFromISR();
+                    chBSemSignalI(&audio_bsem);
+                    chSysUnlockFromISR();
+                }
                 break;
             }
             default: {
