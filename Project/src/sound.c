@@ -96,11 +96,8 @@ void audioI2Scb(I2SDriver* driver, size_t offset, size_t n) {
 THD_WORKING_AREA(wa_audio, 512);
 
 THD_FUNCTION(audio_playback, arg) {
-	/**
-	 * Number of bytes not yet consumed by the decoder in the working buffer.
-	 */
-	int bytes_left = 0;
 
+	static int bytes_left;
 	/**
 	 * Number of buffer posted to the i2s driver.
 	 */
@@ -119,7 +116,9 @@ THD_FUNCTION(audio_playback, arg) {
 	/**
 	 * Pointer to the next interesting byte in the working buffer.
 	 */
-	unsigned char* read_ptr;
+	int8_t* read_ptr;
+
+	int8_t* write_ptr;
 
 	/**
 	 * Number of bytes in the working buffer before the next start of frame.
@@ -142,7 +141,7 @@ THD_FUNCTION(audio_playback, arg) {
 	void* pbuf, *inbuf;
 
 	int buf_nb;
-	unsigned char *tmp_cur;
+	int8_t* tmp_cur;
 	UNUSED(arg);
 
 	// Init the free buffers mailbox
@@ -153,6 +152,8 @@ THD_FUNCTION(audio_playback, arg) {
 
 	while(true) {
 		ended = false;
+		read_ptr = working_buffer;
+		write_ptr = working_buffer;
 		// Wait to be triggered by one of the reading threads.
 		chBSemWait(&decode_bsem);
 
@@ -161,14 +162,14 @@ THD_FUNCTION(audio_playback, arg) {
 			chMBFetch(&free_decoded_data_box, (msg_t*)&pbuf, TIME_INFINITE);
 
 			// Acquire new data if possible
-			while (WORKING_BUFFER_SIZE - bytes_left >= INPUT_BUFFER_SIZE) { // While there is space available for new data
+			while (working_buffer + WORKING_BUFFER_SIZE - write_ptr >= INPUT_BUFFER_SIZE) { // While there is space available for new data
 				chSysLock();
 				buf_nb = chMBGetUsedCountI(&input_box);
 				chSysUnlock();
 				DEBUG("buf nb %i", buf_nb);
 
 				// Don't wait if there is no buffer available and still enough data.
-				if (buf_nb == 0 && bytes_left > WORKING_BUFFER_MIN_LENGTH)
+				if (buf_nb == 0 && (write_ptr - read_ptr) > WORKING_BUFFER_MIN_LENGTH)
 					break;
 
 				// Get an input buffer
@@ -189,8 +190,8 @@ THD_FUNCTION(audio_playback, arg) {
 				}
 
 				// Copy the new data at the end of the working buffer
-				memcpy(&working_buffer[bytes_left], inbuf, INPUT_BUFFER_SIZE);
-				bytes_left += INPUT_BUFFER_SIZE;
+				memcpy(write_ptr, inbuf, INPUT_BUFFER_SIZE);
+				write_ptr += INPUT_BUFFER_SIZE;
 
 				// Release the input buffer
 				chMBPost(&free_input_box, (msg_t)inbuf, TIME_INFINITE);
@@ -198,24 +199,35 @@ THD_FUNCTION(audio_playback, arg) {
 			if (ended)
 				break;
 
-			read_ptr = (unsigned char*)working_buffer;
-			offset = MP3FindSyncWord(read_ptr, bytes_left);
-			DEBUG("offset %i (length %i)", offset, bytes_left);
+			offset = MP3FindSyncWord((unsigned char*)read_ptr, write_ptr - read_ptr);
+			DEBUG("offset %i (length %i)", offset, write_ptr - read_ptr);
 
 			if (offset < 0) { // No sync word in the working buffer: no more interesting data.
 				offset = 0;
-				bytes_left = 0;
+				read_ptr = working_buffer;
+				write_ptr = working_buffer;
 				continue;
 			} else { // Normal behaviour.
-				bytes_left -=  offset;
+				read_ptr +=  offset;
 			}
-			memmove(working_buffer, working_buffer + offset, bytes_left);
+
+			if (read_ptr - working_buffer > INPUT_BUFFER_SIZE) {
+				memmove(working_buffer, read_ptr, write_ptr - read_ptr);
+				write_ptr -= (read_ptr - working_buffer);
+				read_ptr = working_buffer;
+			}
 
 			// Decode the mp3 block
 			tmp_cur = read_ptr;
-			err = MP3Decode(decoder, &read_ptr, &bytes_left, (int16_t*)pbuf, 0);
+			bytes_left = write_ptr - read_ptr;
+			err = MP3Decode(decoder, (unsigned char**)&read_ptr, &bytes_left, (int16_t*)pbuf, 0);
 			DEBUG("decoded %i", read_ptr - tmp_cur);
-			memmove(working_buffer, read_ptr, bytes_left);
+
+			if (read_ptr - working_buffer > INPUT_BUFFER_SIZE) {
+				memmove(working_buffer, read_ptr, write_ptr - read_ptr);
+				write_ptr -= (read_ptr - working_buffer);
+				read_ptr = working_buffer;
+			}
 
 			if (err == ERR_MP3_INVALID_FRAMEHEADER) {
 				DEBUG("err %i", err);
@@ -228,8 +240,8 @@ THD_FUNCTION(audio_playback, arg) {
 				}
 
 				// Clear working buffer
-				bytes_left = 0;
-				read_ptr = (unsigned char*)working_buffer;
+				read_ptr = working_buffer;
+				write_ptr = working_buffer;
 				// Restart
 				continue;
 			} else if (err == ERR_MP3_INDATA_UNDERFLOW || err == ERR_MP3_INVALID_HUFFCODES) {
