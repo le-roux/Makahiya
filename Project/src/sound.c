@@ -282,16 +282,6 @@ THD_FUNCTION(wifi_audio_in, arg) {
 	static int bytes_nb;
 
 	/**
-	 * Number of bytes already read in the current frame.
-	 */
-	static int bytes_consumed;
-
-	/**
-	 * Number of bytes to copy from the input frame to the internal buffer.
-	 */
-	static int copy_size;
-
-	/**
 	 * Pointer to buffers used in the mailbox.
 	 */
 	static void* inbuf;
@@ -317,7 +307,6 @@ THD_FUNCTION(wifi_audio_in, arg) {
 
 		count_nodata = 0;
 		initial_buffering = INPUT_BUFFERS_NB / 2;
-		bytes_consumed = INPUT_BUFFER_SIZE;
 		out.length = INPUT_BUFFER_SIZE;
 		out.error = 0;
 		out.error_code = NO_ERROR;
@@ -328,31 +317,22 @@ THD_FUNCTION(wifi_audio_in, arg) {
 
 			// Read file from wifi
 			while(bytes_nb < INPUT_BUFFER_SIZE) { // while buffer is not full.
-				while (bytes_consumed >= out.length) { // Need to perform a new read.
-					bytes_consumed = 0;
-					out = read_buffer(audio_conn, true);
-					if (out.error && out.error_code == NO_DATA) {
-						count_nodata++;
-						chThdSleepMilliseconds(1000);
-					} else {
-						count_nodata = 0;
-					}
+				out = wifi_read(audio_conn, &((uint8_t*)inbuf)[bytes_nb], INPUT_BUFFER_SIZE - bytes_nb, true, false);
+				if (out.error && out.error_code == NO_DATA) {
+					count_nodata++;
+					if (count_nodata == 6)
+						break;
+					chThdSleepMilliseconds(1000);
+				} else {
+					count_nodata = 0;
 				}
-
-				/**
-				 * copy_size = min(out.length - bytes_consumed,
-				 *            INPUT_BUFFER_SIZE - bytes_nb)
-				 */
-				copy_size = out.length - bytes_consumed;
-				if (INPUT_BUFFER_SIZE - bytes_nb < copy_size)
-					copy_size = INPUT_BUFFER_SIZE - bytes_nb;
-
-				// Don't copy more than remaining space.
-				memcpy((uint8_t*)inbuf + bytes_nb, &response_body[bytes_consumed], copy_size);
-				bytes_nb += copy_size;
-				bytes_consumed += copy_size;
+				bytes_nb += out.length;
 			}
+
+			// Post the filled buffer.
 			chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
+
+			// Start the decoding thread when enough data have been received.
 			initial_buffering--;
 			if (initial_buffering == 0)
 				chBSemSignal(&decode_bsem);

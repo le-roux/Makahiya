@@ -117,12 +117,15 @@ wifi_response_header read_buffer(wifi_connection conn, bool timeout);
 /** @brief Issue a read request to the Wi-Fi module.
  *
  * @param conn The connection to read data from.
+ * @param dest A pointer to the buffer that will receive the data.
  * @param size The number of bytes to read (the actual number of bytes read can
  *  be lower). **WARNING**: This value must be lower than WIFI_BUFFER_SIZE - 2.
  * @param timeout Boolean value that indicates whether or not timeouts are
  *      required for blocking function calls.
+ * @param string Boolean value that indicates whether the response body will be
+ *              treated as a string.
  */
-wifi_response_header read(wifi_connection conn, int size, bool timeout);
+wifi_response_header wifi_read(wifi_connection conn, uint8_t* dest, int size, bool timeout, bool string);
 
 void read_music(char* path);
 

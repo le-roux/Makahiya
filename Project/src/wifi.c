@@ -67,13 +67,17 @@ void get_channel_id(wifi_connection* conn) {
 
 /** @brief Retrieve and decode the return code of a command.
  *
+ * @param dest A pointer to the buffer that will receive the data. This buffer
+ *              has to be large enough to hold all the data.
  * @param timeout Boolean value that indicates whether or not timeouts are
  *      required for blocking function calls.
+ * @param string Boolean value that indicates whether or not the response body will
+ *              be treated as a string.
  *
  * @return A structure containing all the information available in the
  *      code returned by the command previously sent to the Wi-Fi module.
  */
-static wifi_response_header get_response(bool timeout) {
+static wifi_response_header get_response(uint8_t* dest, bool timeout, bool string) {
     /**
      * Counter used to handle the NO_DATA error.
      */
@@ -94,6 +98,11 @@ static wifi_response_header get_response(bool timeout) {
      */
     int res;
 
+    /**
+     * Memory space that will receive the END_OF_FRAME characters.
+     */
+    static uint8_t trash[2];
+
     if (timeout)
         res = sdReadTimeout(wifi_SD, (uint8_t*)response_code, WIFI_HEADER_SIZE, MS2ST(timing));
     else
@@ -113,11 +122,14 @@ static wifi_response_header get_response(bool timeout) {
     if (out.length > 0) {
         end = 0;
 
-        if (timeout)
-            res = sdReadTimeout(wifi_SD, (uint8_t*)response_body, out.length, MS2ST(timing));
-        else
-            res = sdRead(wifi_SD, (uint8_t*)response_body, out.length);
         out.length -= 2; // Remove the 'END OF FRAME' characters
+        if (timeout) {
+            res = sdReadTimeout(wifi_SD, dest, out.length, MS2ST(timing));
+            res = sdReadTimeout(wifi_SD, trash, 2, MS2ST(timing));
+        } else {
+            res = sdRead(wifi_SD, dest, out.length);
+            res = sdRead(wifi_SD, trash, 2);
+        }
     } else { // Nothing to read.
         if (end < 20) {
             end++;
@@ -126,7 +138,8 @@ static wifi_response_header get_response(bool timeout) {
             out.error_code = NO_DATA;
         }
     }
-    response_body[out.length] = '\0'; // Allow this buffer to be used as a string.
+    if (string)
+        response_body[out.length] = '\0'; // Allow this buffer to be used as a string.
     return out;
 }
 
@@ -159,11 +172,10 @@ void wifiInit(void) {
 }
 
 wifi_response_header read_buffer(wifi_connection conn, bool timeout) {
-    return read(conn, WIFI_BUFFER_SIZE - 2, timeout);
+    return wifi_read(conn, (uint8_t*)response_body, WIFI_BUFFER_SIZE - 2, timeout, true);
 }
 
-wifi_response_header read(wifi_connection conn, int size, bool timeout) {
-    chDbgCheck(size <= WIFI_BUFFER_SIZE - 2);
+wifi_response_header wifi_read(wifi_connection conn, uint8_t* dest, int size, bool timeout, bool string) {
 
     /**
      * Header of the response sent by the Wi-Fi module.
@@ -187,7 +199,7 @@ wifi_response_header read(wifi_connection conn, int size, bool timeout) {
 
     // Actually send the request.
     SEND_DATA(serial_tx_buffer, strlen((char*)serial_tx_buffer));
-    header = get_response(timeout);
+    header = get_response(dest, timeout, string);
     chMtxUnlock(&wifi_mutex);
     return header;
 }
@@ -210,7 +222,7 @@ void read_music(char* path) {
     SEND_DATA(serial_tx_buffer, strlen((char*)serial_tx_buffer));
 
     // Read the response code
-    header = get_response(false);
+    header = get_response((uint8_t*)response_body, false, true);
     DEBUG("res %s %s", response_code, response_body);
     if (header.error == 1)
         return;
@@ -250,7 +262,7 @@ wifi_response_header send_cmd(const char* cmd, bool timeout) {
     do {
         sent = SEND_DATA_TIMEOUT(serial_tx_buffer, length, MS2ST(100));
     } while (sent != length);
-    header = get_response(timeout);
+    header = get_response((uint8_t*)response_body, timeout, true);
     chMtxUnlock(&wifi_mutex);
     return header;
 }
@@ -279,7 +291,7 @@ wifi_response_header wifi_write(wifi_connection* conn, int length, uint8_t* buff
     SEND_DATA(serial_tx_buffer, strlen((char*)serial_tx_buffer));
     SEND_DATA(buffer, length);
 
-    header = get_response(timeout);
+    header = get_response((uint8_t*)response_body, timeout, true);
 
     chMtxUnlock(&wifi_mutex);
     return header;
