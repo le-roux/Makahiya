@@ -15,21 +15,21 @@
 
 #define ALARM_SOUND_NB 3
 
-extern int16_t _binary_alarm1_mp3_start;
-extern int16_t _binary_alarm1_mp3_size;
-extern int16_t _binary_alarm1_mp3_end;
+extern int8_t _binary_alarm1_mp3_start;
+extern int8_t _binary_alarm1_mp3_size;
+extern int8_t _binary_alarm1_mp3_end;
 
-extern int16_t _binary_alarm2_mp3_start;
-extern int16_t _binary_alarm2_mp3_size;
-extern int16_t _binary_alarm2_mp3_end;
+extern int8_t _binary_alarm2_mp3_start;
+extern int8_t _binary_alarm2_mp3_size;
+extern int8_t _binary_alarm2_mp3_end;
 
-extern int16_t _binary_alarm3_mp3_start;
-extern int16_t _binary_alarm3_mp3_size;
-extern int16_t _binary_alarm3_mp3_end;
+extern int8_t _binary_alarm3_mp3_start;
+extern int8_t _binary_alarm3_mp3_size;
+extern int8_t _binary_alarm3_mp3_end;
 
-extern const int16_t* const _binary_start[ALARM_SOUND_NB];
-extern const int16_t* const _binary_size[ALARM_SOUND_NB];
-extern const int16_t* const _binary_end[ALARM_SOUND_NB];
+extern const int8_t* const _binary_start[ALARM_SOUND_NB];
+extern const int8_t* const _binary_size[ALARM_SOUND_NB];
+extern const int8_t* const _binary_end[ALARM_SOUND_NB];
 
 /**
  * Id of the music stored in flash to play.
