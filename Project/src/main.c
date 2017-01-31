@@ -9,13 +9,16 @@
 #include "websocket.h"
 #include "sound.h"
 
+#include "SEGGER_RTT.h"
+
 int main(void) {
 
 	halInit();
 	chSysInit();
 
 	RTTObjectInit(&RTTD, 0);
-	bluetoothInit();
+
+	//bluetoothInit();
 	wifiInit();
 	//fdcInit();
 	audioInit();
@@ -31,7 +34,7 @@ int main(void) {
 	 */
 	chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO, audio_playback, NULL);
 	chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 1, wifi_audio_in, NULL);
-	chThdCreateStatic(wa_flash, sizeof(wa_flash), NORMALPRIO, flash_audio_in, NULL);
+	//chThdCreateStatic(wa_flash, sizeof(wa_flash), NORMALPRIO, flash_audio_in, NULL);
 	read_music("/file.mp3");
 	/*music_id = 1;
 	repeat = 1;
