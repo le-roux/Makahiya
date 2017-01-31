@@ -144,11 +144,6 @@ static i2cflags_t init_sensors(void) {
  *						data from.
  */
 static int acquire_value(int slave_id, int channel_id) {
-	/**
-	 * Array storing for each channel the number of data already acquire until
-	 * the default_value has been updated.
-	 */
-	static int count[2][4] = {{0, 0, 0, 0}, {0, 0, 0, 0}};
 
 	/**
 	 * The value read from the sensor.
@@ -166,13 +161,6 @@ static int acquire_value(int slave_id, int channel_id) {
 		DEBUG("%i,", value);
 
 	add_value(slave_id, channel_id, value);
-	// Initialization of the touch detection algorithm (with the 10 first values).
-	if (count[slave_id][channel_id] < BUFFER_SIZE)
-		count[slave_id][channel_id]++;
-	else if (count[slave_id][channel_id] == BUFFER_SIZE) {
-		update_default_value(slave_id, channel_id);
-		count[slave_id][channel_id]++;
-	}
 
 	return 0;
 }
