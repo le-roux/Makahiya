@@ -108,7 +108,7 @@ void audioI2Scb(I2SDriver* driver, size_t offset, size_t n) {
 	chSysUnlockFromISR();
 }
 
-THD_WORKING_AREA(wa_audio, 1024);
+THD_WORKING_AREA(wa_audio, 512);
 
 THD_FUNCTION(audio_playback, arg) {
 	/**
@@ -310,7 +310,7 @@ THD_FUNCTION(audio_playback, arg) {
 	}
 }
 
-THD_WORKING_AREA(wa_audio_in, 2048);
+THD_WORKING_AREA(wa_audio_in, 128);
 // To use for downloaded music.
 THD_FUNCTION(wifi_audio_in, arg) {
 	UNUSED(arg);
@@ -381,7 +381,6 @@ THD_FUNCTION(wifi_audio_in, arg) {
 				if (flashSectorErase(buffer_id) != FLASH_RETURN_SUCCESS)
 					DEBUG("flash erase error");
 			}
-			DEBUG("sector erased");
 
 			// Read file from wifi
 			bytes_nb = 0;
@@ -430,7 +429,7 @@ THD_FUNCTION(wifi_audio_in, arg) {
 	}
 }
 
-THD_WORKING_AREA(wa_flash, 2048);
+THD_WORKING_AREA(wa_flash, 128);
 // To use for alarm clock
 THD_FUNCTION(flash_audio_in, arg) {
 	UNUSED(arg);

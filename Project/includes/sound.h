@@ -51,10 +51,10 @@ extern volatile wifi_connection audio_conn;
 extern binary_semaphore_t audio_bsem;
 extern binary_semaphore_t download_bsem;
 
-extern THD_WORKING_AREA(wa_audio, 1024);
+extern THD_WORKING_AREA(wa_audio, 512);
 
-extern THD_WORKING_AREA(wa_audio_in, 2048);
-extern THD_WORKING_AREA(wa_flash, 2048);
+extern THD_WORKING_AREA(wa_audio_in, 128);
+extern THD_WORKING_AREA(wa_flash, 128);
 
 /******************************/
 /*        Functions           */
