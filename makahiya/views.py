@@ -442,9 +442,9 @@ async def quick_timer(request):
 		if plants.registered(plant_id):
 			timer = SQLsession.query(Timers).filter_by(plant_id=plant_id).first()
 			timer.activated = True
-			date = await clock(plant_id, minute=int(request.matchdict['time']), sound=2, light=1)
 			timer.sound = 2
 			timer.light = 1
+			date = await clock(plant_id, minute=int(request.matchdict['time']), sound=timer.sound, light=timer.light)
 			timer.date = date
 			SQLsession.commit()
 		return HTTPFound('/' + str(plant_id) + '/board/timer')

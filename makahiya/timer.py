@@ -20,8 +20,21 @@ async def clock(plant_id, absolute=0, hour=0, minute=0, second=0, sound=0, light
     else:
         delta = datetime.timedelta(hours=hour, minutes=minute, seconds=second)
     try:
-        msg = 'alarm ' + str(int(delta.total_seconds())) + \
-            constants.ledHP_R_and_sound_1
+        if light == 1:
+            msg = 'alarm ' + str(int(delta.total_seconds())) + \
+                constants.ALL_OFF + \
+                ' ' + str(constants.LED1_R) + ' ' + str(255) + \
+                ' ' + str(constants.LED1_G) + ' ' + str(0) + \
+                ' ' + str(constants.LED1_B) + ' ' + str(0) + \
+                constants.SET_LED_ON[1]
+        elif light == 2:
+            msg = 'alarm ' + str(int(delta.total_seconds())) + \
+                constants.ALL_OFF + \
+                ' ' + str(constants.LED1_R) + ' ' + str(0) + \
+                ' ' + str(constants.LED1_G) + ' ' + str(255) + \
+                ' ' + str(constants.LED1_B) + ' ' + str(0) + \
+                constants.SET_LED_ON[1]
+
         await send_to_socket(plants, plant_id, msg)
         log.debug("Request sent")
     except KeyError as e:
