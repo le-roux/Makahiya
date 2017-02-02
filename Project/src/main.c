@@ -18,27 +18,24 @@ int main(void) {
 
 	RTTObjectInit(&RTTD, 0);
 
-	//bluetoothInit();
+	bluetoothInit();
 	wifiInit();
-	//fdcInit();
+	fdcInit();
 	audioInit();
 	pwmUserInit();
 
 	/**
 	 * Websocket thread
 	 */
-	//chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "0");
+	chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "0");
 
 	/**
 	 * Audio threads
 	 */
 	chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO, audio_playback, NULL);
 	chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 1, wifi_audio_in, NULL);
-	//chThdCreateStatic(wa_flash, sizeof(wa_flash), NORMALPRIO, flash_audio_in, NULL);
+	chThdCreateStatic(wa_flash, sizeof(wa_flash), NORMALPRIO, flash_audio_in, NULL);
 	read_music("/file.mp3");
-	/*music_id = 1;
-	repeat = 1;
-	chBSemSignal(&audio_bsem);*/
 
 	while(true) {
 		chThdSleepMilliseconds(1000);

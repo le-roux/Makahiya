@@ -48,7 +48,7 @@ MAILBOX_DECL(free_decoded_data_box, free_decoded_data_buffers, DECODED_DATA_BUFF
 /**
  * Number of buffers handled by the @p input_box and @p free_input_box mailboxes.
  */
-#define INPUT_BUFFERS_NB 10
+#define INPUT_BUFFERS_NB 15
 
 /**
  * Size of the buffers handled by @p input_box and @p free_input_box.
@@ -81,6 +81,14 @@ void audioInit(void){
 	palSetPadMode(GPIOB, 13,  PAL_MODE_ALTERNATE(5));
 	palSetPadMode(GPIOB, 15,  PAL_MODE_ALTERNATE(5));
 	palSetPadMode(GPIOC, 6,  PAL_MODE_ALTERNATE(5));
+
+	// Init the free input buffers mailbox
+	for (int i = 0; i < INPUT_BUFFERS_NB; i++)
+		chMBPost(&free_input_box, (msg_t)&in_buf[i], TIME_INFINITE);
+
+	// Init the free buffers mailbox
+	for (int i = 0; i < DECODED_DATA_BUFFERS_NB; i++)
+		(void)chMBPost(&free_decoded_data_box, (msg_t)&buf[i], TIME_INFINITE);
 }
 
 void audioI2Scb(I2SDriver* driver, size_t offset, size_t n) {
@@ -118,6 +126,9 @@ THD_FUNCTION(audio_playback, arg) {
 	 */
 	int8_t* read_ptr;
 
+	/**
+	 * Pointer to the next byte to write in the working buffer.
+	 */
 	int8_t* write_ptr;
 
 	/**
@@ -144,10 +155,6 @@ THD_FUNCTION(audio_playback, arg) {
 	int8_t* tmp_cur;
 	UNUSED(arg);
 
-	// Init the free buffers mailbox
-	for (int i = 0; i < DECODED_DATA_BUFFERS_NB; i++)
-		(void)chMBPost(&free_decoded_data_box, (msg_t)&buf[i], TIME_INFINITE);
-
 	decoder = MP3InitDecoder();
 
 	while(true) {
@@ -169,8 +176,13 @@ THD_FUNCTION(audio_playback, arg) {
 				DEBUG("buf nb %i", buf_nb);
 
 				// Don't wait if there is no buffer available and still enough data.
-				if (buf_nb == 0 && (write_ptr - read_ptr) > WORKING_BUFFER_MIN_LENGTH)
+				if (buf_nb == 0 && (write_ptr - read_ptr) > WORKING_BUFFER_MIN_LENGTH) {
 					break;
+				} else if (buf_nb == 0 && I2SD2.state != I2S_STOP) {
+					i2sStopExchange(&I2SD2);
+					i2sStop(&I2SD2);
+					started = false;
+				}
 
 				// Get an input buffer
 				chMBFetch(&input_box, (msg_t*)&inbuf, TIME_INFINITE);
@@ -200,7 +212,6 @@ THD_FUNCTION(audio_playback, arg) {
 				break;
 
 			offset = MP3FindSyncWord((unsigned char*)read_ptr, write_ptr - read_ptr);
-			DEBUG("offset %i (length %i)", offset, write_ptr - read_ptr);
 
 			if (offset < 0) { // No sync word in the working buffer: no more interesting data.
 				offset = 0;
@@ -221,7 +232,6 @@ THD_FUNCTION(audio_playback, arg) {
 			tmp_cur = read_ptr;
 			bytes_left = write_ptr - read_ptr;
 			err = MP3Decode(decoder, (unsigned char**)&read_ptr, &bytes_left, (int16_t*)pbuf, 0);
-			DEBUG("decoded %i", read_ptr - tmp_cur);
 
 			if (read_ptr - working_buffer > INPUT_BUFFER_SIZE) {
 				memmove(working_buffer, read_ptr, write_ptr - read_ptr);
@@ -309,16 +319,12 @@ THD_FUNCTION(wifi_audio_in, arg) {
 	 */
 	int count_nodata;
 
-	// Init the free input buffers mailbox
-	for (int i = 0; i < INPUT_BUFFERS_NB; i++)
-		chMBPost(&free_input_box, (msg_t)&in_buf[i], TIME_INFINITE);
-
 	while (true) {
 		// Wait to be triggered by the user.
 		chBSemWait(&download_bsem);
 
 		count_nodata = 0;
-		initial_buffering = INPUT_BUFFERS_NB / 2;
+		initial_buffering = INPUT_BUFFERS_NB - 1;
 		out.length = INPUT_BUFFER_SIZE;
 		out.error = 0;
 		out.error_code = NO_ERROR;
@@ -374,10 +380,6 @@ THD_FUNCTION(flash_audio_in, arg) {
 	 * Id of the 'inner' music currently played.
 	 */
 	static int cur_id;
-
-	// Init the free input buffers mailbox
-	for (int i = 0; i < INPUT_BUFFERS_NB; i++)
-		chMBPost(&free_input_box, (msg_t)&in_buf[i], TIME_INFINITE);
 
 	while(TRUE) {
 		chBSemWait(&audio_bsem);
