@@ -84,7 +84,7 @@ extern binary_semaphore_t fdc_bsem;
 /**
  * Initialize the FDC2214 sensors.
  */
-void fdc_init(void);
+void fdcInit(void);
 
 /**
  * The callback called by the EXT driver when an interrupt is raised on one of

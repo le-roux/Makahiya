@@ -2,44 +2,40 @@
 #define WIFI_H
 
 #include <stdint.h>
+#include <stdbool.h>
 
 /***********************/
 /*        Defines      */
 /***********************/
 
-/**
- * Commands to send to the Wi-Fi module.
- */
-#define REBOOT "reboot"
-#define PING_CONN "ping -g"
-#define NETWORK_FLUSH "network_flush"
-#define NETWORK_RESTART "network_restart"
+typedef enum error_code_t {NO_ERROR,
+                            COMMAND_FAILED,
+                            PARSE_ERROR,
+                            UNKNOWN_COMMAND,
+                            TOO_FEW_ARGS,
+                            TOO_MANY_ARGS,
+                            UNKNOWN_VARIABLE_OR_OPTION,
+                            INVALID_ARGUMENT,
+                            OVERFLOW_ERROR,
+                            BOUNDS_ERROR,
+                            HEADER_ERROR,
+                            HEADER_TIMEOUT,
+                            NO_DATA,
+                            SAFEMODE} error_code_t;
 
 /**
  * Aggregates all the information available in the command return codes.
  *
  * @var error : boolean value indicating if an error occured
- * @var error_code : the error code. Possible values are:
- *      - -1: incorrect header received.
- *      - -2:
- *      - -3: header not fully received.
- *      - -4: nothing to read two sequential times -> stop the audio.
- *      - -5: safemode
+ * @var error_code : the error code.
  * @var length : number of bytes actually sent by the Wi-Fi module in the
  *      following payload.
  */
 typedef struct wifi_response_header {
-    int error;
-    int error_code;
+    bool error;
+    error_code_t error_code;
     int length;
 } wifi_response_header;
-
-#define NO_ERROR        0
-#define HEADER_ERROR   -1
-
-#define HEADER_TIMEOUT -3
-#define NO_DATA        -4
-#define SAFEMODE       -5
 
 /**
  * Aggregates all the information about a running connection.
@@ -62,10 +58,6 @@ typedef struct wifi_connection {
  */
 #define WIFI_BUFFER_SIZE 1420
 
-#define SEND_DATA(data, length) sdWrite(wifi_SD, data, length)
-#define SEND_DATA_TIMEOUT(data, length, timeout) sdWriteTimeout(wifi_SD, data, \
-                                                            length, timeout)
-
 /***********************/
 /*       Variables     */
 /***********************/
@@ -81,16 +73,22 @@ extern char response_code[WIFI_HEADER_SIZE];
 extern char response_body[WIFI_BUFFER_SIZE];
 
 /**
- * Variable to store the channel id of the audio download connection.
+ * Base address of the server.
  */
-extern wifi_connection audio_conn;
+extern const char* const address;
 
-extern const char* address;
-extern const char* get;
+extern const char* const REBOOT;
+extern const char* const NETWORK_FLUSH;
+extern const char* const PING_CONN;
 
 /***********************/
 /*       Functions     */
 /***********************/
+
+/**
+ * @brief Initialize the pins and the wifi connection.
+ */
+void wifiInit(void);
 
 /**
  * Exported for tests only.
@@ -103,15 +101,7 @@ wifi_response_header parse_response_code(void);
  */
 void get_channel_id(wifi_connection* conn);
 
-/** @brief Retrieve and decode the return code of a command.
- *
- * @param timeout Boolean value that indicates whether or not timeouts are
- *      required for blocking function calls.
- *
- * @return A structure containing all the information available in the
- *      code returned by the command previously sent to the Wi-Fi module.
- */
-wifi_response_header get_response(int timeout);
+
 
 /** @brief Issue a read request to the Wi-Fi module.
  *
@@ -119,30 +109,47 @@ wifi_response_header get_response(int timeout);
  *      buffer, but less data can be actually read.
  *
  * @param conn The connection to read data from.
+ * @param timeout Boolean value that indicates whether or not timeouts are
+ *      required for blocking function calls.
  */
-void read_buffer(wifi_connection conn);
+wifi_response_header read_buffer(wifi_connection conn, bool timeout);
 
 /** @brief Issue a read request to the Wi-Fi module.
  *
  * @param conn The connection to read data from.
+ * @param dest A pointer to the buffer that will receive the data.
  * @param size The number of bytes to read (the actual number of bytes read can
  *  be lower). **WARNING**: This value must be lower than WIFI_BUFFER_SIZE - 2.
+ * @param timeout Boolean value that indicates whether or not timeouts are
+ *      required for blocking function calls.
+ * @param string Boolean value that indicates whether the response body will be
+ *              treated as a string.
  */
-void read(wifi_connection conn, int size);
+wifi_response_header wifi_read(wifi_connection conn, uint8_t* dest, int size, bool timeout, bool string);
 
 void read_music(char* path);
 
 /** @brief Send a command to the Wi-Fi module.
  *
+ * @param cmd The command to send.
+ * @param timeout Boolean value that indicates whether or not timeouts are
+ *      required for blocking function calls.
  */
-void send_cmd(char* cmd);
+wifi_response_header send_cmd(const char* cmd, bool timeout);
 
-void wifi_write(wifi_connection* conn, int length, uint8_t* buffer);
+/** @brief Send data to the wifi module.
+ *
+ * @param conn The wifi connection to send data to.
+ * @param length The number of bytes to send.
+ * @param buffer The buffer to send data from.
+ * @param timeout Boolean value that indicates whether or not timeouts are
+ *      required for blocking function calls.
+ */
+wifi_response_header wifi_write(wifi_connection* conn, int length, uint8_t* buffer, bool timeout);
 
-void clear_body(void);
-
+/**
+ * @brief Reset the WiFi module in normal mode (from safe mode).
+ */
 int exit_safe_mode(void);
-
-void wifi_init(void);
 
 #endif

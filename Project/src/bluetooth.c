@@ -15,7 +15,7 @@ static THD_FUNCTION(Thread1, arg) {
 	while(1){
 		c = sdGet(bluetooth_SD);
 		chprintf((BaseSequentialStream *)&RTTD, "%c", c);
-	}	
+	}
 }
 
 static THD_WORKING_AREA(waThread2, 128);
@@ -25,7 +25,7 @@ static THD_FUNCTION(Thread2, arg) {
 	while(1){
 		c[0] = chSequentialStreamGet((BaseSequentialStream *) &RTTD);
 		sdWrite(bluetooth_SD, c, 1);
-	}	
+	}
 }
 
 static void startSerialShell(void){
@@ -40,7 +40,7 @@ static SerialConfig serial_cfg = {
 	0x00000300
 };
 
-void initBluetooth(void){
+void bluetoothInit(void){
 
 	// Setting the pins and resetting the RN-42
 
@@ -61,7 +61,7 @@ void initBluetooth(void){
 	chThdSleepMilliseconds(1000);
 	startSerialShell();
 	chThdSleepMilliseconds(1000);
-	
+
 	// Configuring the RN-42
 
 	uint8_t buf[16] = "$$$";

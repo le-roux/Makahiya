@@ -4,11 +4,6 @@
 #include "hal.h"
 
 /**
- * @brief Maximum number of commands that can be executed on alarm_clock expiration.
- */
-#define MAX_COMMANDS 16
-
-/**
  * @brief Initialize all the elements required by the alarm driver.
  * WARNING: Never use the alarm driver before having called this function.
  */
@@ -20,14 +15,10 @@ void alarm_init(void);
  * @param commands_list
  *      command_id:
  *          - 1: start music
- *          - (n + 1) * 4 + 0: led n, RED
- *          - (n + 1) * 4 + 1: led n, GREEN
- *          - (n + 1) * 4 + 2: led n, BLUE
- *          - (n + 1) * 4 + 3: led n, WHITE
- *          - 50 + i: motor i
+ *          - 60 + i: motor i
+ *          - 70: sleep
+ *          - for LEDs, see pwmdriver.h
  */
 void set_alarm(int timeout, char* commands_list);
-
-#define MUSIC 1
 
 #endif // ALARM_H

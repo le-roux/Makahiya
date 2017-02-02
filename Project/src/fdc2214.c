@@ -241,7 +241,7 @@ static THD_FUNCTION(fdc_int, arg) {
 	}
 }
 
-void fdc_init(void){
+void fdcInit(void){
 	/**
 	 * Return code of the I2C commands.
 	 */

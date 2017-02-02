@@ -171,7 +171,7 @@ static const PWMConfig pwmconfig4 = {
 	0,
 };
 
-void initPwm(void){
+void pwmUserInit(void){
 
 	// LED 1
 
@@ -263,7 +263,7 @@ void initPwm(void){
 		VALUES[i] = 0;
 }
 
-void setLed(int led, int power){
+void setLedI(int led, int power){
 
 	int soft = 0;
 
@@ -279,47 +279,65 @@ void setLed(int led, int power){
 
 	}
 
-	pwmEnableChannel(pwmd[led/4], led % 4, power);
+	pwmEnableChannelI(pwmd[led/4], led % 4, power);
 	if (soft)
-		pwmEnableChannelNotification(pwmd[led/4], led % 4);
+		pwmEnableChannelNotificationI(pwmd[led/4], led % 4);
 
 }
 
-void setLedHP(int R, int G, int B, int W){
-	setLed(LED_HP_R, R);
-	setLed(LED_HP_G, G);
-	setLed(LED_HP_B, B);
-	setLed(LED_HP_W, W);
+void setLed(int led, int power) {
+	chSysLock();
+	setLedI(led, power);
+	chSysUnlock();
 }
 
-void setLedRGB(int id, int R, int G, int B){
+void setLedHPI(int R, int G, int B, int W) {
+	setLedI(LED_HP_R, R);
+	setLedI(LED_HP_G, G);
+	setLedI(LED_HP_B, B);
+	setLedI(LED_HP_W, W);
+}
+
+void setLedHP(int R, int G, int B, int W) {
+	chSysLock();
+	setLedHPI(R, G, B, W);
+	chSysUnlock();
+}
+
+void setLedRGBI(int id, int R, int G, int B){
 	switch(id){
 		case 1:
-			setLed(LED1_R, R);
-			setLed(LED1_G, G);
-			setLed(LED1_B, B);
+			setLedI(LED1_R, R);
+			setLedI(LED1_G, G);
+			setLedI(LED1_B, B);
 			break;
 		case 2:
-			setLed(LED2_R, R);
-			setLed(LED2_G, G);
-			setLed(LED2_B, B);
+			setLedI(LED2_R, R);
+			setLedI(LED2_G, G);
+			setLedI(LED2_B, B);
 			break;
 		case 3:
-			setLed(LED3_R, R);
-			setLed(LED3_G, G);
-			setLed(LED3_B, B);
+			setLedI(LED3_R, R);
+			setLedI(LED3_G, G);
+			setLedI(LED3_B, B);
 			break;
 		case 4:
-			setLed(LED4_R, R);
-			setLed(LED4_G, G);
-			setLed(LED4_B, B);
+			setLedI(LED4_R, R);
+			setLedI(LED4_G, G);
+			setLedI(LED4_B, B);
 			break;
 		case 5:
-			setLed(LED5_R, R);
-			setLed(LED5_G, G);
-			setLed(LED5_B, B);
+			setLedI(LED5_R, R);
+			setLedI(LED5_G, G);
+			setLedI(LED5_B, B);
 			break;
 	}
+}
+
+void setLedRGB(int id, int R, int G, int B) {
+	chSysLock();
+	setLedRGBI(id, R, G, B);
+	chSysUnlock();
 }
 
 void setServo(int id, int value){
@@ -333,4 +351,80 @@ void shakeServo(int id, int n){
 		setServo(id, 800);
 		chThdSleepMilliseconds(1000);
 	}
+}
+
+void setValueI(int varId, int value) {
+    VALUES[varId] = value;
+    switch(varId) {
+        case(LED1_ON): {
+            if (value)
+                setLedRGBI(1, VALUES[LED1_R], VALUES[LED1_G], VALUES[LED1_B]);
+            else
+                setLedRGBI(1, 0, 0, 0);
+            break;
+        }
+        case(LED2_ON): {
+            if (value)
+                setLedRGBI(2, VALUES[LED2_R], VALUES[LED2_G], VALUES[LED2_B]);
+            else
+                setLedRGBI(2, 0, 0, 0);
+            break;
+        }
+        case(LED3_ON): {
+            if (value)
+                setLedRGBI(3, VALUES[LED3_R], VALUES[LED3_G], VALUES[LED3_B]);
+            else
+                setLedRGBI(3, 0, 0, 0);
+            break;
+        }
+        case(LED4_ON): {
+            if (value)
+                setLedRGBI(4, VALUES[LED4_R], VALUES[LED4_G], VALUES[LED4_B]);
+            else
+                setLedRGBI(4, 0, 0, 0);
+            break;
+        }
+        case(LED5_ON): {
+            if (value)
+                setLedRGBI(5, VALUES[LED5_R], VALUES[LED5_G], VALUES[LED5_B]);
+            else
+                setLedRGBI(5, 0, 0, 0);
+            break;
+        }
+        case(LED_HP_ON): {
+            if (value)
+                setLedHPI(VALUES[LED_HP_R], VALUES[LED_HP_G], VALUES[LED_HP_B], VALUES[LED_HP_W]);
+            else
+                setLedHPI(0, 0, 0, 0);
+            break;
+        }
+        default: {
+            if (IS_LED_1(varId) && VALUES[LED1_ON])
+                setLedI(varId, value);
+            else if (IS_LED_2(varId) && VALUES[LED2_ON])
+                setLedI(varId, value);
+            else if (IS_LED_2(varId) && VALUES[LED2_ON])
+                setLedI(varId, value);
+            else if (IS_LED_3(varId) && VALUES[LED3_ON])
+                setLedI(varId, value);
+            else if (IS_LED_4(varId) && VALUES[LED4_ON])
+                setLedI(varId, value);
+            else if (IS_LED_5(varId) && VALUES[LED5_ON])
+                setLedI(varId, value);
+            else if (IS_LED_HP(varId) && VALUES[LED_HP_ON])
+                setLedI(varId, value);
+            else if (IS_SERVO(varId))
+                setServo(varId - SERVO_BASE, value);
+        }
+    }
+}
+
+void setValue(int varId, int value) {
+	chSysLock();
+	setValueI(varId, value);
+	chSysUnlock();
+}
+
+int getValue(int varId) {
+    return VALUES[varId];
 }
