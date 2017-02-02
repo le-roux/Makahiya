@@ -6,23 +6,11 @@
 /**
  * Size of the buffer used to store the values from the sensor.
  */
-#define BUFFER_SIZE 15
-
-/**
- * Margin to detect a touch (per value).
- */
-#define MARGIN_USER 10000000
-
-#define AVERAGE_LIMIT_LOW 5000000
+#define BUFFER_SIZE 1
 
 #define INT_DER_VERSION 0
 #define DERIVATIVE_THRESHOLD 1000
 #define INTEGRAL_THRESHOLD 10000
-
-/**
- * Margin used to detect the beginning of a slide.
- */
-#define SLIDE_MARGIN 1500
 
 /**
  * Number of sensors used.
@@ -35,12 +23,6 @@
 #define MAX_CHANNELS_NB 4
 
 /**
- * Number of values used to perform the linear regression.
- * __WARNING:__ This value MUST be less than BUFFER_SIZE.
- */
-#define REGRESSION_SIZE 7
-
-/**
  * Gives the index in the buffer following the one given in parameter.
  */
 #define NEXT_INDEX(index) ((index+1 < BUFFER_SIZE)?index+1:0)
@@ -49,25 +31,6 @@
  * Gives the index in the buffer preceding the one given in parameter.
  */
 #define PREVIOUS_INDEX(index) ((index-1 >= 0)?index-1:BUFFER_SIZE-1)
-
-/**
- * Structure containing all the values used by the linear regression.
- */
-typedef struct reg_t {
-    int slope;
-    double corr;
-    uint64_t var_y;
-} reg_t;
-
-/**
- * __WARNING__ This value is not normalized (by BUFFER_SIZE) !!
- */
-extern float average[SENSORS_NB][MAX_CHANNELS_NB];
-
-/**
- * __WARNING__ This value is not normalized (by BUFFER_SIZE) !!
- */
-extern float default_value[SENSORS_NB][MAX_CHANNELS_NB];
 
 /** @brief Init all the variables used in the touch detection algorithm.
  *
@@ -79,18 +42,6 @@ extern float default_value[SENSORS_NB][MAX_CHANNELS_NB];
  */
 void init_touch_detection(int sensor_id, int channel_id);
 
-/** @brief Set a new value as default_value.
- *
- * This function takes the average of the values in the buffer and sets it
- * as the new default_value.
- * __WARNING:__ The buffer must have been previously filled with meaningful
- * data.
- *
- * @param sensor_id The index of the sensor to update.
- * @param channel_id Value in interval [0, 3] identifying the channel.
- */
-void update_default_value(int sensor_id, int channel_id);
-
 /** @brief Add a value into the buffer.
  *
  * This function allows the user to safely add a new value in the buffer.
@@ -100,15 +51,6 @@ void update_default_value(int sensor_id, int channel_id);
  * @param value The value to write in the buffer.
  */
 void add_value(int sensor_id, int channel_id, uint32_t value);
-
-/** @brief Read a value from the buffer.
- *
- * @param sensor_id The index of the buffer to read data from (in interval [0,1]).
- * @param channel_id Value in interval [0, 3] identifying the channel.
- *
- * @return The value read.
- */
-uint32_t get_next_value(int sensor_id, int channel_id);
 
 /** @brief Run the detection algorithm.
  *
@@ -140,24 +82,5 @@ uint32_t get_next_value(int sensor_id, int channel_id);
  *  - 0 otherwise (nothing detected).
  */
 int detect_action(int sensor_id, int channel_id);
-
-/** @brief Performs a linear regression.
- *
- * The regression is performed on the last REGRESSION_SIZE values of the buffer.
- * The least squares method is used.
- *
- * @param sensor_id The index of the sensor to analyze.
- * @param channel_id Value in interval [0, 3] identifying the channel to analyze.
- * @return The slope of the linear regression (a if we have y = a*x+b).
- */
-reg_t linear_regression(int sensor_id, int channel_id);
-
-/** @brief Gives the diffence between the default value and the last written one.
- *
- * @param sensor_id The index of the sensor to analyze.
- * @param channel_id Value in interval [0, 3] identifying the channel to analyze.
- * @return The difference between the default value and the last written one.
- */
-int32_t current_distance(int sensor_id, int channel_id);
 
 #endif // CAPACITIVE_SENSOR_H

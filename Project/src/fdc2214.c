@@ -144,11 +144,6 @@ static i2cflags_t init_sensors(void) {
  *						data from.
  */
 static int acquire_value(int slave_id, int channel_id) {
-	/**
-	 * Array storing for each channel the number of data already acquire until
-	 * the default_value has been updated.
-	 */
-	static int count[2][4] = {{0, 0, 0, 0}, {0, 0, 0, 0}};
 
 	/**
 	 * The value read from the sensor.
@@ -163,16 +158,9 @@ static int acquire_value(int slave_id, int channel_id) {
 		return -1;
 	value |= i2c_rx_buffer[0] << 8 | i2c_rx_buffer[1];
 	if(slave_id == 0 && channel_id == 3)
-		//DEBUG("%i,", value);
+		DEBUG("%i,", value);
 
 	add_value(slave_id, channel_id, value);
-	// Initialization of the touch detection algorithm (with the 10 first values).
-	if (count[slave_id][channel_id] < BUFFER_SIZE)
-		count[slave_id][channel_id]++;
-	else if (count[slave_id][channel_id] == BUFFER_SIZE) {
-		update_default_value(slave_id, channel_id);
-		count[slave_id][channel_id]++;
-	}
 
 	return 0;
 }
@@ -229,11 +217,11 @@ static THD_FUNCTION(fdc_int, arg) {
 		if (sensor_status & DRDY) { // Data ready to be read.
 			for (int channel_id = 0; channel_id < CHANNELS_NB[sensor]; channel_id++) {
 				acquire_value(sensor, channel_id);
-				action = detect_action(sensor, channel_id);
 				if (sensor == 0 && channel_id == 3) {
-					if (action)
+					action = detect_action(sensor, channel_id);
+					if (action == 1)
 						setLed(LED2_G, 12);
-					else
+					else if (action == -1)
 						setLed(LED2_G, 0);
 				}
 			}
