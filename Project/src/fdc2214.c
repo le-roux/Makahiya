@@ -4,6 +4,7 @@
 #include "utils.h"
 #include "capacitive_sensor.h"
 #include "pwmdriver.h"
+#include "commands.h"
 
 #include "chprintf.h"
 #include "RTT_streams.h"
@@ -13,6 +14,74 @@ static int FDC_ADDR[2] = {FDC1_ADDR, FDC2_ADDR};
 static int DATA_MSB[4] = {DATA_MSB_CH0, DATA_MSB_CH1, DATA_MSB_CH2, DATA_MSB_CH3};
 static int DATA_LSB[4] = {DATA_LSB_CH0, DATA_LSB_CH1, DATA_LSB_CH2, DATA_LSB_CH3};
 static int CHANNELS_NB[2] = {4, 4};
+
+#define MAX_COMMANDS 32
+static msg_t commands_buffer_1[MAX_COMMANDS];
+static MAILBOX_DECL(commands_box_1, commands_buffer_1, MAX_COMMANDS);
+static msg_t commands_buffer_2[MAX_COMMANDS];
+static MAILBOX_DECL(commands_box_2, commands_buffer_2, MAX_COMMANDS);
+static msg_t commands_buffer_3[MAX_COMMANDS];
+static MAILBOX_DECL(commands_box_3, commands_buffer_3, MAX_COMMANDS);
+static msg_t commands_buffer_4[MAX_COMMANDS];
+static MAILBOX_DECL(commands_box_4, commands_buffer_4, MAX_COMMANDS);
+
+static msg_t commands_buffer_5[MAX_COMMANDS];
+static MAILBOX_DECL(commands_box_5, commands_buffer_5, MAX_COMMANDS);
+static msg_t commands_buffer_6[MAX_COMMANDS];
+static MAILBOX_DECL(commands_box_6, commands_buffer_6, MAX_COMMANDS);
+static msg_t commands_buffer_7[MAX_COMMANDS];
+static MAILBOX_DECL(commands_box_7, commands_buffer_7, MAX_COMMANDS);
+static msg_t commands_buffer_8[MAX_COMMANDS];
+static MAILBOX_DECL(commands_box_8, commands_buffer_8, MAX_COMMANDS);
+
+static msg_t tmp_commands_buffer_1[MAX_COMMANDS];
+static MAILBOX_DECL(tmp_commands_box_1, tmp_commands_buffer_1, MAX_COMMANDS);
+static msg_t tmp_commands_buffer_2[MAX_COMMANDS];
+static MAILBOX_DECL(tmp_commands_box_2, tmp_commands_buffer_2, MAX_COMMANDS);
+static msg_t tmp_commands_buffer_3[MAX_COMMANDS];
+static MAILBOX_DECL(tmp_commands_box_3, tmp_commands_buffer_3, MAX_COMMANDS);
+static msg_t tmp_commands_buffer_4[MAX_COMMANDS];
+static MAILBOX_DECL(tmp_commands_box_4, tmp_commands_buffer_4, MAX_COMMANDS);
+
+static msg_t tmp_commands_buffer_5[MAX_COMMANDS];
+static MAILBOX_DECL(tmp_commands_box_5, tmp_commands_buffer_5, MAX_COMMANDS);
+static msg_t tmp_commands_buffer_6[MAX_COMMANDS];
+static MAILBOX_DECL(tmp_commands_box_6, tmp_commands_buffer_6, MAX_COMMANDS);
+static msg_t tmp_commands_buffer_7[MAX_COMMANDS];
+static MAILBOX_DECL(tmp_commands_box_7, tmp_commands_buffer_7, MAX_COMMANDS);
+static msg_t tmp_commands_buffer_8[MAX_COMMANDS];
+static MAILBOX_DECL(tmp_commands_box_8, tmp_commands_buffer_8, MAX_COMMANDS);
+
+
+static mailbox_t* commands_box[2][4] = {
+	{
+		&commands_box_1,
+		&commands_box_2,
+		&commands_box_3,
+		&commands_box_4
+	},
+	{
+		&commands_box_5,
+		&commands_box_6,
+		&commands_box_7,
+		&commands_box_8
+	}
+};
+
+static mailbox_t* tmp_commands_box[2][4] = {
+	{
+		&tmp_commands_box_1,
+		&tmp_commands_box_2,
+		&tmp_commands_box_3,
+		&tmp_commands_box_4
+	},
+	{
+		&tmp_commands_box_5,
+		&tmp_commands_box_6,
+		&tmp_commands_box_7,
+		&tmp_commands_box_8
+	}
+};
 
 /**
  * @brief Buffer for the @p sensors_box mailbox.
@@ -157,8 +226,6 @@ static int acquire_value(int slave_id, int channel_id) {
 	if (read_register(FDC_ADDR[slave_id], DATA_LSB[channel_id]) != MSG_OK)
 		return -1;
 	value |= i2c_rx_buffer[0] << 8 | i2c_rx_buffer[1];
-	if(slave_id == 0 && channel_id == 3)
-		DEBUG("%i,", value);
 
 	add_value(slave_id, channel_id, value);
 
@@ -194,14 +261,16 @@ static THD_FUNCTION(fdc_int, arg) {
 	 */
 	int action;
 
-	//chprintf((BaseSequentialStream*)&RTTD, "Start fdc thread\r\n");
+	int commands_nb;
+	static msg_t command;
+	loop_t loop;
 
 	for (int i = 0; i < 4; i++) {
 		init_touch_detection(0, i);
 		init_touch_detection(1, i);
 	}
 
-	while(TRUE) {
+	while(true) {
 		(void)chMBFetch(&sensors_box, &sensor, TIME_INFINITE);
 		if (sensor < 0 || sensor > 1) // Invalid value
 			continue;
@@ -218,6 +287,44 @@ static THD_FUNCTION(fdc_int, arg) {
 			for (int channel_id = 0; channel_id < CHANNELS_NB[sensor]; channel_id++) {
 				acquire_value(sensor, channel_id);
 				action = detect_action(sensor, channel_id);
+
+				if (action == 1) {
+					chSysLock();
+					commands_nb = chMBGetUsedCountI(commands_box[sensor][channel_id]);
+					chSysUnlock();
+
+					loop.state = SINGLE;
+					loop.first_turn = false;
+
+					while(commands_nb != 0) {
+						chMBFetch(commands_box[sensor][channel_id], &command, TIME_INFINITE);
+						handle_commands(command, &loop);
+
+						// Reput the commands to repeat in the mailbox.
+						if (loop.state == LOOP)
+							chMBPost(commands_box[sensor][channel_id], command, TIME_INFINITE);
+
+						// Save the commands to restore them at the end of the current activation.
+						if (loop.state == SINGLE || loop.first_turn)
+							chMBPost(tmp_commands_box[sensor][channel_id], command, TIME_INFINITE);
+
+						chSysLock();
+						commands_nb = chMBGetUsedCountI(commands_box[sensor][channel_id]);
+						chSysUnlock();
+					}
+
+					chSysLock();
+					commands_nb = chMBGetUsedCountI(commands_box[sensor][channel_id]);
+					chSysUnlock();
+
+					// Restore the commands.
+					for (int i = 0; i < commands_nb; i++) {
+						chMBFetch(tmp_commands_box[sensor][channel_id], &command, TIME_INFINITE);
+						chMBPost(commands_box[sensor][channel_id], command, TIME_INFINITE);
+					}
+				}
+
+				// For test
 				if (action == 1)
 					DEBUG("Touch %d", 4 * sensor + channel_id);
 			}
@@ -249,4 +356,15 @@ void fdc_cb (EXTDriver* driver, expchannel_t channel) {
 	else
 		chMBPostI(&sensors_box, (msg_t)1);
 	chSysUnlockFromISR();
+}
+
+void clear_commands(int sensor_id, int channel_id) {
+	chMBReset(commands_box[sensor_id][channel_id]);
+}
+
+void add_command(int sensor_id, int channel_id, int var_id, int value) {
+	msg_t command;
+
+	command = ((var_id & 0xFFFF) << 16) | (value & 0xFFFF);
+	chMBPost(commands_box[sensor_id][channel_id], command, TIME_INFINITE);
 }

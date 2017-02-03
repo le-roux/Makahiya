@@ -14,6 +14,7 @@
 #include "RTT_streams.h"
 #include "chprintf.h"
 #include "pwmdriver.h"
+#include "fdc2214.h"
 
 // 14 is the number of the pin used for the interrupts.
 static const char* const ws_cmd = "websocket_client -g 9 ";
@@ -67,8 +68,8 @@ THD_FUNCTION(websocket_ext, arg) {
             strcat(buffer, value);
             (void)wifi_write((wifi_connection*)&conn, strlen(buffer), (uint8_t*)buffer, true);
         } else if (strcmp(cmd, "play") == 0) {
-            // TODO Play music file called $var
-            continue;
+            var = strtok(NULL, " ");
+            read_music(var);
         } else if (strcmp(cmd, "alarm") == 0) {
             int timeout;
             var = strtok(NULL, " ");
@@ -77,6 +78,20 @@ THD_FUNCTION(websocket_ext, arg) {
             timeout = atoi(var);
             set_alarm(timeout, strtok(NULL, " "));
         } else if (strcmp(cmd, "stop") == 0) {
+            repeat = false;
+            clear_input_box();
+        } else if (strcmp(cmd, "add") == 0) {
+            int sensor_id = atoi(strtok(NULL, " "));
+            int channel_id = atoi(strtok(NULL, " "));
+            int var_id = atoi(strtok(NULL, " "));
+            int value = atoi(strtok(NULL, " "));
+
+            add_command(sensor_id, channel_id, var_id, value);
+        } else if (strcmp(cmd, "clear")) {
+            int sensor_id = atoi(strtok(NULL, " "));
+            int channel_id = atoi(strtok(NULL, " "));
+
+            clear_commands(sensor_id, channel_id);
         }
     }
     repeat = 0;
@@ -134,14 +149,9 @@ THD_FUNCTION(websocket, arg) {
     header = wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"sync", false);
     DEBUG("sync %s", response_body);
 
-    // For test only
-    while (TRUE) {
+    while (true) {
         chThdSleepMilliseconds(10000);
         (void)wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"abcd", true);
         DEBUG("%s", response_body);
     }
-    strcpy(cmd, "close ");
-    strcat(cmd, ((wifi_connection)conn).channel_id);
-    header = send_cmd(cmd, false);
-    DEBUG("close %s", response_body);
 }
