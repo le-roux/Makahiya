@@ -1,0 +1,10 @@
+<metal:macro use-macro='master'>
+    <metal:slot fill-slot='body'>
+        <h1 class='text-center'>
+            Makahiya - Music
+        </h1>
+        <a href='/${plant_id}/music' class='btn btn-success'>
+            Play music
+        </a>
+    </metal:slot>
+</metal:macro>
