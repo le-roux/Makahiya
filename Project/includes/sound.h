@@ -38,10 +38,10 @@ extern const int8_t* const _binary_end[ALARM_SOUND_NB];
 extern volatile int music_id;
 
 /**
- * Value indicating when the alarm music must be stopped. Set it to 1 before
+ * Value indicating when the alarm music must be stopped. Set it to true before
  * starting the music.
  */
-extern volatile int repeat;
+extern volatile bool repeat;
 
 /**
  * Variable to store the channel id of the audio download connection.
@@ -69,6 +69,11 @@ void audioInit(void);
  * @brief Function called by the I2S driver when a transfer is finished.
  */
 void audioI2Scb(I2SDriver* driver, size_t offset, size_t n);
+
+/**
+ * @brief Clear all the sound data not yet decoded.
+ */
+void clear_input_box(void);
 
 extern THD_FUNCTION(audio_playback, arg);
 extern THD_FUNCTION(wifi_audio_in, arg);

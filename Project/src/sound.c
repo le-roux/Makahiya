@@ -26,8 +26,9 @@ const int8_t* const _binary_end[ALARM_SOUND_NB] = {&_binary_alarm1_mp3_end,
 
 
 volatile int music_id;
-volatile int repeat;
+volatile bool repeat;
 volatile wifi_connection audio_conn;
+static MUTEX_DECL(audio_mutex);
 
 /**
  * Number of buffers handled by the @p audio_box and @p free_box mailboxes.
@@ -101,6 +102,20 @@ void audioI2Scb(I2SDriver* driver, size_t offset, size_t n) {
 	chSysUnlockFromISR();
 }
 
+void clear_input_box(void) {
+	/**
+	 * Pointer to the buffers containing music data.
+	 */
+	void* inbuf;
+
+	chSysLock();
+	while(chMBGetUsedCountI(&input_box) != 0) {
+		chMBFetchI(&input_box, (msg_t*)&inbuf);
+		chMBPostI(&free_input_box, (msg_t)inbuf);
+	}
+	chSysUnlock();
+}
+
 THD_WORKING_AREA(wa_audio, 512);
 
 THD_FUNCTION(audio_playback, arg) {
@@ -151,8 +166,11 @@ THD_FUNCTION(audio_playback, arg) {
 	 */
 	void* pbuf, *inbuf;
 
+	/**
+	 * Number of input buffers availablein the mailbox.
+	 */
 	int buf_nb;
-	int8_t* tmp_cur;
+
 	UNUSED(arg);
 
 	decoder = MP3InitDecoder();
@@ -229,7 +247,6 @@ THD_FUNCTION(audio_playback, arg) {
 			}
 
 			// Decode the mp3 block
-			tmp_cur = read_ptr;
 			bytes_left = write_ptr - read_ptr;
 			err = MP3Decode(decoder, (unsigned char**)&read_ptr, &bytes_left, (int16_t*)pbuf, 0);
 
@@ -328,7 +345,8 @@ THD_FUNCTION(wifi_audio_in, arg) {
 		out.length = INPUT_BUFFER_SIZE;
 		out.error = 0;
 		out.error_code = NO_ERROR;
-		while (count_nodata < 6) {
+		while (count_nodata < 6 && repeat) {
+			chMtxLock(&audio_mutex);
 			chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
 
 			bytes_nb = 0;
@@ -354,10 +372,13 @@ THD_FUNCTION(wifi_audio_in, arg) {
 			initial_buffering--;
 			if (initial_buffering == 0)
 				chBSemSignal(&decode_bsem);
+			chMtxUnlock(&audio_mutex);
 		}
+		chMtxLock(&audio_mutex);
 		chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
 		inbuf = NULL;
 		chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
+		chMtxUnlock(&audio_mutex);
 	}
 }
 
@@ -381,8 +402,10 @@ THD_FUNCTION(flash_audio_in, arg) {
 	 */
 	static int cur_id;
 
-	while(TRUE) {
+	while(true) {
 		chBSemWait(&audio_bsem);
+		chMtxLock(&audio_mutex);
+		clear_input_box();
 		// Start to play music.
 		cur_id = music_id;
 		chBSemSignal(&decode_bsem);
@@ -400,5 +423,6 @@ THD_FUNCTION(flash_audio_in, arg) {
 		chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
 		inbuf = NULL;
 		chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
+		chMtxUnlock(&audio_mutex);
 	}
 }
