@@ -364,7 +364,6 @@ void clear_commands(int sensor_id, int channel_id) {
 
 void add_command(int sensor_id, int channel_id, int var_id, int value) {
 	msg_t command;
-
 	command = ((var_id & 0xFFFF) << 16) | (value & 0xFFFF);
 	chMBPost(commands_box[sensor_id][channel_id], command, TIME_INFINITE);
 }

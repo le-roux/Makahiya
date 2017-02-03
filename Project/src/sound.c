@@ -77,8 +77,22 @@ BSEMAPHORE_DECL(download_bsem, true);
 
 static int8_t working_buffer[WORKING_BUFFER_SIZE];
 
-volatile int count = 0;
-volatile bool started = false;
+static volatile bool started = false;
+
+void reset_mailboxes(void) {
+	chMBReset(&free_input_box);
+	chMBReset(&input_box);
+	chMBReset(&free_decoded_data_box);
+	chMBReset(&decoded_data_box);
+
+	// Init the free input buffers mailbox
+	for (int i = 0; i < INPUT_BUFFERS_NB; i++)
+		(void)chMBPost(&free_input_box, (msg_t)&in_buf[i], TIME_INFINITE);
+
+	// Init the free buffers mailbox
+	for (int i = 0; i < DECODED_DATA_BUFFERS_NB; i++)
+		(void)chMBPost(&free_decoded_data_box, (msg_t)&buf[i], TIME_INFINITE);
+}
 
 void audioInit(void){
 	palSetPadMode(GPIOB, 12,  PAL_MODE_ALTERNATE(5));
@@ -86,13 +100,7 @@ void audioInit(void){
 	palSetPadMode(GPIOB, 15,  PAL_MODE_ALTERNATE(5));
 	palSetPadMode(GPIOC, 6,  PAL_MODE_ALTERNATE(5));
 
-	// Init the free input buffers mailbox
-	for (int i = 0; i < INPUT_BUFFERS_NB; i++)
-		chMBPost(&free_input_box, (msg_t)&in_buf[i], TIME_INFINITE);
-
-	// Init the free buffers mailbox
-	for (int i = 0; i < DECODED_DATA_BUFFERS_NB; i++)
-		(void)chMBPost(&free_decoded_data_box, (msg_t)&buf[i], TIME_INFINITE);
+	reset_mailboxes();
 }
 
 void audioI2Scb(I2SDriver* driver, size_t offset, size_t n) {
@@ -103,20 +111,6 @@ void audioI2Scb(I2SDriver* driver, size_t offset, size_t n) {
 	chSysLockFromISR();
 	chSemSignalI(&audio_sem);
 	chSysUnlockFromISR();
-}
-
-void clear_input_box(void) {
-	/**
-	 * Pointer to the buffers containing music data.
-	 */
-	void* inbuf;
-
-	chSysLock();
-	while(chMBGetUsedCountI(&input_box) != 0) {
-		chMBFetchI(&input_box, (msg_t*)&inbuf);
-		chMBPostI(&free_input_box, (msg_t)inbuf);
-	}
-	chSysUnlock();
 }
 
 THD_WORKING_AREA(wa_audio, 512);
@@ -194,7 +188,6 @@ THD_FUNCTION(audio_playback, arg) {
 				chSysLock();
 				buf_nb = chMBGetUsedCountI(&input_box);
 				chSysUnlock();
-				DEBUG("buf nb %i", buf_nb);
 
 				// Don't wait if there is no buffer available and still enough data.
 				if (buf_nb == 0 && (write_ptr - read_ptr) > WORKING_BUFFER_MIN_LENGTH) {
@@ -339,9 +332,19 @@ THD_FUNCTION(wifi_audio_in, arg) {
 	 */
 	int count_nodata;
 
+	int buf_nb;
+
 	while (true) {
 		// Wait to be triggered by the user.
 		chBSemWait(&download_bsem);
+
+		chMtxLock(&audio_mutex);
+		reset_mailboxes();
+		chMtxUnlock(&audio_mutex);
+
+		chSysLock();
+		buf_nb = chMBGetUsedCountI(&free_input_box);
+		chSysUnlock();
 
 		count_nodata = 0;
 		initial_buffering = INPUT_BUFFERS_NB - 1;
@@ -408,7 +411,7 @@ THD_FUNCTION(flash_audio_in, arg) {
 	while(true) {
 		chBSemWait(&audio_bsem);
 		chMtxLock(&audio_mutex);
-		clear_input_box();
+		reset_mailboxes();
 		// Start to play music.
 		cur_id = music_id;
 		chBSemSignal(&decode_bsem);

@@ -75,9 +75,9 @@ void audioInit(void);
 void audioI2Scb(I2SDriver* driver, size_t offset, size_t n);
 
 /**
- * @brief Clear all the sound data not yet decoded.
+ * @brief Reset all the mailboxes used by the audio code.
  */
-void clear_input_box(void);
+void reset_mailboxes(void);
 
 extern THD_FUNCTION(audio_playback, arg);
 extern THD_FUNCTION(wifi_audio_in, arg);

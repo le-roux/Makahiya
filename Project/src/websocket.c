@@ -79,14 +79,18 @@ THD_FUNCTION(websocket_ext, arg) {
             set_alarm(timeout, strtok(NULL, " "));
         } else if (strcmp(cmd, "stop") == 0) {
             repeat = false;
-            clear_input_box();
+            reset_mailboxes();
         } else if (strcmp(cmd, "add") == 0) {
             int sensor_id = atoi(strtok(NULL, " "));
             int channel_id = atoi(strtok(NULL, " "));
-            int var_id = atoi(strtok(NULL, " "));
-            int value = atoi(strtok(NULL, " "));
+            int commands_nb = atoi(strtok(NULL, " "));
+            int var_id, value;
+            for (int i = 0; i < commands_nb; i++) {
+                var_id = atoi(strtok(NULL, " "));
+                value = atoi(strtok(NULL, " "));
 
-            add_command(sensor_id, channel_id, var_id, value);
+                add_command(sensor_id, channel_id, var_id, value);
+            }
         } else if (strcmp(cmd, "clear")) {
             int sensor_id = atoi(strtok(NULL, " "));
             int channel_id = atoi(strtok(NULL, " "));
