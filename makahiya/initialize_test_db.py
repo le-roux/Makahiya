@@ -16,6 +16,7 @@ from .models import (
 	Servos,
 	Users,
 	Timers,
+	Touch,
 	Base,
 	)
 
@@ -65,5 +66,8 @@ def main(argv=sys.argv):
 		session.add(model)
 	for i in range(0,5):
 		model = Servos(servo_id=i, pos=0, plant_id=0)
+		session.add(model)
+	for i in range(1,9):
+		model = Touch(plant_id=0, leaf_id=i, commands='')
 		session.add(model)
 	session.commit()

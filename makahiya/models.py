@@ -70,6 +70,14 @@ class Timers(Base):
 	sound = Column(Integer)
 	light = Column(Integer)
 
+# Touch reaction
+class Touch(Base):
+	__tablename__ = 'touch'
+	uid = Column(Integer, primary_key=True)
+	plant_id = Column(Integer)
+	leaf_id = Column(Integer)
+	commands = Column(String)
+
 # Authorization stuff (access control list).
 class Root(object):
 	__acl__ = [(Allow, Everyone, 'view'),

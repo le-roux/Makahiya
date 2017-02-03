@@ -48,7 +48,7 @@ async def clock(plant_id, absolute=0, hour=0, minute=0, second=0, sound=0, light
             ## Full white
             msg += ' ' + str(26) + ' ' + constants.FULL_WHITE
 
-        msg += constants.MUSIC + str(sound)
+        msg += ' ' + constants.MUSIC + str(sound)
 
     try:
         await send_to_socket(plants, plant_id, msg)

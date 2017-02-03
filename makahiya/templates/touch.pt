@@ -1,0 +1,31 @@
+<metal:macro use-macro="master">
+    <metal:slot fill-slot="body">
+        <div class='container-fluid'>
+            <h1 class='text-center'>Makahiya - Touch Config (board #${plant_id})
+                <span tal:condition='connected == 0'> is disconnected</span>
+            </h1>
+            <table class='table table-stripped'>
+                <tr>
+                    <th>Leaf id</th>
+                    <th>Commands</th>
+                    <th>Send</th>
+                </tr>
+                <tr tal:repeat='id leaf_range'>
+                    <form method='post' action='/${plant_id}/touch' tal:define='name string:Leaf#$id'>
+                        <th>
+                            ${name}
+                        </th>
+                        <th>
+                            <input type='text' name=${name} placeholder='Commands' value="${values[repeat.id.index]}"/>
+                        </th>
+                        <th>
+                            <input type='submit' value='Send'/>
+                        </th>
+                        <th>
+                            <a href='/${plant_id}/touch/delete/${id}' class='btn btn-danger'>Clear config</a>
+                        </th>
+                    </form>
+                </tr>
+            </table>
+    </metal:slot>
+</metal:macro>

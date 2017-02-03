@@ -7,7 +7,7 @@ from pyramid.events import subscriber
 from pyramid.security import remember, forget
 from aiopyramid.config import CoroutineMapper
 import pyramid
-from .models import Session, Leds, Servos, Users, Timers, get_user_plant_id, get_user_level
+from .models import Session, Leds, Servos, Users, Timers, Touch, get_user_plant_id, get_user_level
 from velruse import login_url
 import logging
 import colander
@@ -143,6 +143,8 @@ def login_callback(request):
 			SQLsession.add(Leds(R=0, G=0, B=0, W=0, on=False, plant_id=plant_id, led_id=i))
 		for i in range(0,5):
 			SQLsession.add(Servos(servo_id=i, pos=0, plant_id=plant_id))
+		for i in range(1,9):
+			SQLsession.add(Touch(plant_id=plant_id, leaf_id=i, commands=''))
 		SQLsession.commit()
 		request.session['status'] = 0
 		headers = remember(request, email)
@@ -508,3 +510,77 @@ def delete(request):
 		SQLsession.delete(user)
 		SQLsession.commit()
 	return HTTPFound('/users')
+
+@view_config(route_name='touch_config', renderer='makahiya:templates/touch.pt', permission='view', mapper=CoroutineMapper)
+async def touch_config(request):
+	SQLsession = Session()
+	plant_id = None
+	email = request.authenticated_userid
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
+	if user is not None:
+		plant_id = user.plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		res = {'email': email,
+				'plant_id': plant_id,
+				'level': get_user_level(email)}
+		res['leaf_range'] = range(1,9)
+		if request.method == 'POST':
+			for i in res['leaf_range']:
+				if 'Leaf#' + str(i) in request.POST:
+					commands = request.POST.getone('Leaf#' + str(i))
+					sensor_id = 0
+					channel_id = int(i)
+					if i > 4:
+						sensor_id = 1
+						channel_id -= 4
+					commands_nb = len(commands.split())
+					if commands_nb % 2 == 1:
+						res['error'] = 1
+					else:
+						try:
+							await send_to_socket(plants, plant_id, 'add ' +\
+							 str(sensor_id) + ' ' + str(channel_id) + ' ' + \
+							 str(commands_nb) + ' ' + commands)
+							touch_config = SQLsession.query(Touch).filter_by(plant_id=plant_id, leaf_id=i).first()
+							touch_config.commands = commands
+							SQLsession.commit()
+						except KeyError:
+							log.debug("key error")
+		res['connected'] = plants.registered(plant_id)
+		values = []
+		for i in res['leaf_range']:
+			touch_config = SQLsession.query(Touch).filter_by(plant_id=plant_id, leaf_id=i).first()
+			values.append(touch_config.commands)
+		res['values'] = values
+		return res
+
+	else:
+		return HTTPFound('/wrong_id')
+
+@view_config(route_name='touch_config_delete', permission='view', mapper=CoroutineMapper)
+async def touch_config_delete(request):
+	SQLsession = Session()
+	plant_id = None
+	email = request.authenticated_userid
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
+	if user is not None:
+		plant_id = user.plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		leaf_id = int(request.matchdict['leaf_id'])
+		sensor_id = 0
+		channel_id = int(leaf_id)
+		if (leaf_id > 4):
+			sensor_id = 1
+			channel_id -= 4
+		try:
+			await send_to_socket(plants, plant_id, 'clear ' + str(sensor_id) + ' ' + str(channel_id))
+			touch_config = SQLsession.query(Touch).filter_by(plant_id=plant_id, leaf_id=leaf_id).first()
+			touch_config.commands = ''
+			SQLsession.commit()
+		except KeyError:
+			log.debug('key error')
+		return HTTPFound('/' + str(plant_id) + '/touch')
+	else:
+		return HTTPFound('/wrong_id')
