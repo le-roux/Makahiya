@@ -8,8 +8,7 @@
 #include "wifi.h"
 #include "websocket.h"
 #include "sound.h"
-
-#include "SEGGER_RTT.h"
+#include "alarm.h"
 
 int main(void) {
 
@@ -23,6 +22,7 @@ int main(void) {
 	fdcInit();
 	audioInit();
 	pwmUserInit();
+	alarmInit();
 
 	/**
 	 * Websocket thread
@@ -35,7 +35,6 @@ int main(void) {
 	chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO, audio_playback, NULL);
 	chThdCreateStatic(wa_audio_in, sizeof(wa_audio_in), NORMALPRIO + 1, wifi_audio_in, NULL);
 	chThdCreateStatic(wa_flash, sizeof(wa_flash), NORMALPRIO, flash_audio_in, NULL);
-	read_music("/file.mp3");
 
 	/**
 	 * Lighting LEDs to show end of startup

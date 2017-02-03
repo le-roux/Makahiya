@@ -7,7 +7,7 @@
  * @brief Initialize all the elements required by the alarm driver.
  * WARNING: Never use the alarm driver before having called this function.
  */
-void alarm_init(void);
+void alarmInit(void);
 
 /**
  * @brief Set the alarm_clock duration and the commands to run at expiration.

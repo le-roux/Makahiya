@@ -92,4 +92,7 @@ void fdcInit(void);
  */
 void fdc_cb(EXTDriver* driver, expchannel_t channel);
 
+void clear_commands(int sensor_id, int channel_id);
+void add_command(int sensor_id, int channel_id, int var_id, int value);
+
 #endif // FDC2214_H
