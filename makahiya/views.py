@@ -393,7 +393,7 @@ async def board_timer(request):
 
 
 		cur = datetime.datetime.now()
-		if timer.date < cur: # Deadline is passed
+		if timer.date == None or timer.date < cur: # Deadline is passed
 			res['hours'] = 0
 			res['minutes'] = 0
 			res['seconds'] = 0
