@@ -135,7 +135,8 @@ CSRC = $(STARTUPSRC) \
 	   $(SRC)/utils.c \
 	   $(SRC)/websocket.c \
 	   $(SRC)/wifi.c \
-	   $(SRC)/i2s_user.c
+	   $(SRC)/i2s_user.c \
+	   $(SRC)/commands.c
 
 # MP3 files to include in the executable.
 MP3SRC = alarm1.mp3 alarm2.mp3 alarm3.mp3

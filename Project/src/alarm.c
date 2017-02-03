@@ -4,6 +4,9 @@
 #include <stdlib.h>
 #include "sound.h"
 #include "pwmdriver.h"
+#include "RTT_streams.h"
+#include "commands.h"
+#include "chprintf.h"
 
 /**
  * @brief Virtual timer to set when creating an alarm clock.
@@ -13,7 +16,7 @@ static virtual_timer_t alarm_clock;
 /**
  * @brief Maximum number of commands that can be executed on alarm_clock expiry.
  */
-#define MAX_COMMANDS 16
+#define MAX_COMMANDS 64
 
 /**
  * @brief Buffer used by the commands_box mailbox.
@@ -35,11 +38,44 @@ static int commands_nb;
  */
 static void alarm_cb(void* arg);
 
-#define MUSIC 1
-static const int STOP_MUSIC = 255;
+static BSEMAPHORE_DECL(alarm_bsem, true);
 
-void alarm_init(void) {
+static THD_WORKING_AREA(alarm_wa, 512);
+THD_FUNCTION(alarm, arg);
+
+void alarmInit(void) {
     chVTObjectInit(&alarm_clock);
+    chThdCreateStatic(alarm_wa, sizeof(alarm_wa), NORMALPRIO, alarm, NULL);
+}
+
+THD_FUNCTION(alarm, arg) {
+    UNUSED(arg);
+
+    /**
+    * The command to perform. It contains both @p var_id and @p value.
+    */
+    msg_t command;
+
+    static loop_t loop;
+
+    while(true) {
+        loop.state = SINGLE;
+        chBSemWait(&alarm_bsem);
+
+        do {
+            (void)chMBFetch(&commands_box, &command, TIME_INFINITE);
+
+            handle_commands((uint32_t)command, &loop);
+
+            if (loop.state == LOOP)
+                chMBPost(&commands_box, command, TIME_INFINITE);
+
+            chSysLock();
+            commands_nb = chMBGetUsedCountI(&commands_box);
+            chSysUnlock();
+        } while (commands_nb != 0);
+
+    }
 }
 
 void set_alarm(int timeout, char* commands_list) {
@@ -52,7 +88,6 @@ void set_alarm(int timeout, char* commands_list) {
      * The value that must be set to the variable specified in @p var_id.
      */
     uint16_t value;
-
     chVTReset(&alarm_clock);
     commands_nb = atoi(commands_list);
     for (int i = 0; i < commands_nb; i++) {
@@ -67,45 +102,7 @@ void set_alarm(int timeout, char* commands_list) {
 static void alarm_cb(void* arg) {
     UNUSED(arg);
 
-    /**
-     * The command to perform. It contains both @p var_id and @p value.
-     */
-    msg_t command;
-
-    /**
-     * The id of the variable the command affects.
-     */
-    uint16_t var_id;
-
-    /**
-     * The value that must be set to the variable specified in @p var_id.
-     */
-    uint16_t value;
-
-    for (int i = 0; i < commands_nb; i++) {
-        chSysLockFromISR();
-        (void)chMBFetchI(&commands_box, &command);
-        chSysUnlockFromISR();
-        var_id = (uint16_t)((command & 0xFFFF0000) >> 16);
-        value = (uint16_t)(command & 0xFFFF);
-        switch (var_id) {
-            case(MUSIC): {
-                if (value == STOP_MUSIC) {
-                    repeat = 0;
-                } else {
-                    music_id = value;
-                    repeat = 1;
-                    chSysLockFromISR();
-                    chBSemSignalI(&audio_bsem);
-                    chSysUnlockFromISR();
-                }
-                break;
-            }
-            default: {
-                chSysLockFromISR();
-                setValueI(var_id, value);
-                chSysUnlockFromISR();
-            }
-        }
-    }
+    chSysLockFromISR();
+    chBSemSignalI(&alarm_bsem);
+    chSysUnlockFromISR();
 }
