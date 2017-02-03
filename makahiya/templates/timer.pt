@@ -64,8 +64,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <div tal:repeat="id ('1', '2')">
-                                <div tal:define='value string:light$id'>
+                            <div tal:repeat="id ('1', '2', '3', '4', '5', '6')">
+                                <div tal:define='value string:light$id - ${light_config[repeat.id.number]}'>
                                     <input type='radio' name='light_id'
                                         value=${id} required
                                         tal:attributes="checked python:light == int(repeat.id.number); disabled python:activated == 1">

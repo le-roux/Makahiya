@@ -409,6 +409,7 @@ async def board_timer(request):
 		res['sound'] = timer.sound
 		res['light'] = timer.light
 		res['connected'] = plants.registered(plant_id)
+		res['light_config'] = constants.LIGHT_CONFIG
 		return res
 	else:
 		return HTTPFound('/wrong_id')

@@ -19,22 +19,38 @@ async def clock(plant_id, absolute=0, hour=0, minute=0, second=0, sound=0, light
         delta = date - cur
     else:
         delta = datetime.timedelta(hours=hour, minutes=minute, seconds=second)
-    try:
+        msg = 'alarm ' + str(int(delta.total_seconds()))
         if light == 1:
-            msg = 'alarm ' + str(int(delta.total_seconds())) + \
-                constants.ALL_OFF + \
+            msg += ' ' + str(11) + ' ' + constants.ALL_OFF + \
                 ' ' + str(constants.LED1_R) + ' ' + str(255) + \
                 ' ' + str(constants.LED1_G) + ' ' + str(0) + \
                 ' ' + str(constants.LED1_B) + ' ' + str(0) + \
                 constants.SET_LED_ON[1]
         elif light == 2:
-            msg = 'alarm ' + str(int(delta.total_seconds())) + \
-                constants.ALL_OFF + \
+            msg += ' ' + str(11) + ' ' + constants.ALL_OFF + \
                 ' ' + str(constants.LED1_R) + ' ' + str(0) + \
                 ' ' + str(constants.LED1_G) + ' ' + str(255) + \
                 ' ' + str(constants.LED1_B) + ' ' + str(0) + \
                 constants.SET_LED_ON[1]
+        elif light == 3:
+            ## Full red
+            msg += ' ' + str(26) + ' ' + constants.FULL_RED
 
+        elif light == 4:
+            ## Full green
+            msg += ' ' + str(26) + ' ' + constants.FULL_GREEN
+
+        elif light == 5:
+            ## Full blue
+            msg += ' ' + str(26) + ' ' + constants.FULL_BLUE
+
+        elif light == 6:
+            ## Full white
+            msg += ' ' + str(26) + ' ' + constants.FULL_WHITE
+
+        msg += constants.MUSIC + str(sound)
+
+    try:
         await send_to_socket(plants, plant_id, msg)
         log.debug("Request sent")
     except KeyError as e:
