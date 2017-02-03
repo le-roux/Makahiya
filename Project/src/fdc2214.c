@@ -217,13 +217,9 @@ static THD_FUNCTION(fdc_int, arg) {
 		if (sensor_status & DRDY) { // Data ready to be read.
 			for (int channel_id = 0; channel_id < CHANNELS_NB[sensor]; channel_id++) {
 				acquire_value(sensor, channel_id);
-				if (sensor == 0 && channel_id == 3) {
-					action = detect_action(sensor, channel_id);
-					if (action == 1)
-						setLed(LED2_G, 12);
-					else if (action == -1)
-						setLed(LED2_G, 0);
-				}
+				action = detect_action(sensor, channel_id);
+				if (action == 1)
+					DEBUG("Touch %d", 4 * sensor + channel_id);
 			}
 		}
 	}

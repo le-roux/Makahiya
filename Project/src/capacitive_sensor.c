@@ -56,7 +56,7 @@ static uint8_t touch_detected(int sensor_id, int channel_id) {
 	int offset = (sensor_id * MAX_CHANNELS_NB + channel_id) * BUFFER_SIZE;
 	int last_val = buffer[offset + PREVIOUS_INDEX(write_index[sensor_id][channel_id])];
 
-	if (last_val < 268435455)
+	if (last_val < 3000000)
 		return 1;
 	else
 		return 0;
