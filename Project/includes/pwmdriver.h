@@ -26,10 +26,10 @@
 #define LED5_B 5U
 #define LED5_ON 54U
 
-#define LED_HP_R 8U
-#define LED_HP_G 9U
-#define LED_HP_B 12U
-#define LED_HP_W 13U
+#define LED_HP_R 12U
+#define LED_HP_G 13U
+#define LED_HP_B 9U
+#define LED_HP_W 8U
 #define LED_HP_ON 55U
 
 #define IS_LED_1(x) (x == LED1_R || x == LED1_G || x == LED1_B)

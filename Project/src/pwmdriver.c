@@ -224,10 +224,10 @@ void pwmUserInit(void){
 	palClearPad(GPIOB, 4);
 	palSetPadMode(GPIOB, 5,  PAL_MODE_ALTERNATE(2));
 	palClearPad(GPIOB, 5);
-	palSetPadMode(GPIOC, 1,  PAL_MODE_ALTERNATE(2));
-	palClearPad(GPIOC, 1);
-	palSetPadMode(GPIOC, 2,  PAL_MODE_ALTERNATE(2));
-	palClearPad(GPIOC, 2);
+	palSetPadMode(GPIOB, 6,  PAL_MODE_ALTERNATE(2));
+	palClearPad(GPIOB, 6);
+	palSetPadMode(GPIOB, 7,  PAL_MODE_ALTERNATE(2));
+	palClearPad(GPIOB, 7);
 
 	// Servos
 
