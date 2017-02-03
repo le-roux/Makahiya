@@ -14,15 +14,18 @@
 
 const int8_t* const _binary_start[ALARM_SOUND_NB] = {&_binary_alarm1_mp3_start,
 	&_binary_alarm2_mp3_start,
-	&_binary_alarm3_mp3_start};
+	&_binary_alarm3_mp3_start,
+	&_binary_boot_mp3_start};
 
 const int8_t* const _binary_size[ALARM_SOUND_NB] = {&_binary_alarm1_mp3_size,
 	&_binary_alarm2_mp3_size,
-	&_binary_alarm3_mp3_size};
+	&_binary_alarm3_mp3_size,
+	&_binary_boot_mp3_size};
 
 const int8_t* const _binary_end[ALARM_SOUND_NB] = {&_binary_alarm1_mp3_end,
 	&_binary_alarm2_mp3_end,
-	&_binary_alarm3_mp3_end};
+	&_binary_alarm3_mp3_end,
+	&_binary_boot_mp3_end};
 
 
 volatile int music_id;

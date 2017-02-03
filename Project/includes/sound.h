@@ -13,7 +13,7 @@
 /*       Variables            */
 /******************************/
 
-#define ALARM_SOUND_NB 3
+#define ALARM_SOUND_NB 4
 
 extern int8_t _binary_alarm1_mp3_start;
 extern int8_t _binary_alarm1_mp3_size;
@@ -26,6 +26,10 @@ extern int8_t _binary_alarm2_mp3_end;
 extern int8_t _binary_alarm3_mp3_start;
 extern int8_t _binary_alarm3_mp3_size;
 extern int8_t _binary_alarm3_mp3_end;
+
+extern int8_t _binary_boot_mp3_start;
+extern int8_t _binary_boot_mp3_size;
+extern int8_t _binary_boot_mp3_end;
 
 extern const int8_t* const _binary_start[ALARM_SOUND_NB];
 extern const int8_t* const _binary_size[ALARM_SOUND_NB];

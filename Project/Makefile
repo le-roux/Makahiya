@@ -139,7 +139,7 @@ CSRC = $(STARTUPSRC) \
 	   $(SRC)/commands.c
 
 # MP3 files to include in the executable.
-MP3SRC = alarm1.mp3 alarm2.mp3 alarm3.mp3
+MP3SRC = alarm1.mp3 alarm2.mp3 alarm3.mp3 boot.mp3
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.

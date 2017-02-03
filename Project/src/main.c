@@ -37,8 +37,12 @@ int main(void) {
 	chThdCreateStatic(wa_flash, sizeof(wa_flash), NORMALPRIO, flash_audio_in, NULL);
 
 	/**
-	 * Lighting LEDs to show end of startup
+	 * Lighting LEDs to show end of startup + sound
 	 */
+
+	music_id = 3;
+	repeat = 1;
+	chBSemSignal(&audio_bsem);
 
 	setLed(LED1_R, 12);
 	setLed(LED2_R, 12);
@@ -79,6 +83,8 @@ int main(void) {
 	setLed(LED4_B, 0);
 	setLed(LED5_B, 0);
 	setLed(LED_HP_B, 0);
+
+	repeat = 0;
 
 	while(true) {
 		chThdSleepMilliseconds(1000);
