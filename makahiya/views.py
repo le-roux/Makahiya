@@ -551,7 +551,7 @@ async def touch_config(request):
 						try:
 							await send_to_socket(plants, plant_id, 'add ' +\
 							 str(sensor_id) + ' ' + str(channel_id) + ' ' + \
-							 str(commands_nb) + ' ' + commands)
+							 str(commands_nb / 2) + ' ' + commands)
 							touch_config = SQLsession.query(Touch).filter_by(plant_id=plant_id, leaf_id=i).first()
 							touch_config.commands = commands
 							SQLsession.commit()
