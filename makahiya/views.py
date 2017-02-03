@@ -594,3 +594,26 @@ async def touch_config_delete(request):
 		return HTTPFound('/' + str(plant_id) + '/touch')
 	else:
 		return HTTPFound('/wrong_id')
+
+@view_config(route_name='music', renderer='makahiya:templates/music.pt', permission='view', mapper=CoroutineMapper)
+async def music(request):
+	SQLsession = Session()
+	plant_id = None
+	email = request.authenticated_userid
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
+	if user is not None:
+		plant_id = user.plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		res = {'email': email,
+				'plant_id': plant_id,
+				'level': get_user_level(email)}
+
+		if request.method == 'POST':
+			try:
+				await send_to_socket(plants, plant_id, 'play /' + str(plant_id) + '/file.mp3')
+			except KeyError:
+				log.debug('KeyError when starting music')
+		return res
+	else:
+		return HTTPFound('/wrong_id')

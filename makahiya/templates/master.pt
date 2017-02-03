@@ -29,12 +29,12 @@
                     <li>
                         <a href="/">Home</a>
                     </li>
-                    <li tal:condition="python:plant_id >= 0 | nothing">
+                    <li tal:condition="plant_id >= 0 | nothing">
                         <a tal:define="link string:/$plant_id/board/leds" href=${link}>
-                            Leds
+                            Leds, Servos
                         </a>
                     </li>
-                    <li tal:condition="python:plant_id >= 0 | nothing">
+                    <li tal:condition="plant_id >= 0 | nothing">
                         <a tal:define="link string:/$plant_id/board/timer" href=${link}>
                             Timer
                         </a>
@@ -42,6 +42,11 @@
                     <li tal:condition="plant_id >= 0 | nothing">
                         <a tal:define="link string:/$plant_id/touch" href=${link}>
                             Touch configuration
+                        </a>
+                    </li>
+                    <li tal:condition="plant_id >= 0 | nothing">
+                        <a tal:define="link string:/$plant_id/music" href=${link}>
+                            Music
                         </a>
                     </li>
                     <li tal:condition='level == 1 | nothing'>

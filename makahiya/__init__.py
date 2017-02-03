@@ -32,6 +32,7 @@ def main(global_config, **settings):
 	config.add_route('quick_timer', '/{plant_id}/board/timer/{time}')
 	config.add_route('touch_config', '/{plant_id}/touch')
 	config.add_route('touch_config_delete', '/{plant_id}/touch/delete/{leaf_id}')
+	config.add_route('music', '/{plant_id}/music')
 	config.add_route('wrong_id', '/wrong_id')
 	config.add_route('led', '/led')
 	config.add_route('upload', '/upload')
