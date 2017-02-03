@@ -37,6 +37,44 @@ int main(void) {
 	chThdCreateStatic(wa_flash, sizeof(wa_flash), NORMALPRIO, flash_audio_in, NULL);
 	read_music("/file.mp3");
 
+	/**
+	 * Lighting LEDs to show end of startup
+	 */
+
+	setLed(LED1_R, 12);
+	setLed(LED2_R, 12);
+	setLed(LED3_R, 12);
+	setLed(LED4_R, 12);
+	setLed(LED5_R, 12);
+	chThdSleepMilliseconds(1000);
+	setLed(LED1_G, 12);
+	setLed(LED2_G, 12);
+	setLed(LED3_G, 12);
+	setLed(LED4_G, 12);
+	setLed(LED5_G, 12);
+	setLed(LED1_R, 0);
+	setLed(LED2_R, 0);
+	setLed(LED3_R, 0);
+	setLed(LED4_R, 0);
+	setLed(LED5_R, 0);
+	chThdSleepMilliseconds(1000);
+	setLed(LED1_B, 12);
+	setLed(LED2_B, 12);
+	setLed(LED3_B, 12);
+	setLed(LED4_B, 12);
+	setLed(LED5_B, 12);
+	setLed(LED1_G, 0);
+	setLed(LED2_G, 0);
+	setLed(LED3_G, 0);
+	setLed(LED4_G, 0);
+	setLed(LED5_G, 0);
+	chThdSleepMilliseconds(1000);
+	setLed(LED1_B, 0);
+	setLed(LED2_B, 0);
+	setLed(LED3_B, 0);
+	setLed(LED4_B, 0);
+	setLed(LED5_B, 0);
+
 	while(true) {
 		chThdSleepMilliseconds(1000);
 	}
