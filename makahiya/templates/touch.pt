@@ -4,10 +4,11 @@
             <h1 class='text-center'>Makahiya - Touch Config (board #${plant_id})
                 <span tal:condition='connected == 0'> is disconnected</span>
             </h1>
+            <br/>
             <table class='table table-stripped'>
                 <tr>
                     <th>Leaf id</th>
-                    <th>Commands</th>
+                    <th>Commands - Syntax: {[var_id] [value]}*</th>
                     <th>Send</th>
                 </tr>
                 <tr tal:repeat='id leaf_range'>

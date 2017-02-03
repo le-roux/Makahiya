@@ -366,7 +366,6 @@ async def board_timer(request):
 				'level': get_user_level(email)}
 		timer = SQLsession.query(Timers).filter_by(plant_id=plant_id).first()
 		if request.method == 'POST' and plants.registered(plant_id):
-			log.debug('POST: ' + str(request.POST))
 			if 'type' in request.POST:
 				try:
 					absolute = request.POST.getone('type') == 'Absolute'
@@ -393,19 +392,19 @@ async def board_timer(request):
 					pass
 
 
-		if timer.activated:
-			cur = datetime.datetime.now()
+		cur = datetime.datetime.now()
+		if timer.date < cur: # Deadline is passed
+			res['hours'] = 0
+			res['minutes'] = 0
+			res['seconds'] = 0
+			if timer.activated:
+				timer.activated = False
+				SQLsession.commit()
+		else:
 			delta = timer.date - cur
 			res['hours'] = int(delta.seconds / 3600)
 			res['minutes'] = int((delta.seconds % 3600) / 60)
 			res['seconds'] = delta.seconds % 60
-			if res['hours'] == 0 and res['minutes'] == 0 and res['seconds'] == 0:
-				timer.activated = False
-				SQLsession.commit()
-		else:
-			res['hours'] = 0
-			res['minutes'] = 0
-			res['seconds'] = 0
 
 		res['activated'] = timer.activated
 		res['sound'] = timer.sound
@@ -444,9 +443,20 @@ async def quick_timer(request):
 	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
 		if plants.registered(plant_id):
 			timer = SQLsession.query(Timers).filter_by(plant_id=plant_id).first()
+			time = int(request.matchdict['time'])
 			timer.activated = True
+			if time == 1:
+				timer.light = 3 # Full red
+			elif time == 2:
+				timer.light = 7 # Full yellow
+			elif time == 5:
+				timer.light = 5 # Full blue
+			elif time == 10:
+				timer.light = 5 # Full blue
+			else:
+				timer.light = 4 # Full green
+
 			timer.sound = 2
-			timer.light = 1
 			date = await clock(plant_id, minute=int(request.matchdict['time']), sound=timer.sound, light=timer.light)
 			timer.date = date
 			SQLsession.commit()

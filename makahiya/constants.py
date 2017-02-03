@@ -71,7 +71,7 @@ class constants:
     ' ' + str(LED_HP_B) + ' ' + str(0) + \
     ' ' + str(LED_HP_W) + ' ' + str(0)
 
-    LIGHT_CONFIG = ['1', '2', '3', 'Full Red', 'Full Green', 'Full Blue', 'Full White']
+    LIGHT_CONFIG = ['1', 'Led 1 Red', 'Led 1 Green', 'Full Red', 'Full Green', 'Full Blue', 'Full White']
 
     FULL_RED = ''
     for i in range(6):

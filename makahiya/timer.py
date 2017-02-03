@@ -47,6 +47,9 @@ async def clock(plant_id, absolute=0, hour=0, minute=0, second=0, sound=0, light
         elif light == 6:
             ## Full white
             msg += ' ' + str(26) + ' ' + constants.FULL_WHITE
+        elif light == 7:
+            ##Full yellow
+            msg += ' ' + str(26) + ' ' + constants.FULL_YELLOW
 
         msg += ' ' + constants.MUSIC + str(sound)
 
