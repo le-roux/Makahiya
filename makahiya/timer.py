@@ -6,7 +6,7 @@ import datetime
 from .constants import constants
 log = logging.getLogger(__name__)
 
-async def clock(plant_id, absolute=0, hour=0, minute=0, second=0, sound=0, light=0):
+async def clock(plant_id, absolute=0, hour=0, minute=0, second=0, sound=255, light=0):
     cur = datetime.datetime.now()
     if absolute:
         date = datetime.datetime(cur.year, cur.month, cur.day, hour, minute, second)

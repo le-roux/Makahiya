@@ -67,7 +67,7 @@
                             <div tal:repeat="id ('1', '2', '3', '4', '5', '6')">
                                 <div tal:define='value string:light$id - ${light_config[repeat.id.number]}'>
                                     <input type='radio' name='light_id'
-                                        value=${id} required
+                                        value=${id}
                                         tal:attributes="checked python:light == int(repeat.id.number); disabled python:activated == 1">
                                         ${value}
                                     </input>
@@ -78,7 +78,7 @@
                             <div tal:repeat="id ('1', '2', '3')">
                                 <div tal:define='value string:alarm$id'>
                                     <audio id='${value}' src='/static/${value}.mp3'></audio>
-                                    <input type='radio' name='alarm_id' value=${id} required
+                                    <input type='radio' name='alarm_id' value=${id}
                                         tal:attributes="checked python:sound == int(repeat.id.number); disabled python:activated == 1"
                                         oninput="document.getElementById('${value}').play()">
                                         ${value}

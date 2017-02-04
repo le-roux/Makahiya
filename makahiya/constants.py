@@ -65,7 +65,7 @@ class constants:
 
     ledHP_R_and_sound_1 = ' ' + str(11) + \
     ' ' + MUSIC + str(1) + \
-    ' ' + str(LED_HP_R) + ' ' + str(255) + \
+    ' ' + str(LED_HP_R) + ' ' + str(150) + \
     ALL_OFF + \
     ' ' + str(LED_HP_G) + ' ' + str(0) + \
     ' ' + str(LED_HP_B) + ' ' + str(0) + \
@@ -75,7 +75,7 @@ class constants:
 
     FULL_RED = ''
     for i in range(6):
-        FULL_RED += ' ' + str(LED_R[i]) + ' ' + str(255) + \
+        FULL_RED += ' ' + str(LED_R[i]) + ' ' + str(150) + \
                 ' ' + str(LED_G[i]) + ' ' + str(0) + \
                 ' ' + str(LED_B[i]) + ' ' + str(0)
     FULL_RED += ' ' + str(LED_HP_W) + ' ' + str(0)
@@ -85,7 +85,7 @@ class constants:
     FULL_GREEN = ''
     for i in range(6):
         FULL_GREEN += ' ' + str(LED_R[i]) + ' ' + str(0) + \
-                ' ' + str(LED_G[i]) + ' ' + str(255) + \
+                ' ' + str(LED_G[i]) + ' ' + str(150) + \
                 ' ' + str(LED_B[i]) + ' ' + str(0)
     FULL_GREEN += ' ' + str(LED_HP_W) + ' ' + str(0)
     for i in range(6):
@@ -95,24 +95,24 @@ class constants:
     for i in range(6):
         FULL_BLUE += ' ' + str(LED_R[i]) + ' ' + str(0) + \
                 ' ' + str(LED_G[i]) + ' ' + str(0) + \
-                ' ' + str(LED_B[i]) + ' ' + str(255)
+                ' ' + str(LED_B[i]) + ' ' + str(150)
     FULL_BLUE += ' ' + str(LED_HP_W) + ' ' + str(0)
     for i in range(6):
         FULL_BLUE += ' ' + str(LED_ON[i]) + ' ' + str(1)
 
     FULL_WHITE = ''
     for i in range(6):
-        FULL_WHITE += ' ' + str(LED_R[i]) + ' ' + str(255) + \
-                ' ' + str(LED_G[i]) + ' ' + str(255) + \
-                ' ' + str(LED_B[i]) + ' ' + str(255)
-    FULL_WHITE += ' ' + str(LED_HP_W) + ' ' + str(255)
+        FULL_WHITE += ' ' + str(LED_R[i]) + ' ' + str(150) + \
+                ' ' + str(LED_G[i]) + ' ' + str(150) + \
+                ' ' + str(LED_B[i]) + ' ' + str(150)
+    FULL_WHITE += ' ' + str(LED_HP_W) + ' ' + str(150)
     for i in range(6):
         FULL_WHITE += ' ' + str(LED_ON[i]) + ' ' + str(1)
 
     FULL_YELLOW = ''
     for i in range(6):
-        FULL_YELLOW += ' ' + str(LED_R[i]) + ' ' + str(255) + \
-                ' ' + str(LED_G[i]) + ' ' + str(255) + \
+        FULL_YELLOW += ' ' + str(LED_R[i]) + ' ' + str(150) + \
+                ' ' + str(LED_G[i]) + ' ' + str(150) + \
                 ' ' + str(LED_B[i]) + ' ' + str(0)
     FULL_YELLOW += ' ' + str(LED_HP_W) + ' ' + str(0)
     for i in range(6):
@@ -120,9 +120,9 @@ class constants:
 
     FULL_PINK = ''
     for i in range(6):
-        FULL_PINK += ' ' + str(LED_R[i]) + ' ' + str(255) + \
+        FULL_PINK += ' ' + str(LED_R[i]) + ' ' + str(150) + \
                 ' ' + str(LED_G[i]) + ' ' + str(0) + \
-                ' ' + str(LED_B[i]) + ' ' + str(255)
+                ' ' + str(LED_B[i]) + ' ' + str(150)
     FULL_PINK += ' ' + str(LED_HP_W) + ' ' + str(0)
     for i in range(6):
         FULL_PINK += ' ' + str(LED_ON[i]) + ' ' + str(1)
@@ -130,8 +130,8 @@ class constants:
     FULL_CYAN = ''
     for i in range(6):
         FULL_CYAN += ' ' + str(LED_R[i]) + ' ' + str(0) + \
-                ' ' + str(LED_G[i]) + ' ' + str(255) + \
-                ' ' + str(LED_B[i]) + ' ' + str(255)
+                ' ' + str(LED_G[i]) + ' ' + str(150) + \
+                ' ' + str(LED_B[i]) + ' ' + str(150)
     FULL_CYAN += ' ' + str(LED_HP_W) + ' ' + str(0)
     for i in range(6):
         FULL_CYAN += ' ' + str(LED_ON[i]) + ' ' + str(1)
