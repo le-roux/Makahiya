@@ -1,7 +1,7 @@
 from pyramid.view import view_config
 from .custom_mapper import CustomWebsocketMapper
 from .websocket_register import WebsocketRegister
-from .models import Session, Leds
+from .models import Session, Leds, Servos
 from .constants import constants
 
 import asyncio
@@ -167,6 +167,9 @@ async def plant(ws):
 								await ws.send(constants.SET + str(constants.LED_ON[i]) + ' 1')
 							else:
 								await ws.send(constants.SET + str(constants.LED_ON[i]) + ' 0')
+						for i in range(0, 5):
+							servo = SQLSession.query(Servos).filter_by(plant_id=plant_id, servo_id=i).one()
+							await ws.send(constants.SET + str(constants.SERVOS[i]) + ' ' + str(servo.pos))
 				if (clients.registered(plant_id)):
 					await send_to_socket(clients, plant_id, msg)
 
