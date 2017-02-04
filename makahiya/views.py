@@ -7,6 +7,7 @@ from pyramid.events import subscriber
 from pyramid.security import remember, forget
 from aiopyramid.config import CoroutineMapper
 import pyramid
+import os
 from .models import Session, Leds, Servos, Users, Timers, Touch, get_user_plant_id, get_user_level
 from velruse import login_url
 import logging
@@ -37,20 +38,6 @@ def home(request):
 	else:
 		res['level'] = -1
 	return res
-
-# upload mp3 file
-@view_config(route_name='upload', renderer='makahiya:templates/upload.pt')
-def upload(request):
-	if request.method == 'POST':
-		sound = request.params['sound']
-		open ('file.mp3', 'wb').write(sound.file.read())
-		return Response('File uploaded')
-	return {}
-
-#download the mp3 file
-@view_config(route_name = 'mp3')
-def download(request):
-	return FileResponse('/home/tanguy/makahiya/file.mp3', request=request, content_type='audio/mp3')
 
 @view_config(route_name='wrong_id', renderer='makahiya:templates/wrong_id.pt')
 def wrong_id(request):
@@ -594,8 +581,8 @@ async def touch_config_delete(request):
 	else:
 		return HTTPFound('/wrong_id')
 
-@view_config(route_name='music', renderer='makahiya:templates/music.pt', permission='view', mapper=CoroutineMapper)
-async def music(request):
+@view_config(route_name='music', renderer='makahiya:templates/music.pt', permission='view')
+def music(request):
 	SQLsession = Session()
 	plant_id = None
 	email = request.authenticated_userid
@@ -609,10 +596,27 @@ async def music(request):
 				'level': get_user_level(email)}
 
 		if request.method == 'POST':
-			try:
-				await send_to_socket(plants, plant_id, 'play /' + str(plant_id) + '/file.mp3')
-			except KeyError:
-				log.debug('KeyError when starting music')
+			sound = request.params['sound']
+			if not os.path.exists('music/' + str(plant_id)):
+				os.mkdir('music/' + str(plant_id))
+			open ('music/' + str(plant_id) + '/file.mp3', 'wb').write(sound.file.read())
+			return Response('File uploaded')
 		return res
 	else:
 		return HTTPFound('/wrong_id')
+
+@view_config(route_name='music_play', permission='view', mapper=CoroutineMapper)
+async def play_music(request):
+	SQLsession = Session()
+	plant_id = None
+	email = request.authenticated_userid
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
+	if user is not None:
+		plant_id = user.plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		try:
+			await send_to_socket(plants, plant_id, 'play /music/' + str(plant_id) + '/file.mp3')
+		except KeyError:
+			log.debug('KeyError when starting music')
+		return HTTPFound('/' + str(plant_id) + '/music')

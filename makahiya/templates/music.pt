@@ -1,13 +1,17 @@
 <metal:macro use-macro='master'>
-    <metal:slot fill-slot='body'>
-        <h1 class='text-center'>
-            Makahiya - Music
-        </h1>
-        <br/><br/>
-        <div class='container'>
-            <a href='/${plant_id}/music' class='btn btn-success btn-lg btn-block' role='button'>
-                Play music
-            </a>
-        </div>
-    </metal:slot>
+	<metal:slot fill-slot='body'>
+		<h1 class='text-center'>
+			Makahiya - Music
+		</h1>
+		<br/><br/>
+		<form method="POST" enctype="multipart/form-data" action="/${plant_id}/music">
+		File: <input type="file" name="sound" /><br />
+		<input type="submit" value="Upload">
+		</form>
+		<div class='container'>
+			<a href='/${plant_id}/music/play' class='btn btn-success btn-lg btn-block' role='button'>
+				Play music
+			</a>
+		</div>
+	</metal:slot>
 </metal:macro>
