@@ -414,8 +414,13 @@ THD_FUNCTION(flash_audio_in, arg) {
 		chBSemWait(&audio_bsem);
 		chMtxLock(&audio_mutex);
 		reset_mailboxes();
-		// Start to play music.
 		cur_id = music_id;
+		if (cur_id >= ALARM_SOUND_NB) {
+			chMtxUnlock(&audio_mutex);
+			continue;
+		}
+
+		// Start to play music.
 		chBSemSignal(&decode_bsem);
 		while (repeat > 0 && !urgent_stop) {
 			cur_pos = _binary_start[cur_id];
