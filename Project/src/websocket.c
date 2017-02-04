@@ -82,6 +82,10 @@ THD_FUNCTION(websocket_ext, arg) {
         } else if (strcmp(cmd, "stop") == 0) {
             repeat = 0;
             urgent_stop = true;
+            char close_cmd[11];
+            strcpy(close_cmd, "close ");
+            strcat(close_cmd, ((wifi_connection)audio_conn).channel_id);
+            send_cmd(close_cmd, false);
         } else if (strcmp(cmd, "add") == 0) {
             int sensor_id = atoi(strtok(NULL, " "));
             int channel_id = atoi(strtok(NULL, " "));
