@@ -313,7 +313,7 @@ static THD_FUNCTION(fdc_int, arg) {
 					}
 
 					chSysLock();
-					commands_nb = chMBGetUsedCountI(commands_box[sensor][channel_id]);
+					commands_nb = chMBGetUsedCountI(tmp_commands_box[sensor][channel_id]);
 					chSysUnlock();
 
 					// Restore the commands.
