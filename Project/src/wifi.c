@@ -233,7 +233,6 @@ void read_music(char* path) {
     /**
      * Start the reading of the mp3 file.
      */
-    repeat = true;
     chBSemSignal(&download_bsem);
 }
 

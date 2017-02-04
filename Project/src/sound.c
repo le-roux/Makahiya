@@ -29,8 +29,13 @@ const int8_t* const _binary_end[ALARM_SOUND_NB] = {&_binary_alarm1_mp3_end,
 
 
 volatile int music_id;
-volatile bool repeat;
+volatile int repeat;
+volatile bool urgent_stop;
 volatile wifi_connection audio_conn;
+
+/**
+ * Mutex used to protect insertion of data into @p input_box.
+ */
 static MUTEX_DECL(audio_mutex);
 
 /**
@@ -176,6 +181,7 @@ THD_FUNCTION(audio_playback, arg) {
 		ended = false;
 		read_ptr = working_buffer;
 		write_ptr = working_buffer;
+		chSemReset(&audio_sem, 2);
 		// Wait to be triggered by one of the reading threads.
 		chBSemWait(&decode_bsem);
 
@@ -198,8 +204,11 @@ THD_FUNCTION(audio_playback, arg) {
 					started = false;
 				}
 
-				// Get an input buffer
-				chMBFetch(&input_box, (msg_t*)&inbuf, TIME_INFINITE);
+				// Get an input buffer, stop if none is available in 2 seconds
+				if (chMBFetch(&input_box, (msg_t*)&inbuf, MS2ST(500)) != MSG_OK) {
+					ended = true;
+					break;
+				}
 
 				// End of music
 				if (inbuf == NULL) {
@@ -209,7 +218,6 @@ THD_FUNCTION(audio_playback, arg) {
 						i2sStopExchange(&I2SD2);
 						i2sStop(&I2SD2);
 					}
-					chSemReset(&audio_sem, 2);
 					started = false;
 					ended = true;
 					break;
@@ -236,16 +244,11 @@ THD_FUNCTION(audio_playback, arg) {
 				read_ptr +=  offset;
 			}
 
-			if (read_ptr - working_buffer > INPUT_BUFFER_SIZE) {
-				memmove(working_buffer, read_ptr, write_ptr - read_ptr);
-				write_ptr -= (read_ptr - working_buffer);
-				read_ptr = working_buffer;
-			}
-
 			// Decode the mp3 block
 			bytes_left = write_ptr - read_ptr;
 			err = MP3Decode(decoder, (unsigned char**)&read_ptr, &bytes_left, (int16_t*)pbuf, 0);
 
+			// Erase consumed data
 			if (read_ptr - working_buffer > INPUT_BUFFER_SIZE) {
 				memmove(working_buffer, read_ptr, write_ptr - read_ptr);
 				write_ptr -= (read_ptr - working_buffer);
@@ -332,29 +335,20 @@ THD_FUNCTION(wifi_audio_in, arg) {
 	 */
 	int count_nodata;
 
-	int buf_nb;
-
 	while (true) {
 		// Wait to be triggered by the user.
 		chBSemWait(&download_bsem);
 
-		chMtxLock(&audio_mutex);
 		reset_mailboxes();
-		chMtxUnlock(&audio_mutex);
-
-		chSysLock();
-		buf_nb = chMBGetUsedCountI(&free_input_box);
-		chSysUnlock();
 
 		count_nodata = 0;
 		initial_buffering = INPUT_BUFFERS_NB - 1;
 		out.length = INPUT_BUFFER_SIZE;
 		out.error = 0;
 		out.error_code = NO_ERROR;
-		while (count_nodata < 6 && repeat) {
+		while (count_nodata < 6 && repeat > 0) {
 			chMtxLock(&audio_mutex);
 			chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
-
 			bytes_nb = 0;
 
 			// Read file from wifi
@@ -362,8 +356,10 @@ THD_FUNCTION(wifi_audio_in, arg) {
 				out = wifi_read(audio_conn, &((uint8_t*)inbuf)[bytes_nb], INPUT_BUFFER_SIZE - bytes_nb, true, false);
 				if (out.error && out.error_code == NO_DATA) {
 					count_nodata++;
-					if (count_nodata == 6)
+					if (count_nodata == 6 || urgent_stop) {
+						chMtxUnlock(&audio_mutex);
 						break;
+					}
 					chThdSleepMilliseconds(1000);
 				} else {
 					count_nodata = 0;
@@ -371,6 +367,10 @@ THD_FUNCTION(wifi_audio_in, arg) {
 				bytes_nb += out.length;
 			}
 
+			if (urgent_stop) {
+				chMtxUnlock(&audio_mutex);
+				break;
+			}
 			// Post the filled buffer.
 			chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
 
@@ -380,11 +380,13 @@ THD_FUNCTION(wifi_audio_in, arg) {
 				chBSemSignal(&decode_bsem);
 			chMtxUnlock(&audio_mutex);
 		}
-		chMtxLock(&audio_mutex);
-		chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
-		inbuf = NULL;
-		chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
-		chMtxUnlock(&audio_mutex);
+		if (!urgent_stop) {
+			chMtxLock(&audio_mutex);
+			chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
+			inbuf = NULL;
+			chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
+			chMtxUnlock(&audio_mutex);
+		}
 	}
 }
 
@@ -415,17 +417,18 @@ THD_FUNCTION(flash_audio_in, arg) {
 		// Start to play music.
 		cur_id = music_id;
 		chBSemSignal(&decode_bsem);
-		do {
+		while (repeat > 0 && !urgent_stop) {
 			cur_pos = _binary_start[cur_id];
 			while (cur_pos + INPUT_BUFFER_SIZE < _binary_end[cur_id]) {
 				chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
 				memcpy(inbuf, cur_pos, INPUT_BUFFER_SIZE);
 				cur_pos += INPUT_BUFFER_SIZE;
 				chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
-				if (!repeat)
+				if (urgent_stop)
 					break;
 			}
-		} while(repeat);
+			repeat--;
+		}
 		chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
 		inbuf = NULL;
 		chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);

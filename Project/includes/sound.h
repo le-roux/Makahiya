@@ -42,11 +42,12 @@ extern const int8_t* const _binary_end[ALARM_SOUND_NB];
 extern volatile int music_id;
 
 /**
- * Value indicating when the alarm music must be stopped. Set it to true before
- * starting the music.
+ * Value indicating when the alarm music must be stopped. Set it to a value
+ * greater than 1 before starting the music.
  */
-extern volatile bool repeat;
+extern volatile int repeat;
 
+extern volatile bool urgent_stop;
 /**
  * Variable to store the channel id of the audio download connection.
  */

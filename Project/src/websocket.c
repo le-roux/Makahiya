@@ -69,6 +69,8 @@ THD_FUNCTION(websocket_ext, arg) {
             (void)wifi_write((wifi_connection*)&conn, strlen(buffer), (uint8_t*)buffer, true);
         } else if (strcmp(cmd, "play") == 0) {
             var = strtok(NULL, " ");
+            urgent_stop = false;
+            repeat = 1;
             read_music(var);
         } else if (strcmp(cmd, "alarm") == 0) {
             int timeout;
@@ -78,8 +80,8 @@ THD_FUNCTION(websocket_ext, arg) {
             timeout = atoi(var);
             set_alarm(timeout, strtok(NULL, " "));
         } else if (strcmp(cmd, "stop") == 0) {
-            repeat = false;
-            reset_mailboxes();
+            repeat = 0;
+            urgent_stop = true;
         } else if (strcmp(cmd, "add") == 0) {
             int sensor_id = atoi(strtok(NULL, " "));
             int channel_id = atoi(strtok(NULL, " "));

@@ -29,11 +29,6 @@ static msg_t commands[MAX_COMMANDS];
 static MAILBOX_DECL(commands_box, commands, MAX_COMMANDS);
 
 /**
- * @brief The number of commands to execute when alarm_clock expires.
- */
-static int commands_nb;
-
-/**
  * @brief Callback called when alarm_clock expires.
  */
 static void alarm_cb(void* arg);
@@ -51,10 +46,8 @@ void alarmInit(void) {
 THD_FUNCTION(alarm, arg) {
     UNUSED(arg);
 
-    /**
-    * The command to perform. It contains both @p var_id and @p value.
-    */
-    msg_t command;
+    // The command to perform. It contains both @p var_id and @p value.
+    static msg_t command;
 
     static loop_t loop;
 
@@ -62,19 +55,15 @@ THD_FUNCTION(alarm, arg) {
         loop.state = SINGLE;
         chBSemWait(&alarm_bsem);
 
-        do {
-            (void)chMBFetch(&commands_box, &command, TIME_INFINITE);
+        while(true) {
+            if (chMBFetch(&commands_box, &command, MS2ST(5)) != MSG_OK)
+                break;
 
             handle_commands((uint32_t)command, &loop);
 
             if (loop.state == LOOP)
                 chMBPost(&commands_box, command, TIME_INFINITE);
-
-            chSysLock();
-            commands_nb = chMBGetUsedCountI(&commands_box);
-            chSysUnlock();
-        } while (commands_nb != 0);
-
+        }
     }
 }
 
@@ -88,13 +77,16 @@ void set_alarm(int timeout, char* commands_list) {
      * The value that must be set to the variable specified in @p var_id.
      */
     uint16_t value;
+
+    int commands_nb;
+
     chVTReset(&alarm_clock);
     commands_nb = atoi(commands_list);
     for (int i = 0; i < commands_nb; i++) {
         var_id = (uint16_t)atoi(strtok(NULL, " "));
         value = (uint16_t)atoi(strtok(NULL, " "));
         commands[i] = ((var_id & 0xFFFF) << 16) | (value & 0xFFFF);
-        (void)chMBPost(&commands_box, commands[i], TIME_INFINITE);
+        (void)chMBPost(&commands_box, commands[i], MS2ST(100));
     }
     chVTSet(&alarm_clock, S2ST(timeout), alarm_cb, NULL);
 }

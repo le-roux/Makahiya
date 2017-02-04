@@ -279,7 +279,6 @@ static THD_FUNCTION(fdc_int, arg) {
 			addr = FDC2_ADDR;
 		status = read_register(addr, STATUS);
 		if (status != I2C_NO_ERROR) { // Error in the communication.
-			//DEBUG("error %i\r\n", (int)i2cGetErrors(&I2CD1));
 			continue;
 		}
 		sensor_status = i2c_rx_buffer[0] << 8 | i2c_rx_buffer[1];
