@@ -161,7 +161,9 @@ THD_FUNCTION(websocket, arg) {
 
     while (true) {
         chThdSleepMilliseconds(10000);
-        (void)wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"abcd", true);
+        header = wifi_write((wifi_connection*)&conn, 4, (uint8_t*)"abcd", true);
         DEBUG("%s", response_body);
+        if (header.error && header.error_code == COMMAND_FAILED)
+            break;
     }
 }

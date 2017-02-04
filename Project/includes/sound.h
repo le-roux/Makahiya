@@ -58,7 +58,7 @@ extern binary_semaphore_t download_bsem;
 
 extern THD_WORKING_AREA(wa_audio, 512);
 
-extern THD_WORKING_AREA(wa_audio_in, 128);
+extern THD_WORKING_AREA(wa_audio_in, 1024);
 extern THD_WORKING_AREA(wa_flash, 128);
 
 /******************************/

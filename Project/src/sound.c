@@ -304,7 +304,7 @@ THD_FUNCTION(audio_playback, arg) {
 	}
 }
 
-THD_WORKING_AREA(wa_audio_in, 128);
+THD_WORKING_AREA(wa_audio_in, 1024);
 // To use for downloaded music.
 THD_FUNCTION(wifi_audio_in, arg) {
 	UNUSED(arg);
@@ -334,6 +334,9 @@ THD_FUNCTION(wifi_audio_in, arg) {
 	 * consecutively.
 	 */
 	int count_nodata;
+
+	// Buffer to store the command to close the connection.
+	char close_cmd[11];
 
 	while (true) {
 		// Wait to be triggered by the user.
@@ -386,6 +389,9 @@ THD_FUNCTION(wifi_audio_in, arg) {
 			inbuf = NULL;
 			chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
 			chMtxUnlock(&audio_mutex);
+            strcpy(close_cmd, "close ");
+            strcat(close_cmd, ((wifi_connection)audio_conn).channel_id);
+            send_cmd(close_cmd, false);
 		}
 	}
 }
