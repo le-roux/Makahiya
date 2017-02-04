@@ -5,6 +5,8 @@
 #include "capacitive_sensor.h"
 #include "pwmdriver.h"
 #include "commands.h"
+#include "wifi.h"
+#include <string.h>
 
 #include "chprintf.h"
 #include "RTT_streams.h"
@@ -264,6 +266,8 @@ static THD_FUNCTION(fdc_int, arg) {
 	int commands_nb;
 	static msg_t command;
 	loop_t loop;
+	char server_command[15];
+	char val[5];
 
 	for (int i = 0; i < 4; i++) {
 		init_touch_detection(0, i);
@@ -288,6 +292,15 @@ static THD_FUNCTION(fdc_int, arg) {
 				action = detect_action(sensor, channel_id);
 
 				if (action == 1) {
+					// Signal it to the server
+					strcpy(server_command, "touch ");
+					int_to_char(val, sensor);
+					strcat(server_command, val);
+					strcat(server_command, " ");
+					int_to_char(val, channel_id);
+					strcat(server_command, val);
+					send_cmd(server_command, false);
+
 					chSysLock();
 					commands_nb = chMBGetUsedCountI(commands_box[sensor][channel_id]);
 					chSysUnlock();
