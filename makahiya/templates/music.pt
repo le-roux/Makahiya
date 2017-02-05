@@ -20,8 +20,11 @@
 		<br/><br/>
 
 		<div class='container'>
-			<a href='/${plant_id}/music/play' class='btn btn-success btn-lg btn-block' role='button'>
+			<a tal:condition='playing == False' href='/${plant_id}/music/play' class='btn btn-success btn-lg btn-block' role='button'>
 				Play music
+			</a>
+			<a tal:condition='playing' href='/${plant_id}/music/stop' class='btn btn-danger btn-lg btn-block' role='button'>
+				Stop music
 			</a>
 		</div>
 	</metal:slot>

@@ -78,6 +78,14 @@ class Touch(Base):
 	leaf_id = Column(Integer)
 	commands = Column(String)
 
+# Music status
+class Music(Base):
+	__tablename__ = 'Music'
+	uid = Column(Integer, primary_key=True)
+	plant_id = Column(Integer)
+	uploaded = Column(Boolean)
+	playing = Column(Boolean)
+
 # Authorization stuff (access control list).
 class Root(object):
 	__acl__ = [(Allow, Everyone, 'view'),

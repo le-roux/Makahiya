@@ -8,7 +8,7 @@ from pyramid.security import remember, forget
 from aiopyramid.config import CoroutineMapper
 import pyramid
 import os
-from .models import Session, Leds, Servos, Users, Timers, Touch, get_user_plant_id, get_user_level
+from .models import Session, Leds, Servos, Users, Timers, Touch, Music, get_user_plant_id, get_user_level
 from velruse import login_url
 import logging
 import colander
@@ -132,6 +132,7 @@ def login_callback(request):
 			SQLsession.add(Servos(servo_id=i, pos=0, plant_id=plant_id))
 		for i in range(1,9):
 			SQLsession.add(Touch(plant_id=plant_id, leaf_id=i, commands=''))
+		SQLsession.add(Music(plant_id=plant_id, playing=False, uploaded=False))
 		SQLsession.commit()
 		request.session['status'] = 0
 		headers = remember(request, email)
@@ -603,7 +604,10 @@ def music(request):
 				os.mkdir('makahiya/music/' + str(plant_id))
 			open ('makahiya/music/' + str(plant_id) + '/file.mp3', 'wb').write(sound.file.read())
 			return HTTPFound('/' + str(plant_id) + '/music/uploaded')
-		return res
+		else:
+			music = SQLsession.query(Music).filter_by(plant_id=plant_id).first()
+			res['playing'] = music.playing
+			return res
 	else:
 		return HTTPFound('/wrong_id')
 
@@ -639,5 +643,27 @@ def music_uploaded(request):
 				'plant_id': plant_id,
 				'level': get_user_level(email)}
 		return res
+	else:
+		return HTTPFound('wrong_id')
+
+@view_config(route_name='music_stop', permission='view', mapper=CoroutineMapper)
+async def music_stop(request):
+	SQLsession = Session()
+	plant_id = None
+	email = request.authenticated_userid
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
+	if user is not None:
+		plant_id = user.plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		res = {'email': email,
+				'plant_id': plant_id,
+				'level': get_user_level(email)}
+	try:
+		await send_to_socket(plants, plant_id, 'stop')
+	except KeyError:
+		log.debug('KeyError when stopping music')
+
+		return HTTPFound('/' + str(plant_id) + '/music')
 	else:
 		return HTTPFound('wrong_id')

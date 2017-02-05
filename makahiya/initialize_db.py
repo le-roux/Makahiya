@@ -20,6 +20,7 @@ from .models import (
 	Users,
 	Timers,
 	Touch,
+	Music,
 	Base,
 	)
 
@@ -89,4 +90,6 @@ def main(argv=sys.argv):
 	for i in range(1,9):
 		model = Touch(plant_id=0, leaf_id=i, commands='')
 		session.add(model)
+	model = Music(plant_id=0, uploaded=False, playing=False)
+	session.add(model)
 	session.commit()

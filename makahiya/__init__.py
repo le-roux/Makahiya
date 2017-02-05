@@ -34,6 +34,7 @@ def main(global_config, **settings):
 	config.add_route('touch_config_delete', '/{plant_id}/touch/delete/{leaf_id}')
 	config.add_route('music', '/{plant_id}/music')
 	config.add_route('music_play', '/{plant_id}/music/play')
+	config.add_route('music_stop', '/{plant_id}/music/stop')
 	config.add_route('music_uploaded', '/{plant_id}/music/uploaded')
 	config.add_route('wrong_id', '/wrong_id')
 	config.add_route('led', '/led')

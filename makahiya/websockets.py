@@ -170,6 +170,14 @@ async def plant(ws):
 						for i in range(0, 5):
 							servo = SQLSession.query(Servos).filter_by(plant_id=plant_id, servo_id=i).one()
 							await ws.send(constants.SET + str(constants.SERVOS[i]) + ' ' + str(servo.pos))
+					elif command[0] == 'start':
+						music = SQLSession.query(Music).filter_by(plant_id=plant_id).first()
+						music.playing = True
+						SQLSession.commit()
+					elif command[0] == 'stop':
+						music = SQLSession.query(Music).filter_by(plant_id=plant_id).first()
+						music.playing = False
+						SQLSession.commit()
 				if (clients.registered(plant_id)):
 					await send_to_socket(clients, plant_id, msg)
 
