@@ -1,7 +1,7 @@
 from pyramid.view import view_config
 from .custom_mapper import CustomWebsocketMapper
 from .websocket_register import WebsocketRegister
-from .models import Session, Leds, Servos
+from .models import Session, Leds, Servos, Touch, Music
 from .constants import constants
 
 import asyncio
@@ -170,6 +170,14 @@ async def plant(ws):
 						for i in range(0, 5):
 							servo = SQLSession.query(Servos).filter_by(plant_id=plant_id, servo_id=i).one()
 							await ws.send(constants.SET + str(constants.SERVOS[i]) + ' ' + str(servo.pos))
+						for i in range(1, 9):
+							sensor_id = 0
+							channel_id = i
+							if i > 4:
+								sensor_id = 1
+								channel_id -= 4
+							touch_config = SQLSession.query(Touch).filter_by(plant_id=plant_id, leaf_id=i).first()
+							await ws.send('add ' + str(sensor_id) + ' ' + str(channel_id) + ' ' + str(int(len(touch_config.commands.split()) / 2)) + ' ' + touch_config.commands)
 					elif command[0] == 'start':
 						music = SQLSession.query(Music).filter_by(plant_id=plant_id).first()
 						music.playing = True
