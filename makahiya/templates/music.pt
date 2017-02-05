@@ -4,6 +4,7 @@
 			Makahiya - Music
 		</h1>
 		<br/><br/>
+		<h2 tal:condition='no_file' class='text-center' style='color:red'>No file to upload</h2>
 		<div class='row'>
 			<div class='col-md-2 col-md-offset-5 main'>
 				<h2>Upload music</h2>
@@ -19,7 +20,10 @@
 		</div>
 		<br/><br/>
 
+		<h2 tal:condition='not_uploaded' class='text-center' style='color:red'>No music to play</h2>
+		<br/>
 		<div class='container'>
+
 			<a tal:condition='playing == False' href='/${plant_id}/music/play' class='btn btn-success btn-lg btn-block' role='button'>
 				Play music
 			</a>

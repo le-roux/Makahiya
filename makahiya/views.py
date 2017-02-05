@@ -596,14 +596,30 @@ def music(request):
 				'plant_id': plant_id,
 				'level': get_user_level(email)}
 
+		if 'not_uploaded' in request.session:
+			res['not_uploaded'] = True
+			del request.session['not_uploaded']
+		else:
+			res['not_uploaded'] = False
+
+		if 'no_file' in request.session:
+			res['no_file'] = True
+			del request.session['no_file']
+		else:
+			res['no_file'] = False
+
 		if request.method == 'POST':
 			sound = request.params['sound']
 			if not os.path.exists('makahiya/music/'):
 				os.mkdir('makahiya/music')
 			if not os.path.exists('makahiya/music/' + str(plant_id)):
 				os.mkdir('makahiya/music/' + str(plant_id))
-			open ('makahiya/music/' + str(plant_id) + '/file.mp3', 'wb').write(sound.file.read())
-			return HTTPFound('/' + str(plant_id) + '/music/uploaded')
+			try:
+				open ('makahiya/music/' + str(plant_id) + '/file.mp3', 'wb').write(sound.file.read())
+				return HTTPFound('/' + str(plant_id) + '/music/uploaded')
+			except AttributeError:
+				request.session['no_file'] = True
+				return HTTPFound('/' + str(plant_id) + '/music')
 		else:
 			music = SQLsession.query(Music).filter_by(plant_id=plant_id).first()
 			res['playing'] = music.playing
@@ -621,10 +637,14 @@ async def play_music(request):
 	if user is not None:
 		plant_id = user.plant_id
 	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
-		try:
-			await send_to_socket(plants, plant_id, 'play /music/' + str(plant_id) + '/file.mp3')
-		except KeyError:
-			log.debug('KeyError when starting music')
+		music = SQLsession.query(Music).filter_by(plant_id=plant_id).first()
+		if music.uploaded:
+			try:
+				await send_to_socket(plants, plant_id, 'play /music/' + str(plant_id) + '/file.mp3')
+			except KeyError:
+				log.debug('KeyError when starting music')
+		else:
+			request.session['not_uploaded'] = True
 		return HTTPFound('/' + str(plant_id) + '/music')
 	else:
 		return HTTPFound('/wrong_id')
@@ -642,6 +662,9 @@ def music_uploaded(request):
 		res = {'email': email,
 				'plant_id': plant_id,
 				'level': get_user_level(email)}
+		music = SQLsession.query(Music).filter_by(plant_id=plant_id).first()
+		music.uploaded = True
+		SQLsession.commit()
 		return res
 	else:
 		return HTTPFound('wrong_id')
