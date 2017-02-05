@@ -46,6 +46,7 @@ def main(global_config, **settings):
 	config.add_route('users', '/users')
 	config.add_route('delete', '/delete/{email}')
 	config.add_static_view(name='static', path='makahiya:static')
+	config.add_static_view(name='music', path='makahiya:music')
 	config.add_static_view('deform_static', 'deform:static/')
 
 	# Security configuration

@@ -597,9 +597,11 @@ def music(request):
 
 		if request.method == 'POST':
 			sound = request.params['sound']
-			if not os.path.exists('music/' + str(plant_id)):
-				os.mkdir('music/' + str(plant_id))
-			open ('music/' + str(plant_id) + '/file.mp3', 'wb').write(sound.file.read())
+			if not os.path.exists('makahiya/music/'):
+				os.mkdir('makahiya/music')
+			if not os.path.exists('makahiya/music/' + str(plant_id)):
+				os.mkdir('makahiya/music/' + str(plant_id))
+			open ('makahiya/music/' + str(plant_id) + '/file.mp3', 'wb').write(sound.file.read())
 			return Response('File uploaded')
 		return res
 	else:
