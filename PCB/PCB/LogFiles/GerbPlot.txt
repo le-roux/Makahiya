@@ -1,0 +1,132 @@
+ ----------------------------
+|    Gerber Plotting Log     |
+|          Started           |
+|  Thu Jan 05 07:04:37 2017  |
+ ----------------------------
+
+
+Processing SoldermaskTop.gdo
+    Number of Apertures     = 33
+    Number of Moves         = 348
+    Number of Draws         = 48
+    Number of Arcs          = 0
+    Number of Flashes       = 338
+    Number of Comments      = 5
+    Number of Drawn Pads    = 10
+    Number of Filled Shapes = 0
+    Number of Dcode Warnings= 0
+    Number of Dcode Errors  = 0
+    Total Draw Length       = 3.8892 (IN)
+    Total Move Length       = 132.686 (IN)
+
+Processing SoldermaskBottom.gdo
+    Number of Apertures     = 18
+    Number of Moves         = 187
+    Number of Draws         = 0
+    Number of Arcs          = 0
+    Number of Flashes       = 187
+    Number of Comments      = 5
+    Number of Drawn Pads    = 0
+    Number of Filled Shapes = 0
+    Number of Dcode Warnings= 0
+    Number of Dcode Errors  = 0
+    Total Draw Length       = 0 (IN)
+    Total Move Length       = 94.9962 (IN)
+
+Processing SolderPasteTop.gdo
+    Number of Apertures     = 28
+    Number of Moves         = 319
+    Number of Draws         = 48
+    Number of Arcs          = 0
+    Number of Flashes       = 309
+    Number of Comments      = 5
+    Number of Drawn Pads    = 10
+    Number of Filled Shapes = 0
+    Number of Dcode Warnings= 0
+    Number of Dcode Errors  = 0
+    Total Draw Length       = 3.6588 (IN)
+    Total Move Length       = 111.713 (IN)
+
+Processing SolderPasteBottom.gdo
+    Number of Apertures     = 13
+    Number of Moves         = 158
+    Number of Draws         = 0
+    Number of Arcs          = 0
+    Number of Flashes       = 158
+    Number of Comments      = 5
+    Number of Drawn Pads    = 0
+    Number of Filled Shapes = 0
+    Number of Dcode Warnings= 0
+    Number of Dcode Errors  = 0
+    Total Draw Length       = 0 (IN)
+    Total Move Length       = 69.2641 (IN)
+
+Processing EtchLayerTop.gdo
+    Number of Apertures     = 40
+    Number of Moves         = 1230
+    Number of Draws         = 3765
+    Number of Arcs          = 2874
+    Number of Flashes       = 635
+    Number of Comments      = 5
+    Number of Drawn Pads    = 10
+    Number of Filled Shapes = 25
+    Number of Dcode Warnings= 0
+    Number of Dcode Errors  = 0
+    Total Draw Length       = 194.16 (IN)
+    Total Move Length       = 555.573 (IN)
+
+Design has zero width element(s).Replacing with default width (0.005 IN) from gmf file.
+
+Processing EtchLayerBottom.gdo
+    Number of Apertures     = 26
+    Number of Moves         = 831
+    Number of Draws         = 2174
+    Number of Arcs          = 2417
+    Number of Flashes       = 484
+    Number of Comments      = 5
+    Number of Drawn Pads    = 0
+    Number of Filled Shapes = 9
+    Number of Dcode Warnings= 0
+    Number of Dcode Errors  = 0
+    Total Draw Length       = 182.77 (IN)
+    Total Move Length       = 423.995 (IN)
+
+Design has zero width element(s).Replacing with default width (0.005 IN) from gmf file.
+
+Processing DrillDrawingThrough.gdo
+    Number of Apertures     = 1
+    Number of Moves         = 1429
+    Number of Draws         = 20071
+    Number of Arcs          = 2512
+    Number of Flashes       = 0
+    Number of Comments      = 5
+    Number of Drawn Pads    = 0
+    Number of Filled Shapes = 0
+    Number of Dcode Warnings= 0
+    Number of Dcode Errors  = 0
+    Total Draw Length       = 185.65 (IN)
+    Total Move Length       = 810.402 (IN)
+
+Design has zero width element(s).Replacing with default width (0.005 IN) from gmf file.
+
+Processing BoardOutlline.gdo
+    Number of Apertures     = 1
+    Number of Moves         = 0
+    Number of Draws         = 4
+    Number of Arcs          = 0
+    Number of Flashes       = 0
+    Number of Comments      = 4
+    Number of Drawn Pads    = 0
+    Number of Filled Shapes = 0
+    Number of Dcode Warnings= 0
+    Number of Dcode Errors  = 0
+    Total Draw Length       = 10.181 (IN)
+    Total Move Length       = 0 (IN)
+
+Design has zero width element(s).Replacing with default width (0.005 IN) from gmf file.
+
+ ---------------------------
+|    Gerber Plotting Log     |
+|          Finished          |
+|  Thu Jan 05 07:04:39 2017  |
+ ----------------------------

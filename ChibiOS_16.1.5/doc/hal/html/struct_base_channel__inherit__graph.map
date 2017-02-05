@@ -1,6 +1,0 @@
-<map id="BaseChannel" name="BaseChannel">
-<area shape="rect" id="node3" href="$struct_base_asynchronous_channel.html" title="Base asynchronous channel class. " alt="" coords="24,240,177,309"/>
-<area shape="rect" id="node2" href="$struct_base_sequential_stream.html" title="Base stream class. " alt="" coords="35,5,166,75"/>
-<area shape="rect" id="node4" href="$struct_serial_driver.html" title="Full duplex serial driver class. " alt="" coords="5,357,84,427"/>
-<area shape="rect" id="node5" href="$struct_serial_u_s_b_driver.html" title="Full duplex serial driver class. " alt="" coords="108,357,208,427"/>
-</map>

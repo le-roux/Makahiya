@@ -1,0 +1,104 @@
+[2016.11.25 14:02:54] [0000m.00s.031ms] [0] WELCOME
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] iCDB Server ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] Base flow version [7.9.4]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] Machine [DESKTOP-OU0BNIR]  User [Sylvain]  PID [2436]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] Operating system [Microsoft Home Premium Edition, 64-bit (build 9200)]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] Current working dir [F:\Makahiya\PCB]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] PATH [D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\help;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\_bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\IntelSGXPSW\bin\x64\Release\;C:\Program Files\Intel\IntelSGXPSW\bin\win32\Release\;C:\Program Files (x86)\Skype\Phone\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Users\sylva\AppData\Local\atom\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] SDD_HOME [D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] SDD_PLATFORM [win32]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] WDIR [D:\Programmes\ROSE\MentorGraphics\WDIR;D:\Programmes\ROSE\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] Local iCDB working dir [D:\Programmes\ROSE\MentorGraphics\WDIR\iCDB] on file system [NTFS]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] S: Config file name [ServerWG.cfg]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [2] S: Loading config files
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] Config file [F:\Makahiya\PCB\Default\default.icdb\cdbsvr\ServerWG.cfg] not found
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] Config: Non-default value [System.SingleUserMode] = [no]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [3] S: Config loaded
+[2016.11.25 14:02:54] [0000m.00s.046ms] [0] S: Project path [F:\Makahiya\PCB\Default\default.icdb] on file system [NTFS]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] S: WARNING: No project file (.prj) path specified
+[2016.11.25 14:02:54] [0000m.00s.046ms] [1] S: WARNING: Database auto-repair support DISABLED
+[2016.11.25 14:02:54] [0000m.00s.046ms] [0] S: Multi-user mode (config)
+[2016.11.25 14:02:54] [0000m.00s.046ms] [0] S: Event polling mode autodetection
+[2016.11.25 14:02:54] [0000m.00s.046ms] [0] S: Started up automatically by iCDB Client: DESKTOP-OU0BNIR:Sylvain:4132
+[2016.11.25 14:02:54] [0000m.00s.046ms] [0] S: Auto close mode
+[2016.11.25 14:02:54] [0000m.00s.046ms] [0] S: Database ID [6d0e-289f-ee7d-86ad-dce0-8382-de08-3850-47c3-02b1-4343-70a8]
+[2016.11.25 14:02:54] [0000m.00s.046ms] [0] PathTranslator: BEGIN dumping
+[2016.11.25 14:02:54] [0000m.00s.046ms] [0] PathTranslator: Local -> global path prefix list
+[2016.11.25 14:02:54] [0000m.00s.046ms] [0] PathTranslator: Global -> local path prefix list
+[2016.11.25 14:02:54] [0000m.00s.046ms] [0] PathTranslator: END dumping
+[2016.11.25 14:02:54] [0000m.00s.046ms] [0] S: START
+[2016.11.25 14:02:54] [0000m.00s.046ms] [0] S: Server startup lock file created
+[2016.11.25 14:02:54] [0000m.00s.046ms] [0] S: Listening for client connections on port [10000]
+[2016.11.25 14:02:54] [0000m.00s.062ms] [0] S: Server network ID [DESKTOP-OU0BNIR:137.194.22.104,DESKTOP-OU0BNIR:10000]
+[2016.11.25 14:02:54] [0000m.00s.062ms] [0] S: Server GUID [7e27-5a0e-c87a-6dc9-e763-8383-8638-3850-80b5-02b1-4343-70a8]
+[2016.11.25 14:02:54] [0000m.00s.062ms] [0] S: Project GUID [6d0e-289f-ee7d-86ad-dce0-8382-de08-3850-47c3-02b1-4343-70a8]
+[2016.11.25 14:02:54] [0000m.00s.062ms] [0] S: Wrote data to server address file
+[2016.11.25 14:02:54] [0000m.00s.062ms] [0] S: Server startup lock file removed
+[2016.11.25 14:02:54] [0000m.00s.062ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.11.25 14:02:54] [0000m.00s.093ms] [0] S: Plugins loaded: [PIM] [ENetGen70] 
+[2016.11.25 14:02:54] [0000m.00s.093ms] [0] S: Local disc access time: 32 us
+[2016.11.25 14:02:54] [0000m.00s.093ms] [0] S: File server access time: 27 us
+[2016.11.25 14:02:54] [0000m.00s.093ms] [0] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] size [169336 (165.4 kB)]
+[2016.11.25 14:02:54] [0000m.00s.093ms] [1] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] opened in read-write mode
+[2016.11.25 14:02:54] [0000m.00s.093ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.25 14:02:54] [0000m.00s.093ms] [0] Database GUARD OK: [169336]
+[2016.11.25 14:02:54] [0000m.00s.093ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.25 14:02:54] [0000m.00s.093ms] [0] Database GUARD OK: [169336]
+[2016.11.25 14:02:54] [0000m.00s.093ms] [0] SingleFile: [71c2-bdc3-01d8-3f96] SFI version check [1009] [1009]
+[2016.11.25 14:02:54] [0000m.00s.093ms] [0] SingleFile: [71c2-bdc3-01d8-3f96] Database SFI header has been read in [2ms 389us]
+[2016.11.25 14:02:54] [0000m.00s.093ms] [0] iCDB Server PI: Server & plugin session [3224]
+[2016.11.25 14:02:54] [0000m.00s.093ms] [0] iCDB Server PI: Opening database [F:\Makahiya\PCB\Default\default.icdb]
+[2016.11.25 14:02:54] [0000m.00s.093ms] [0] iCDB Server PI: Database [F:\Makahiya\PCB\Default\default.icdb] opened
+[2016.11.25 14:02:54] [0000m.00s.109ms] [0] iCDB Database: Checking existence of constraint definitions
+[2016.11.25 14:02:54] [0000m.00s.109ms] [0] iCDB Database: Checking constraint definitions version
+[2016.11.25 14:02:54] [0000m.00s.140ms] [1] iCDB Database: Constraint definitions version [ce_ee.cns=7.10.24;user.cns=b83f-5623-433f-8ba7-b0d3-ff70-1d3f-f750-68fb-38d7-a6d6-f38b] up to date
+[2016.11.25 14:02:55] [0000m.00s.359ms] [0] iCDB Server PI: Initializing plugins
+[2016.11.25 14:02:55] [0000m.00s.359ms] [0] iCDB Server PI: Plugins initialized
+[2016.11.25 14:02:55] [0000m.00s.359ms] [0] S: iCDB database loaded
+[2016.11.25 14:02:55] [0000m.00s.359ms] [0] S: Starting threads
+[2016.11.25 14:02:55] [0000m.00s.359ms] [0] BT: Listening for broadcast messages on port [10000]
+[2016.11.25 14:02:55] [0000m.00s.359ms] [0] ProjectBackupManager: WARNING: Could not startup Project Backup engine - functionality not initialized
+[2016.11.25 14:02:55] [0000m.00s.359ms] [1] CMT: There are no clients - waiting [10 seconds]
+[2016.11.25 14:02:55] [0000m.00s.359ms] [1] SCL: WARNING: Could not find client [3225] stat data
+[2016.11.25 14:02:55] [0000m.00s.359ms] [0] IT: Session [3225] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [4132] created
+[2016.11.25 14:02:55] [0000m.00s.359ms] [1] SC[3225]: Registered sub-client [DCDV] with ID [1] for session ID [3225] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [4132]
+[2016.11.25 14:02:55] [0000m.00s.484ms] [1] CMT: There are [1] clients now: 3225
+[2016.11.25 14:03:17] [0000m.22s.557ms] [0] IT: Session [3226] for host [DESKTOP-OU0BNIR] user [Sylvain] with process ID [11216] created
+[2016.11.25 14:03:17] [0000m.22s.557ms] [1] ProjectBackupManager: Client [ClientData[ClientNetAddress[DESKTOP-OU0BNIR] # ClientUserName[Sylvain] # ClientProcessID[11216] # SessionID[3226]] # SubClientData[SubClientName[] # SubClientID[0]]] set project file (.prj): local path [F:\Makahiya\PCB\Makahiya.prj], global path [F:\Makahiya\PCB\Makahiya.prj]
+[2016.11.25 14:03:17] [0000m.22s.588ms] [1] CMT: There are [2] clients now: 3225, 3226
+[2016.11.25 14:03:17] [0000m.22s.588ms] [1] SC[3226]: Registered sub-client [Expedition PCB_167109] with ID [1] for session ID [3226] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11216]
+[2016.11.25 14:03:17] [0000m.22s.635ms] [1] SC[3226]: Registered sub-client [EEVM] with ID [2] for session ID [3226] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11216]
+[2016.11.25 14:03:17] [0000m.23s.229ms] [1] SC[3226]: UnRegistered sub-client [EEVM] with ID [2] for session ID [3226] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11216]
+[2016.11.25 14:03:21] [0000m.26s.820ms] [1] SC[3226]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3226] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11216]
+[2016.11.25 14:03:38] [0000m.44s.167ms] [0] DFAMT: File server access time: 69 us
+[2016.11.25 17:13:39] [0190m.45s.158ms] [1] PrjBackupMgr: Successfully created Project Backup [F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-25 17.13.39 - auto.zip] with GUID [b8c0-6e04-c622-d43f-3336-8388-3368-3850-0714-02b1-4343-70a8]
+[2016.11.25 17:13:39] [0190m.45s.174ms] [0] PrjBackupMgr: Removing excessive backup:  BackupGUID[f8d2-9e8e-8dc6-7eae-2fe3-5387-fe35-3850-ea27-b695-c371-acad] CreationTime[Wednesday, November 23, 2016 07:02:11] Type[Autosave] Creator[iCDB Server (2016-11-23 07.44.10-2196)] ApplicationName[iCDB Server (2016-11-23 07.44.10-2196)] UserName[Tanguy] MachineName[TANGUY-PC] Description[Autosave] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[] BackupFilePath[F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-23 08.02.11 - auto.zip] BackupFileSize[459519] Persistent[FALSE]
+[2016.11.25 17:13:39] [0190m.45s.174ms] [0] PrjBackupMgr: Project Backup file [F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-23 08.02.11 - auto.zip] with GUID [f8d2-9e8e-8dc6-7eae-2fe3-5387-fe35-3850-ea27-b695-c371-acad] removed
+[2016.11.25 17:13:39] [0190m.45s.174ms] [0] PrjBackupEngine: Successfully created backup:  BackupGUID[b8c0-6e04-c622-d43f-3336-8388-3368-3850-0714-02b1-4343-70a8] CreationTime[Friday, November 25, 2016 16:13:39] Type[Autosave] Creator[iCDB Server (2016-11-25 14.02.54-2436)] ApplicationName[iCDB Server (2016-11-25 14.02.54-2436)] UserName[Sylvain] MachineName[DESKTOP-OU0BNIR] Description[Autosave] FullFlowName[Expedition Enterprise Flow; Expedition Enterprise Flow - Update 36 for EE7.9.5] FlowId[EE7.9.5; EE 7.9.5] GBSInstallId[30163; 30120; 45618] GBSBuildId[689985] IcdbVersion[2709] ReferenceLogFilePath[] BackupFilePath[F:\Makahiya\PCB\Default\ProjectBackup\backups\2016-11-25 17.13.39 - auto.zip] BackupFileSize[524886] Persistent[FALSE]
+[2016.11.25 17:33:02] [0210m.07s.866ms] [1] SC[3226]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3226] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11216]
+[2016.11.25 17:33:02] [0210m.08s.113ms] [1] SC[3226]: UnRegistered sub-client [Expedition PCB_167109] with ID [1] for session ID [3226] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [11216]
+[2016.11.25 17:33:02] [0210m.08s.160ms] [1] CMT: Removed client [3226]
+[2016.11.25 17:33:02] [0210m.08s.160ms] [1] CMT: There are [1] clients now: 3225
+[2016.11.25 17:33:06] [0210m.11s.847ms] [1] SC[3225]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3225] host [DESKTOP-OU0BNIR] user [Sylvain] process ID [4132]
+[2016.11.25 17:33:06] [0210m.11s.932ms] [1] CMT: Removed client [3225]
+[2016.11.25 17:33:06] [0210m.11s.932ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2016.11.25 17:33:08] [0210m.13s.286ms] [0] CMT: Starting server auto-close
+[2016.11.25 17:33:08] [0210m.13s.386ms] [0] S: Closing server
+[2016.11.25 17:33:08] [0210m.13s.548ms] [0] iCDB Server PI: Closing plugins
+[2016.11.25 17:33:08] [0210m.13s.548ms] [0] iCDB Server PI: Plugins closed
+[2016.11.25 17:33:08] [0210m.13s.548ms] [0] iCDB Server PI: Unloading database
+[2016.11.25 17:33:08] [0210m.13s.548ms] [0] iCDB Server PI: Saving storage
+[2016.11.25 17:33:08] [0210m.13s.548ms] [0] iCDB Server PI: Closing database
+[2016.11.25 17:33:08] [0210m.13s.570ms] [1] iCDB Server PI: Stats: Database defragmentation: max[2] avg[1] holes[3%] data[95%]
+[2016.11.25 17:33:08] [0210m.13s.570ms] [1] iCDB Server PI: Stats: Database file size [174848 (170.8 kB)]
+[2016.11.25 17:33:08] [0210m.13s.617ms] [0] iCDB Server PI: Database closed
+[2016.11.25 17:33:08] [0210m.13s.617ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [295565] ticks
+[2016.11.25 17:33:08] [0210m.13s.617ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [116766] microseconds
+[2016.11.25 17:33:08] [0210m.13s.617ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [216]
+[2016.11.25 17:33:08] [0210m.13s.617ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [1849] commands per second
+[2016.11.25 17:33:08] [0210m.13s.617ms] [0] Single file [F:\Makahiya\PCB\Default\default.icdb\icdb.dat] closed with size [174848 (170.8 kB)]
+[2016.11.25 17:33:08] [0210m.13s.687ms] [0] S: STOP

@@ -1,0 +1,492 @@
+
+                                    Packager
+                                    --------
+
+                       06:47 PM Thursday, January 12, 2017
+                   Job Name: E:\2017\MAKAHIYA\PCB\Makahiya.prj
+
+
+     Packager     Version: 020806.00
+
+        Commandline is: "C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin\Package.exe -j"E:\2017\MAKAHIYA\PCB\Makahiya.prj" -CleanBuild -NoFill "
+
+     The Common Database is at "E:\2017\MAKAHIYA\PCB\Default\default.icdb".
+
+     The Root of this design is "Schematic1".
+
+     The Front End Snapshot of this design is "DCDV".
+
+     The PCB Design Path of this design is at "E:\2017\MAKAHIYA\PCB\PCB\PCB.pcb".
+
+     The Central Library is at "F:\Central_Libs\ENST.lmc".
+
+     The Disable Repackage status indicates that 
+      Repackaging should be allowed.
+
+     A new Target PDB will be created from the Central Library to satisfy the parts
+      requirements of the iCDB.
+
+     The AllowAlphaRefDes status indicates that reference
+      designators containing all alpha characters should be deleted
+      and the relevant symbols repackaged.
+
+     The cross mapping of symbol pin names to Part Number pin
+      numbers will be checked for packaged symbols and mapped correctly
+      for unpackaged symbols.
+
+     Properties that have been checked off in the Property Definition Editor
+      found at Library Manager/Common Properties will be checked for value
+      differences between the PartsDB and the non-null properties on symbols.
+     Those properties checked off (other than Part Number)
+      will not be transferred from the PartsDB to symbols.
+     The following properties were checked off in the Property Definition Editor:
+       "Parametric"
+       "Value2"
+       "Attachment"
+       "Verification Statut"
+       "Commentaire"
+       "Option"
+       "ESR"
+       "Imax"
+       "Cout HT"
+       "Vf"
+       "Code Fournisseur"
+       "Boitier"
+       "Iac max"
+       "Voltage"
+       "Dielectric"
+       "Techno"
+       "IBIS"
+       "Model Suffix"
+       "Part Label"
+       "VHDL Model"
+       "Verilog Model"
+       "Supply Rename"
+       "Description"
+       "Simulation Model"
+       "Ref Designator"
+       "Tolerance"
+       "Part Number"
+       "Value"
+       "Part Name"
+
+	Checking for errors in the ICDB...
+
+	No errors found.  Proceeding with packaging...
+
+
+
+     Common Data Base has been read
+
+     Target PDB Name: Integration\LocalPartsDB.pdb
+
+     Number of Part Numbers: 38
+          Part Numb: 00-0022 -> Vend Part: 00-0022 
+          Part Numb: 00-0055 -> Vend Part: 00-0055 
+          Part Numb: 00-0066 -> Vend Part: 00-0066 
+          Part Numb: 00-0085 -> Vend Part: 00-0085 
+          Part Numb: 00-0098 -> Vend Part: 00-0098 
+          Part Numb: 03-0013 -> Vend Part: 03-0013 
+          Part Numb: 03-0015 -> Vend Part: 03-0015 
+          Part Numb: 03-0016 -> Vend Part: 03-0016 
+          Part Numb: 10-0018 -> Vend Part: 10-0018 
+          Part Numb: 10-0031 -> Vend Part: 10-0031 
+          Part Numb: 10-0054 -> Vend Part: 10-0054 
+          Part Numb: 10-0057 -> Vend Part: 10-0057 
+          Part Numb: 10-0068 -> Vend Part: 10-0068 
+          Part Numb: 10-0077 -> Vend Part: 10-0077 
+          Part Numb: 10-0102 -> Vend Part: 10-0102 
+          Part Numb: 10-0103 -> Vend Part: 10-0103 
+          Part Numb: 10-0112 -> Vend Part: 10-0112 
+          Part Numb: 20-0003 -> Vend Part: 20-0003 
+          Part Numb: 20-0004 -> Vend Part: 20-0004 
+          Part Numb: 30-0019 -> Vend Part: 30-0019 
+          Part Numb: 40-0208 -> Vend Part: 40-0208 
+          Part Numb: 40-0288 -> Vend Part: 40-0288 
+          Part Numb: 40-0303 -> Vend Part: 40-0303 
+          Part Numb: 40-0304 -> Vend Part: 40-0304 
+          Part Numb: 50-0040 -> Vend Part: 50-0040 
+          Part Numb: 50-0045 -> Vend Part: 50-0045 
+          Part Numb: 70-0001 -> Vend Part: 70-0001 
+          Part Numb: 70-0003 -> Vend Part: 70-0003 
+          Part Numb: 70-0014 -> Vend Part: 70-0014 
+          Part Numb: 70-0029 -> Vend Part: 70-0029 
+          Part Numb: 70-0040 -> Vend Part: 70-0040 
+          Part Numb: 70-0053 -> Vend Part: 70-0053 
+          Part Numb: 70-0081 -> Vend Part: 70-0081 
+          Part Numb: 70-0087 -> Vend Part: 70-0087 
+          Part Numb: 80-0035 -> Vend Part: 80-0035 
+          Part Numb: 80-0056 -> Vend Part: 80-0056 
+          Part Numb: 80-0066 -> Vend Part: 80-0066 
+          Part Numb: 81-0006 -> Vend Part: 81-0006 
+
+     Number of Part Names: 0
+
+     Number of Part Labels: 0
+
+
+     Checking for value differences between non-null symbol properties and PartsDB properties,
+      but only for those properties checked off in the Property Definition Editor
+
+    WARNING: Block Schematic1, Page 3, Symbol XCMP644:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 10-0077
+      Symbol Property: Value = 4,7nF
+     PartsDB Property: Value = 4.7nF
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 3, Symbol XCMP643:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 10-0077
+      Symbol Property: Value = 4,7nF
+     PartsDB Property: Value = 4.7nF
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 1, Symbol XCMP480:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 10-0077
+      Symbol Property: Value = 4,7nF
+     PartsDB Property: Value = 4.7nF
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP634:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0016
+      Symbol Property: Value = 3,6
+     PartsDB Property: Value = 3.6 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP637:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0015
+      Symbol Property: Value = 1,8
+     PartsDB Property: Value = 1.8 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP636:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0015
+      Symbol Property: Value = 1,8
+     PartsDB Property: Value = 1.8 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP635:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0015
+      Symbol Property: Value = 1,8
+     PartsDB Property: Value = 1.8 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP559:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2
+     PartsDB Property: Value = 2.2 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP558:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2
+     PartsDB Property: Value = 2.2 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP553:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2
+     PartsDB Property: Value = 2.2 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP552:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2
+     PartsDB Property: Value = 2.2 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP547:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2
+     PartsDB Property: Value = 2.2 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP546:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2
+     PartsDB Property: Value = 2.2 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP541:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2
+     PartsDB Property: Value = 2.2 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP540:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2
+     PartsDB Property: Value = 2.2 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP515:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2
+     PartsDB Property: Value = 2.2 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP514:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 03-0013
+      Symbol Property: Value = 2,2
+     PartsDB Property: Value = 2.2 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP566:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 00-0022
+      Symbol Property: Value = 6,8
+     PartsDB Property: Value = 6.8 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP565:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 00-0022
+      Symbol Property: Value = 6,8
+     PartsDB Property: Value = 6.8 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP564:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 00-0022
+      Symbol Property: Value = 6,8
+     PartsDB Property: Value = 6.8 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP563:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 00-0022
+      Symbol Property: Value = 6,8
+     PartsDB Property: Value = 6.8 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 5, Symbol XCMP562:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 00-0022
+      Symbol Property: Value = 6,8
+     PartsDB Property: Value = 6.8 
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 1, Symbol XCMP687:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 10-0112
+      Symbol Property: Value = 2,2uF
+     PartsDB Property: Value = 2.2uF
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+    WARNING: Block Schematic1, Page 1, Symbol XCMP686:
+      Symbol / PartsDB property mismatch:
+      Resolved PartNumber = 10-0112
+      Symbol Property: Value = 2,2uF
+     PartsDB Property: Value = 2.2uF
+     The property value on this symbol has not been changed.
+      Use the 'Update PDB Properties on symbol' option on the Packager menu
+      or use Device Replace to change the schematic symbol in order to
+      update the schematic to the PartsDB value as limited by the precision
+      specified in the Notation Settings dialog.  Be sure that the
+      precision specified in the Notation Settings dialog is sufficient to
+      define the value exactly or this warning will continue.
+
+     Checking the validity of the packaging of prepackaged schematic
+      symbols.  Only the first error in symbols having the same
+      Reference Designator will be reported.
+
+     The packaging of all prepackaged schematic symbols is consistent
+      with the Parts DataBase data for the cross mapping of
+      symbol pin names to Part Number pin numbers.
+      Symbols that were not prepackaged will now be packaged correctly.
+      
+     No errors in Existing Schematic Packaging.
+
+     The Common DataBase has been read and will be packaged.
+     Clustering 138 Symbols:
+             138  *************************************
+             100  **************************************************
+              50  **************************************************
+     Clustering is Complete
+
+     Packager Assignments successfully completed
+
+
+
+     118 nets were found containing 454 pins
+     138 components were found
+
+     Parsed netlist - Augmenting..
+
+     Augmented - Adding phantom pins....
+
+     Numbering Nets....
+
+     Checking Pins....
+
+     Testing of Packaging has been completed with 24 warnings.
+      Erroneous results may occur if not fixed.
+
+     Updating the Common DataBase
+
+     A BAM WasIs List: Integration\CDBBackAnno.bam has been created.
+
+The Common DataBase has been successfully updated.
+
+     Packager finished successfully.
+     !THE iCDB IS UP-TO-DATE!
+     
+     An unused pin and gate report has been written to Integration\UnusedPins.txt
+     An unused gate report for gates not in schematic has been written to Integration\UnusedGates.txt
+     An augmented pin report has been written to Integration\AugmentedPins.txt.
+
+     There have been 24 warnings.

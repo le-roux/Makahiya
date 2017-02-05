@@ -1,6 +1,0 @@
-<map id="rtc_lld_set_time" name="rtc_lld_set_time">
-<area shape="rect" id="node2" href="$group___r_t_c.html#gad7cc62b9d0c01d621df5bc4ee5cc4574" title="Converts a date from timespec to DR register encoding. " alt="" coords="149,5,252,29"/>
-<area shape="rect" id="node3" href="$group___r_t_c.html#gab4616873e85eae7352deacc195f5d164" title="Converts time from timespec to TR register encoding. " alt="" coords="150,53,251,77"/>
-<area shape="rect" id="node4" href="$group___r_t_c.html#ga2cbfcf70b0ad8d7f18c6f90949946a28" title="Beginning of configuration procedure. " alt="" coords="159,101,243,125"/>
-<area shape="rect" id="node5" href="$group___r_t_c.html#gaec9b76b674bb8dead972b08c500dffa5" title="Finalizing of configuration procedure. " alt="" coords="163,149,238,173"/>
-</map>

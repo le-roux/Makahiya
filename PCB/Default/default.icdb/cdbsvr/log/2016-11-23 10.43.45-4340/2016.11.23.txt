@@ -1,0 +1,157 @@
+[2016.11.23 10:43:45] [0000m.00s.034ms] [0] WELCOME
+[2016.11.23 10:43:45] [0000m.00s.035ms] [1] iCDB Server ver.1.094, 6gd90oQ3k14LFbtGTR11Rg, build:689985 created 2015-09-22 09:52:52, sources stamp:6gd90oQ3k14LFbtGTR11Rg
+[2016.11.23 10:43:45] [0000m.00s.035ms] [1] Copyright 2015 Mentor Graphics Corporation. All Rights Reserved.
+[2016.11.23 10:43:45] [0000m.00s.035ms] [1] Base flow version [7.9.4]
+[2016.11.23 10:43:45] [0000m.00s.035ms] [1] GBS Install Id [30163], Flow Id [EE7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.23 10:43:45] [0000m.00s.036ms] [1] GBS Install Id [30120], Flow Id [EE 7.9.5], Full Flow Name [Expedition Enterprise Flow], Exact Access Date [Jun 1 2012]
+[2016.11.23 10:43:45] [0000m.00s.036ms] [1] UPDATE Install Info, GBS Install Id [45618], UPDATE Name [Expedition Enterprise Flow - Update 36 for EE7.9.5]
+[2016.11.23 10:43:45] [0000m.00s.036ms] [1] Machine [TANGUY-PC]  User [Tanguy]  PID [4340]
+[2016.11.23 10:43:45] [0000m.00s.036ms] [1] Operating system [Microsoft Windows 7 Home Premium Edition, 64-bit Service Pack 1 (build 7601)]
+[2016.11.23 10:43:45] [0000m.00s.036ms] [1] Current working dir [C:\Users\Tanguy\Documents\ROSE\Makahiya]
+[2016.11.23 10:43:45] [0000m.00s.036ms] [1] PATH [C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\help;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\_bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\wg\win32\lib;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\bin;C:\MentorGraphics\7.9.5EE\SDD_HOME\common\win32\lib;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\bin;C:\MentorGraphics\7.9.5EE\MGC_HOME.ixn\lib;C:\ProgramData\Oracle\Java\javapath;C:\Python33\;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\Skype\Phone\;]
+[2016.11.23 10:43:45] [0000m.00s.036ms] [1] SDD_HOME [C:\MentorGraphics\7.9.5EE\SDD_HOME] on file system [NTFS]
+[2016.11.23 10:43:45] [0000m.00s.036ms] [1] SDD_PLATFORM [win32]
+[2016.11.23 10:43:45] [0000m.00s.036ms] [1] WDIR [C:\MentorGraphics\WDIR;C:\MentorGraphics\7.9.5EE\SDD_HOME\standard]
+[2016.11.23 10:43:45] [0000m.00s.036ms] [1] Local iCDB working dir [C:\MentorGraphics\WDIR\iCDB] on file system [NTFS]
+[2016.11.23 10:43:45] [0000m.00s.037ms] [1] S: Config file name [ServerWG.cfg]
+[2016.11.23 10:43:45] [0000m.00s.037ms] [2] S: Loading config files
+[2016.11.23 10:43:45] [0000m.00s.052ms] [1] Config file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\cdbsvr\ServerWG.cfg] not found
+[2016.11.23 10:43:45] [0000m.00s.052ms] [1] Config: Non-default value [System.SingleUserMode] = [no]
+[2016.11.23 10:43:45] [0000m.00s.055ms] [3] S: Config loaded
+[2016.11.23 10:43:45] [0000m.00s.063ms] [0] S: Project path [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb] on file system [NTFS]
+[2016.11.23 10:43:45] [0000m.00s.064ms] [0] S: Project global path [\\TANGUY-PC\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb] on file system [NTFS]
+[2016.11.23 10:43:45] [0000m.00s.064ms] [1] S: WARNING: No project file (.prj) path specified
+[2016.11.23 10:43:45] [0000m.00s.065ms] [1] S: WARNING: Database auto-repair support DISABLED
+[2016.11.23 10:43:45] [0000m.00s.065ms] [0] S: Multi-user mode (config)
+[2016.11.23 10:43:45] [0000m.00s.065ms] [0] S: Event polling mode autodetection
+[2016.11.23 10:43:45] [0000m.00s.089ms] [0] S: Started up automatically by iCDB Client: TANGUY-PC:Tanguy:4396
+[2016.11.23 10:43:45] [0000m.00s.089ms] [0] S: Auto close mode
+[2016.11.23 10:43:45] [0000m.00s.089ms] [0] S: Database ID [7c43-ef73-e967-dbbd-0f62-4385-f624-3850-63c6-b645-a384-acad]
+[2016.11.23 10:43:45] [0000m.00s.089ms] [0] PathTranslator: BEGIN dumping
+[2016.11.23 10:43:45] [0000m.00s.089ms] [0] PathTranslator: Local -> global path prefix list
+[2016.11.23 10:43:45] [0000m.00s.089ms] [0] PathTranslator: [C:\Users] -> [\\TANGUY-PC\Users]
+[2016.11.23 10:43:45] [0000m.00s.089ms] [0] PathTranslator: Global -> local path prefix list
+[2016.11.23 10:43:45] [0000m.00s.089ms] [0] PathTranslator: [\\TANGUY-PC\Users] -> [C:\Users]
+[2016.11.23 10:43:45] [0000m.00s.089ms] [0] PathTranslator: END dumping
+[2016.11.23 10:43:45] [0000m.00s.089ms] [0] S: START
+[2016.11.23 10:43:45] [0000m.00s.091ms] [0] S: Server startup lock file created
+[2016.11.23 10:43:45] [0000m.00s.092ms] [0] S: Listening for client connections on port [10000]
+[2016.11.23 10:43:45] [0000m.00s.104ms] [0] S: Server network ID [Tanguy-PC:137.194.22.64,192.168.56.1,Tanguy-PC:10000]
+[2016.11.23 10:43:45] [0000m.00s.104ms] [0] S: Server GUID [7075-135d-98f1-af2b-1d46-5386-d465-3850-2097-b695-c371-acad]
+[2016.11.23 10:43:45] [0000m.00s.104ms] [0] S: Project GUID [7c43-ef73-e967-dbbd-0f62-4385-f624-3850-63c6-b645-a384-acad]
+[2016.11.23 10:43:45] [0000m.00s.111ms] [0] S: Wrote data to server address file
+[2016.11.23 10:43:45] [0000m.00s.112ms] [0] S: Server startup lock file removed
+[2016.11.23 10:43:45] [0000m.00s.112ms] [0] ProjectBackupManager: WARNING: Could not create Project Backup - functionality not initialized
+[2016.11.23 10:43:45] [0000m.00s.146ms] [0] S: Plugins loaded: [PIM] [ENetGen70] 
+[2016.11.23 10:43:45] [0000m.00s.147ms] [0] S: Local disc access time: 49 us
+[2016.11.23 10:43:45] [0000m.00s.147ms] [0] S: File server access time: 47 us
+[2016.11.23 10:43:45] [0000m.00s.149ms] [0] Single file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\icdb.dat] size [166328 (162.4 kB)]
+[2016.11.23 10:43:45] [0000m.00s.149ms] [1] Single file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\icdb.dat] opened in read-write mode
+[2016.11.23 10:43:45] [0000m.00s.150ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.23 10:43:45] [0000m.00s.150ms] [0] Database GUARD OK: [166328]
+[2016.11.23 10:43:45] [0000m.00s.151ms] [0] SingleFile: [0000-0000-0000-0000] SFI header version check [1009] [1009]
+[2016.11.23 10:43:45] [0000m.00s.152ms] [0] Database GUARD OK: [166328]
+[2016.11.23 10:43:45] [0000m.00s.152ms] [0] SingleFile: [de7c-d94e-7410-b0cb] SFI version check [1009] [1009]
+[2016.11.23 10:43:45] [0000m.00s.161ms] [0] SingleFile: [de7c-d94e-7410-b0cb] Database SFI header has been read in [9ms 202us]
+[2016.11.23 10:43:45] [0000m.00s.165ms] [0] iCDB Server PI: Server & plugin session [3118]
+[2016.11.23 10:43:45] [0000m.00s.165ms] [0] iCDB Server PI: Opening database [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb]
+[2016.11.23 10:43:45] [0000m.00s.165ms] [0] iCDB Server PI: Database [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb] opened
+[2016.11.23 10:43:45] [0000m.00s.185ms] [0] iCDB Database: Checking existence of constraint definitions
+[2016.11.23 10:43:45] [0000m.00s.186ms] [0] iCDB Database: Checking constraint definitions version
+[2016.11.23 10:43:45] [0000m.00s.264ms] [1] iCDB Database: Constraint definitions version [ce_ee.cns=7.10.24;user.cns=382b-6cc2-3a9b-e223-d38b-4082-48b4-0850-0880-b0df-a01e-19ca] up to date
+[2016.11.23 10:43:45] [0000m.00s.285ms] [0] iCDB Server PI: Initializing plugins
+[2016.11.23 10:43:45] [0000m.00s.285ms] [0] iCDB Server PI: Plugins initialized
+[2016.11.23 10:43:45] [0000m.00s.285ms] [0] S: iCDB database loaded
+[2016.11.23 10:43:45] [0000m.00s.287ms] [0] S: Starting threads
+[2016.11.23 10:43:45] [0000m.00s.287ms] [0] BT: Listening for broadcast messages on port [10000]
+[2016.11.23 10:43:45] [0000m.00s.288ms] [0] ProjectBackupManager: WARNING: Could not startup Project Backup engine - functionality not initialized
+[2016.11.23 10:43:45] [0000m.00s.312ms] [1] CMT: There are no clients - waiting [10 seconds]
+[2016.11.23 10:43:45] [0000m.00s.312ms] [0] IT: Session [3119] for host [Tanguy-PC] user [Tanguy] with process ID [4396] created
+[2016.11.23 10:43:45] [0000m.00s.312ms] [1] SCL: WARNING: Could not find client [3119] stat data
+[2016.11.23 10:43:45] [0000m.00s.327ms] [1] SC[3119]: Registered sub-client [DCDV] with ID [1] for session ID [3119] host [Tanguy-PC] user [Tanguy] process ID [4396]
+[2016.11.23 10:43:45] [0000m.00s.443ms] [1] CMT: There are [1] clients now: 3119
+[2016.11.23 10:44:04] [0000m.19s.721ms] [0] DFAMT: File server access time: 50 us
+[2016.11.23 10:44:50] [0001m.05s.035ms] [0] IT: Session [3120] for host [Tanguy-PC] user [Tanguy] with process ID [3632] created
+[2016.11.23 10:44:50] [0001m.05s.035ms] [1] ProjectBackupManager: Client [ClientData[ClientNetAddress[Tanguy-PC] # ClientUserName[Tanguy] # ClientProcessID[3632] # SessionID[3120]] # SubClientData[SubClientName[] # SubClientID[0]]] set project file (.prj): local path [C:\Users\Tanguy\Documents\ROSE\Makahiya\Makahiya.prj], global path [\\TANGUY-PC\Users\Tanguy\Documents\ROSE\Makahiya\Makahiya.prj]
+[2016.11.23 10:44:50] [0001m.05s.047ms] [1] SC[3120]: Registered sub-client [Expedition PCB_11191402] with ID [1] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:44:50] [0001m.05s.071ms] [1] CMT: There are [2] clients now: 3119, 3120
+[2016.11.23 10:44:50] [0001m.05s.095ms] [1] SC[3120]: Registered sub-client [EEVM] with ID [2] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:44:50] [0001m.05s.227ms] [1] SC[3120]: UnRegistered sub-client [EEVM] with ID [2] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:44:51] [0001m.06s.413ms] [1] SC[3120]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:44:55] [0001m.10s.499ms] [1] SC[3120]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:44:55] [0001m.10s.511ms] [1] SC[3120]: Registered sub-client [EEVM_EEVM_1635240] with ID [4] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:44:55] [0001m.10s.511ms] [1] SC[3120]: UnRegistered sub-client [EEVM_EEVM_1635240] with ID [4] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:44:55] [0001m.10s.602ms] [1] SC[3120]: Registered sub-client [JobPrefsDBPI_11197018] with ID [5] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:44:55] [0001m.10s.624ms] [1] SC[3120]: UnRegistered sub-client [JobPrefsDBPI_11197018] with ID [5] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:44:57] [0001m.11s.912ms] [1] SC[3120]: Registered sub-client [JobPrefsDBPI_11198328] with ID [6] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:44:57] [0001m.11s.932ms] [1] SC[3120]: UnRegistered sub-client [JobPrefsDBPI_11198328] with ID [6] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:44:57] [0001m.12s.177ms] [0] IT: Session [3121] for host [Tanguy-PC] user [Tanguy] with process ID [2620] created
+[2016.11.23 10:44:57] [0001m.12s.180ms] [1] SC[3121]: Registered sub-client [Packager_11198547] with ID [1] for session ID [3121] host [Tanguy-PC] user [Tanguy] process ID [2620]
+[2016.11.23 10:44:57] [0001m.12s.276ms] [1] CMT: There are [3] clients now: 3119, 3120, 3121
+[2016.11.23 10:44:57] [0001m.12s.685ms] [1] SC[3121]: UnRegistered sub-client [Packager_11198547] with ID [1] for session ID [3121] host [Tanguy-PC] user [Tanguy] process ID [2620]
+[2016.11.23 10:44:57] [0001m.12s.731ms] [1] CMT: Removed client [3121]
+[2016.11.23 10:44:57] [0001m.12s.731ms] [1] CMT: There are [2] clients now: 3119, 3120
+[2016.11.23 10:44:58] [0001m.13s.442ms] [0] IT: Session [3122] for host [Tanguy-PC] user [Tanguy] with process ID [2552] created
+[2016.11.23 10:44:58] [0001m.13s.444ms] [1] SC[3122]: Registered sub-client [Expedition_11199810] with ID [1] for session ID [3122] host [Tanguy-PC] user [Tanguy] process ID [2552]
+[2016.11.23 10:44:58] [0001m.13s.501ms] [1] CMT: There are [3] clients now: 3119, 3120, 3122
+[2016.11.23 10:44:58] [0001m.13s.549ms] [1] SC[3122]: UnRegistered sub-client [Expedition_11199810] with ID [1] for session ID [3122] host [Tanguy-PC] user [Tanguy] process ID [2552]
+[2016.11.23 10:44:58] [0001m.13s.601ms] [1] CMT: Removed client [3122]
+[2016.11.23 10:44:58] [0001m.13s.601ms] [1] CMT: There are [2] clients now: 3119, 3120
+[2016.11.23 10:44:59] [0001m.14s.253ms] [0] IT: Session [3123] for host [Tanguy-PC] user [Tanguy] with process ID [2552] created
+[2016.11.23 10:44:59] [0001m.14s.254ms] [1] SC[3123]: Registered sub-client [JobPrefsDBPI_11200622] with ID [1] for session ID [3123] host [Tanguy-PC] user [Tanguy] process ID [2552]
+[2016.11.23 10:44:59] [0001m.14s.289ms] [1] SC[3123]: UnRegistered sub-client [JobPrefsDBPI_11200622] with ID [1] for session ID [3123] host [Tanguy-PC] user [Tanguy] process ID [2552]
+[2016.11.23 10:44:59] [0001m.14s.307ms] [1] CMT: There are [3] clients now: 3119, 3120, 3123
+[2016.11.23 10:44:59] [0001m.14s.308ms] [1] CMT: Removed client [3123]
+[2016.11.23 10:44:59] [0001m.14s.308ms] [1] CMT: There are [2] clients now: 3119, 3120
+[2016.11.23 10:45:00] [0001m.14s.877ms] [0] IT: Session [3124] for host [Tanguy-PC] user [Tanguy] with process ID [2552] created
+[2016.11.23 10:45:00] [0001m.14s.879ms] [1] SC[3124]: Registered sub-client [JobPrefsDBPI_11201261] with ID [1] for session ID [3124] host [Tanguy-PC] user [Tanguy] process ID [2552]
+[2016.11.23 10:45:00] [0001m.14s.935ms] [1] CMT: There are [3] clients now: 3119, 3120, 3124
+[2016.11.23 10:45:00] [0001m.15s.197ms] [1] SC[3124]: UnRegistered sub-client [JobPrefsDBPI_11201261] with ID [1] for session ID [3124] host [Tanguy-PC] user [Tanguy] process ID [2552]
+[2016.11.23 10:45:00] [0001m.15s.266ms] [1] CMT: Removed client [3124]
+[2016.11.23 10:45:00] [0001m.15s.266ms] [1] CMT: There are [2] clients now: 3119, 3120
+[2016.11.23 10:45:01] [0001m.15s.886ms] [0] IT: Session [3125] for host [Tanguy-PC] user [Tanguy] with process ID [3416] created
+[2016.11.23 10:45:01] [0001m.15s.888ms] [1] SC[3125]: Registered sub-client [JobPrefsDBPI_11202260] with ID [1] for session ID [3125] host [Tanguy-PC] user [Tanguy] process ID [3416]
+[2016.11.23 10:45:01] [0001m.15s.919ms] [1] CMT: There are [3] clients now: 3119, 3120, 3125
+[2016.11.23 10:45:01] [0001m.15s.926ms] [1] SC[3125]: Registered sub-client [Expedition_11202338] with ID [2] for session ID [3125] host [Tanguy-PC] user [Tanguy] process ID [3416]
+[2016.11.23 10:45:01] [0001m.15s.983ms] [1] SC[3125]: UnRegistered sub-client [JobPrefsDBPI_11202260] with ID [1] for session ID [3125] host [Tanguy-PC] user [Tanguy] process ID [3416]
+[2016.11.23 10:45:01] [0001m.16s.117ms] [1] SC[3125]: UnRegistered sub-client [Expedition_11202338] with ID [2] for session ID [3125] host [Tanguy-PC] user [Tanguy] process ID [3416]
+[2016.11.23 10:45:01] [0001m.16s.182ms] [1] CMT: Removed client [3125]
+[2016.11.23 10:45:01] [0001m.16s.182ms] [1] CMT: There are [2] clients now: 3119, 3120
+[2016.11.23 10:45:01] [0001m.16s.720ms] [1] SC[3120]: Registered sub-client [EEVM_EEVM_135383964] with ID [7] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:45:01] [0001m.16s.736ms] [1] SC[3120]: UnRegistered sub-client [EEVM_EEVM_135383964] with ID [7] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:45:01] [0001m.16s.762ms] [1] SC[3120]: Registered sub-client [EEVM_EEVM_135383964] with ID [8] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:45:01] [0001m.16s.766ms] [1] SC[3120]: UnRegistered sub-client [EEVM_EEVM_135383964] with ID [8] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:45:01] [0001m.16s.790ms] [1] SC[3120]: Registered sub-client [EEVM_EEVM_135383964] with ID [9] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:45:01] [0001m.16s.808ms] [1] SC[3120]: UnRegistered sub-client [EEVM_EEVM_135383964] with ID [9] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:45:02] [0001m.17s.033ms] [1] SC[3120]: UnRegistered sub-client [Expedition PCB_11191402] with ID [1] for session ID [3120] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:45:02] [0001m.17s.140ms] [1] CMT: Removed client [3120]
+[2016.11.23 10:45:02] [0001m.17s.140ms] [1] CMT: There are [1] clients now: 3119
+[2016.11.23 10:45:02] [0001m.17s.317ms] [0] IT: Session [3126] for host [Tanguy-PC] user [Tanguy] with process ID [3632] created
+[2016.11.23 10:45:02] [0001m.17s.319ms] [1] SC[3126]: Registered sub-client [Expedition PCB_11203679] with ID [1] for session ID [3126] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:45:02] [0001m.17s.364ms] [1] CMT: There are [2] clients now: 3119, 3126
+[2016.11.23 10:45:05] [0001m.20s.371ms] [1] SC[3126]: Registered sub-client [JobPrefsDBPI_11206784] with ID [2] for session ID [3126] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:45:05] [0001m.20s.379ms] [1] SC[3126]: UnRegistered sub-client [JobPrefsDBPI_11206784] with ID [2] for session ID [3126] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:45:05] [0001m.20s.402ms] [1] SC[3126]: Registered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3126] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:47:09] [0003m.24s.044ms] [1] SC[3126]: UnRegistered sub-client [ExpeditionCrossProber] with ID [3] for session ID [3126] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:47:09] [0003m.24s.500ms] [1] SC[3126]: UnRegistered sub-client [Expedition PCB_11203679] with ID [1] for session ID [3126] host [Tanguy-PC] user [Tanguy] process ID [3632]
+[2016.11.23 10:47:09] [0003m.24s.515ms] [1] CMT: Removed client [3126]
+[2016.11.23 10:47:09] [0003m.24s.515ms] [1] CMT: There are [1] clients now: 3119
+[2016.11.23 10:47:12] [0003m.27s.524ms] [1] SC[3119]: UnRegistered sub-client [DCDV] with ID [1] for session ID [3119] host [Tanguy-PC] user [Tanguy] process ID [4396]
+[2016.11.23 10:47:12] [0003m.27s.628ms] [1] CMT: Removed client [3119]
+[2016.11.23 10:47:12] [0003m.27s.628ms] [1] CMT: There are no clients left - waiting [1 seconds]
+[2016.11.23 10:47:14] [0003m.28s.859ms] [0] CMT: Starting server auto-close
+[2016.11.23 10:47:14] [0003m.28s.932ms] [0] S: Closing server
+[2016.11.23 10:47:14] [0003m.29s.022ms] [0] iCDB Server PI: Closing plugins
+[2016.11.23 10:47:14] [0003m.29s.022ms] [0] iCDB Server PI: Plugins closed
+[2016.11.23 10:47:14] [0003m.29s.022ms] [0] iCDB Server PI: Unloading database
+[2016.11.23 10:47:14] [0003m.29s.022ms] [0] iCDB Server PI: Saving storage
+[2016.11.23 10:47:14] [0003m.29s.022ms] [0] iCDB Server PI: Closing database
+[2016.11.23 10:47:14] [0003m.29s.026ms] [1] iCDB Server PI: Stats: Database defragmentation: max[2] avg[1] holes[10%] data[91%]
+[2016.11.23 10:47:14] [0003m.29s.026ms] [1] iCDB Server PI: Stats: Database file size [192008 (187.5 kB)]
+[2016.11.23 10:47:14] [0003m.29s.030ms] [0] iCDB Server PI: Database closed
+[2016.11.23 10:47:14] [0003m.29s.030ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [45625] ticks
+[2016.11.23 10:47:14] [0003m.29s.030ms] [1] iCDB Server PI: Stats: Total iCDB execution time: [23417] microseconds
+[2016.11.23 10:47:14] [0003m.29s.030ms] [1] iCDB Server PI: Stats: Total iCDB commands count: [43]
+[2016.11.23 10:47:14] [0003m.29s.030ms] [1] iCDB Server PI: Stats: Average iCDB speed:        [1836] commands per second
+[2016.11.23 10:47:14] [0003m.29s.063ms] [0] Single file [C:\Users\Tanguy\Documents\ROSE\Makahiya\Default\default.icdb\icdb.dat] closed with size [192008 (187.5 kB)]
+[2016.11.23 10:47:14] [0003m.29s.326ms] [0] S: STOP

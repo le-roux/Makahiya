@@ -1,4 +1,0 @@
-<map id="dacStart" name="dacStart">
-<area shape="rect" id="node2" href="$group___d_a_c.html#gabae212cc99df9f7e77960f18af220997" title="Configures and activates the DAC peripheral. " alt="" coords="116,5,199,29"/>
-<area shape="rect" id="node3" href="$group___d_a_c.html#ga0efffa2b274a2f08239e26fe7def05b1" title="Outputs a value directly on a DAC channel. " alt="" coords="247,5,365,29"/>
-</map>

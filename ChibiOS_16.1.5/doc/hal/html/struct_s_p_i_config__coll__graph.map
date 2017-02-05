@@ -1,5 +1,0 @@
-<map id="SPIConfig" name="SPIConfig">
-<area shape="rect" id="node2" href="$struct_s_p_i_driver.html" title="Structure representing an SPI driver. " alt="" coords="95,492,183,621"/>
-<area shape="rect" id="node3" href="$structstm32__dma__stream__t.html" title="STM32 DMA stream descriptor structure. " alt="" coords="5,303,132,420"/>
-<area shape="rect" id="node4" href="$structstm32__gpio__t.html" title="STM32 GPIO registers block. " alt="" coords="156,5,243,243"/>
-</map>

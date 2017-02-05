@@ -1,6 +1,0 @@
-<map id="extStart" name="extStart">
-<area shape="rect" id="node2" href="$group___e_x_t.html#gadb573ed9cf28259b3a4e34e4d3223574" title="Configures and activates the EXT peripheral. " alt="" coords="112,53,191,77"/>
-<area shape="rect" id="node3" href="$group___e_x_t.html#gaa6a005053852e77b3afce3a0a276d402" title="Enables EXTI IRQ sources. " alt="" coords="241,5,371,29"/>
-<area shape="rect" id="node4" href="$group___e_x_t.html#ga8569f791b7419e028a409f7ee213769f" title="Enables an EXT channel. " alt="" coords="239,53,373,77"/>
-<area shape="rect" id="node5" href="$group___e_x_t.html#ga25a3680106dbb172cb08c34ffa81af79" title="Disables an EXT channel. " alt="" coords="239,101,373,125"/>
-</map>

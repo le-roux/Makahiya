@@ -1,4 +1,0 @@
-<map id="rtc_lld_get_time" name="rtc_lld_get_time">
-<area shape="rect" id="node2" href="$group___r_t_c.html#ga7172497c6c8b01e4b335577ac1c98842" title="Converts date from DR register encoding to timespec. " alt="" coords="151,5,253,29"/>
-<area shape="rect" id="node3" href="$group___r_t_c.html#ga6b6214c93d4426ffb8a428e712256cf6" title="Converts time from TR register encoding to timespec. " alt="" coords="151,53,253,77"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="BaseSequentialStream" name="BaseSequentialStream">
-<area shape="rect" id="node2" href="$struct_base_channel.html" title="Base channel class. " alt="" coords="49,123,136,192"/>
-<area shape="rect" id="node4" href="$struct_file_stream.html" title="Base file stream class. " alt="" coords="182,123,257,192"/>
-<area shape="rect" id="node3" href="$struct_base_asynchronous_channel.html" title="Base asynchronous channel class. " alt="" coords="5,240,159,309"/>
-<area shape="rect" id="node5" href="$struct_r_t_c_driver_v_m_t.html" title="RTCDriver virtual methods table. " alt="" coords="183,240,280,309"/>
-</map>

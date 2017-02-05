@@ -1,7 +1,0 @@
-<map id="Interfaces" name="Interfaces">
-<area shape="rect" id="node2" href="$group___h_a_l___f_i_l_e_s.html" title="Abstract Files" alt="" coords="231,5,317,29"/>
-<area shape="rect" id="node3" href="$group___i_o___b_l_o_c_k.html" title="Abstract I/O Block\l Device" alt="" coords="221,54,327,90"/>
-<area shape="rect" id="node5" href="$group___i_o___c_h_a_n_n_e_l.html" title="Abstract I/O Channel" alt="" coords="213,115,335,139"/>
-<area shape="rect" id="node6" href="$group___h_a_l___s_t_r_e_a_m_s.html" title="Abstract Streams" alt="" coords="222,163,326,187"/>
-<area shape="rect" id="node4" href="$group___i_o.html" title="Hardware Abstraction Layer. " alt="" coords="5,88,48,112"/>
-</map>

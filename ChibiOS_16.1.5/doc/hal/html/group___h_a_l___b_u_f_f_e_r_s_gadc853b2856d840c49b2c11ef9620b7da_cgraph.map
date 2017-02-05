@@ -1,4 +1,0 @@
-<map id="ibqReadTimeout" name="ibqReadTimeout">
-<area shape="rect" id="node2" href="$group___h_a_l___b_u_f_f_e_r_s.html#ga5e4857e9e818ae7db542907b40f0f07e" title="Gets the next filled buffer from the queue. " alt="" coords="155,5,300,29"/>
-<area shape="rect" id="node3" href="$group___h_a_l___b_u_f_f_e_r_s.html#ga84bd11d1a8f4125aac9261d6eda50857" title="Releases the buffer back in the queue. " alt="" coords="157,53,298,77"/>
-</map>

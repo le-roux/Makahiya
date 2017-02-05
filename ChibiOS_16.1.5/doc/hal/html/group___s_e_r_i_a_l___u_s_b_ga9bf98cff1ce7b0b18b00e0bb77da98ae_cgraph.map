@@ -1,5 +1,0 @@
-<map id="sduStop" name="sduStop">
-<area shape="rect" id="node2" href="$group___s_e_r_i_a_l___u_s_b.html#ga9e3c04cefaf266c08053859e7dbd5f1a" title="USB device disconnection handler. " alt="" coords="115,29,209,53"/>
-<area shape="rect" id="node3" href="$group___h_a_l___b_u_f_f_e_r_s.html#gabb11859756f526b7f2150aaef6a4667c" title="Resets an input buffers queue. " alt="" coords="259,5,326,29"/>
-<area shape="rect" id="node4" href="$group___h_a_l___b_u_f_f_e_r_s.html#gaddd8be7bc7d1c4c18ca709aff412f79c" title="Resets an output buffers queue. " alt="" coords="257,53,328,77"/>
-</map>

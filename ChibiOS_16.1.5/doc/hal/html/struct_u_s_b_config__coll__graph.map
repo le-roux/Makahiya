@@ -1,7 +1,0 @@
-<map id="USBConfig" name="USBConfig">
-<area shape="rect" id="node3" href="$struct_u_s_b_driver.html" title="Structure representing an USB driver. " alt="" coords="183,420,271,609"/>
-<area shape="rect" id="node2" href="$struct_u_s_b_descriptor.html" title="Type of an USB descriptor. " alt="" coords="268,5,361,87"/>
-<area shape="rect" id="node5" href="$struct_u_s_b_endpoint_config.html" title="Type of an USB endpoint configuration structure. " alt="" coords="168,693,285,811"/>
-<area shape="rect" id="node4" href="$structstm32__otg__params__t.html" title="Peripheral&#45;specific parameters block. " alt="" coords="5,195,128,288"/>
-<area shape="rect" id="node6" href="$structstm32__otg__t.html" title="USB registers memory map. " alt="" coords="153,147,245,336"/>
-</map>
