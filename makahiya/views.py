@@ -682,10 +682,10 @@ async def music_stop(request):
 		res = {'email': email,
 				'plant_id': plant_id,
 				'level': get_user_level(email)}
-	try:
-		await send_to_socket(plants, plant_id, 'stop')
-	except KeyError:
-		log.debug('KeyError when stopping music')
+		try:
+			await send_to_socket(plants, plant_id, 'stop')
+		except KeyError:
+			log.debug('KeyError when stopping music')
 
 		return HTTPFound('/' + str(plant_id) + '/music')
 	else:
