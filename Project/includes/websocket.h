@@ -44,6 +44,8 @@ extern THD_WORKING_AREA(wa_websocket, WA_WEBSOCKET_SIZE);
  */
 void web_cb(EXTDriver* driver, expchannel_t channel);
 
+void websocket_write(char* buffer);
+
 /** @brief Main function of the websocket thread.
  *
  * @param arg A string indicating the plant id (unique for each plant).

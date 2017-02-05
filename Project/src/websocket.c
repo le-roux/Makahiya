@@ -167,3 +167,7 @@ THD_FUNCTION(websocket, arg) {
             break;
     }
 }
+
+void websocket_write(char* buffer) {
+	wifi_write((wifi_connection*)&conn, strlen(buffer), (uint8_t*)buffer, false);
+}

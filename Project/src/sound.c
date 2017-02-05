@@ -6,6 +6,7 @@
 #include "chprintf.h"
 #include "RTT_streams.h"
 #include "i2s_user.h"
+#include "websocket.h"
 
 #include "sound.h"
 #include "wifi.h"
@@ -343,7 +344,6 @@ THD_FUNCTION(wifi_audio_in, arg) {
 		chBSemWait(&download_bsem);
 
 		reset_mailboxes();
-
 		count_nodata = 0;
 		initial_buffering = INPUT_BUFFERS_NB - 1;
 		out.length = INPUT_BUFFER_SIZE;
@@ -357,10 +357,9 @@ THD_FUNCTION(wifi_audio_in, arg) {
 			// Read file from wifi
 			while(bytes_nb < INPUT_BUFFER_SIZE) { // while buffer is not full.
 				out = wifi_read(audio_conn, &((uint8_t*)inbuf)[bytes_nb], INPUT_BUFFER_SIZE - bytes_nb, true, false);
-				if (out.error && out.error_code == NO_DATA) {
+				if (out.error) {
 					count_nodata++;
 					if (count_nodata == 6 || urgent_stop) {
-						chMtxUnlock(&audio_mutex);
 						break;
 					}
 					chThdSleepMilliseconds(1000);
@@ -381,6 +380,7 @@ THD_FUNCTION(wifi_audio_in, arg) {
 			initial_buffering--;
 			if (initial_buffering == 0)
 				chBSemSignal(&decode_bsem);
+
 			chMtxUnlock(&audio_mutex);
 		}
 		if (!urgent_stop) {
