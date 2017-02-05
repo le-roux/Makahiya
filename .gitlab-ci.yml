@@ -21,7 +21,6 @@ project-test:
         - make -C Project run_test
 
 cache:
-    image: rfc1149/rose-dev
     key: all
     paths:
       - $CCACHE_DIR
