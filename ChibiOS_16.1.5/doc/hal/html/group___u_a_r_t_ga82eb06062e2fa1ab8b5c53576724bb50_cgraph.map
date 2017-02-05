@@ -1,0 +1,7 @@
+<map id="uartStart" name="uartStart">
+<area shape="rect" id="node2" href="$group___u_a_r_t.html#ga3d362eceb6050bf012b52a61a669674d" title="Configures and activates the UART peripheral. " alt="" coords="117,77,201,101"/>
+<area shape="rect" id="node3" href="$group___s_t_m32___d_m_a.html#ga2779cd46d0f5e9d7a6e549391e05cdd0" title="Allocates a DMA stream. " alt="" coords="265,5,380,29"/>
+<area shape="rect" id="node4" href="$group___u_a_r_t.html#gaf65dea7ee4566c3a457f6bb1407de4c2" title="RX DMA common service routine. " alt="" coords="249,53,396,77"/>
+<area shape="rect" id="node5" href="$group___u_a_r_t.html#ga39788ecd6679f3d4388ac36cfc04d072" title="TX DMA common service routine. " alt="" coords="250,101,395,125"/>
+<area shape="rect" id="node6" href="$group___c_o_m_m_o_n___a_r_m_c_mx___n_v_i_c.html#gaf27b6cd4f76874f8d5bbcbff7d6015d6" title="Sets the priority of an interrupt handler and enables it. " alt="" coords="271,149,375,173"/>
+</map>

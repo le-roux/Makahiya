@@ -1,3 +1,4 @@
+*.swp
 *.o
 main
 .dep/
@@ -11,4 +12,3 @@ makahiya/__pycache__
 .cache/
 .coverage
 *.pyc
-*.swp

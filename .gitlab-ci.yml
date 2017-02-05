@@ -1,10 +1,25 @@
 image: python:3.5
 
-
 server-tests:
     stage: test
     script:
-        - pip install -r requirements.txt
-        - pip install -e .
-        - initialize_test_db tests.ini
-        - pytest makahiya/tests.py -q
+        - pip install -r Server/requirements.txt
+        - pip install -e Server
+        - initialize_test_db Server/tests.ini
+        - pytest Server/makahiya/tests.py -q
+
+project-build:
+    stage: build
+    script:
+        - make -C helix
+        - make -C Project
+
+project-test:
+    stage: test
+    script:
+        - make -C Project run_test
+
+cache:
+    key: all
+    paths:
+      - $CCACHE_DIR

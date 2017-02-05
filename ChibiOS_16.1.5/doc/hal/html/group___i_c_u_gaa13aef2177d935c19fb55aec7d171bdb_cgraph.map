@@ -1,0 +1,4 @@
+<map id="icuStart" name="icuStart">
+<area shape="rect" id="node2" href="$group___i_c_u.html#ga9e2cd09f1ef69b6045b95971dffbfa6d" title="Configures and activates the ICU peripheral. " alt="" coords="112,5,191,29"/>
+<area shape="rect" id="node3" href="$group___c_o_m_m_o_n___a_r_m_c_mx___n_v_i_c.html#gaf27b6cd4f76874f8d5bbcbff7d6015d6" title="Sets the priority of an interrupt handler and enables it. " alt="" coords="239,5,343,29"/>
+</map>

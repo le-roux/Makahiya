@@ -1,0 +1,12 @@
+<map id="USBDriver" name="USBDriver">
+<area shape="rect" id="node2" href="$struct_u_s_b_config.html" title="Type of an USB driver configuration structure. " alt="" coords="523,765,597,835"/>
+<area shape="rect" id="node5" href="$struct_u_s_b_endpoint_config.html" title="Type of an USB endpoint configuration structure. " alt="" coords="197,741,315,859"/>
+<area shape="rect" id="node3" href="$struct_u_s_b_descriptor.html" title="Type of an USB descriptor. " alt="" coords="581,522,675,603"/>
+<area shape="rect" id="node4" href="$structstm32__otg__params__t.html" title="Peripheral&#45;specific parameters block. " alt="" coords="275,267,397,360"/>
+<area shape="rect" id="node6" href="$struct_u_s_b_out_endpoint_state.html" title="Type of an OUT endpoint state structure. " alt="" coords="5,504,133,621"/>
+<area shape="rect" id="node7" href="$struct_u_s_b_in_endpoint_state.html" title="Type of an IN endpoint state structure. " alt="" coords="157,504,277,621"/>
+<area shape="rect" id="node8" href="$structstm32__otg__t.html" title="USB registers memory map. " alt="" coords="422,219,514,408"/>
+<area shape="rect" id="node9" href="$structstm32__otg__out__ep__t.html" title="Device output endpoint registers group. " alt="" coords="267,5,387,159"/>
+<area shape="rect" id="node10" href="$structstm32__otg__in__ep__t.html" title="Device input endpoint registers group. " alt="" coords="411,5,525,159"/>
+<area shape="rect" id="node11" href="$structstm32__otg__host__chn__t.html" title="Host channel registers group. " alt="" coords="549,5,680,159"/>
+</map>

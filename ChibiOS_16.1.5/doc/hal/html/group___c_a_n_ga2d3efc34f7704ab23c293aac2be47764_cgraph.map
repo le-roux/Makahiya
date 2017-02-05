@@ -1,0 +1,5 @@
+<map id="canInit" name="canInit">
+<area shape="rect" id="node2" href="$group___c_a_n.html#gaa215539c505ce7099f30c0aace00bf25" title="Low level CAN driver initialization. " alt="" coords="107,29,181,53"/>
+<area shape="rect" id="node3" href="$group___c_a_n.html#gadf8c892ca4bd2544d03be8a690885aef" title="Initializes the standard part of a CANDriver structure. " alt="" coords="241,5,324,29"/>
+<area shape="rect" id="node4" href="$group___c_a_n.html#ga8fbd8eca8bd82402b0fde4e11e150cd6" title="Programs the filters. " alt="" coords="229,53,336,77"/>
+</map>

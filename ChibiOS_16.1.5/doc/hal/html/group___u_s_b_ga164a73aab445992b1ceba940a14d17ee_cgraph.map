@@ -1,0 +1,4 @@
+<map id="usbDisableEndpointsI" name="usbDisableEndpointsI">
+<area shape="rect" id="node2" href="$group___u_s_b.html#ga97950278d6eaaf64ba91cd460523aeb0" title="Disables all the active endpoints except the endpoint zero. " alt="" coords="177,5,324,29"/>
+<area shape="rect" id="node3" href="$group___u_s_b.html#ga9fda935bc01bccd42d9b4394f9937562" title="Resets the FIFO RAM memory allocator. " alt="" coords="372,5,464,29"/>
+</map>

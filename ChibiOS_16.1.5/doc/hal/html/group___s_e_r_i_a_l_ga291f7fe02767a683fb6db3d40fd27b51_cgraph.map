@@ -1,0 +1,6 @@
+<map id="serve_interrupt" name="serve_interrupt">
+<area shape="rect" id="node2" href="$group___h_a_l___q_u_e_u_e_s.html#gae5a4cdf7820f1ab7bf554fe8cc791e9c" title="Output queue read. " alt="" coords="172,5,227,29"/>
+<area shape="rect" id="node3" href="$group___s_e_r_i_a_l.html#gac94544bc991e2b85a601459463604346" title="Handles incoming data. " alt="" coords="148,53,251,77"/>
+<area shape="rect" id="node5" href="$group___s_e_r_i_a_l.html#gadece366cc7f4b4c67c948fc862753671" title="Error handling routine. " alt="" coords="166,101,233,125"/>
+<area shape="rect" id="node4" href="$group___h_a_l___q_u_e_u_e_s.html#ga6a18038778ba873de195a866e3b3549d" title="Input queue write. " alt="" coords="299,53,348,77"/>
+</map>

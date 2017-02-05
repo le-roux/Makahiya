@@ -1,0 +1,5 @@
+<map id="adcStart" name="adcStart">
+<area shape="rect" id="node2" href="$group___a_d_c.html#ga9114c26236516afddb6add35ee3251f3" title="Configures and activates the ADC peripheral. " alt="" coords="116,29,199,53"/>
+<area shape="rect" id="node3" href="$group___s_t_m32___d_m_a.html#ga2779cd46d0f5e9d7a6e549391e05cdd0" title="Allocates a DMA stream. " alt="" coords="263,5,378,29"/>
+<area shape="rect" id="node4" href="$group___a_d_c.html#gaafb71691c161776b90b2cbcc716aae50" title="ADC DMA ISR service routine. " alt="" coords="247,53,395,77"/>
+</map>
