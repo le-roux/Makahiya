@@ -383,12 +383,15 @@ THD_FUNCTION(wifi_audio_in, arg) {
 
 			chMtxUnlock(&audio_mutex);
 		}
+
 		if (!urgent_stop) {
 			chMtxLock(&audio_mutex);
 			chMBFetch(&free_input_box, (msg_t*)&inbuf, TIME_INFINITE);
 			inbuf = NULL;
 			chMBPost(&input_box, (msg_t)inbuf, TIME_INFINITE);
 			chMtxUnlock(&audio_mutex);
+
+			// Close the channel used to download music.
             strcpy(close_cmd, "close ");
             strcat(close_cmd, ((wifi_connection)audio_conn).channel_id);
             send_cmd(close_cmd, false);
