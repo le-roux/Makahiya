@@ -1,0 +1,99 @@
+<metal:macro use-macro="master">
+    <metal:slot fill-slot="body">
+        <div class="container-fluid">
+            <h1 class="sub-header text-center">
+                Makahiya - board (plant #${plant_id})
+                <span tal:condition='connected == 0'> is disconnected</span>
+                <div tal:condition="python:KeyError == 1 | nothing" style='color:red'>
+                    Error when sending data to plant
+                </div>
+            </h1>
+            <div class="table-responsive">
+                <h2 class="sub-header">LED HP</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <th>LED ID</th>
+                        <th>Activated</th>
+                        <th tal:repeat="color ('R', 'G', 'B', 'W')">
+                            ${color}
+                        </th>
+                        <th>Send</th>
+                    </tr>
+                    <tr>
+                        <form method="post" action='/${plant_id}/board/leds'>
+                            <td>Led 1</td>
+                            <td>
+                                <input tal:condition='ledH_state'
+                                    type='checkbox' name='ledH_state' checked/>
+                                <input tal:condition='ledH_state == False'
+                                    type='checkbox' name='ledH_state'/>
+                            </td>
+                            <td><input type='text' value=${ledHP_R} name='ledH_R'/></td>
+                            <td><input type='text' value=${ledHP_G} name='ledH_G'/></td>
+                            <td><input type='text' value=${ledHP_B} name='ledH_B'/></td>
+                            <td><input type='text' value=${ledHP_W} name='ledH_W'/></td>
+                            <td><input type='submit' value="Send"/></td>
+                        </form>
+                    </tr>
+                </table>
+
+                <h2 class="sub-header">LED M</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <th>LED ID</th>
+                        <th>Activated</th>
+                        <th>Color</th>
+                        <th>Send</th>
+                    <tr>
+                    <form tal:repeat="id leds_range" method='post' action='/${plant_id}/board/leds'>
+                        <tr>
+                            <td>
+                                LED ${id}
+                            </td>
+                            <td tal:define="name string:state_ledM$id">
+                                <input type='checkbox' name=${name} placeholder=''
+                                    tal:attributes="checked python:ledM_state[repeat.id.index] == 1"/>
+                            </td>
+                            <td>
+                                <input tal:define="name string:color_ledM$id"
+                                    type='color'
+                                    value=${ledM[repeat.id.index]}
+                                    name=${name}
+                                    placeholder=''/>
+                            </td>
+                            <td>
+                                <input type='submit' value='Send'/>
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+
+                <h2 class="sub-header">SERVOS</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <th>SERVO ID</th>
+                        <th>Position</th>
+                        <th>Send</th>
+                    <tr>
+                    <form tal:repeat="id servos_range" method='post' action='/${plant_id}/board/leds'>
+                        <tr>
+                            <td>
+                                SERVO ${id}
+                            </td>
+                            <td>
+                                <input tal:define="name string:pos_servo$id"
+                                    type='number'
+                                    value=${pos[repeat.id.index]}
+                                    name=${name}
+                                    placeholder='' min='0' max='255'/>
+                            </td>
+                            <td>
+                                <input type='submit' value='Send'/>
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+    </metal:slot>
+</metal:macro>

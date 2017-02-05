@@ -1,8 +1,14 @@
 *.o
 main
-code/doc/html/
-code/doc/latex/
-test/
 .dep/
 build/
 *.a
+venv/
+sql*
+*test
+*egg*
+makahiya/__pycache__
+.cache/
+.coverage
+*.pyc
+*.swp

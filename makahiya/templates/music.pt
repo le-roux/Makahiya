@@ -1,0 +1,35 @@
+<metal:macro use-macro='master'>
+	<metal:slot fill-slot='body'>
+		<h1 class='text-center'>
+			Makahiya - Music
+		</h1>
+		<br/><br/>
+		<h2 tal:condition='no_file' class='text-center' style='color:red'>No file to upload</h2>
+		<div class='row'>
+			<div class='col-md-2 col-md-offset-5 main'>
+				<h2>Upload music</h2>
+				<form method="POST" enctype="multipart/form-data" action="/${plant_id}/music">
+					<div class='input-group'>
+						<div class='input-group-addon'>File</div>
+						<input type="file" name="sound" />
+					</div>
+					<br/>
+				<input type="submit" value="Upload" class='btn btn-lg btn-info'>
+				</form>
+			</div>
+		</div>
+		<br/><br/>
+
+		<h2 tal:condition='not_uploaded' class='text-center' style='color:red'>No music to play</h2>
+		<br/>
+		<div class='container'>
+
+			<a href='/${plant_id}/music/play' class='btn btn-success btn-lg btn-block' role='button'>
+				Play music
+			</a>
+			<a href='/${plant_id}/music/stop' class='btn btn-danger btn-lg btn-block' role='button'>
+				Stop music
+			</a>
+		</div>
+	</metal:slot>
+</metal:macro>

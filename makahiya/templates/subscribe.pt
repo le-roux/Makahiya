@@ -1,0 +1,16 @@
+<metal:macro use-macro="master">
+    <metal:slot fill-slot="body">
+        <br/>
+        <p tal:condition="python:int(status) == 2">This email address is already registered</p>
+        <p tal:condition="python:int(status) == 4">This plant_id already exists</p>
+        <div class="container text-center">
+            <form class="form-signin" method="post" action="/subscribe">
+                <h2 class="form-signin-heading">Subscribe</h2>
+                <br/>
+                <input name="plant_id" class="form-control" required="" placeholder="Plant id"/>
+                <br/>
+                <input class=="btn btn-lg btn-primary btn-block" type="submit" value="Associate with Google Account"/>
+            </form>
+        </div>
+    </metal:slot>
+</metal:macro>

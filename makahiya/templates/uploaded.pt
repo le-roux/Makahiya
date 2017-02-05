@@ -1,0 +1,11 @@
+<metal:macro use-macro='master'>
+    <metal:slot fill-slot='body'>
+        <h1 class='text-center'>File uploaded</h1>
+        <br/><br/>
+        <div class='container'>
+            <a href='/${plant_id}/music' class='btn btn-block btn-info'>
+                Return
+            </a>
+        </div>
+    </metal:slot>
+</metal:macro>

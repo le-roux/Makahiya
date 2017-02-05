@@ -1,0 +1,10 @@
+<metal:macro use-macro="master">
+    <metal:slot fill-slot="body">
+        <br/><br/>
+        <h1 class="text-center">You tried to access to an unauthorized page !!</h1>
+        <br/>
+        <div class='container'>
+            <a href='/' class='btn btn-block btn-warning'>Return to Home Page</a>
+        </div>
+    </metal:slot>
+</metal:macro>

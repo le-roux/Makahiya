@@ -17,3 +17,15 @@ What's working now:
     It's able to read a mp3 file from the serial link (serial over USB), to
     decode it on the microprocessor and to send it to the codec that will
     play it. Plug your earphones on the jack plug to hear your music.
+This repository contains all the files related to the server.
+
+SERVER
+
+List of the files (and short description):
+- **requirements.txt**: list of the Python packages needed by the server.
+- **setup.py**: for configuration
+- **production.ini**: the configuration file for production (to use on the
+    server).
+- **tests.ini**: the configuration file for the automatic tests (used for
+    continuous integration).
+- **makahiya/**: all the Python code of the server.

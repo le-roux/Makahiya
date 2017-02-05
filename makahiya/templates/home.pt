@@ -1,0 +1,8 @@
+<metal:macro use-macro="master">
+    <metal:slot fill-slot="body">
+        <br/>
+        <div class="container starter-template text-center">
+            <h1>A ROSE project made at Telecom ParisTech</h1>
+        </div>
+    </metal:slot>
+</metal:macro>

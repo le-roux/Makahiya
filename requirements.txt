@@ -1,0 +1,15 @@
+pyramid==1.7.3
+pyramid_chameleon
+webtest
+pytest
+pytest-cov
+sqlalchemy
+pyramid_debugtoolbar
+zope.sqlalchemy
+psycopg2
+./velruse
+websockets
+gunicorn
+aiopyramid
+aiohttp
+colour

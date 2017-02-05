@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/bbangert/velruse.git
+	branch = master
+	commit = 7027acc43df77331d34014fdbb796ee5c54c8d5e
+	parent = 562640b8b4747c4e802c291d1c3b2584fc9a5b7d
+	cmdver = 0.3.0
