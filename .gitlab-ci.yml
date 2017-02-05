@@ -1,4 +1,4 @@
-image: python:3.5
+image: rfc1149/rose-dev
 
 server-tests:
     stage: test
