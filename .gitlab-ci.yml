@@ -1,27 +1,27 @@
 server-tests:
-	image: python:3.5
-	stage: test
-	script:
-		- pip install -r Server/requirements.txt
-		- pip install -e Server
-		- initialize_test_db Server/tests.ini
-		- pytest Server/makahiya/tests.py -q
+    image: python:3.5
+    stage: test
+    script:
+        - pip install -r Server/requirements.txt
+        - pip install -e Server
+        - initialize_test_db Server/tests.ini
+        - pytest Server/makahiya/tests.py -q
 
 project-build:
-	image: rfc1149/rose-dev
-	stage: build
-	script:
-		- make -C helix
-		- make -C Project
+    image: rfc1149/rose-dev
+    stage: build
+    script:
+        - make -C helix
+        - make -C Project
 
 project-test:
-	image: rfc1149/rose-dev
-	stage: test
-	script:
-		- make -C Project run_test
+    image: rfc1149/rose-dev
+    stage: test
+    script:
+        - make -C Project run_test
 
 cache:
-	image: rfc1149/rose-dev
-	key: all
-	paths:
-	  - $CCACHE_DIR
+    image: rfc1149/rose-dev
+    key: all
+    paths:
+      - $CCACHE_DIR
