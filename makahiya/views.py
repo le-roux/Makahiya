@@ -602,7 +602,7 @@ def music(request):
 			if not os.path.exists('makahiya/music/' + str(plant_id)):
 				os.mkdir('makahiya/music/' + str(plant_id))
 			open ('makahiya/music/' + str(plant_id) + '/file.mp3', 'wb').write(sound.file.read())
-			return Response('File uploaded')
+			return HTTPFound('/' + str(plant_id) + '/music/uploaded')
 		return res
 	else:
 		return HTTPFound('/wrong_id')
@@ -622,3 +622,22 @@ async def play_music(request):
 		except KeyError:
 			log.debug('KeyError when starting music')
 		return HTTPFound('/' + str(plant_id) + '/music')
+	else:
+		return HTTPFound('/wrong_id')
+
+@view_config(route_name='music_uploaded', renderer='makahiya:templates/uploaded.pt', permission='view')
+def music_uploaded(request):
+	SQLsession = Session()
+	plant_id = None
+	email = request.authenticated_userid
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
+	if user is not None:
+		plant_id = user.plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		res = {'email': email,
+				'plant_id': plant_id,
+				'level': get_user_level(email)}
+		return res
+	else:
+		return HTTPFound('wrong_id')

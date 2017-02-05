@@ -4,10 +4,21 @@
 			Makahiya - Music
 		</h1>
 		<br/><br/>
-		<form method="POST" enctype="multipart/form-data" action="/${plant_id}/music">
-		File: <input type="file" name="sound" /><br />
-		<input type="submit" value="Upload">
-		</form>
+		<div class='row'>
+			<div class='col-md-2 col-md-offset-5 main'>
+				<h2>Upload music</h2>
+				<form method="POST" enctype="multipart/form-data" action="/${plant_id}/music">
+					<div class='input-group'>
+						<div class='input-group-addon'>File</div>
+						<input type="file" name="sound" />
+					</div>
+					<br/>
+				<input type="submit" value="Upload" class='btn btn-lg btn-info'>
+				</form>
+			</div>
+		</div>
+		<br/><br/>
+
 		<div class='container'>
 			<a href='/${plant_id}/music/play' class='btn btn-success btn-lg btn-block' role='button'>
 				Play music
