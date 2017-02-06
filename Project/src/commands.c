@@ -19,7 +19,7 @@ void handle_commands(uint32_t command, loop_t* loop) {
     var_id = (uint16_t)((command & 0xFFFF0000) >> 16);
     value = (uint16_t)(command & 0xFFFF);
     switch (var_id) {
-        case(RINGBELL_CMD): {
+        case RINGBELL_CMD: {
             if (value == STOP_MUSIC) {
                 repeat = false;
             } else {
@@ -29,7 +29,7 @@ void handle_commands(uint32_t command, loop_t* loop) {
             }
             break;
         }
-        case (LOOP_CMD): {
+        case LOOP_CMD: {
             if (loop->state == SINGLE) {
                 loop->count = value - 1;
                 loop->first_turn = true;
@@ -42,7 +42,7 @@ void handle_commands(uint32_t command, loop_t* loop) {
             }
             break;
         }
-        case (SLEEP_CMD): {
+        case SLEEP_CMD: {
             chThdSleepMilliseconds(value);
             break;
         }
