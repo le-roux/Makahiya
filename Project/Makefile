@@ -247,8 +247,10 @@ include $(RULESPATH)/rules.mk
 $(BUILDDIR)/obj/%.o: %.mp3
 	$(TRGT)objcopy --rename-section .data=.rodata,alloc,load,readonly,data,contents -I binary -O elf32-littlearm -B arm $^ $@
 
-helix:
+../helix/libhelix.a:
 	make -C ../helix
+
+$(BUILDDIR)/ch.elf: ../helix/libhelix.a
 
 jlink:
 	JLinkGDBServer -if swd -device "STM32F405VG" -LocalHostOnly

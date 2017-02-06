@@ -11,7 +11,6 @@ project-build:
     image: rfc1149/rose-dev
     stage: build
     script:
-        - make -C helix
         - make -C Project
 
 project-test:
