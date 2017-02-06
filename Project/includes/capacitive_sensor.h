@@ -14,15 +14,6 @@ typedef enum {NO_ACTION, NEW_TOUCH, LEAVE_TOUCH} action_t;
 typedef enum {DEFAULT_STATE, IN_TOUCH} status_t;
 
 /**
- * Size of the buffer used to store the values from the sensor.
- */
-#define BUFFER_SIZE 1
-
-#define INT_DER_VERSION 0
-#define DERIVATIVE_THRESHOLD 1000
-#define INTEGRAL_THRESHOLD 10000
-
-/**
  * Number of sensors used.
  */
 #define SENSORS_NB 2
@@ -31,16 +22,6 @@ typedef enum {DEFAULT_STATE, IN_TOUCH} status_t;
  * Maximum number of channels per sensor.
  */
 #define MAX_CHANNELS_NB 4
-
-/**
- * Gives the index in the buffer following the one given in parameter.
- */
-#define NEXT_INDEX(index) ((index+1 < BUFFER_SIZE)?index+1:0)
-
-/**
- * Gives the index in the buffer preceding the one given in parameter.
- */
-#define PREVIOUS_INDEX(index) ((index-1 >= 0)?index-1:BUFFER_SIZE-1)
 
 /** @brief Init all the variables used in the touch detection algorithm.
  *
