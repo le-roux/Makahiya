@@ -40,6 +40,22 @@ static SerialConfig serial_cfg = {
 	0x00000300
 };
 
+// Send a message to the bluetooth module as well as a copy to the RTTD debug
+// channel. Afterwards, wait for 100ms before returning.
+static void send(const char *msg){
+	size_t len = strlen(msg);
+	const uint8_t *umsg = (const uint8_t *)msg;
+
+	// Send a copy to the RTT for debugging purpose, omitting the final '\r'.
+	chSequentialStreamWrite((BaseSequentialStream *)&RTTD, umsg,
+		msg[len-1] == '\r' ? len-1 : len);
+	chSequentialStreamWrite((BaseSequentialStream *)&RTTD, (const uint8_t *)"\n",
+		1);
+
+	sdWrite(bluetooth_SD, umsg, len);
+	chThdSleepMilliseconds(100);
+}
+
 void bluetoothInit(void){
 
 	// Setting the pins and resetting the RN-42
@@ -64,28 +80,10 @@ void bluetoothInit(void){
 
 	// Configuring the RN-42
 
-	uint8_t buf[16] = "$$$";
-	chprintf((BaseSequentialStream *)&RTTD, "$$$\n");
-	sdWrite(bluetooth_SD, buf, 3);
-	chThdSleepMilliseconds(100);
-	strncpy((char *) buf, "SO,Log : \r", 16);
-	chprintf((BaseSequentialStream *)&RTTD, "SO,Log : \n");
-	sdWrite(bluetooth_SD, buf, 10);
-	chThdSleepMilliseconds(100);
-	strncpy((char *) buf, "SA,0\r", 16);
-	chprintf((BaseSequentialStream *)&RTTD, "SA,0\n");
-	sdWrite(bluetooth_SD, buf, 5);
-	chThdSleepMilliseconds(100);
-	strncpy((char *) buf, "S-,Makahiya\r", 16);
-	chprintf((BaseSequentialStream *)&RTTD, "S-,Makahiya\n");
-	sdWrite(bluetooth_SD, buf, 12);
-	chThdSleepMilliseconds(100);
-	strncpy((char *) buf, "Q,0\r", 16);
-	chprintf((BaseSequentialStream *)&RTTD, "Q,0\n");
-	sdWrite(bluetooth_SD, buf, 4);
-	chThdSleepMilliseconds(100);
-	strncpy((char *) buf, "---\r", 16);
-	chprintf((BaseSequentialStream *)&RTTD, "---\n");
-	sdWrite(bluetooth_SD, buf, 4);
-	chThdSleepMilliseconds(100);
+  send("$$$");
+	send("SO,Log : \r");
+	send("SA,0\r");
+	send("S-,Makahiya\r");
+	send("Q,0\r");
+	send("---\r");
 }
