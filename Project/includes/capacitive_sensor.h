@@ -4,6 +4,16 @@
 #include <stdint.h>
 
 /**
+ * Enum describing the possible return values for @p detect_action
+ */
+typedef enum {NO_ACTION, NEW_TOUCH, LEAVE_TOUCH} action_t;
+
+/**
+ * Enum describing the possible state of the algorithm.
+ */
+typedef enum {DEFAULT_STATE, IN_TOUCH} status_t;
+
+/**
  * Size of the buffer used to store the values from the sensor.
  */
 #define BUFFER_SIZE 1
@@ -54,33 +64,20 @@ void add_value(int sensor_id, int channel_id, uint32_t value);
 
 /** @brief Run the detection algorithm.
  *
- * It first tries to detect a slide. To do this, it computes the linear
- * regression of the REGRESSION_SIZE last values stored in the buffer.
- * If the slope is sharp enough, it then checks that the last values is far
- * enough from the default_value (distance greater than SLIDE_MARGIN). This
- * This checks allows the algorithm to ignore noise.
- * If all these conditions are met, the status first goes to POTENTIAL_SLIDE.
- * If at the next call, a slide is still detected, the status finally goes to
- * IN_SLIDE and the proper value is returned. Otherwise, the status
- * immediately returns to DEFAULT_STATE.
+ * The algorithm tries to detect a touch.
+ * It simply compares the last value read to a defined threshold. If the threshold
+ * is overtaken, it goes to the IN_TOUCH state and the proper value is returned.
  *
- * If no slide is detected, the algorithm then try to detect a touch.
- * This is basically a threshold overtaking check, performed on the average of
- * the values stored in the buffer.
- * If a touch is detected, the status goes to IN_TOUCH and the proper value is
- * returned.
- *
- * If nothing is detected, the status goes to DEFAULT_STATE and the proper value
- * is returned.
+ * When the value then becomes smaller than the threshold, the algorithm goes back to
+ * the DEFAULT_STATE and the proper value is returned.
  *
  * @param sensor_id The index of the sensor to analyze.
  * @param channel_id Value in interval [0, 3] identifying the channel to analyze.
  * @return
- *  - 2 if a slide beginning is detected.
- *  - 1 if a touch is detected.
- *  - -1 when leaving the IN_TOUCH state
- *  - 0 otherwise (nothing detected).
+ *  - NEW_TOUCH if a touch is detected.
+ *  - LEAVE_TOUCH if the IN_TOUCH state is left.
+ *  - NO_ACTION otherwise (nothing detected).
  */
-int detect_action(int sensor_id, int channel_id);
+action_t detect_action(int sensor_id, int channel_id);
 
 #endif // CAPACITIVE_SENSOR_H

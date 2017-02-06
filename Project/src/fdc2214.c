@@ -241,7 +241,7 @@ static THD_FUNCTION(fdc_int, arg) {
 	/**
 	 * The action detected by the touch-detection algorithm.
 	 */
-	int action;
+	action_t action;
 
 	int commands_nb;
 	static msg_t command;
@@ -271,7 +271,7 @@ static THD_FUNCTION(fdc_int, arg) {
 				acquire_value(sensor, channel_id);
 				action = detect_action(sensor, channel_id);
 
-				if (action == 1) {
+				if (action == NEW_TOUCH) {
 					// Signal it to the server
 					strcpy(server_command, "touch ");
 					int_to_char(val, sensor);
@@ -317,7 +317,7 @@ static THD_FUNCTION(fdc_int, arg) {
 				}
 
 				// For test
-				if (action == 1)
+				if (action == NEW_TOUCH)
 					DEBUG("Touch %d", 4 * sensor + channel_id);
 			}
 		}
