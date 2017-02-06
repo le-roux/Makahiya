@@ -18,42 +18,22 @@ static int DATA_LSB[4] = {DATA_LSB_CH0, DATA_LSB_CH1, DATA_LSB_CH2, DATA_LSB_CH3
 static int CHANNELS_NB[2] = {4, 4};
 
 #define MAX_COMMANDS 32
-static msg_t commands_buffer_1[MAX_COMMANDS];
-static MAILBOX_DECL(commands_box_1, commands_buffer_1, MAX_COMMANDS);
-static msg_t commands_buffer_2[MAX_COMMANDS];
-static MAILBOX_DECL(commands_box_2, commands_buffer_2, MAX_COMMANDS);
-static msg_t commands_buffer_3[MAX_COMMANDS];
-static MAILBOX_DECL(commands_box_3, commands_buffer_3, MAX_COMMANDS);
-static msg_t commands_buffer_4[MAX_COMMANDS];
-static MAILBOX_DECL(commands_box_4, commands_buffer_4, MAX_COMMANDS);
 
-static msg_t commands_buffer_5[MAX_COMMANDS];
-static MAILBOX_DECL(commands_box_5, commands_buffer_5, MAX_COMMANDS);
-static msg_t commands_buffer_6[MAX_COMMANDS];
-static MAILBOX_DECL(commands_box_6, commands_buffer_6, MAX_COMMANDS);
-static msg_t commands_buffer_7[MAX_COMMANDS];
-static MAILBOX_DECL(commands_box_7, commands_buffer_7, MAX_COMMANDS);
-static msg_t commands_buffer_8[MAX_COMMANDS];
-static MAILBOX_DECL(commands_box_8, commands_buffer_8, MAX_COMMANDS);
+#define COMMANDS_DECL(n) \
+	static msg_t commands_buffer_##n[MAX_COMMANDS]; \
+	static MAILBOX_DECL(commands_box_##n, commands_buffer_##n, MAX_COMMANDS); \
+	static msg_t tmp_commands_buffer_##n[MAX_COMMANDS]; \
+	static MAILBOX_DECL(tmp_commands_box_##n, tmp_commands_buffer_##n, \
+		MAX_COMMANDS)
 
-static msg_t tmp_commands_buffer_1[MAX_COMMANDS];
-static MAILBOX_DECL(tmp_commands_box_1, tmp_commands_buffer_1, MAX_COMMANDS);
-static msg_t tmp_commands_buffer_2[MAX_COMMANDS];
-static MAILBOX_DECL(tmp_commands_box_2, tmp_commands_buffer_2, MAX_COMMANDS);
-static msg_t tmp_commands_buffer_3[MAX_COMMANDS];
-static MAILBOX_DECL(tmp_commands_box_3, tmp_commands_buffer_3, MAX_COMMANDS);
-static msg_t tmp_commands_buffer_4[MAX_COMMANDS];
-static MAILBOX_DECL(tmp_commands_box_4, tmp_commands_buffer_4, MAX_COMMANDS);
-
-static msg_t tmp_commands_buffer_5[MAX_COMMANDS];
-static MAILBOX_DECL(tmp_commands_box_5, tmp_commands_buffer_5, MAX_COMMANDS);
-static msg_t tmp_commands_buffer_6[MAX_COMMANDS];
-static MAILBOX_DECL(tmp_commands_box_6, tmp_commands_buffer_6, MAX_COMMANDS);
-static msg_t tmp_commands_buffer_7[MAX_COMMANDS];
-static MAILBOX_DECL(tmp_commands_box_7, tmp_commands_buffer_7, MAX_COMMANDS);
-static msg_t tmp_commands_buffer_8[MAX_COMMANDS];
-static MAILBOX_DECL(tmp_commands_box_8, tmp_commands_buffer_8, MAX_COMMANDS);
-
+COMMANDS_DECL(1);
+COMMANDS_DECL(2);
+COMMANDS_DECL(3);
+COMMANDS_DECL(4);
+COMMANDS_DECL(5);
+COMMANDS_DECL(6);
+COMMANDS_DECL(7);
+COMMANDS_DECL(8);
 
 static mailbox_t* commands_box[2][4] = {
 	{
