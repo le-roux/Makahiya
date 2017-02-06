@@ -36,14 +36,14 @@ static void alarm_cb(void* arg);
 static BSEMAPHORE_DECL(alarm_bsem, true);
 
 static THD_WORKING_AREA(alarm_wa, 512);
-THD_FUNCTION(alarm, arg);
+static THD_FUNCTION(alarm, arg);
 
 void alarmInit(void) {
     chVTObjectInit(&alarm_clock);
     chThdCreateStatic(alarm_wa, sizeof(alarm_wa), NORMALPRIO, alarm, NULL);
 }
 
-THD_FUNCTION(alarm, arg) {
+static THD_FUNCTION(alarm, arg) {
     UNUSED(arg);
 
     // The command to perform. It contains both @p var_id and @p value.
