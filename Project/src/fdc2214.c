@@ -5,7 +5,7 @@
 #include "capacitive_sensor.h"
 #include "pwmdriver.h"
 #include "commands.h"
-#include "wifi.h"
+#include "websocket.h"
 #include <string.h>
 
 #include "chprintf.h"
@@ -279,7 +279,7 @@ static THD_FUNCTION(fdc_int, arg) {
 					strcat(server_command, " ");
 					int_to_char(val, channel_id);
 					strcat(server_command, val);
-					send_cmd(server_command, false);
+					websocket_write(server_command);
 
 					chSysLock();
 					commands_nb = chMBGetUsedCountI(commands_box[sensor][channel_id]);
@@ -314,11 +314,10 @@ static THD_FUNCTION(fdc_int, arg) {
 						chMBFetch(tmp_commands_box[sensor][channel_id], &command, TIME_INFINITE);
 						chMBPost(commands_box[sensor][channel_id], command, TIME_INFINITE);
 					}
-				}
 
-				// For test
-				if (action == NEW_TOUCH)
-					DEBUG("Touch %d", 4 * sensor + channel_id);
+					// Anti-rebound
+					chThdSleepMilliseconds(1000);
+				}
 			}
 		}
 	}
