@@ -55,54 +55,57 @@ THD_FUNCTION(websocket_ext, arg) {
         DEBUG("Received %s", response_body);
         cmd = strtok(response_body, " ");
         if (cmd == NULL)
-            continue; // TODO improve error management
-        if (strcmp(cmd, "get") == 0 || strcmp(cmd, "set") == 0) {
-            var = strtok(NULL, " ");
-            if (strcmp(cmd, "set") == 0)
+            continue;
+        do {
+            if (strcmp(cmd, "set") == 0) {
+                var = strtok(NULL, " ");
                 setValue(atoi(var), atoi(strtok(NULL, " ")));
+                DEBUG("set");
+            } else if (strcmp(cmd, "get") == 0) {
+                var = strtok(NULL, " ");
+                int_to_char(value, getValue(atoi(var)));
+                strcpy(buffer, var);
+                strcat(buffer, " ");
+                strcat(buffer, value);
+                (void)wifi_write((wifi_connection*)&conn, strlen(buffer), (uint8_t*)buffer, true);
+            } else if (strcmp(cmd, "play") == 0) {
+                var = strtok(NULL, " ");
+                urgent_stop = false;
+                repeat = 1;
+                read_music(var);
+            } else if (strcmp(cmd, "alarm") == 0) {
+                int timeout;
+                var = strtok(NULL, " ");
+                if (var == NULL)
+                    continue;
+                timeout = atoi(var);
+                set_alarm(timeout, strtok(NULL, " "));
+            } else if (strcmp(cmd, "stop") == 0) {
+                repeat = 0;
+                urgent_stop = true;
+                char close_cmd[11];
+                strcpy(close_cmd, "close ");
+                strcat(close_cmd, ((wifi_connection)audio_conn).channel_id);
+                send_cmd(close_cmd, false);
+            } else if (strcmp(cmd, "add") == 0) {
+                int sensor_id = atoi(strtok(NULL, " "));
+                int channel_id = atoi(strtok(NULL, " "));
+                int commands_nb = atoi(strtok(NULL, " "));
+                int var_id, value;
+                for (int i = 0; i < commands_nb; i++) {
+                    var_id = atoi(strtok(NULL, " "));
+                    value = atoi(strtok(NULL, " "));
 
-            // Same actions for 'get' and 'set'
-            int_to_char(value, getValue(atoi(var)));
-            strcpy(buffer, var);
-            strcat(buffer, " ");
-            strcat(buffer, value);
-            (void)wifi_write((wifi_connection*)&conn, strlen(buffer), (uint8_t*)buffer, true);
-        } else if (strcmp(cmd, "play") == 0) {
-            var = strtok(NULL, " ");
-            urgent_stop = false;
-            repeat = 1;
-            read_music(var);
-        } else if (strcmp(cmd, "alarm") == 0) {
-            int timeout;
-            var = strtok(NULL, " ");
-            if (var == NULL)
-                continue;
-            timeout = atoi(var);
-            set_alarm(timeout, strtok(NULL, " "));
-        } else if (strcmp(cmd, "stop") == 0) {
-            repeat = 0;
-            urgent_stop = true;
-            char close_cmd[11];
-            strcpy(close_cmd, "close ");
-            strcat(close_cmd, ((wifi_connection)audio_conn).channel_id);
-            send_cmd(close_cmd, false);
-        } else if (strcmp(cmd, "add") == 0) {
-            int sensor_id = atoi(strtok(NULL, " "));
-            int channel_id = atoi(strtok(NULL, " "));
-            int commands_nb = atoi(strtok(NULL, " "));
-            int var_id, value;
-            for (int i = 0; i < commands_nb; i++) {
-                var_id = atoi(strtok(NULL, " "));
-                value = atoi(strtok(NULL, " "));
+                    add_command(sensor_id, channel_id, var_id, value);
+                }
+            } else if (strcmp(cmd, "clear")) {
+                int sensor_id = atoi(strtok(NULL, " "));
+                int channel_id = atoi(strtok(NULL, " "));
 
-                add_command(sensor_id, channel_id, var_id, value);
+                clear_commands(sensor_id, channel_id);
             }
-        } else if (strcmp(cmd, "clear")) {
-            int sensor_id = atoi(strtok(NULL, " "));
-            int channel_id = atoi(strtok(NULL, " "));
-
-            clear_commands(sensor_id, channel_id);
-        }
+            cmd = strtok(NULL, " ");
+        } while (cmd != NULL);
     }
     repeat = 0;
 }

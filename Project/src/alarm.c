@@ -16,7 +16,7 @@ static virtual_timer_t alarm_clock;
 /**
  * @brief Maximum number of commands that can be executed on alarm_clock expiry.
  */
-#define MAX_COMMANDS 64
+#define MAX_COMMANDS 128
 
 /**
  * @brief Buffer used by the commands_box mailbox.
