@@ -19,6 +19,6 @@ void alarmInit(void);
  *          - 70: sleep
  *          - for LEDs, see pwmdriver.h
  */
-void set_alarm(int timeout, char* commands_list);
+void set_alarm(int timeout, char* commands_list, char** save_ptr);
 
 #endif // ALARM_H

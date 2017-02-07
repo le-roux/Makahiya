@@ -67,7 +67,7 @@ static THD_FUNCTION(alarm, arg) {
     }
 }
 
-void set_alarm(int timeout, char* commands_list) {
+void set_alarm(int timeout, char* commands_list, char** save_ptr) {
     /**
      * The id of the variable the command affects.
      */
@@ -83,8 +83,8 @@ void set_alarm(int timeout, char* commands_list) {
     chVTReset(&alarm_clock);
     commands_nb = atoi(commands_list);
     for (int i = 0; i < commands_nb; i++) {
-        var_id = (uint16_t)atoi(strtok(NULL, " "));
-        value = (uint16_t)atoi(strtok(NULL, " "));
+        var_id = (uint16_t)atoi(strtok_r(NULL, " ", save_ptr));
+        value = (uint16_t)atoi(strtok_r(NULL, " ", save_ptr));
         commands[i] = ((var_id & 0xFFFF) << 16) | (value & 0xFFFF);
         (void)chMBPost(&commands_box, commands[i], MS2ST(100));
     }
