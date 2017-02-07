@@ -314,11 +314,10 @@ static THD_FUNCTION(fdc_int, arg) {
 						chMBFetch(tmp_commands_box[sensor][channel_id], &command, TIME_INFINITE);
 						chMBPost(commands_box[sensor][channel_id], command, TIME_INFINITE);
 					}
-				}
 
-				// For test
-				if (action == NEW_TOUCH)
-					DEBUG("Touch %d", 4 * sensor + channel_id);
+					// Anti-rebound
+					chThdSleepMilliseconds(1000);
+				}
 			}
 		}
 	}
