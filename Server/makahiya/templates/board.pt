@@ -8,6 +8,17 @@
                     Error when sending data to plant
                 </div>
             </h1>
+            <h2>Quick leds configs</h2>
+            <table class='table table-stripped'>
+                <tr>
+                    <th><a href='/${plant_id}/board/leds/0' class='btn btn-warning'>All off</a></th>
+                    <th><a href='/${plant_id}/board/leds/1' class='btn btn-danger'>Full red</a></th>
+                    <th><a href='/${plant_id}/board/leds/2' class='btn btn-info'>Full blue</a></th>
+                    <th><a href='/${plant_id}/board/leds/3' class='btn btn-success'>Full green</a></th>
+                    <th><a href='/${plant_id}/board/leds/4' class='btn btn-default'>Full white</a></th>
+                    <th><a href='/${plant_id}/board/leds/5' class='btn'>Multicolor</a></th>
+                </tr>
+            </table>
             <div class="table-responsive">
                 <h2 class="sub-header">LED HP</h2>
                 <table class="table table-striped">
@@ -28,10 +39,10 @@
                                 <input tal:condition='ledH_state == False'
                                     type='checkbox' name='ledH_state'/>
                             </td>
-                            <td><input type='text' value=${ledHP_R} name='ledH_R'/></td>
-                            <td><input type='text' value=${ledHP_G} name='ledH_G'/></td>
-                            <td><input type='text' value=${ledHP_B} name='ledH_B'/></td>
-                            <td><input type='text' value=${ledHP_W} name='ledH_W'/></td>
+                            <td><input type='number' min='0' max='255' value=${ledHP_R} name='ledH_R'/></td>
+                            <td><input type='number' min='0' max='255' value=${ledHP_G} name='ledH_G'/></td>
+                            <td><input type='number' min='0' max='255' value=${ledHP_B} name='ledH_B'/></td>
+                            <td><input type='number' min='0' max='255' value=${ledHP_W} name='ledH_W'/></td>
                             <td><input type='submit' value="Send"/></td>
                         </form>
                     </tr>

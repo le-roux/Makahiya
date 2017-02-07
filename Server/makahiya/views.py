@@ -17,7 +17,7 @@ from colour import Color
 from .websockets import plants, send_to_socket
 import asyncio
 import datetime
-from .constants import constants
+from .constants import constants, setAllLeds, allLedsOff
 from .timer import clock
 log = logging.getLogger(__name__)
 
@@ -688,5 +688,41 @@ async def music_stop(request):
 			log.debug('KeyError when stopping music')
 
 		return HTTPFound('/' + str(plant_id) + '/music')
+	else:
+		return HTTPFound('wrong_id')
+
+@view_config(route_name='quick_leds', permission='view', mapper=CoroutineMapper)
+async def quick_leds(request):
+	SQLsession = Session()
+	plant_id = None
+	email = request.authenticated_userid
+	SQLsession = Session()
+	user = SQLsession.query(Users).filter_by(email=email).first()
+	if user is not None:
+		plant_id = user.plant_id
+	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
+		res = {'email': email,
+				'plant_id': plant_id,
+				'level': get_user_level(email)}
+		config = int(request.matchdict['config'])
+		msg = ''
+		if config == 0:
+			msg = allLedsOff(SQLsession, plant_id)
+		elif config == 1:
+			msg = setAllLeds(SQLsession, plant_id, 250, 0, 0, 0)
+		elif config == 2:
+			msg = setAllLeds(SQLsession, plant_id, 0, 0, 250, 0)
+		elif config == 3:
+			msg = setAllLeds(SQLsession, plant_id, 0, 250, 0, 0)
+		elif config == 4:
+			msg = setAllLeds(SQLsession, plant_id, 250, 250, 250, 250)
+		elif config == 5:
+			msg = 'alarm 1 53 251 10 ' + constants.FULL_RED + ' 250 500 ' + constants.FULL_BLUE + ' 250 500 '
+		try:
+			log.debug('msg: ' + msg)
+			await send_to_socket(plants, plant_id, msg)
+		except KeyError:
+			log.debug('KeyError when setting all red')
+		return HTTPFound('/' + str(plant_id) + '/board/leds')
 	else:
 		return HTTPFound('wrong_id')
