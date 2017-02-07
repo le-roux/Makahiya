@@ -3,7 +3,6 @@
 
 #include "RTT_streams.h"
 #include "pwmdriver.h"
-#include "fdc2214.h"
 #include "bluetooth.h"
 #include "wifi.h"
 #include "websocket.h"
@@ -20,7 +19,6 @@ int main(void) {
 	pwmUserInit();
 	bluetoothInit();
 	wifiInit();
-	fdcInit();
 	audioInit();
 	alarmInit();
 

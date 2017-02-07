@@ -4,6 +4,7 @@
 #include "websocket.h"
 #include "utils.h"
 #include "wifi.h"
+#include "fdc2214.h"
 
 #include "serial_user.h"
 #include <stdlib.h>
@@ -156,6 +157,10 @@ THD_FUNCTION(websocket, arg) {
     }
 
     get_channel_id((wifi_connection*)&conn);
+
+    // Starting the capacitive sensors only after the websocket is established
+    fdcInit();
+
     chThdCreateStatic(wa_websocket_ext, sizeof(wa_websocket_ext), \
                         NORMALPRIO, websocket_ext, NULL);
 
