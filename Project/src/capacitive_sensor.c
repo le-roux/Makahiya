@@ -6,6 +6,11 @@
 #include "pwmdriver.h"
 
 /**
+ * Enum describing the possible state of the algorithm.
+ */
+typedef enum {DEFAULT_STATE, IN_TOUCH} status_t;
+
+/**
  * Array of status descriptor for the sensors.
  * Possible values are:
  *  - DEFAULT_STATE : default state, nothing detected.
@@ -24,7 +29,6 @@ static volatile float values[SENSORS_NB][MAX_CHANNELS_NB];
  *  - 1 if a touch is being detected
  *  - 0 otherwise
  */
-
 void init_touch_detection(int sensor_id, int channel_id) {
 	status[sensor_id][channel_id] = DEFAULT_STATE;
 }
@@ -33,12 +37,7 @@ void init_touch_detection(int sensor_id, int channel_id) {
 #define THRESHOLD 3000000
 
 static uint8_t touch_detected(int sensor_id, int channel_id) {
-
-	if (values[sensor_id][channel_id] < THRESHOLD)
-		return 1;
-	else
-		return 0;
-
+	return values[sensor_id][channel_id] < THRESHOLD;
 }
 
 void add_value(int sensor_id, int channel_id, uint32_t value) {

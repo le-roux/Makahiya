@@ -9,11 +9,6 @@
 typedef enum {NO_ACTION, NEW_TOUCH, LEAVE_TOUCH} action_t;
 
 /**
- * Enum describing the possible state of the algorithm.
- */
-typedef enum {DEFAULT_STATE, IN_TOUCH} status_t;
-
-/**
  * Number of sensors used.
  */
 #define SENSORS_NB 2
