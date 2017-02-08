@@ -16,6 +16,7 @@
 #include "chprintf.h"
 #include "pwmdriver.h"
 #include "fdc2214.h"
+#include "capacitive_sensor.h"
 
 // 14 is the number of the pin used for the interrupts.
 static const char* const ws_cmd = "websocket_client -g 9 ";
@@ -92,19 +93,17 @@ THD_FUNCTION(websocket_ext, arg) {
             } else if (strcmp(cmd, "add") == 0) {
                 int sensor_id = atoi(strtok_r(NULL, " ", &save_ptr));
                 int channel_id = atoi(strtok_r(NULL, " ", &save_ptr));
-                int commands_nb = atoi(strtok_r(NULL, " ", &save_ptr));
-                int var_id, value;
-                for (int i = 0; i < commands_nb; i++) {
-                    var_id = atoi(strtok_r(NULL, " ", &save_ptr));
-                    value = atoi(strtok_r(NULL, " ", &save_ptr));
+                if (sensor_id < SENSORS_NB && channel_id < MAX_CHANNELS_NB) {
+                    int commands_nb = atoi(strtok_r(NULL, " ", &save_ptr));
+                    int var_id, value;
+                    clear_commands(sensor_id, channel_id);
+                    for (int i = 0; i < commands_nb; i++) {
+                        var_id = atoi(strtok_r(NULL, " ", &save_ptr));
+                        value = atoi(strtok_r(NULL, " ", &save_ptr));
 
-                    add_command(sensor_id, channel_id, var_id, value);
+                        add_command(sensor_id, channel_id, var_id, value);
+                    }
                 }
-            } else if (strcmp(cmd, "clear")) {
-                int sensor_id = atoi(strtok_r(NULL, " ", &save_ptr));
-                int channel_id = atoi(strtok_r(NULL, " ", &save_ptr));
-
-                clear_commands(sensor_id, channel_id);
             }
             cmd = strtok_r(NULL, " ", &save_ptr);
         } while (cmd != NULL);

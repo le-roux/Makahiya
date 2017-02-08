@@ -23,11 +23,6 @@ int main(void) {
 	alarmInit();
 
 	/**
-	 * Websocket thread
-	 */
-	chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "0");
-
-	/**
 	 * Audio threads
 	 */
 	chThdCreateStatic(wa_audio, sizeof(wa_audio), NORMALPRIO, audio_playback, NULL);
@@ -37,7 +32,6 @@ int main(void) {
 	/**
 	 * Lighting LEDs to show end of startup + sound
 	 */
-
 	music_id = 3;
 	repeat = 1;
 	chBSemSignal(&audio_bsem);
@@ -83,6 +77,11 @@ int main(void) {
 	setLed(LED_HP_B, 0);
 
 	repeat = 0;
+
+	/**
+	* Websocket thread
+	*/
+	chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "0");
 
 	while(true) {
 		chThdSleepMilliseconds(1000);
