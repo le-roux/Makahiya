@@ -32,7 +32,6 @@ int main(void) {
 	/**
 	 * Lighting LEDs to show end of startup + sound
 	 */
-
 	music_id = 3;
 	repeat = 1;
 	chBSemSignal(&audio_bsem);
