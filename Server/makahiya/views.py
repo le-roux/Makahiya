@@ -117,10 +117,12 @@ def login_callback(request):
 		# Check that this plant id doesn't already exist
 		if SQLsession.query(Leds).filter_by(plant_id=plant_id).first() is not None:
 			request.session['status'] = 4
+			SQLsession.close()
 			return HTTPFound('/subscribe')
 		# Check that this user doesn't already exist
 		if SQLsession.query(Users).filter_by(email=email).first() is not None:
 			request.session['status'] = 2
+			SQLsession.close()
 			return HTTPFound('/subscribe')
 
 		# Create this user in the database
@@ -134,6 +136,7 @@ def login_callback(request):
 			SQLsession.add(Touch(plant_id=plant_id, leaf_id=i, commands=''))
 		SQLsession.add(Music(plant_id=plant_id, playing=False, uploaded=False))
 		SQLsession.commit()
+		SQLsession.close()
 		request.session['status'] = 0
 		headers = remember(request, email)
 		return HTTPFound('/' + str(plant_id) + '/board/leds', headers=headers)
@@ -141,9 +144,11 @@ def login_callback(request):
 		# Check that this user in in the database
 		if SQLsession.query(Users).filter_by(email=email).first() is None:
 			request.session['status'] = 3
+			SQLsession.close()
 			return HTTPFound('/subscribe')
 		else: # User exists
 			headers = remember(request, email)
+			SQLsession.close()
 			return HTTPFound(location = "/", headers = headers)
 
 @view_config(route_name='logout', permission='logged')
@@ -336,8 +341,10 @@ async def board_leds(request):
 		res['pos'] = pos
 		res['leds_range'] = leds_range
 		res['servos_range'] = servos_range
+		SQLsession.close()
 		return res
 	else:
+		SQLsession.close()
 		return HTTPFound('/wrong_id')
 
 @view_config(route_name='board_timer', renderer='makahiya:templates/timer.pt', permission='view', mapper=CoroutineMapper)
@@ -399,8 +406,10 @@ async def board_timer(request):
 		res['light'] = timer.light
 		res['connected'] = plants.registered(plant_id)
 		res['light_config'] = constants.LIGHT_CONFIG
+		SQLsession.close()
 		return res
 	else:
+		SQLsession.close()
 		return HTTPFound('/wrong_id')
 
 
@@ -416,8 +425,10 @@ def timer_deactivate(request):
 		timer = SQLsession.query(Timers).filter_by(plant_id=plant_id).first()
 		timer.activated = False
 		SQLsession.commit()
+		SQLsession.close()
 		return HTTPFound('/' + str(plant_id) + '/board/timer')
 	else:
+		SQLsession.close()
 		return HTTPFound('/wrong_id')
 
 @view_config(route_name='quick_timer', permission='view', mapper=CoroutineMapper)
@@ -448,8 +459,10 @@ async def quick_timer(request):
 			date = await clock(plant_id, minute=int(request.matchdict['time']), sound=timer.sound, light=timer.light)
 			timer.date = date
 			SQLsession.commit()
+		SQLsession.close()
 		return HTTPFound('/' + str(plant_id) + '/board/timer')
 	else:
+		SQLsession.close()
 		return HTTPFound('/wrong_id')
 
 
@@ -497,6 +510,7 @@ def users(request):
 	res['email'] = request.authenticated_userid
 	res['plant_id'] = get_user_plant_id(res['email'])
 	res['level'] = get_user_level(res['email'])
+	SQLsession.close()
 	return res
 
 @view_config(route_name='delete', permission='sudo')
@@ -507,6 +521,7 @@ def delete(request):
 	if user is not None and user.level > 1:
 		SQLsession.delete(user)
 		SQLsession.commit()
+	SQLsession.close()
 	return HTTPFound('/users')
 
 @view_config(route_name='touch_config', renderer='makahiya:templates/touch.pt', permission='view', mapper=CoroutineMapper)
@@ -551,8 +566,10 @@ async def touch_config(request):
 			touch_config = SQLsession.query(Touch).filter_by(plant_id=plant_id, leaf_id=i).first()
 			values.append(touch_config.commands)
 		res['values'] = values
+		SQLsession.close()
 		return res
 	else:
+		SQLsession.close()
 		return HTTPFound('/wrong_id')
 
 @view_config(route_name='touch_config_delete', permission='view', mapper=CoroutineMapper)
@@ -578,8 +595,10 @@ async def touch_config_delete(request):
 			SQLsession.commit()
 		except KeyError:
 			log.debug('key error')
+			SQLsession.close()
 		return HTTPFound('/' + str(plant_id) + '/touch')
 	else:
+		SQLsession.close()
 		return HTTPFound('/wrong_id')
 
 @view_config(route_name='music', renderer='makahiya:templates/music.pt', permission='view')
@@ -616,15 +635,19 @@ def music(request):
 				os.mkdir('makahiya/music/' + str(plant_id))
 			try:
 				open ('makahiya/music/' + str(plant_id) + '/file.mp3', 'wb').write(sound.file.read())
+				SQLsession.close()
 				return HTTPFound('/' + str(plant_id) + '/music/uploaded')
 			except AttributeError:
 				request.session['no_file'] = True
+				SQLsession.close()
 				return HTTPFound('/' + str(plant_id) + '/music')
 		else:
 			music = SQLsession.query(Music).filter_by(plant_id=plant_id).first()
 			res['playing'] = music.playing
+			SQLsession.close()
 			return res
 	else:
+		SQLsession.close()
 		return HTTPFound('/wrong_id')
 
 @view_config(route_name='music_play', permission='view', mapper=CoroutineMapper)
@@ -645,8 +668,10 @@ async def play_music(request):
 				log.debug('KeyError when starting music')
 		else:
 			request.session['not_uploaded'] = True
+			SQLsession.close()
 		return HTTPFound('/' + str(plant_id) + '/music')
 	else:
+		SQLsession.close()
 		return HTTPFound('/wrong_id')
 
 @view_config(route_name='music_uploaded', renderer='makahiya:templates/uploaded.pt', permission='view')
@@ -665,8 +690,10 @@ def music_uploaded(request):
 		music = SQLsession.query(Music).filter_by(plant_id=plant_id).first()
 		music.uploaded = True
 		SQLsession.commit()
+		SQLsession.close()
 		return res
 	else:
+		SQLsession.close()
 		return HTTPFound('wrong_id')
 
 @view_config(route_name='music_stop', permission='view', mapper=CoroutineMapper)
@@ -676,6 +703,7 @@ async def music_stop(request):
 	email = request.authenticated_userid
 	SQLsession = Session()
 	user = SQLsession.query(Users).filter_by(email=email).first()
+	SQLsession.close()
 	if user is not None:
 		plant_id = user.plant_id
 	if plant_id is not None and plant_id == int(request.matchdict['plant_id']):
@@ -719,10 +747,11 @@ async def quick_leds(request):
 		elif config == 5:
 			msg = 'alarm 1 53 251 10 ' + constants.FULL_RED + ' 250 500 ' + constants.FULL_BLUE + ' 250 500 '
 		try:
-			log.debug('msg: ' + msg)
 			await send_to_socket(plants, plant_id, msg)
 		except KeyError:
 			log.debug('KeyError when setting all red')
+		SQLsession.close()
 		return HTTPFound('/' + str(plant_id) + '/board/leds')
 	else:
+		SQLsession.close()
 		return HTTPFound('wrong_id')

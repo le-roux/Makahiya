@@ -13,6 +13,7 @@ project-build:
     script:
         - make -C Project
 
+<<<<<<< HEAD
 project-test:
     image: rfc1149/rose-dev
     stage: test
@@ -23,3 +24,12 @@ cache:
     key: all
     paths:
       - $CCACHE_DIR
+=======
+server-Server/tests:
+    stage: test
+    script:
+        - pip install -r Server/requirements.txt
+        - pip install -e Server
+        - initialize_test_db Server/tests.ini
+        - pytest Server/makahiya/tests.py -q
+>>>>>>> 84a581a... SQLsessions are now closed properly.
