@@ -10,3 +10,4 @@ Structure:
 - Server/: directory containing the code specific to the server
 - PCB/: directory containing evrything related to the PCB conception
     including the routing table and the schematic
+- Demo/: directory containing the Python script for the final presentation

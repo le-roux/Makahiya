@@ -30,10 +30,10 @@ class constants:
     LED5_B = 5
     LED5_ON = 54
 
-    LED_HP_R = 8
-    LED_HP_G = 9
-    LED_HP_B = 12
-    LED_HP_W = 13
+    LED_HP_R = 9
+    LED_HP_G = 8
+    LED_HP_B = 13
+    LED_HP_W = 12
     LED_HP_ON = 55
 
     LED_R = [LED_HP_R, LED1_R, LED2_R, LED3_R, LED4_R, LED5_R]
