@@ -79,8 +79,8 @@ int main(void) {
 	repeat = 0;
 
 	/**
-	* Websocket thread
-	*/
+	 * Websocket thread
+	 */
 	chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "0");
 
 	while(true) {
