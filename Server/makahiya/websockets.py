@@ -186,6 +186,8 @@ async def plant(ws):
 						music = SQLSession.query(Music).filter_by(plant_id=plant_id).first()
 						music.playing = False
 						SQLSession.commit()
+					elif command[0] == 'music':
+						await ws.send('play /music/' + str(plant_id) + '/file.mp3')
 				SQLSession.close()
 				if (clients.registered(plant_id)):
 					await send_to_socket(clients, plant_id, msg)
