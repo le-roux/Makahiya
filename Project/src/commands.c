@@ -3,6 +3,7 @@
 #include "hal.h"
 #include "sound.h"
 #include "pwmdriver.h"
+#include "websocket.h"
 
 #define RINGBELL_CMD 1
 #define SLEEP_CMD 250
@@ -22,6 +23,8 @@ void handle_commands(uint32_t command, loop_t* loop) {
         case RINGBELL_CMD: {
             if (value == STOP_MUSIC) {
                 repeat = false;
+            } else if (value == ALARM_SOUND_NB) {
+                websocket_write("music"); 
             } else {
                 music_id = value;
                 repeat = true;
