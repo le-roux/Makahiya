@@ -54,13 +54,13 @@ async def plant(ws):
 			producer_task = asyncio.ensure_future(wait_producer(plants, plant_id))
 			done, pending = await asyncio.wait(
 			    [listener_task, producer_task],
+			    timeout=15,
 			    return_when=asyncio.FIRST_COMPLETED)
 
 			await plants.get_var(plant_id).acquire()
 
 			if listener_task in done:
 				msg = listener_task.result()
-				print (msg)
 				command = re.split(' ', msg)
 				SQLSession = Session()
 				try:
@@ -186,6 +186,9 @@ async def plant(ws):
 						music = SQLSession.query(Music).filter_by(plant_id=plant_id).first()
 						music.playing = False
 						SQLSession.commit()
+					elif command[0] == 'music':
+						await ws.send('play /music/' + str(plant_id) + '/file.mp3')
+				SQLSession.close()
 				if (clients.registered(plant_id)):
 					await send_to_socket(clients, plant_id, msg)
 
@@ -201,6 +204,16 @@ async def plant(ws):
 				await plants.get_var(plant_id).acquire()
 			else:
 				listener_task.cancel()
+				if len(done) == 0:
+
+				# The plant has timed out, we assume it lost the connection
+
+					if (producer_task != None):
+						plants.get_var(plant_id).notify()
+						plants.get_var(plant_id).release()
+						await asyncio.wait([producer_task])
+					plants.unregister(plant_id)
+					return
 
 			if(plants.get_new(plant_id)):
 				await ws.send(plants.get_message(plant_id))

@@ -1,6 +1,8 @@
 # This file contains all the codes to send to the plant.
 # Don't modify it without also modifying it's equivalent on the plant-side.
 
+from .models import Leds
+
 class constants:
 
     LED1_R = 33
@@ -135,3 +137,34 @@ class constants:
     FULL_CYAN += ' ' + str(LED_HP_W) + ' ' + str(0)
     for i in range(6):
         FULL_CYAN += ' ' + str(LED_ON[i]) + ' ' + str(1)
+
+    ALL_OFF = ''
+    for i in range(6):
+        ALL_OFF += ' ' + str(LED_ON[i]) + ' ' + str(0)
+
+def setAllLeds(SQLsession, plant_id, R, G, B, W):
+    msg = ''
+    for i in range(6):
+        led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).first()
+        led.R = R
+        led.G = G
+        led.B = B
+        led.on = True
+        msg += constants.SET + str(constants.LED_R[i]) + ' ' + str(R) + ' '
+        msg += constants.SET + str(constants.LED_G[i]) + ' ' + str(G) + ' '
+        msg += constants.SET + str(constants.LED_B[i]) + ' ' + str(B) + ' '
+        msg += constants.SET + str(constants.LED_ON[i]) + ' ' + str(1) + ' '
+        if i == 0:
+            led.W = W
+            msg = constants.SET + str(constants.LED_HP_W) + ' ' + str(W) + ' '
+        SQLsession.commit()
+    return msg
+
+def allLedsOff(SQLsession, plant_id):
+    msg = ''
+    for i in range(6):
+        led = SQLsession.query(Leds).filter_by(plant_id=plant_id, led_id=i).first()
+        led.on = False
+        msg += constants.SET + str(constants.LED_ON[i]) + ' ' + str(0) + ' '
+        SQLsession.commit()
+    return msg
