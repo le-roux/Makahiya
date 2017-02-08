@@ -368,7 +368,7 @@ async def board_timer(request):
 					minutes = int(request.POST.getone('Minutes'))
 					seconds = int(request.POST.getone('Seconds'))
 					if 'sound' in request.POST:
-						timer.sound = int(request.POST.getone('alarm_id'))
+						timer.sound = int(request.POST.getone('alarm_id')) - 1
 					else:
 						timer.sound = 0
 
@@ -543,10 +543,10 @@ async def touch_config(request):
 				if 'Leaf#' + str(i) in request.POST:
 					commands = request.POST.getone('Leaf#' + str(i))
 					sensor_id = 0
-					channel_id = int(i)
-					if i > 4:
+					channel_id = int(i) - 1
+					if channel_id > 3:
 						sensor_id = 1
-						channel_id -= 4
+						channel_id -= 3
 					commands_nb = len(commands.split())
 					if commands_nb % 2 == 1:
 						res['error'] = 1
