@@ -298,6 +298,7 @@ async def board_leds(request):
 					new_pos = request.POST.getone('pos_servo' + str(i))
 					servo = SQLsession.query(Servos).filter_by(plant_id=plant_id, servo_id=i).one()
 					try:
+						pos = (new_pos * 20) + 800
 						msg = constants.SET + str(constants.SERVOS[i]) + \
 						' ' + str(new_pos)
 						await send_to_socket(plants, plant_id, msg)

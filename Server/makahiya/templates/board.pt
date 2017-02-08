@@ -96,7 +96,7 @@
                                     type='number'
                                     value=${pos[repeat.id.index]}
                                     name=${name}
-                                    placeholder='' min='0' max='255'/>
+                                    placeholder='' min='0' max='100'/>
                             </td>
                             <td>
                                 <input type='submit' value='Send'/>
