@@ -75,14 +75,14 @@ async def flash(ws, ledId, length, r, g, b, w = 0):
 
 async def fadeIn(ws, ledId, h, length):
 	await turnOff(ws, ledId)
-	for i in range (1, 11):
-		await asyncio.sleep(length / 10)
-		await setHSV(ws, ledId, h, 1, i / 10)
+	for i in range (1, 21):
+		await asyncio.sleep(length / 20)
+		await setHSV(ws, ledId, h, 1, i / 20)
 
 async def fadeOut(ws, ledId, h, length):
-	for i in range (0, 11):
-		await asyncio.sleep(length / 10)
-		await setHSV(ws, ledId, h, 1, (10 - i) / 10)
+	for i in range (0, 21):
+		await asyncio.sleep(length / 20)
+		await setHSV(ws, ledId, h, 1, (20 - i) / 20)
 
 async def fade(ws, ledId, h, lengthIn, lengthStay, lengthOut):
 	await fadeIn(ws, ledId, h, lengthIn)
@@ -97,6 +97,31 @@ async def wheel(ws, ledId, start, length):
 		duration += 0.2
 		await asyncio.sleep(0.2)
 		h = (h + 6) % 360
+
+async def reverseWheel(ws, ledId, start, length):
+	h = start
+	duration = 0
+	while(duration < length):
+		await setHSV(ws, ledId, h, 1, 1)
+		duration += 0.2
+		await asyncio.sleep(0.2)
+		h = (h - 6) % 360
+
+async def globalWheel(ws, length):
+	led1 = asyncio.ensure_future(wheel(ws, 1, 0, length))
+	led2 = asyncio.ensure_future(wheel(ws, 2, 72, length))
+	led3 = asyncio.ensure_future(wheel(ws, 3, 144, length))
+	led4 = asyncio.ensure_future(wheel(ws, 4, 216, length))
+	led5 = asyncio.ensure_future(wheel(ws, 5, 288, length))
+	await asyncio.wait([led1, led2, led3, led4, led5], return_when=asyncio.ALL_COMPLETED)
+	
+async def reverseGlobalWheel(ws, length):
+	led1 = asyncio.ensure_future(reverseWheel(ws, 1, 0, length))
+	led2 = asyncio.ensure_future(reverseWheel(ws, 2, 72, length))
+	led3 = asyncio.ensure_future(reverseWheel(ws, 3, 144, length))
+	led4 = asyncio.ensure_future(reverseWheel(ws, 4, 216, length))
+	led5 = asyncio.ensure_future(reverseWheel(ws, 5, 288, length))
+	await asyncio.wait([led1, led2, led3, led4, led5], return_when=asyncio.ALL_COMPLETED)
 	
 async def setServo(ws, servoId, pos):
 	await ws.send("set " + constants.SERVOS[i] + " " + str(pos))
@@ -114,11 +139,16 @@ async def demo():
 	#	async with websockets.connect('ws://makahiya.rfc1149.net/ws/clients/2883619') as ws1:
 	async with websockets.connect('ws://makahiya.rfc1149.net/ws/clients/3342371') as ws0:
 		await allOff(ws0)
+		while(True):
+			await flash(ws0, 2, 0.2, 255, 0, 0)
+			await flash(ws0, 3, 0.2, 0, 255, 0)
+			await flash(ws0, 4, 0.2, 0, 0, 255)
+			await flash(ws0, 5, 0.2, 255, 255, 255)
 		await flash(ws0, 0, 0.2, 0, 0, 0, 255)
 		red_task = asyncio.ensure_future(fade(ws0, 1, 0, 2, 1, 2))
 		cyan_task = asyncio.ensure_future(fade(ws0, 2, 180, 2, 1, 2))
-		await asyncio.wait([red_task, cyan_task], return_when=asyncio.FIRST_COMPLETED)
-		await wheel(ws0, 1, 0, 6)
+		await asyncio.wait([red_task, cyan_task], return_when=asyncio.ALL_COMPLETED)
+		await globalWheel(ws0, 20)
 		await allOff(ws0)
 		'''while(True):
 			msg = await ws0.recv()
