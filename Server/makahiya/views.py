@@ -456,7 +456,7 @@ async def quick_timer(request):
 			else:
 				timer.light = 4 # Full green
 
-			timer.sound = 2
+			timer.sound = 1
 			date = await clock(plant_id, minute=int(request.matchdict['time']), sound=timer.sound, light=timer.light)
 			timer.date = date
 			SQLsession.commit()
