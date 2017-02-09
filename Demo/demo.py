@@ -2,6 +2,7 @@ import asyncio
 import websockets
 import time
 import twitter
+from constants import constants
 
 def setLed(i, h, s, v):
 	t = int((h / 60)) % 6
@@ -45,6 +46,7 @@ async def demo():
 			  access_token_secret='mjvACBrmXt3I6H65YC7hV56Ja4pZaRnM8K7fYTfH3DVWK')
 	async with websockets.connect('ws://makahiya.rfc1149.net/ws/clients/0') as websocket0:
 		while(True):
+
 			msg = await websocket0.recv()
 			print (msg)
 			if msg == "touch 1 1":
@@ -67,3 +69,31 @@ while True:
 	v = float(input())
 	setLed(1, h, s, v)
 
+async def setColor(ws, led_id, R = 0, G = 0, B = 0, W = 0):
+	msg = "set " + str(LED_R[led_id]) + " " + str(R) + " "
+	msg += "set " + str(LED_G[led_id]) + " " + str(G) + " "
+	msg += "set " + str(LED_B[led_id]) + " " + str(B) + " "
+	if led_id == 0:
+		msg += "set " + str(LED_HP_W) + " " + str(W) + " "
+
+	msg += "set " + str(LED_ON[led_id]) + " 1"
+	await ws.send(msg)
+
+async def turnOn(ws,led_id):
+	await ws.send("set " + str(LED_ON[led_id]) + " 1")
+
+async def turnOff(ws,led_id):
+	await ws.send("set " + str(LED_ON[led_id]) + " 0")
+
+async def allOff(ws):
+	msg = ""
+	for i in range(6):
+		msg +="set " + str(LED_ON[i]) + " 0 "
+	await ws.send(msg)
+
+async def allOffExcept(ws, led_id):
+	msg = ""
+	for i in range(6):
+		if i != led_id:
+			msg +="set " + str(LED_ON[i]) + " 0 "
+	await ws.send(msg)
