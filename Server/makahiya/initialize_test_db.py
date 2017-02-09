@@ -55,22 +55,22 @@ def main(argv=sys.argv):
 	session = Session()
 
 	# Fill the 'users' table with initial values.
-	user = Users(email='sylvain.leroux3@gmail.com', level=1, plant_id=0)
+	user = Users(email='sylvain.leroux3@gmail.com', level=1, plant_id=2883619)
 	session.add(user)
 
-	timer = Timers(plant_id=0, activated=False, sound=0, light=0)
+	timer = Timers(plant_id=2883619, activated=False, sound=0, light=0)
 	session.add(timer)
 
 	# Fill the 'leds' table with initial values.
 	for i in range(0, 6):
-		model = Leds(R=0, G=0, B=0, W=0, plant_id=0, led_id=i, on=False)
+		model = Leds(R=0, G=0, B=0, W=0, plant_id=2883619, led_id=i, on=False)
 		session.add(model)
 	for i in range(0,5):
-		model = Servos(servo_id=i, pos=0, plant_id=0)
+		model = Servos(servo_id=i, pos=0, plant_id=2883619)
 		session.add(model)
 	for i in range(1,9):
-		model = Touch(plant_id=0, leaf_id=i, commands='')
+		model = Touch(plant_id=2883619, leaf_id=i, commands='')
 		session.add(model)
-	model = Music(plant_id=0, uploaded=False, playing=False)
+	model = Music(plant_id=2883619, uploaded=False, playing=False)
 	session.add(model)
 	session.commit()
