@@ -14,14 +14,19 @@ clients = WebsocketRegister('Clients')
 
 # Coroutine to send a message from a websocket
 async def send_to_socket(register, identifier, msg):
-	register.set_message(identifier, register.get_message(identifier) + " " + msg)
+	await register.get_var(identifier).acquire()
+	register.get_var(identifier).release()
+	await register.get_var(identifier).acquire()
+	register.set_message(identifier, msg)
 	register.set_new(identifier, 1)
 	register.get_var(identifier).notify()
+	await register.get_var(identifier).wait()
 	register.get_var(identifier).release()
 
 # Coroutine that waits until send_to_socket is called
 async def wait_producer(register, identifier):
 	await register.get_var(identifier).acquire()
+	register.get_var(identifier).notify()
 	await register.get_var(identifier).wait()
 	register.get_var(identifier).release()
 
@@ -213,7 +218,6 @@ async def plant(ws):
 			if(plants.get_new(plant_id)):
 				await ws.send(plants.get_message(plant_id))
 				plants.set_new(plant_id, 0)
-				plants.set_message(plant_id, "")
 
 			plants.get_var(plant_id).release()
 
@@ -286,7 +290,6 @@ async def client(ws):
 				if(clients.get_new(client_id)):
 					await ws.send(clients.get_message(client_id))
 					clients.set_new(client_id, 0)
-					clients.set_message(client_id, "")
 
 				clients.get_var(client_id).release()
 
