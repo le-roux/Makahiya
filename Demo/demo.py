@@ -73,7 +73,7 @@ async def demo():
 			  consumer_secret='1UTqusvXqMC0fJeQYCFLQbVVb1DiUyjE2p4Ru3FBd6Msa7N11D',
 			  access_token_key='829427262965612553-Nvq67UVsuQad4fJVhJMYxwVM0kEdfil',
 			  access_token_secret='mjvACBrmXt3I6H65YC7hV56Ja4pZaRnM8K7fYTfH3DVWK')
-	async with websockets.connect('ws://makahiya.rfc1149.net/ws/clients/0') as websocket0:
+	async with websockets.connect('ws://makahiya.rfc1149.net/ws/clients/2883619') as websocket0:
 		h = 0
 		while(True):
 			for i in range (1, 6):
@@ -85,7 +85,7 @@ async def demo():
 			print (msg)
 			if msg == "touch 1 1":
 				print("Callback")
-				async with websockets.connect('ws://makahiya.rfc1149.net/ws/clients/1') as websocket1:
+				async with websockets.connect('ws://makahiya.rfc1149.net/ws/clients/3342371') as websocket1:
 					setColor(websocket1, 1, 12, 0, 0)
 			elif msg == "touch 1 2":
 				api.PostUpdate("Je suis touché(e) !")
