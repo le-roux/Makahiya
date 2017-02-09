@@ -247,7 +247,7 @@ static THD_FUNCTION(fdc_int, arg) {
 	static msg_t command;
 	loop_t loop;
 	char server_command[15];
-	char val[5];
+	char val[10];
 
 	for (int i = 0; i < 4; i++) {
 		init_touch_detection(0, i);

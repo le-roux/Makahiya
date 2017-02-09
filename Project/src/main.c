@@ -8,6 +8,10 @@
 #include "websocket.h"
 #include "sound.h"
 #include "alarm.h"
+#include "utils.h"
+
+static const int* idAddr = (int*)0x1FFF7A10;
+static char plantId[10];
 
 int main(void) {
 
@@ -81,7 +85,8 @@ int main(void) {
 	/**
 	 * Websocket thread
 	 */
-	chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, "0");
+	int_to_char(plantId, *idAddr);
+	chThdCreateStatic(wa_websocket, sizeof(wa_websocket), NORMALPRIO + 1, websocket, plantId);
 
 	while(true) {
 		chThdSleepMilliseconds(1000);

@@ -4,21 +4,37 @@
 #include <string.h>
 
 Test(suite_1, test_int_to_char) {
-    char tmp[6];
+    char tmp[10];
     int_to_char(tmp, 0);
     cr_expect(strcmp(tmp, "0") == 0, "tmp = %s", tmp);
 
     int_to_char(tmp, 2);
     cr_expect(strcmp(tmp, "2") == 0, "tmp = %s", tmp);
 
+    int_to_char(tmp, 10);
+    cr_expect(strcmp(tmp, "10") == 0, "tmp = %s", tmp);
+
     int_to_char(tmp, 12);
     cr_expect(strcmp(tmp, "12") == 0, "tmp = %s", tmp);
+
+    int_to_char(tmp, 105);
+    cr_expect(strcmp(tmp, "105") == 0, "tmp = %s", tmp);
 
     int_to_char(tmp, 854);
     cr_expect(strcmp(tmp, "854") == 0, "tmp = %s", tmp);
 
     int_to_char(tmp, 98653);
     cr_expect(strcmp(tmp, "98653") == 0, "tmp = %s", tmp);
+
+    int_to_char(tmp, 3342371);
+    cr_expect(strcmp(tmp, "3342371") == 0, "tmp = %s", tmp);
+
+    int_to_char(tmp, 2883619);
+    cr_expect(strcmp(tmp, "2883619") == 0, "tmp = %s", tmp);
+
+    int_to_char(tmp, 1000000000);
+    cr_expect(strcmp(tmp, "") == 0, "tmp = %s", tmp);
+
 }
 
 Test(suite_2, test_parse_response_code) {

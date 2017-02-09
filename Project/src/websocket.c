@@ -43,7 +43,7 @@ THD_FUNCTION(websocket_ext, arg) {
     UNUSED(arg);
     wifi_response_header header;
     char *cmd, *var;
-    char value[5], buffer[20];
+    char value[10], buffer[20];
     // Start the EXT driver (for interrupt)
     extStart(EXTD, &ext_config);
     while(TRUE) {
