@@ -1,31 +1,32 @@
 #include "utils.h"
 
+static int const MAX_BASE = 100000000;
+
 void int_to_char(char* out, int value) {
-    int index = 0, base = 10000;
-    int end_set = 0;
-    if (value > 99999) {
+    int index = 0;
+    int base;
+    if (value > ((MAX_BASE * 10) - 1)) {
         out[0] = '\0';
         return;
-    }
-
-    for (int i = 0; i < 5; i++)
-        out[i] = '0';
-
-    if (value == 0) {
+    } else if (value == 0) {
+        out[0] = '0';
         out[1] = '\0';
         return;
     }
 
-    for (int i = 5; i > 0; i--) {
-        if (value >= base) {
-            out[index] = (value / base) + '0';
-            value -= (value / base) * base;
-            index++;
-            if (!end_set) {
-                out[i] = '\0';
-                end_set = 1;
-            }
-        }
+    base = 10;
+    int char_nb = 1;
+    while (value >= base) {
+        char_nb++;
+        base *= 10;
+    }
+    base /= 10;
+    for (int i = char_nb; i > 0; i--) {
+        out[index] = (value / base) + '0';
+        index++;
+        value -= (value / base) * base;
         base /= 10;
     }
+
+    out[char_nb] = '\0';
 }

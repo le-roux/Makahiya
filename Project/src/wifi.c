@@ -185,7 +185,7 @@ wifi_response_header wifi_read(wifi_connection conn, uint8_t* dest, int size, bo
     /**
      * Buffer to store the string representation of @p size.
      */
-    char tmp[5];
+    char tmp[10];
 
     int_to_char(tmp, size);
 
@@ -277,7 +277,7 @@ wifi_response_header wifi_write(wifi_connection* conn, int length, uint8_t* buff
     /**
      * Buffer to store the string representation of the number of bytes to send.
      */
-    char size[5];
+    char size[10];
 
     chMtxLock(&wifi_mutex);
 
