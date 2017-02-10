@@ -115,7 +115,7 @@ async def fadeAllOut(ws, h, lengthChange):
 	led4 = asyncio.ensure_future(fadeOut(ws, 4, h, lengthChange))
 	led5 = asyncio.ensure_future(fadeOut(ws, 5, h, lengthChange))
 	await asyncio.wait([led1, led2, led3, led4, led5], return_when=asyncio.ALL_COMPLETED)
-	
+
 async def wheel(ws, ledId, start, v, length):
 	h = start
 	duration = 0
@@ -141,7 +141,7 @@ async def globalWheel(ws, length):
 	led4 = asyncio.ensure_future(wheel(ws, 4, 216, 1, length))
 	led5 = asyncio.ensure_future(wheel(ws, 5, 288, 1, length))
 	await asyncio.wait([led1, led2, led3, led4, led5], return_when=asyncio.ALL_COMPLETED)
-	
+
 async def reverseGlobalWheel(ws, length):
 	led1 = asyncio.ensure_future(reverseWheel(ws, 1, 0, 1, length))
 	led2 = asyncio.ensure_future(reverseWheel(ws, 2, 72, 1, length))
@@ -168,7 +168,7 @@ async def blueWheel(ws):
 		await asyncio.wait([led1, led2, led3, led4, led5], return_when=asyncio.ALL_COMPLETED)
 		v -= 0.05
 	await allOff(ws)
-	
+
 async def setServo(ws, servoId, pos):
 	await ws.send("set " + str(constants.SERVOS[servoId]) + " " + str(pos))
 
@@ -257,7 +257,7 @@ async def tweets(ws0, ws1):
 		if msg == "touch 0 0":
 			print("Programmation réveil fleur Tanguy : 6h30. Musique “Rick Roll.mp3”. #LaFleur")
 			break
-	
+
 			#		api.PostUpdate("Je suis touché(e) !")
 
 async def leds(ws0, ws1):
@@ -265,9 +265,9 @@ async def leds(ws0, ws1):
 	await allOff(ws1)
 	start = time.time()
 	await blueWheel(ws1)
-	await asyncio.sleep(2)
+	time.sleep(2)
 	print ("Tanguy : time to stop working! #LaFleur")
-	await asyncio.sleep(1.4)
+	time.sleep(2)
 	await randomPart(ws0, ws1)
 	wheel1 = asyncio.ensure_future(globalWheel(ws0, 11.3))
 	wheel2 = asyncio.ensure_future(reverseGlobalWheel(ws1, 11.3))
@@ -286,8 +286,9 @@ async def demo():
 			task1 = asyncio.ensure_future(tweets(ws0, ws1))
 			task2 = asyncio.ensure_future(leds(ws0, ws1))
 			#TODO Wait for setup
-			await ws1.send('/music/3342371/file.mp3')
+			await ws1.send('play /music/3342371/file.mp3')
 			#TODO Wait for sync
+			time.sleep(3)
 			await asyncio.wait([task1, task2], return_when=asyncio.ALL_COMPLETED)
 
 
