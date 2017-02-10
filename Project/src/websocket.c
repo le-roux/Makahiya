@@ -63,7 +63,6 @@ THD_FUNCTION(websocket_ext, arg) {
             if (strcmp(cmd, "set") == 0) {
                 var = strtok_r(NULL, " ", &save_ptr);
                 setValue(atoi(var), atoi(strtok_r(NULL, " ", &save_ptr)));
-                DEBUG("set");
             } else if (strcmp(cmd, "get") == 0) {
                 var = strtok_r(NULL, " ", &save_ptr);
                 int_to_char(value, getValue(atoi(var)));

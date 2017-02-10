@@ -2,6 +2,8 @@
 #include "hal.h"
 #include "pwmdriver.h"
 #include "utils.h"
+#include "RTT_streams.h"
+#include "chprintf.h"
 
 int VALUES[100];
 static volatile int softPwmEnabled[11] = {0};
@@ -354,6 +356,10 @@ void shakeServo(int id, int n){
 }
 
 void setValueI(int varId, int value) {
+	if (varId >= 100) {
+		return;
+	}
+
     VALUES[varId] = value;
     switch(varId) {
         case LED1_ON: {
