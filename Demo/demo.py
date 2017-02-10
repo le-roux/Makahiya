@@ -267,10 +267,10 @@ async def leds(ws0, ws1):
 	await blueWheel(ws1)
 	time.sleep(2)
 	print ("Tanguy : time to stop working! #LaFleur")
-	time.sleep(2)
+	time.sleep(4)
 	await randomPart(ws0, ws1)
-	wheel1 = asyncio.ensure_future(globalWheel(ws0, 11.3))
-	wheel2 = asyncio.ensure_future(reverseGlobalWheel(ws1, 11.3))
+	wheel1 = asyncio.ensure_future(globalWheel(ws0, 15.3))
+	wheel2 = asyncio.ensure_future(reverseGlobalWheel(ws1, 15.3))
 	await asyncio.wait([wheel1, wheel2], return_when=asyncio.ALL_COMPLETED)
 	await finalPart(ws0, ws1)
 	await allOff(ws0)
@@ -288,7 +288,7 @@ async def demo():
 			#TODO Wait for setup
 			await ws1.send('play /music/3342371/file.mp3')
 			#TODO Wait for sync
-			time.sleep(3)
+			time.sleep(2.5)
 			await asyncio.wait([task1, task2], return_when=asyncio.ALL_COMPLETED)
 
 
