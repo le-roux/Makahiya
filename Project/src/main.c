@@ -82,8 +82,6 @@ int main(void) {
 
 	repeat = 0;
 
-	shakeServo(2, 3);
-
 	/**
 	 * Websocket thread
 	 */
