@@ -2,8 +2,11 @@ import asyncio
 import websockets
 import time
 import twitter
+from pushbullet import *
 import random
 from constants import constants
+
+p = PushBullet(apiKey="o.VVWUmr39TrJbeVpqnANKUjaBn0V4n8bY")
 
 async def setColor(ws, ledId, R = 0, G = 0, B = 0, W = 0):
 	msg = "set " + str(constants.LED_R[ledId]) + " " + str(R) + " "
@@ -207,55 +210,98 @@ async def finalPart(ws1, ws2):
 		await asyncio.sleep(0.2)
 
 async def tweets(ws0, ws1):
+	global p
 	while(True):
 		msg = await ws1.recv()
-		if msg == "touch 0 0":
+		print(msg)
+		if msg == " touch 0 0":
 			print("Uploading music from smartphone via Bluetooth. [Sylvain] #LaFleur")
+			p.pushNote(title="Sylvain's Fleur",
+				body="Uploading music from smartphone via Bluetooth. [Sylvain] #LaFleur",
+				recipient='sylvain.leroux3@gmail.com',
+				recipient_type='email')
+
+			break
+	while(True):
+		msg = await ws1.recv()
+		if msg == " touch 0 1":
+			print("Crevé, dodo ! [Sylvain] #LaFleur")
+			p.pushNote(title="Sylvain's Fleur",
+				body="Crevé, dodo ! [Sylvain] #LaFleur",
+				recipient='sylvain.leroux3@gmail.com',
+				recipient_type='email')
+			break
+	while(True):
+		msg = await ws0.recv()
+		if msg == " touch 1 3":
+			print("Chill #LaFleur")
+			p.pushNote(title="Sylvain's Fleur",
+				body="Chill #LaFleur",
+				recipient='sylvain.leroux3@gmail.com',
+				recipient_type='email')
+			break
+	while(True):
+		msg = await ws0.recv()
+		if msg == " touch 1 1":
+			print("Volume down. #LaFleur")
+			p.pushNote(title="Sylvain's Fleur",
+				body="Volume down. #LaFleur",
+				recipient='sylvain.leroux3@gmail.com',
+				recipient_type='email')
+			break
+	while(True):
+		msg = await ws0.recv()
+		if msg == " touch 1 2":
+			print("Volume up. #LaFleur")
+			p.pushNote(title="Sylvain's Fleur",
+				body="Volume up. #LaFleur",
+				recipient='sylvain.leroux3@gmail.com',
+				recipient_type='email')
+			break
+	while(True):
+		msg = await ws0.recv()
+		if msg == " touch 1 2":
+			print("Volume up. #LaFleur")
+			p.pushNote(title="Sylvain's Fleur",
+				body="Volume up. #LaFleur",
+				recipient='sylvain.leroux3@gmail.com',
+				recipient_type='email')
+			break
+	while(True):
+		msg = await ws1.recv()
+		if msg == " touch 0 2":
+			print("23h30, on se calme [Sylvain]. #LaFleur")
+			p.pushNote(title="Sylvain's Fleur",
+				body="23h30, on se calme [Sylvain]. #LaFleur",
+				recipient='sylvain.leroux3@gmail.com',
+				recipient_type='email')
+			break
+	while(True):
+		msg = await ws0.recv()
+		if msg == " touch 1 3":
+			print("Depressing coloc, time to party [Tanguy]. #LaFleur")
+			p.pushNote(title="Sylvain's Fleur",
+				body="Depressing coloc, time to party [Tanguy]. #LaFleur",
+				recipient='sylvain.leroux3@gmail.com',
+				recipient_type='email')
+			break
+	while(True):
+		msg = await ws1.recv()
+		if msg == " touch 0 3":
+			print("Off. #LaFleur")
+			p.pushNote(title="Sylvain's Fleur",
+				body="Off. #LaFleur",
+				recipient='sylvain.leroux3@gmail.com',
+				recipient_type='email')
 			break
 	while(True):
 		msg = await ws1.recv()
 		if msg == "touch 0 1":
-			print("Crevé, dodo ! [Sylvain] #LaFleur")
-			break
-	while(True):
-		msg = await ws0.recv()
-		if msg == "touch 1 0":
-			print("Chill #LaFleur")
-			break
-	while(True):
-		msg = await ws0.recv()
-		if msg == "touch 1 1":
-			print("Volume down. #LaFleur")
-			break
-	while(True):
-		msg = await ws0.recv()
-		if msg == "touch 1 2":
-			print("Volume up. #LaFleur")
-			break
-	while(True):
-		msg = await ws0.recv()
-		if msg == "touch 1 2":
-			print("Volume up. #LaFleur")
-			break
-	while(True):
-		msg = await ws1.recv()
-		if msg == "touch 0 2":
-			print("23h30, on se calme [Sylvain]. #LaFleur")
-			break
-	while(True):
-		msg = await ws0.recv()
-		if msg == "touch 1 3":
-			print("Depressing coloc, time to party [Tanguy]. #LaFleur")
-			break
-	while(True):
-		msg = await ws1.recv()
-		if msg == "touch 0 3":
-			print("Off. #LaFleur")
-			break
-	while(True):
-		msg = await ws1.recv()
-		if msg == "touch 0 0":
 			print("Programmation réveil fleur Tanguy : 6h30. Musique “Rick Roll.mp3”. #LaFleur")
+			p.pushNote(title="Sylvain's Fleur",
+				body="Programmation réveil fleur Tanguy : 6h30. Musique “Rick Roll.mp3”. #LaFleur",
+				recipient='sylvain.leroux3@gmail.com',
+				recipient_type='email')
 			break
 
 			#		api.PostUpdate("Je suis touché(e) !")
@@ -277,10 +323,11 @@ async def leds(ws0, ws1):
 	await allOff(ws1)
 
 async def demo():
-	api = twitter.Api(consumer_key='5AxCp1lqGjdQ123yDmAm6JBcw',
-			  consumer_secret='1UTqusvXqMC0fJeQYCFLQbVVb1DiUyjE2p4Ru3FBd6Msa7N11D',
-			  access_token_key='829427262965612553-Nvq67UVsuQad4fJVhJMYxwVM0kEdfil',
-			  access_token_secret='mjvACBrmXt3I6H65YC7hV56Ja4pZaRnM8K7fYTfH3DVWK')
+
+	p.pushNote(title="Sylvain's Fleur",
+	        body="Bonjour je suis ta fleur",
+	        recipient='sylvain.leroux3@gmail.com',
+	        recipient_type='email')
 	async with websockets.connect('ws://makahiya.rfc1149.net/ws/clients/2883619') as ws0:
 		async with websockets.connect('ws://makahiya.rfc1149.net/ws/clients/3342371') as ws1:
 			task1 = asyncio.ensure_future(tweets(ws0, ws1))
@@ -288,7 +335,7 @@ async def demo():
 			#TODO Wait for setup
 			await ws1.send('play /music/3342371/file.mp3')
 			#TODO Wait for sync
-			time.sleep(2.5)
+			time.sleep(15.1)
 			await asyncio.wait([task1, task2], return_when=asyncio.ALL_COMPLETED)
 
 
